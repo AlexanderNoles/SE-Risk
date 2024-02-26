@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.monitorbreak.additions": {
+      "version": "https://github.com/Monitor-Break/Additions.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6739857609861b31f7b6d0c5dbd9127f5929bf59"
+    },
     "com.unity.2d.animation": {
       "version": "9.0.3",
       "depth": 1,
