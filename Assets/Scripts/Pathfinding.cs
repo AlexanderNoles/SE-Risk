@@ -36,10 +36,11 @@ namespace Pathfinding
             return Mathf.Abs(a.GetPosition().x - b.GetPosition().x) + Mathf.Abs(a.GetPosition().z - b.GetPosition().z);
         }
 
-        public static List<INode> FindPath(INode startNode, INode endNode)
+        public static List<INode> FindPath(INode startNode, INode endNode, bool circular)
         {
             List<INode> toReturn = new List<INode>();
 
+            if(!circular)
             {
                 //Reverse the end and start nodes so we don't have to reverse the final path when we move back from the end
                 INode temp = startNode;
@@ -57,7 +58,7 @@ namespace Pathfinding
             {
                 AStarNode current = GetNextNode(frontier);
 
-                if (current.node == endNode) 
+                if (current.node.GetPosition() == endNode.GetPosition()) 
                 {
                     //We have found our path, we can just get a reverse path
                     while (current != null)
@@ -93,8 +94,10 @@ namespace Pathfinding
                             continue;
                         }
                     }
-
-                    frontier.Add(newNode);
+                    if(!(circular && closed.Count == 1 && newNode.node.GetPosition() == endNode.GetPosition()))
+                    {
+                        frontier.Add(newNode);
+                    }
                 }
             }
 
@@ -122,7 +125,7 @@ namespace Pathfinding
 
             foreach (AStarNode node in nodes)
             {
-                if (node.node == checkNode)
+                if (node.node.GetPosition() == checkNode.GetPosition())
                 {
                     outNode = node;
                     return true;
@@ -136,7 +139,7 @@ namespace Pathfinding
         {
             foreach (AStarNode node in nodes)
             {
-                if (node.node == checkNode)
+                if (node.node.GetPosition() == checkNode.GetPosition())
                 {
                     return true;
                 }
