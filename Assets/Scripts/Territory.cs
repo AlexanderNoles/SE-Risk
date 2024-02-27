@@ -24,7 +24,7 @@ public class Territory : MonoBehaviour
     public void SetBorderPoints(List<Vector3> newPoints) {  borderPoints = newPoints;
         for (int i = 0; i < borderPoints.Count - 1; i++)
         {
-            Debug.DrawLine(borderPoints[i], borderPoints[i+1], Color.green, 10000);
+            Debug.DrawLine(borderPoints[i], borderPoints[i+1], Color.Lerp(Color.green, Color.red, ((float)i / borderPoints.Count)), 10000);
         }
     }  
 

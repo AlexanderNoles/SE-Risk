@@ -40,7 +40,6 @@ namespace Pathfinding
         {
             List<INode> toReturn = new List<INode>();
 
-            if(!circular)
             {
                 //Reverse the end and start nodes so we don't have to reverse the final path when we move back from the end
                 INode temp = startNode;
