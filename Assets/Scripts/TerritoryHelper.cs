@@ -51,6 +51,7 @@ public class TerritoryHelper : MonoBehaviour
             endNode.SetPosition(startNode.GetEndNode());
             endNode.SetTexture(texture);
             List<INode> path = AStar.FindPath(startNode, endNode, true);
+            path.Add(startNode);
             territory.SetBorderPoints(ConvertNodePositionsToBorderPoints(path));
         }
     }

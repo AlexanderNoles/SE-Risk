@@ -6,7 +6,7 @@ public class TextureNode : INode
 {
     Vector3 position;
     Texture2D texture;
-    static Vector3[] omniOffsets =
+    static Vector3[] pomniOffsets =
     {
         new Vector3(-1,-1),new Vector3(-1,0),new Vector3(-1,1),
         new Vector3(1,1),new Vector3(1,0),new Vector3(1,-1),
@@ -61,7 +61,7 @@ public class TextureNode : INode
     }
     public bool CheckNeighbouringWhiteNodes(Vector3 pos)
     {
-        foreach (Vector3 vector in omniOffsets)
+        foreach (Vector3 vector in pomniOffsets)
         {
             Vector3 pixelPos = new Vector3(pos.x + vector.x, pos.y + vector.y);
             if (texture.GetPixel((int)pixelPos.x, (int)pixelPos.y) == Color.white)
