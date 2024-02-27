@@ -53,10 +53,26 @@ public class TerritoryHelper : MonoBehaviour
             endNode.SetTexture(texture);
             List<INode> path = AStar.FindPath(startNode, endNode, true);
             path.Add(startNode);
-            territory.SetBorderPoints(ConvertNodePositionsToBorderPoints(path));
+            path = RemoveUselessBorderPoints(path);
+            List<Vector3> vectorPath = ConvertNodePositionsToBorderPoints(path);
+            territory.SetBorderPoints(vectorPath);
         }
     }
-
+    public List<INode> RemoveUselessBorderPoints(List<INode> path)
+    {
+        for(int i = 0; i < path.Count-2; i++) 
+        {
+            Vector3 point1 = path[i].GetPosition();
+            Vector3 point2 = path[i+2].GetPosition();
+            Vector3 difference = point2 - point1;
+            if(difference.x != 1 && difference.x != -1 && difference.y != -1 && difference.y != 1)
+            {
+                path.Remove(path[i + 1]);
+                i--;
+            }
+        }
+        return path;
+    }
     public Vector2 IntArrayToVector2(int pos)
     {
         Vector2 vector = new Vector2();
