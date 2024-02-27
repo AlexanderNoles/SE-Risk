@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+#if UNITY_EDITOR
 public class TerritoryHelper : MonoBehaviour
 {
     public Territory territory;
@@ -121,3 +122,4 @@ public class TerritoryHelper : MonoBehaviour
         }
     }
 }
+#endif
