@@ -65,6 +65,10 @@ public class TerritoryHelper : MonoBehaviour
             Vector3 point1 = path[i].GetPosition();
             Vector3 point2 = path[i+2].GetPosition();
             Vector3 difference = point2 - point1;
+            //Just to clarify, If I'm understanding this correctly
+            //this check will remove a point if the direction from point[i] to point[i+2] is the same as the direction from
+            //point[i] to point[i+1] right?
+            //Essentially removing long strips of points?
             if(difference.x != 1 && difference.x != -1 && difference.y != -1 && difference.y != 1)
             {
                 path.Remove(path[i + 1]);

@@ -22,10 +22,15 @@ public class Territory : MonoBehaviour
     public void SetCurrentTroops(int currentTroops) { this.currentTroops = currentTroops;}
     public List<Vector3> GetBorderPoints () {  return borderPoints; }
     public void SetBorderPoints(List<Vector3> newPoints) {  borderPoints = newPoints;
+    }
+
+
+    private void OnDrawGizmosSelected()
+    {
         for (int i = 0; i < borderPoints.Count - 1; i++)
         {
-            Debug.DrawLine(borderPoints[i], borderPoints[i+1], Color.Lerp(Color.green, Color.red, ((float)i / borderPoints.Count)), 10000);
+            Gizmos.color = Color.Lerp(Color.green, Color.red, ((float)i / borderPoints.Count));
+            Gizmos.DrawLine(borderPoints[i], borderPoints[i+1]);
         }
-    }  
-
+    }
 }
