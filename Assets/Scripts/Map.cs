@@ -6,6 +6,7 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     List<Territory> territories = new List<Territory>();
+    public GameObject greyPlane;
     static Map instance;
     public void Awake()
     {  
@@ -27,5 +28,9 @@ public class Map : MonoBehaviour
             }
         }
         return null;
+    }
+    public static void SetActiveGreyPlane(bool active)
+    {
+        instance.greyPlane.SetActive(active);
     }
 }

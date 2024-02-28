@@ -1,7 +1,9 @@
 using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.UIElements;
 
 #if UNITY_EDITOR
@@ -11,6 +13,8 @@ public class TerritoryHelper : MonoBehaviour
     private Texture2D texture = null;
     public Sprite spriteOverride = null;
     private float pixelsPerUnit;
+    private int halfWidth;
+    private int halfHeight;
     public bool UpdateTexture()
     {
         Sprite sprite = spriteOverride;
@@ -19,7 +23,17 @@ public class TerritoryHelper : MonoBehaviour
             sprite = GetComponent<SpriteRenderer>().sprite;
         }
         pixelsPerUnit = sprite.pixelsPerUnit;
-        return texture = sprite.texture;
+        if(texture = sprite.texture)
+        {
+            halfHeight = texture.height / 2;
+            halfWidth = texture.width / 2;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
 
     }
     public bool FindBlackPixel(out Vector2 pos)
@@ -58,10 +72,22 @@ public class TerritoryHelper : MonoBehaviour
             endNode.SetTexture(texture);
             List<INode> path = AStar.FindPath(startNode, endNode, true);
             path.Add(startNode);
+            territory.SetCentrePoint(CalculateCentrePoint(path));
             path = RemoveUselessBorderPoints(path);
             List<Vector3> vectorPath = ConvertNodePositionsToBorderPoints(path);
             territory.SetBorderPoints(vectorPath);
         }
+    }
+
+    public Vector3 CalculateCentrePoint(List<INode> path)
+    {
+        Vector3 centrePoint = Vector3.zero;
+        for(int i=0; i<path.Count; i++)
+        {
+            centrePoint += path[i].GetPosition();
+        }
+        centrePoint/=path.Count;
+        return ConvertNodePositionToBorderPoint(centrePoint,transform.position);
     }
     public List<INode> RemoveUselessBorderPoints(List<INode> path)
     {
@@ -94,20 +120,22 @@ public class TerritoryHelper : MonoBehaviour
     
     public List<Vector3> ConvertNodePositionsToBorderPoints(List<INode> path)
     {
-        int halfWidth = texture.width / 2;
-        int halfHeight = texture.height / 2;
         Vector3 objectPos = transform.position;
         List<Vector3> borderPoints = new List<Vector3>();
         foreach (INode node in path)
         {
-            Vector3 newPos = node.GetPosition();
-            newPos.x -= halfWidth;
-            newPos.y -= halfHeight;
-            newPos /= pixelsPerUnit;
-            newPos += objectPos;
-            borderPoints.Add(newPos);
+            borderPoints.Add(ConvertNodePositionToBorderPoint(node.GetPosition(),objectPos));
         }
         return borderPoints;
+    }
+    public Vector3 ConvertNodePositionToBorderPoint(Vector3 pos, Vector3 objectPos)
+    {
+  
+        pos.x -= halfWidth;
+        pos.y -= halfHeight;
+        pos /= pixelsPerUnit;
+        pos += objectPos;
+        return pos;
     }
     [ContextMenu("Find white pixel")]
     public void FindWhitePixel()
