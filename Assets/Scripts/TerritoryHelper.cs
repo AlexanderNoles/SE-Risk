@@ -9,10 +9,15 @@ public class TerritoryHelper : MonoBehaviour
 {
     public Territory territory;
     private Texture2D texture = null;
+    public Sprite spriteOverride = null;
     private float pixelsPerUnit;
     public bool UpdateTexture()
     {
-        Sprite sprite = GetComponent<SpriteRenderer>().sprite;
+        Sprite sprite = spriteOverride;
+        if(sprite == null)
+        {
+            sprite = GetComponent<SpriteRenderer>().sprite;
+        }
         pixelsPerUnit = sprite.pixelsPerUnit;
         return texture = sprite.texture;
 
