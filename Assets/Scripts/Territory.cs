@@ -14,9 +14,12 @@ public class Territory : MonoBehaviour
     Bounds bounds = new Bounds();
     [SerializeField]
     Vector3 centrePoint;
+    [SerializeField]
+    Vector3 textOffset = new Vector3(0, 0, 0);
     const float inflationRatio = 1.1f;
     private SpriteRenderer spriteRenderer;
     private TextMeshProUGUI troopLabel;
+    
 
 
     public bool CheckIfPosIsInside (Vector3 pos)
@@ -67,7 +70,7 @@ public class Territory : MonoBehaviour
     public void SetCurrentTroops(int currentTroops) 
     { 
         this.currentTroops = currentTroops;
-        //troopLabel.text = currentTroops.ToString();
+        troopLabel.text = currentTroops.ToString();
     }
     public List<Vector3> GetBorderPoints () {  return borderPoints; }
     public void SetBorderPoints(List<Vector3> newPoints) 
@@ -79,9 +82,14 @@ public class Territory : MonoBehaviour
     public void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        troopLabel = UIManagement.Spawn<TextMeshProUGUI>(centrePoint, 0).component;
+    }
+    public void Start()
+    {
+        troopLabel = UIManagement.Spawn<TextMeshProUGUI>(centrePoint + textOffset, 0).component;
         SetCurrentTroops(0);
     }
+
+
 
     private void OnDrawGizmos()
     {
