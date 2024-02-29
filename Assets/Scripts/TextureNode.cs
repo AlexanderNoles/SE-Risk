@@ -10,17 +10,16 @@ public class TextureNode : INode
     {
         new Vector3(-1,-1),new Vector3(-1,0),new Vector3(-1,1),
         new Vector3(1,1),new Vector3(1,0),new Vector3(1,-1),
-        new Vector3(0,-1),new Vector3(0,1)
+        new Vector3(0,-1),new Vector3(0,1),
     };
     static Vector3[] orthOffsets =
     {
-        new Vector3(-1,0),new Vector3(1,0),
-        new Vector3(0,-1),new Vector3(0,1)
+       new Vector3(-1,0),new Vector3(1,0),
+       new Vector3(0,-1),new Vector3(0,1)
     };
     static Vector3[] endOffsets =
     {
-        new Vector3(0,1),new Vector3(-1,-1),
-        new Vector3(-1,0),new Vector3(-1,1)
+        new Vector3(0,1),new Vector3(-1,0)
     };
     public List<INode> GetNeighbours()
     {
@@ -59,6 +58,7 @@ public class TextureNode : INode
         }
         return Vector3.zero;
     }
+
     public bool CheckNeighbouringWhiteNodes(Vector3 pos)
     {
         foreach (Vector3 vector in pomniOffsets)

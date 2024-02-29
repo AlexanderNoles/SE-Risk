@@ -12,6 +12,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void Awake()
     {
         m_Camera = Camera.main;
+        currentState = state.MapView;
     }
     public void Update()
     {
@@ -37,7 +38,7 @@ public class PlayerInputHandler : MonoBehaviour
                 }
                 currentTerritoryUnderMouse = hoveredTerritory;
             }
-            if (currentTerritoryUnderMouse != null)
+            else if (currentTerritoryUnderMouse != null)
             {
                 if (Input.GetMouseButtonDown(0))
                 {

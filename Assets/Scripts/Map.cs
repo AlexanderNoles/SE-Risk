@@ -16,7 +16,6 @@ public class Map : MonoBehaviour
             if (child.TryGetComponent<Territory>(out Territory territory))
                 territories.Add(territory);
         }
-        Debug.Log(territories.Count);
     }
     public static Territory GetTerritoryUnderPosition(Vector3 pos)
     {

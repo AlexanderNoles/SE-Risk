@@ -46,12 +46,11 @@ namespace Pathfinding
                 startNode = endNode;
                 endNode = temp;
             }
-
-            List<AStarNode> closed = new List<AStarNode>();
-            List<AStarNode> frontier = new List<AStarNode>
-            {
+                List<AStarNode> closed = new List<AStarNode>();
+                List<AStarNode> frontier = new List<AStarNode>(){
                 new AStarNode(startNode, null, 0, endNode)
-            };
+                };
+            
 
             while (frontier.Count > 0)
             {

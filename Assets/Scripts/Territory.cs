@@ -47,7 +47,6 @@ public class Territory : MonoBehaviour
         transform.localScale = Vector3.one*inflationRatio;
         Vector3 newCentre = centrePoint * inflationRatio;
         Vector3 difference= newCentre-centrePoint;
-        Debug.Log(difference);
         transform.localPosition = -difference;
         spriteRenderer.sortingOrder = 1000;
     }
@@ -68,7 +67,7 @@ public class Territory : MonoBehaviour
     public void SetCurrentTroops(int currentTroops) 
     { 
         this.currentTroops = currentTroops;
-        troopLabel.text = currentTroops.ToString();
+        //troopLabel.text = currentTroops.ToString();
     }
     public List<Vector3> GetBorderPoints () {  return borderPoints; }
     public void SetBorderPoints(List<Vector3> newPoints) 
@@ -91,7 +90,7 @@ public class Territory : MonoBehaviour
             Gizmos.color = Color.Lerp(Color.green, Color.red, ((float)i / borderPoints.Count));
             Gizmos.DrawLine(borderPoints[i], borderPoints[i+1]);
         }
-        Gizmos.DrawLine(Vector3.zero,centrePoint);
+        Gizmos.DrawLine(Vector3.zero, centrePoint);
         Gizmos.DrawWireCube(bounds.center, bounds.size);
     }
 }

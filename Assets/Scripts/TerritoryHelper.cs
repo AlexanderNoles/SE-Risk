@@ -147,7 +147,6 @@ public class TerritoryHelper : MonoBehaviour
         {
             if (colour[i] == Color.white)
             {
-                Debug.Log(IntArrayToVector2(i));
                 return;
             }
         }
@@ -167,7 +166,6 @@ public class TerritoryHelper : MonoBehaviour
                     {
                         pixelIndex += texture.width;
                     }
-                    Debug.Log(IntArrayToVector2(pixelIndex));
                     return;
 
                 }
