@@ -19,8 +19,6 @@ public class Territory : MonoBehaviour
     const float inflationRatio = 1.1f;
     private SpriteRenderer spriteRenderer;
     private TextMeshProUGUI troopLabel;
-    
-
 
     public bool CheckIfPosIsInside (Vector3 pos)
     {

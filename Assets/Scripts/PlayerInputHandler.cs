@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInputHandler : MonoBehaviour
@@ -8,7 +9,14 @@ public class PlayerInputHandler : MonoBehaviour
     private Vector3 mousePosLastFrame;
     private Territory currentTerritoryUnderMouse = null;
     private state currentState;
-    private enum state {MapView,Selected}
+    private float zoomTime = 0.2f;
+    Vector3 startPos;
+    Vector3 cameraMoveVector;
+    float startSize;
+    float endSize;
+    float executionTime;
+    const float defaultCameraSize = 7;
+    private enum state {MapView,Selected,Zooming}
     public void Awake()
     {
         m_Camera = Camera.main;
@@ -53,21 +61,53 @@ public class PlayerInputHandler : MonoBehaviour
                 DeselectTerritory();
             }
         }
+        else if (currentState==state.Zooming) 
+        {
+            if (executionTime < zoomTime)
+            {
+                float deltaTime = Time.deltaTime;
+                executionTime += deltaTime;
+                float completionRate = (executionTime / zoomTime);
+                m_Camera.transform.position = startPos + (cameraMoveVector * completionRate);
+                m_Camera.orthographicSize = startSize - ((startSize-endSize) * completionRate);
+            }
+            else
+            {
+                m_Camera.transform.position = startPos + cameraMoveVector;
+                m_Camera.orthographicSize = endSize;
+                if (m_Camera.orthographicSize == defaultCameraSize)
+                {
+                    currentState = state.MapView;
+                }
+                else 
+                {
+                    currentState = state.Selected;
+                }
+                
+            }
+        }
     }
 
     public void SelectTerritory()
     {
-        currentState = state.Selected;
-        Map.SetActiveGreyPlane(true);
-        m_Camera.transform.position = currentTerritoryUnderMouse.GetCentrePoint() + Vector3.forward*-10;
-        Vector3 extents = currentTerritoryUnderMouse.GetBounds().extents;
-        float diagLength = Mathf.Sqrt(extents.x*extents.x + extents.y*extents.y);
-        m_Camera.orthographicSize = diagLength*2;
+       currentState = state.Zooming;
+       Map.SetActiveGreyPlane(true);
+       Vector3 extents = currentTerritoryUnderMouse.GetBounds().extents;
+       float diagLength = Mathf.Sqrt(extents.x * extents.x + extents.y * extents.y);
+       startPos = m_Camera.transform.position;
+       cameraMoveVector = (currentTerritoryUnderMouse.GetCentrePoint() + Vector3.forward * -10) - m_Camera.transform.position;
+        startSize = defaultCameraSize;
+       endSize = diagLength * 2;
+       executionTime = 0;
     }
     public void DeselectTerritory()
     {
-        currentState = state.MapView;
+        currentState = state.Zooming;
         Map.SetActiveGreyPlane(false);
-        m_Camera.orthographicSize = 7;
+        startPos = m_Camera.transform.position;
+        cameraMoveVector = new Vector3(0, 0, -10) - startPos;
+        startSize = m_Camera.orthographicSize;
+        endSize = defaultCameraSize;
+        executionTime = 0;
     }
 }
