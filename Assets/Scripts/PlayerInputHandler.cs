@@ -28,6 +28,8 @@ public class PlayerInputHandler : MonoBehaviour
     }
     public void Update()
     {
+
+
         if (currentState == state.MapView)
         {
             Vector3 mousePosThisFrame = m_Camera.ScreenToWorldPoint(Input.mousePosition);
@@ -58,6 +60,8 @@ public class PlayerInputHandler : MonoBehaviour
                 }
             }
         }
+
+
         else if (currentState==state.Selected)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -71,6 +75,8 @@ public class PlayerInputHandler : MonoBehaviour
                 DeselectTerritory();
             }
         }
+
+
         else if (currentState==state.Zooming) 
         {
             if (executionTime < zoomTime)

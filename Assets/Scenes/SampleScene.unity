@@ -421,6 +421,11 @@ MonoBehaviour:
     m_Extent: {x: 0.84500027, y: 0.8599999, z: 0.5}
   centrePoint: {x: 5.68817, y: -3.8042877, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1090601559}
+  - {fileID: 165419106}
+  - {fileID: 1433758182}
+  continent: 5
 --- !u!212 &50025245
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -807,6 +812,11 @@ MonoBehaviour:
     m_Extent: {x: 0.56500006, y: 0.80500007, z: 0.5}
   centrePoint: {x: -3.3343427, y: 2.5264807, z: 0}
   textOffset: {x: 0, y: 0.2, z: 0}
+  neighbours:
+  - {fileID: 2018647791}
+  - {fileID: 786620686}
+  - {fileID: 1733551328}
+  continent: 2
 --- !u!212 &58168307
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1275,6 +1285,14 @@ MonoBehaviour:
     m_Extent: {x: 1.1850004, y: 1.085, z: 0.5}
   centrePoint: {x: 4.3718224, y: 0.75186217, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1935467936}
+  - {fileID: 1147681066}
+  - {fileID: 810260940}
+  - {fileID: 1219060910}
+  - {fileID: 1818129321}
+  - {fileID: 1643417660}
+  continent: 4
 --- !u!212 &160326219
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1677,6 +1695,10 @@ MonoBehaviour:
     m_Extent: {x: 0.77999973, y: 0.6400001, z: 0.5}
   centrePoint: {x: 4.914363, y: -2.333915, z: 0}
   textOffset: {x: 0.1, y: 0.1, z: 0}
+  neighbours:
+  - {fileID: 50025244}
+  - {fileID: 1433758182}
+  continent: 5
 --- !u!212 &165419107
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1966,6 +1988,11 @@ MonoBehaviour:
     m_Extent: {x: 0.79999995, y: 0.44000006, z: 0.5}
   centrePoint: {x: -3.9584246, y: -0.62723905, z: 0}
   textOffset: {x: -0.2, y: 0.1, z: 0}
+  neighbours:
+  - {fileID: 773879357}
+  - {fileID: 1112965827}
+  - {fileID: 904582787}
+  continent: 1
 --- !u!212 &271865260
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2423,6 +2450,12 @@ MonoBehaviour:
     m_Extent: {x: 0.7800002, y: 0.645, z: 0.5}
   centrePoint: {x: 4.712828, y: 2.655672, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1093765405}
+  - {fileID: 810260940}
+  - {fileID: 1818129321}
+  - {fileID: 902095656}
+  continent: 4
 --- !u!212 &412295266
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2761,6 +2794,12 @@ MonoBehaviour:
     m_Extent: {x: 0.5400001, y: 0.805, z: 0.5}
   centrePoint: {x: -1.1032434, y: 0.6679651, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1192561259}
+  - {fileID: 762844576}
+  - {fileID: 1313182726}
+  - {fileID: 1377605362}
+  continent: 3
 --- !u!212 &427254488
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3222,6 +3261,12 @@ MonoBehaviour:
     m_Extent: {x: 0.625, y: 0.7750001, z: 0.5}
   centrePoint: {x: 0.13299866, y: 3.2358136, z: 0}
   textOffset: {x: -0.2, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1313182726}
+  - {fileID: 1304269241}
+  - {fileID: 804431230}
+  - {fileID: 1192561259}
+  continent: 3
 --- !u!212 &577144376
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3418,6 +3463,12 @@ MonoBehaviour:
     m_Extent: {x: 0.5999999, y: 0.4949999, z: 0.5}
   centrePoint: {x: -5.425702, y: 2.8436897, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1591794144}
+  - {fileID: 1897040168}
+  - {fileID: 1733551328}
+  - {fileID: 1052722737}
+  continent: 2
 --- !u!212 &676728473
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3883,6 +3934,13 @@ MonoBehaviour:
     m_Extent: {x: 1.095, y: 1.16, z: 0.5}
   centrePoint: {x: -0.5077002, y: -1.1663574, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1640216048}
+  - {fileID: 1110549167}
+  - {fileID: 427254487}
+  - {fileID: 782784089}
+  - {fileID: 773879357}
+  continent: 0
 --- !u!212 &762844577
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4263,6 +4321,10 @@ MonoBehaviour:
     m_Extent: {x: 0.4250002, y: 0.8699999, z: 0.5}
   centrePoint: {x: 6.320128, y: 1.709665, z: 0}
   textOffset: {x: 0.1, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1093765405}
+  - {fileID: 810260940}
+  continent: 4
 --- !u!212 &769185064
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4763,6 +4825,12 @@ MonoBehaviour:
     m_Extent: {x: 1.2350004, y: 1.145, z: 0.5}
   centrePoint: {x: -3.2129078, y: -1.6181827, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1378927313}
+  - {fileID: 904582787}
+  - {fileID: 271865259}
+  - {fileID: 762844576}
+  continent: 1
 --- !u!212 &773879358
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5199,6 +5267,13 @@ MonoBehaviour:
     m_Extent: {x: 0.7800003, y: 1.1599998, z: 0.5}
   centrePoint: {x: 1.2904639, y: -2.1139774, z: 0}
   textOffset: {x: 0.2, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1640216048}
+  - {fileID: 1110549167}
+  - {fileID: 1073075577}
+  - {fileID: 1389164114}
+  - {fileID: 1733732290}
+  continent: 0
 --- !u!212 &782784090
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5621,6 +5696,12 @@ MonoBehaviour:
     m_Extent: {x: 0.97500014, y: 0.9750004, z: 0.5}
   centrePoint: {x: -2.432652, y: 4.1552606, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 804431230}
+  - {fileID: 58168306}
+  - {fileID: 1897040168}
+  - {fileID: 1733551328}
+  continent: 2
 --- !u!212 &786620687
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5847,6 +5928,11 @@ MonoBehaviour:
     m_Extent: {x: 0.4050001, y: 0.26499987, z: 0.5}
   centrePoint: {x: -1.1862134, y: 3.1923628, z: 0}
   textOffset: {x: 0.1, y: 0, z: 0}
+  neighbours:
+  - {fileID: 786620686}
+  - {fileID: 1192561259}
+  - {fileID: 577144375}
+  continent: 3
 --- !u!212 &804431231
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6232,6 +6318,13 @@ MonoBehaviour:
     m_Extent: {x: 0.8800001, y: 0.68499994, z: 0.5}
   centrePoint: {x: 5.0076575, y: 1.6723425, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 160326218}
+  - {fileID: 1093765405}
+  - {fileID: 1818129321}
+  - {fileID: 769185063}
+  - {fileID: 412295265}
+  continent: 4
 --- !u!212 &810260941
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6559,6 +6652,11 @@ MonoBehaviour:
     m_Extent: {x: 0.6850004, y: 0.66499996, z: 0.5}
   centrePoint: {x: 4.880332, y: 3.9970288, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 412295265}
+  - {fileID: 1093765405}
+  - {fileID: 1818129321}
+  continent: 4
 --- !u!212 &902095657
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7006,6 +7104,11 @@ MonoBehaviour:
     m_Extent: {x: 0.86000013, y: 0.8649998, z: 0.5}
   centrePoint: {x: -4.10924, y: -1.7662143, z: 0}
   textOffset: {x: 0.2, y: -0.1, z: 0}
+  neighbours:
+  - {fileID: 1378927313}
+  - {fileID: 773879357}
+  - {fileID: 271865259}
+  continent: 1
 --- !u!212 &904582788
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7340,6 +7443,12 @@ MonoBehaviour:
     m_Extent: {x: 0.6999998, y: 0.6999999, z: 0.5}
   centrePoint: {x: -5.287787, y: 1.6510632, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1112965827}
+  - {fileID: 2018647791}
+  - {fileID: 1733551328}
+  - {fileID: 676728472}
+  continent: 2
 --- !u!212 &1052722738
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7610,6 +7719,10 @@ MonoBehaviour:
     m_Extent: {x: 0.33500004, y: 0.58000016, z: 0.5}
   centrePoint: {x: 1.993695, y: -3.793023, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 782784089}
+  - {fileID: 1733732290}
+  continent: 0
 --- !u!212 &1073075578
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7969,6 +8082,11 @@ MonoBehaviour:
     m_Extent: {x: 0.74000025, y: 1.06, z: 0.5}
   centrePoint: {x: 6.623705, y: -3.5184808, z: 0}
   textOffset: {x: 0.2, y: -0.2, z: 0}
+  neighbours:
+  - {fileID: 50025244}
+  - {fileID: 165419106}
+  - {fileID: 1433758182}
+  continent: 5
 --- !u!212 &1090601560
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8588,6 +8706,12 @@ MonoBehaviour:
     m_Extent: {x: 1.0500002, y: 1.2850006, z: 0.5}
   centrePoint: {x: 5.957949, y: 3.3375714, z: 0}
   textOffset: {x: 0, y: 0.5, z: 0}
+  neighbours:
+  - {fileID: 412295265}
+  - {fileID: 769185063}
+  - {fileID: 810260940}
+  - {fileID: 902095656}
+  continent: 4
 --- !u!212 &1093765406
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8900,6 +9024,12 @@ MonoBehaviour:
     m_Extent: {x: 0.645, y: 0.42499995, z: 0.5}
   centrePoint: {x: 0.5363379, y: -0.7171228, z: 0}
   textOffset: {x: 0, y: -0.1, z: 0}
+  neighbours:
+  - {fileID: 782784089}
+  - {fileID: 1389164114}
+  - {fileID: 762844576}
+  - {fileID: 1377605362}
+  continent: 0
 --- !u!212 &1110549168
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9260,6 +9390,11 @@ MonoBehaviour:
     m_Extent: {x: 0.5450001, y: 0.76, z: 0.5}
   centrePoint: {x: -5.066416, y: 0.2889282, z: 0}
   textOffset: {x: -0.1, y: 0.2, z: 0}
+  neighbours:
+  - {fileID: 2018647791}
+  - {fileID: 271865259}
+  - {fileID: 1052722737}
+  continent: 2
 --- !u!212 &1112965828
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9670,6 +9805,12 @@ MonoBehaviour:
     m_Extent: {x: 0.8200002, y: 1.225, z: 0.5}
   centrePoint: {x: 3.438335, y: -0.2515979, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1935467936}
+  - {fileID: 160326218}
+  - {fileID: 1389164114}
+  - {fileID: 1219060910}
+  continent: 4
 --- !u!212 &1147681067
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10117,6 +10258,12 @@ MonoBehaviour:
     m_Extent: {x: 0.5900003, y: 0.62500024, z: 0.5}
   centrePoint: {x: -1.5230987, y: 1.9691864, z: 0}
   textOffset: {x: 0.2, y: 0, z: 0}
+  neighbours:
+  - {fileID: 427254487}
+  - {fileID: 804431230}
+  - {fileID: 1313182726}
+  - {fileID: 577144375}
+  continent: 2
 --- !u!212 &1192561260
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10159,6 +10306,394 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cb7a3ef1886472b42b200cf9fe56ae2d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 19.2, y: 10.8}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1 &1219060907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1219060908}
+  - component: {fileID: 1219060911}
+  - component: {fileID: 1219060910}
+  - component: {fileID: 1219060909}
+  m_Layer: 0
+  m_Name: Siam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1219060908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219060907}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1514096986}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1219060909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219060907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ace9d870236f12d40bbeadaeb20cf55f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  territory: {fileID: 1219060910}
+  spriteOverride: {fileID: 0}
+--- !u!114 &1219060910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219060907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d45caf73f9620408c6273266c05c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  borderPoints:
+  - {x: 4.84, y: -1.4, z: 0}
+  - {x: 4.87, y: -1.4, z: 0}
+  - {x: 4.87, y: -1.41, z: 0}
+  - {x: 4.88, y: -1.41, z: 0}
+  - {x: 4.88, y: -1.44, z: 0}
+  - {x: 4.83, y: -1.44, z: 0}
+  - {x: 4.83, y: -1.41, z: 0}
+  - {x: 4.77, y: -1.41, z: 0}
+  - {x: 4.77, y: -1.4, z: 0}
+  - {x: 4.76, y: -1.4, z: 0}
+  - {x: 4.76, y: -1.39, z: 0}
+  - {x: 4.75, y: -1.39, z: 0}
+  - {x: 4.75, y: -1.33, z: 0}
+  - {x: 4.71, y: -1.33, z: 0}
+  - {x: 4.71, y: -1.29, z: 0}
+  - {x: 4.69, y: -1.29, z: 0}
+  - {x: 4.69, y: -1.27, z: 0}
+  - {x: 4.68, y: -1.27, z: 0}
+  - {x: 4.68, y: -1.26, z: 0}
+  - {x: 4.67, y: -1.26, z: 0}
+  - {x: 4.67, y: -1.21, z: 0}
+  - {x: 4.65, y: -1.21, z: 0}
+  - {x: 4.65, y: -1.19, z: 0}
+  - {x: 4.64, y: -1.19, z: 0}
+  - {x: 4.64, y: -1.14, z: 0}
+  - {x: 4.63, y: -1.14, z: 0}
+  - {x: 4.63, y: -1, z: 0}
+  - {x: 4.64, y: -1, z: 0}
+  - {x: 4.64, y: -0.95, z: 0}
+  - {x: 4.65, y: -0.95, z: 0}
+  - {x: 4.65, y: -0.93, z: 0}
+  - {x: 4.64, y: -0.93, z: 0}
+  - {x: 4.64, y: -0.9, z: 0}
+  - {x: 4.63, y: -0.9, z: 0}
+  - {x: 4.63, y: -0.89, z: 0}
+  - {x: 4.62, y: -0.89, z: 0}
+  - {x: 4.62, y: -0.88, z: 0}
+  - {x: 4.61, y: -0.88, z: 0}
+  - {x: 4.61, y: -0.87, z: 0}
+  - {x: 4.6, y: -0.87, z: 0}
+  - {x: 4.6, y: -0.83, z: 0}
+  - {x: 4.59, y: -0.83, z: 0}
+  - {x: 4.59, y: -0.81, z: 0}
+  - {x: 4.56, y: -0.81, z: 0}
+  - {x: 4.56, y: -0.78, z: 0}
+  - {x: 4.55, y: -0.78, z: 0}
+  - {x: 4.55, y: -0.73, z: 0}
+  - {x: 4.52, y: -0.73, z: 0}
+  - {x: 4.52, y: -0.74, z: 0}
+  - {x: 4.47, y: -0.74, z: 0}
+  - {x: 4.47, y: -0.73, z: 0}
+  - {x: 4.37, y: -0.73, z: 0}
+  - {x: 4.37, y: -0.72, z: 0}
+  - {x: 4.35, y: -0.72, z: 0}
+  - {x: 4.35, y: -0.69, z: 0}
+  - {x: 4.31, y: -0.69, z: 0}
+  - {x: 4.31, y: -0.65, z: 0}
+  - {x: 4.28, y: -0.65, z: 0}
+  - {x: 4.28, y: -0.63, z: 0}
+  - {x: 4.27, y: -0.63, z: 0}
+  - {x: 4.27, y: -0.61, z: 0}
+  - {x: 4.25, y: -0.61, z: 0}
+  - {x: 4.25, y: -0.6, z: 0}
+  - {x: 4.24, y: -0.6, z: 0}
+  - {x: 4.24, y: -0.58, z: 0}
+  - {x: 4.23, y: -0.58, z: 0}
+  - {x: 4.23, y: -0.57, z: 0}
+  - {x: 4.22, y: -0.57, z: 0}
+  - {x: 4.22, y: -0.52, z: 0}
+  - {x: 4.23, y: -0.52, z: 0}
+  - {x: 4.23, y: -0.49, z: 0}
+  - {x: 4.2, y: -0.49, z: 0}
+  - {x: 4.2, y: -0.47, z: 0}
+  - {x: 4.19, y: -0.47, z: 0}
+  - {x: 4.19, y: -0.41, z: 0}
+  - {x: 4.17, y: -0.41, z: 0}
+  - {x: 4.17, y: -0.4, z: 0}
+  - {x: 4.15, y: -0.4, z: 0}
+  - {x: 4.15, y: -0.37, z: 0}
+  - {x: 4.13, y: -0.37, z: 0}
+  - {x: 4.13, y: -0.32, z: 0}
+  - {x: 4.15, y: -0.32, z: 0}
+  - {x: 4.15, y: -0.29, z: 0}
+  - {x: 4.16, y: -0.29, z: 0}
+  - {x: 4.16, y: -0.28, z: 0}
+  - {x: 4.19, y: -0.28, z: 0}
+  - {x: 4.19, y: -0.24, z: 0}
+  - {x: 4.23, y: -0.24, z: 0}
+  - {x: 4.23, y: -0.19, z: 0}
+  - {x: 4.24, y: -0.19, z: 0}
+  - {x: 4.24, y: -0.16, z: 0}
+  - {x: 4.27, y: -0.16, z: 0}
+  - {x: 4.27, y: -0.14, z: 0}
+  - {x: 4.28, y: -0.14, z: 0}
+  - {x: 4.28, y: -0.09, z: 0}
+  - {x: 4.29, y: -0.09, z: 0}
+  - {x: 4.29, y: -0.08, z: 0}
+  - {x: 4.31, y: -0.08, z: 0}
+  - {x: 4.31, y: -0.02, z: 0}
+  - {x: 4.33, y: -0.02, z: 0}
+  - {x: 4.33, y: 0, z: 0}
+  - {x: 4.39, y: 0, z: 0}
+  - {x: 4.39, y: 0.03, z: 0}
+  - {x: 4.4, y: 0.03, z: 0}
+  - {x: 4.4, y: 0.04, z: 0}
+  - {x: 4.42, y: 0.04, z: 0}
+  - {x: 4.42, y: 0.03, z: 0}
+  - {x: 4.43, y: 0.03, z: 0}
+  - {x: 4.43, y: 0.02, z: 0}
+  - {x: 4.44, y: 0.02, z: 0}
+  - {x: 4.44, y: 0, z: 0}
+  - {x: 4.47, y: 0, z: 0}
+  - {x: 4.47, y: -0.06, z: 0}
+  - {x: 4.48, y: -0.06, z: 0}
+  - {x: 4.48, y: -0.08, z: 0}
+  - {x: 4.51, y: -0.08, z: 0}
+  - {x: 4.51, y: -0.1, z: 0}
+  - {x: 4.52, y: -0.1, z: 0}
+  - {x: 4.52, y: -0.12, z: 0}
+  - {x: 4.54, y: -0.12, z: 0}
+  - {x: 4.54, y: -0.13, z: 0}
+  - {x: 4.55, y: -0.13, z: 0}
+  - {x: 4.55, y: -0.14, z: 0}
+  - {x: 4.56, y: -0.14, z: 0}
+  - {x: 4.56, y: -0.16, z: 0}
+  - {x: 4.58, y: -0.16, z: 0}
+  - {x: 4.58, y: -0.17, z: 0}
+  - {x: 4.59, y: -0.17, z: 0}
+  - {x: 4.59, y: -0.18, z: 0}
+  - {x: 4.6, y: -0.18, z: 0}
+  - {x: 4.6, y: -0.2, z: 0}
+  - {x: 4.62, y: -0.2, z: 0}
+  - {x: 4.62, y: -0.21, z: 0}
+  - {x: 4.63, y: -0.21, z: 0}
+  - {x: 4.63, y: -0.22, z: 0}
+  - {x: 4.64, y: -0.22, z: 0}
+  - {x: 4.64, y: -0.24, z: 0}
+  - {x: 4.71, y: -0.24, z: 0}
+  - {x: 4.71, y: -0.22, z: 0}
+  - {x: 4.73, y: -0.22, z: 0}
+  - {x: 4.73, y: -0.21, z: 0}
+  - {x: 4.74, y: -0.21, z: 0}
+  - {x: 4.74, y: -0.2, z: 0}
+  - {x: 4.75, y: -0.2, z: 0}
+  - {x: 4.75, y: -0.17, z: 0}
+  - {x: 4.76, y: -0.17, z: 0}
+  - {x: 4.76, y: -0.16, z: 0}
+  - {x: 4.79, y: -0.16, z: 0}
+  - {x: 4.79, y: -0.13, z: 0}
+  - {x: 4.83, y: -0.13, z: 0}
+  - {x: 4.83, y: -0.11, z: 0}
+  - {x: 4.85, y: -0.11, z: 0}
+  - {x: 4.85, y: -0.08, z: 0}
+  - {x: 4.92, y: -0.08, z: 0}
+  - {x: 4.92, y: -0.12, z: 0}
+  - {x: 4.95, y: -0.12, z: 0}
+  - {x: 4.95, y: -0.17, z: 0}
+  - {x: 4.96, y: -0.17, z: 0}
+  - {x: 4.96, y: -0.24, z: 0}
+  - {x: 4.95, y: -0.24, z: 0}
+  - {x: 4.95, y: -0.25, z: 0}
+  - {x: 4.92, y: -0.25, z: 0}
+  - {x: 4.92, y: -0.32, z: 0}
+  - {x: 4.94, y: -0.32, z: 0}
+  - {x: 4.94, y: -0.37, z: 0}
+  - {x: 4.92, y: -0.37, z: 0}
+  - {x: 4.92, y: -0.4, z: 0}
+  - {x: 4.95, y: -0.4, z: 0}
+  - {x: 4.95, y: -0.43, z: 0}
+  - {x: 4.96, y: -0.43, z: 0}
+  - {x: 4.96, y: -0.48, z: 0}
+  - {x: 5.03, y: -0.48, z: 0}
+  - {x: 5.03, y: -0.49, z: 0}
+  - {x: 5.04, y: -0.49, z: 0}
+  - {x: 5.04, y: -0.52, z: 0}
+  - {x: 5.06, y: -0.52, z: 0}
+  - {x: 5.06, y: -0.54, z: 0}
+  - {x: 5.07, y: -0.54, z: 0}
+  - {x: 5.07, y: -0.55, z: 0}
+  - {x: 5.08, y: -0.55, z: 0}
+  - {x: 5.08, y: -0.6, z: 0}
+  - {x: 5.12, y: -0.6, z: 0}
+  - {x: 5.12, y: -0.64, z: 0}
+  - {x: 5.14, y: -0.64, z: 0}
+  - {x: 5.14, y: -0.65, z: 0}
+  - {x: 5.15, y: -0.65, z: 0}
+  - {x: 5.15, y: -0.74, z: 0}
+  - {x: 5.16, y: -0.74, z: 0}
+  - {x: 5.16, y: -0.8, z: 0}
+  - {x: 5.18, y: -0.8, z: 0}
+  - {x: 5.18, y: -0.81, z: 0}
+  - {x: 5.19, y: -0.81, z: 0}
+  - {x: 5.19, y: -0.86, z: 0}
+  - {x: 5.2, y: -0.86, z: 0}
+  - {x: 5.2, y: -0.92, z: 0}
+  - {x: 5.22, y: -0.92, z: 0}
+  - {x: 5.22, y: -0.93, z: 0}
+  - {x: 5.23, y: -0.93, z: 0}
+  - {x: 5.23, y: -1, z: 0}
+  - {x: 5.22, y: -1, z: 0}
+  - {x: 5.22, y: -1.01, z: 0}
+  - {x: 5.2, y: -1.01, z: 0}
+  - {x: 5.2, y: -1.06, z: 0}
+  - {x: 5.19, y: -1.06, z: 0}
+  - {x: 5.19, y: -1.09, z: 0}
+  - {x: 5.16, y: -1.09, z: 0}
+  - {x: 5.16, y: -1.12, z: 0}
+  - {x: 5.15, y: -1.12, z: 0}
+  - {x: 5.15, y: -1.13, z: 0}
+  - {x: 5.12, y: -1.13, z: 0}
+  - {x: 5.12, y: -1.17, z: 0}
+  - {x: 5.08, y: -1.17, z: 0}
+  - {x: 5.08, y: -1.23, z: 0}
+  - {x: 5.07, y: -1.23, z: 0}
+  - {x: 5.07, y: -1.24, z: 0}
+  - {x: 5.05, y: -1.24, z: 0}
+  - {x: 5.05, y: -1.25, z: 0}
+  - {x: 5.03, y: -1.25, z: 0}
+  - {x: 5.03, y: -1.21, z: 0}
+  - {x: 5, y: -1.21, z: 0}
+  - {x: 5, y: -1.15, z: 0}
+  - {x: 4.99, y: -1.15, z: 0}
+  - {x: 4.99, y: -1.13, z: 0}
+  - {x: 4.97, y: -1.13, z: 0}
+  - {x: 4.97, y: -1.12, z: 0}
+  - {x: 4.96, y: -1.12, z: 0}
+  - {x: 4.96, y: -1.1, z: 0}
+  - {x: 4.95, y: -1.1, z: 0}
+  - {x: 4.95, y: -1.05, z: 0}
+  - {x: 4.89, y: -1.05, z: 0}
+  - {x: 4.89, y: -1.04, z: 0}
+  - {x: 4.88, y: -1.04, z: 0}
+  - {x: 4.88, y: -1.03, z: 0}
+  - {x: 4.87, y: -1.03, z: 0}
+  - {x: 4.87, y: -1.01, z: 0}
+  - {x: 4.83, y: -1.01, z: 0}
+  - {x: 4.83, y: -0.97, z: 0}
+  - {x: 4.81, y: -0.97, z: 0}
+  - {x: 4.81, y: -0.96, z: 0}
+  - {x: 4.79, y: -0.96, z: 0}
+  - {x: 4.79, y: -0.93, z: 0}
+  - {x: 4.76, y: -0.93, z: 0}
+  - {x: 4.76, y: -0.99, z: 0}
+  - {x: 4.75, y: -0.99, z: 0}
+  - {x: 4.75, y: -1, z: 0}
+  - {x: 4.74, y: -1, z: 0}
+  - {x: 4.74, y: -1.05, z: 0}
+  - {x: 4.75, y: -1.05, z: 0}
+  - {x: 4.75, y: -1.06, z: 0}
+  - {x: 4.76, y: -1.06, z: 0}
+  - {x: 4.76, y: -1.12, z: 0}
+  - {x: 4.78, y: -1.12, z: 0}
+  - {x: 4.78, y: -1.14, z: 0}
+  - {x: 4.79, y: -1.14, z: 0}
+  - {x: 4.79, y: -1.18, z: 0}
+  - {x: 4.8, y: -1.18, z: 0}
+  - {x: 4.8, y: -1.2, z: 0}
+  - {x: 4.81, y: -1.2, z: 0}
+  - {x: 4.81, y: -1.25, z: 0}
+  - {x: 4.8, y: -1.25, z: 0}
+  - {x: 4.8, y: -1.28, z: 0}
+  - {x: 4.83, y: -1.28, z: 0}
+  - {x: 4.83, y: -1.34, z: 0}
+  - {x: 4.84, y: -1.34, z: 0}
+  - {x: 4.84, y: -1.4, z: 0}
+  bounds:
+    m_Center: {x: 4.6800003, y: -0.70000005, z: 0}
+    m_Extent: {x: 0.5500002, y: 0.74, z: 0.5}
+  centrePoint: {x: 4.722081, y: -0.6967572, z: 0}
+  textOffset: {x: 0, y: 0.2, z: 0}
+  neighbours:
+  - {fileID: 160326218}
+  - {fileID: 1147681066}
+  - {fileID: 165419106}
+  continent: 4
+--- !u!212 &1219060911
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219060907}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: a7c1323ea82082d48963835e98bf790a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10859,6 +11394,14 @@ MonoBehaviour:
     m_Extent: {x: 1.06, y: 1.6500006, z: 0.5}
   centrePoint: {x: 1.3493774, y: 2.518113, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1935467936}
+  - {fileID: 1389164114}
+  - {fileID: 1313182726}
+  - {fileID: 577144375}
+  - {fileID: 1377605362}
+  - {fileID: 1643417660}
+  continent: 3
 --- !u!212 &1304269242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11186,6 +11729,13 @@ MonoBehaviour:
     m_Extent: {x: 0.65499985, y: 0.67499995, z: 0.5}
   centrePoint: {x: -0.079580076, y: 1.7990631, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 577144375}
+  - {fileID: 1377605362}
+  - {fileID: 1304269241}
+  - {fileID: 427254487}
+  - {fileID: 1192561259}
+  continent: 3
 --- !u!212 &1313182727
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11588,6 +12138,12 @@ MonoBehaviour:
     m_Extent: {x: 0.6249999, y: 0.70500004, z: 0.5}
   centrePoint: {x: 0.032193605, y: 0.72077024, z: 0}
   textOffset: {x: 0.2, y: 0.1, z: 0}
+  neighbours:
+  - {fileID: 1389164114}
+  - {fileID: 1313182726}
+  - {fileID: 1304269241}
+  - {fileID: 427254487}
+  continent: 3
 --- !u!212 &1377605363
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12010,6 +12566,10 @@ MonoBehaviour:
     m_Extent: {x: 0.55500007, y: 1.2150002, z: 0.5}
   centrePoint: {x: -3.7609925, y: -3.4372797, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 773879357}
+  - {fileID: 904582787}
+  continent: 1
 --- !u!212 &1378927314
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12532,6 +13092,14 @@ MonoBehaviour:
     m_Extent: {x: 1.1050001, y: 1.095, z: 0.5}
   centrePoint: {x: 1.7981397, y: -0.20180176, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1935467936}
+  - {fileID: 782784089}
+  - {fileID: 1110549167}
+  - {fileID: 1147681066}
+  - {fileID: 1377605362}
+  - {fileID: 1304269241}
+  continent: 4
 --- !u!212 &1389164115
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12788,6 +13356,11 @@ MonoBehaviour:
     m_Extent: {x: 0.5799999, y: 0.42499995, z: 0.5}
   centrePoint: {x: 6.228053, y: -1.8790371, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 165419106}
+  - {fileID: 50025244}
+  - {fileID: 1090601559}
+  continent: 5
 --- !u!212 &1433758183
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12959,6 +13532,7 @@ Transform:
   - {fileID: 1733551326}
   - {fileID: 904582785}
   - {fileID: 58168304}
+  - {fileID: 1219060908}
   - {fileID: 577144373}
   - {fileID: 1733732288}
   - {fileID: 1377605360}
@@ -13398,6 +13972,11 @@ MonoBehaviour:
     m_Extent: {x: 0.66499996, y: 0.68499994, z: 0.5}
   centrePoint: {x: -6.615862, y: 3.4831312, z: 0}
   textOffset: {x: 0, y: 0.2, z: 0}
+  neighbours:
+  - {fileID: 676728472}
+  - {fileID: 1897040168}
+  - {fileID: 1093765405}
+  continent: 2
 --- !u!212 &1591794145
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13690,6 +14269,11 @@ MonoBehaviour:
     m_Extent: {x: 0.6700001, y: 0.645, z: 0.5}
   centrePoint: {x: 0.5527325, y: -2.490856, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 782784089}
+  - {fileID: 762844576}
+  - {fileID: 1733732290}
+  continent: 0
 --- !u!212 &1640216049
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14146,6 +14730,12 @@ MonoBehaviour:
     m_Extent: {x: 0.61000013, y: 1.3250003, z: 0.5}
   centrePoint: {x: 2.863706, y: 3.0336633, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1935467936}
+  - {fileID: 160326218}
+  - {fileID: 1818129321}
+  - {fileID: 1304269241}
+  continent: 4
 --- !u!212 &1643417661
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14590,6 +15180,13 @@ MonoBehaviour:
     m_Extent: {x: 0.44500017, y: 0.5799999, z: 0.5}
   centrePoint: {x: -4.3737354, y: 2.6638978, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 676728472}
+  - {fileID: 2018647791}
+  - {fileID: 1052722737}
+  - {fileID: 58168306}
+  - {fileID: 1897040168}
+  continent: 2
 --- !u!212 &1733551329
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14950,6 +15547,11 @@ MonoBehaviour:
     m_Extent: {x: 0.76, y: 0.96000004, z: 0.5}
   centrePoint: {x: 0.7051355, y: -3.6188667, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1640216048}
+  - {fileID: 782784089}
+  - {fileID: 1073075577}
+  continent: 0
 --- !u!212 &1733732291
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15587,6 +16189,13 @@ MonoBehaviour:
     m_Extent: {x: 0.8699999, y: 1.5600009, z: 0.5}
   centrePoint: {x: 3.682943, y: 3.5412183, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 160326218}
+  - {fileID: 412295265}
+  - {fileID: 810260940}
+  - {fileID: 1643417660}
+  - {fileID: 902095656}
+  continent: 4
 --- !u!212 &1818129322
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15964,6 +16573,12 @@ MonoBehaviour:
     m_Extent: {x: 1.21, y: 0.56500006, z: 0.5}
   centrePoint: {x: -4.8427734, y: 3.805096, z: 0}
   textOffset: {x: -0.2, y: -0.2, z: 0}
+  neighbours:
+  - {fileID: 1591794144}
+  - {fileID: 676728472}
+  - {fileID: 58168306}
+  - {fileID: 786620686}
+  continent: 2
 --- !u!212 &1897040169
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16349,6 +16964,14 @@ MonoBehaviour:
     m_Extent: {x: 0.7950001, y: 0.8449999, z: 0.5}
   centrePoint: {x: 2.5528138, y: 1.4517701, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 160326218}
+  - {fileID: 1147681066}
+  - {fileID: 1389164114}
+  - {fileID: 1818129321}
+  - {fileID: 1304269241}
+  - {fileID: 1643417660}
+  continent: 4
 --- !u!212 &1935467937
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16736,6 +17359,12 @@ MonoBehaviour:
     m_Extent: {x: 0.8800006, y: 0.85, z: 0.5}
   centrePoint: {x: -4.1665406, y: 1.4276978, z: 0}
   textOffset: {x: 0, y: 0, z: 0}
+  neighbours:
+  - {fileID: 1112965827}
+  - {fileID: 1733551328}
+  - {fileID: 58168306}
+  - {fileID: 1052722737}
+  continent: 2
 --- !u!212 &2018647792
 SpriteRenderer:
   m_ObjectHideFlags: 0

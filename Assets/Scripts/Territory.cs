@@ -16,6 +16,11 @@ public class Territory : MonoBehaviour
     Vector3 centrePoint;
     [SerializeField]
     Vector3 textOffset = new Vector3(0, 0, 0);
+    [SerializeField]
+    List<Territory> neighbours = new List<Territory>();
+    [SerializeField]
+    Continent continent;
+    enum Continent { Africa, South_America, North_America, Europe, Asia, Australia }
     const float inflationRatio = 1.1f;
     private SpriteRenderer spriteRenderer;
     private TextMeshProUGUI troopLabel;
@@ -34,17 +39,19 @@ public class Territory : MonoBehaviour
 
     public void CalculateBounds()
     {
+        //calculates the minimum bounding box that encapsulates all the points of the polygon
         bounds = new Bounds();
         bounds.center = borderPoints[0];
         foreach(Vector3 point in borderPoints)
         {
             bounds.Encapsulate(point);
         }
-        bounds.Expand(new Vector3(0, 0, 1));
+        bounds.Expand(new Vector3(0, 0, 1)); //expands the bounding box so that it exists in 3 dimensions
     }
    
     public void Inflate()
     {
+        //increases the size of the territory slightly and brings it to the front of the sorting order
         transform.localScale = Vector3.one*inflationRatio;
         Vector3 newCentre = centrePoint * inflationRatio;
         Vector3 difference= newCentre-centrePoint;
@@ -54,6 +61,7 @@ public class Territory : MonoBehaviour
 
     public void Deflate()
     {
+        //reverses the inflate function
         transform.localScale = Vector3.one;
         transform.localPosition = Vector3.zero;
         spriteRenderer.sortingOrder = 0;
@@ -76,13 +84,15 @@ public class Territory : MonoBehaviour
         borderPoints = newPoints;
         CalculateBounds();
     }
-
+    public List<Territory> GetNeighbours() { return neighbours; }
+    public void SetNeighbours(List<Territory> neighbours) { this.neighbours = neighbours; }
     public void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public void Start()
     {
+        //spawns a troop label for each territory and sets it to display 0
         troopLabel = UIManagement.Spawn<TextMeshProUGUI>(centrePoint + textOffset, 0).component;
         SetCurrentTroops(0);
     }
