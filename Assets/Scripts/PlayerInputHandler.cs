@@ -16,6 +16,10 @@ public class PlayerInputHandler : MonoBehaviour
     float endSize;
     float executionTime;
     const float defaultCameraSize = 7;
+    [SerializeField]
+    UIManagement pools;
+    [SerializeField]
+    TroopTransporter troopTransporter;
     private enum state {MapView,Selected,Zooming}
     public void Awake()
     {
@@ -58,6 +62,12 @@ public class PlayerInputHandler : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                troopTransporter.gameObject.SetActive(false);
+                DeselectTerritory();
+            }
+            else if (Input.GetKeyDown(KeyCode.Return))
+            {
+                troopTransporter.FinaliseTerritoryTroopCounts();
                 DeselectTerritory();
             }
         }
@@ -82,6 +92,7 @@ public class PlayerInputHandler : MonoBehaviour
                 else 
                 {
                     currentState = state.Selected;
+                    troopTransporter.SetupTroopTransporter(currentTerritoryUnderMouse,999);
                 }
                 
             }
@@ -99,6 +110,7 @@ public class PlayerInputHandler : MonoBehaviour
         startSize = defaultCameraSize;
        endSize = diagLength * 2;
        executionTime = 0;
+        pools.GetComponent<Canvas>().sortingOrder = 0;
     }
     public void DeselectTerritory()
     {
@@ -109,5 +121,6 @@ public class PlayerInputHandler : MonoBehaviour
         startSize = m_Camera.orthographicSize;
         endSize = defaultCameraSize;
         executionTime = 0;
+        pools.GetComponent<Canvas>().sortingOrder = 2;
     }
 }
