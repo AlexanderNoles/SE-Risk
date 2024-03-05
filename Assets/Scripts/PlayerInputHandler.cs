@@ -28,19 +28,20 @@ public class PlayerInputHandler : MonoBehaviour
     }
     public void Update()
     {
-
-
+        //inputs are handled differently based on the current state of the game
         if (currentState == state.MapView)
         {
             Vector3 mousePosThisFrame = m_Camera.ScreenToWorldPoint(Input.mousePosition);
             mousePosThisFrame.z = 0;
             if (mousePosThisFrame != mousePosLastFrame)
             {
+                //checks if the mouse has moved
                 mousePosLastFrame = mousePosThisFrame;
                 Territory hoveredTerritory = Map.GetTerritoryUnderPosition(mousePosThisFrame);
 
                 if (currentTerritoryUnderMouse != hoveredTerritory)
                 {
+                    //checks if the territory under the mouse has changed and inflates and deflates territories accordingly
                     if (currentTerritoryUnderMouse != null)
                     {
                         currentTerritoryUnderMouse.Deflate();
@@ -52,7 +53,7 @@ public class PlayerInputHandler : MonoBehaviour
                 }
                 currentTerritoryUnderMouse = hoveredTerritory;
             }
-            else if (currentTerritoryUnderMouse != null)
+            if (currentTerritoryUnderMouse != null)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -116,7 +117,7 @@ public class PlayerInputHandler : MonoBehaviour
         startSize = defaultCameraSize;
        endSize = diagLength * 2;
        executionTime = 0;
-        pools.GetComponent<Canvas>().sortingOrder = 0;
+        pools.GetComponent<Canvas>().sortingOrder = 300;
     }
     public void DeselectTerritory()
     {
@@ -127,6 +128,6 @@ public class PlayerInputHandler : MonoBehaviour
         startSize = m_Camera.orthographicSize;
         endSize = defaultCameraSize;
         executionTime = 0;
-        pools.GetComponent<Canvas>().sortingOrder = 2;
+        pools.GetComponent<Canvas>().sortingOrder = 1200;
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.Pool;
 using UnityEngine.UIElements;
 
 #if UNITY_EDITOR
+//only used for pregenerating maps, which does not need to be done on the user end
 public class TerritoryHelper : MonoBehaviour
 {
     public Territory territory;
@@ -38,16 +39,19 @@ public class TerritoryHelper : MonoBehaviour
     }
     public bool FindBlackPixel(out Vector2 pos)
     {
+        //used to find the start pixel for our A* pathfinding 
         if (UpdateTexture())
         {
             Color[] colour = texture.GetPixels();
             for (int i = 0; i < colour.Length; i++)
             {
+                //searches the texture for a valid white pixel
                 if (colour[i] == Color.white)
                 {
                     int pixelIndex = i;
                     while (colour[pixelIndex]== Color.white)
                     {
+                        //looks vertically from the white pixel till it finds a black pixel
                         pixelIndex += texture.width;
                     }
                     pos = IntArrayToVector2(pixelIndex);
@@ -62,16 +66,18 @@ public class TerritoryHelper : MonoBehaviour
     [ContextMenu("Update Border Points")]
     public void UpdateBorderPoints()
     {
+        //converts the texture into a list of vectors that indicate a polygon with the shape and position of the territory
         if (FindBlackPixel(out Vector2 pos))
         {
+            //finds the start pixel and returns its position
             TextureNode startNode = new TextureNode();
             startNode.SetPosition(pos);
             startNode.SetTexture(texture);
             TextureNode endNode = new TextureNode();
-            endNode.SetPosition(startNode.GetEndNode());
+            endNode.SetPosition(startNode.GetEndNode()); // uses the start node to find the end node
             endNode.SetTexture(texture);
-            List<INode> path = AStar.FindPath(startNode, endNode, true);
-            path.Add(startNode);
+            List<INode> path = AStar.FindPath(startNode, endNode, true); // finds a clockwise path from the start node to the end node
+            path.Add(startNode); // adds the start node to the end of the list to close the circular path
             territory.SetCentrePoint(CalculateCentrePoint(path));
             path = RemoveUselessBorderPoints(path);
             List<Vector3> vectorPath = ConvertNodePositionsToBorderPoints(path);
@@ -81,6 +87,7 @@ public class TerritoryHelper : MonoBehaviour
 
     public Vector3 CalculateCentrePoint(List<INode> path)
     {
+        //averages the positions of the border points to find the central point
         Vector3 centrePoint = Vector3.zero;
         for(int i=0; i<path.Count; i++)
         {
@@ -91,15 +98,12 @@ public class TerritoryHelper : MonoBehaviour
     }
     public List<INode> RemoveUselessBorderPoints(List<INode> path)
     {
+        //finds points that lie on lines between two other points are removes them, as they add no detail to our border
         for(int i = 0; i < path.Count-2; i++) 
         {
             Vector3 point1 = path[i].GetPosition();
             Vector3 point2 = path[i+2].GetPosition();
             Vector3 difference = point2 - point1;
-            //Just to clarify, If I'm understanding this correctly
-            //this check will remove a point if the direction from point[i] to point[i+2] is the same as the direction from
-            //point[i] to point[i+1] right?
-            //Essentially removing long strips of points?
             if(difference.x != 1 && difference.x != -1 && difference.y != -1 && difference.y != 1)
             {
                 path.Remove(path[i + 1]);
@@ -108,8 +112,9 @@ public class TerritoryHelper : MonoBehaviour
         }
         return path;
     }
+    //The next 3 functions all convert between various different data types used in our pathfinding and border creation algorithms
     public Vector2 IntArrayToVector2(int pos)
-    {
+    {  
         Vector2 vector = new Vector2();
         float height = Mathf.Floor(pos/texture.width);
         float width = pos-(height*texture.width);
@@ -140,6 +145,7 @@ public class TerritoryHelper : MonoBehaviour
     [ContextMenu("Find white pixel")]
     public void FindWhitePixel()
     {
+        //iterates through the texture till it finds the first solid white pixel. Only used for testing.
         UpdateTexture();
 
         Color[] colour = texture.GetPixels();
@@ -154,6 +160,7 @@ public class TerritoryHelper : MonoBehaviour
     [ContextMenu("Find black pixel")]
     public void FindBlackPixel()
     {
+        //A version of find black pixel that can be run from the context menu, used for testing
         if (UpdateTexture())
         {
             Color[] colour = texture.GetPixels();

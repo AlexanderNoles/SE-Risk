@@ -4,6 +4,7 @@ using UnityEngine;
 using Pathfinding;
 public class TextureNode : INode
 {
+    //The class for our nodes in the A* path finding algorithm
     Vector3 position;
     Texture2D texture;
     static Vector3[] pomniOffsets =
@@ -23,6 +24,7 @@ public class TextureNode : INode
     };
     public List<INode> GetNeighbours()
     {
+        //Returns a list of all orthoganoly neighbouring black pixels that are omnidirectionally neighbouring a white pixel
         List<INode> returnList = new List<INode>();
         foreach (Vector3 vector in orthOffsets)
         {
@@ -43,7 +45,7 @@ public class TextureNode : INode
     }
     public Vector3 GetEndNode()
     {
-        
+        //looks for a valid black pixel to the left of or above the start pixel, this is what we'll find a path to
         foreach (Vector3 vector in endOffsets)
         {
             Vector3 pixelPos = new Vector3(position.x + vector.x, position.y + vector.y);

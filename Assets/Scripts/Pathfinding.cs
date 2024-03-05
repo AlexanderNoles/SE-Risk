@@ -13,6 +13,7 @@ namespace Pathfinding
 
     public static class AStar
     {
+        //implements A* path finding to find a valid path from one node to another
         private class AStarNode
         {
             public INode node;
