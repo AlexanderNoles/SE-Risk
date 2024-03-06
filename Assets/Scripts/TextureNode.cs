@@ -63,6 +63,7 @@ public class TextureNode : INode
 
     public bool CheckNeighbouringWhiteNodes(Vector3 pos)
     {
+        //looks at the neighbouring pixels in all 8 directions and returns true if any of those pixels are white
         foreach (Vector3 vector in pomniOffsets)
         {
             Vector3 pixelPos = new Vector3(pos.x + vector.x, pos.y + vector.y);

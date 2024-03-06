@@ -18,6 +18,7 @@ public class TroopTransporter : MonoBehaviour
     int toTroopCount;
     public void UpdateTroopCounts(int count=1)
     {
+        //updates the display and local variables to current troop distribution
         fromTroopCount -= count;
         toTroopCount += count;
         fromTroopDisplay.text = fromTroopCount.ToString();
@@ -25,6 +26,7 @@ public class TroopTransporter : MonoBehaviour
     }
     public void SetupTroopTransporter(Territory toTerritory, Territory fromTerritory)
     {
+        //runs when a territory is selected and initialises some variables for upcoming operations
         this.toTerritory = toTerritory;
         this.fromTerritory = fromTerritory;
         this.gameObject.SetActive(true);
@@ -37,6 +39,7 @@ public class TroopTransporter : MonoBehaviour
     }
     public void SetupTroopTransporter(Territory toTerritory, int fromTroopCount)
     {
+        //same as above but for when you are placing new troops onto the board
         this.toTerritory = toTerritory;
         this.fromTroopCount = fromTroopCount;
         this.gameObject.SetActive(true);
@@ -48,6 +51,7 @@ public class TroopTransporter : MonoBehaviour
     }
     public int FinaliseTerritoryTroopCounts()
     {
+        //runs at the end of the troop transfer and ensures the territories hold the correct number of troops
         this.gameObject.SetActive(false);
         toTerritory.SetCurrentTroops(toTroopCount);
         if (fromTerritory != null)

@@ -6,6 +6,7 @@ public static class PolygonUtility
 {
     public static bool DoLineSegmentsIntersect(Vector2 line1point1, Vector2 line1point2, Vector2 line2point1, Vector2 line2point2)
     {
+        //This function was written by user BAST42 on the unity forums
         Vector2 a = line1point2 - line1point1;
         Vector2 b = line2point1 - line2point2;
         Vector2 c = line1point1 - line2point1;
@@ -35,6 +36,7 @@ public static class PolygonUtility
 
     public static bool DoLineSegmentsIntersect(Vector3 line1point1, Vector3 line1point2, Vector3 line2point1, Vector3 line2point2)
     {
+        //This function was written by user BAST42 on the unity forums
         bool toReturn = DoLineSegmentsIntersect(
             new Vector2(line1point1.x, line1point1.y),
             new Vector2(line1point2.x, line1point2.y),
