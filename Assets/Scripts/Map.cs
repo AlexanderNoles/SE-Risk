@@ -5,18 +5,15 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
+    [SerializeField]
     List<Territory> territories = new List<Territory>();
+    Dictionary<Territory.Continent, List<Territory>> continents = new Dictionary<Territory.Continent, List<Territory>>(); 
     public GameObject greyPlane;
     static Map instance;
+
     public void Awake()
     {
-    //As the program commences the map creates a list of all territories on it
-        instance = this;
-        foreach(Transform child in transform)
-        {
-            if (child.TryGetComponent<Territory>(out Territory territory))
-                territories.Add(territory);
-        }
+        SetupMap();
     }
     public static Territory GetTerritoryUnderPosition(Vector3 pos)
     {
@@ -32,6 +29,54 @@ public class Map : MonoBehaviour
     public static void SetActiveGreyPlane(bool active)
     {
         instance.greyPlane.SetActive(active);
+    }
+    public static void Attack(Territory attacker, Territory defender, int attackingTroops)
+    {
+        List<int> attackingRolls = new List<int>();
+        List<int> defendingRolls = new List<int>();
+        for (int i = 0; i < attackingTroops && i<3; i++)
+        {
+            attackingRolls.Add(Random.Range(1, 7));
+        }
+        for (int i = 0; i < defender.GetCurrentTroops() && i<2 && i<attackingRolls.Count; i++)
+        {
+            defendingRolls.Add(Random.Range(1, 7));
+        }
+        attackingRolls.Sort();
+        attackingRolls.Reverse();
+        defendingRolls.Sort();
+        defendingRolls.Reverse();
+        for (int i = 0; i < defendingRolls.Count; i++)
+        {
+            if (attackingRolls[i] > defendingRolls[i])
+            {
+                Debug.Log("hi");
+                defender.SetCurrentTroops(defender.GetCurrentTroops()-1);
+            }
+            else
+            {
+                attacker.SetCurrentTroops(attacker.GetCurrentTroops() - 1);
+            }
+        }
+    }
+    public static List<Territory> GetTerritories() { return instance.territories; }
+    public static List<Territory> TerritoriesOwnedByPlayer(Player player, out int troopCount)
+    {
+        List<Territory> ownedTerritories = new List<Territory>();
+        troopCount = 0;
+        foreach(Territory.Continent continent in instance.continents.Keys)
+        {
+            bool continentOwned = true;
+            foreach(Territory territory in instance.continents[continent]) 
+            {
+                if (territory.GetOwner()==player) { ownedTerritories.Add(territory); }
+                else { continentOwned = false; }
+            }
+            if( continentOwned ) { troopCount += (int)continent; }
+        }
+        troopCount += (int)Mathf.Floor(ownedTerritories.Count/3);
+        if (troopCount < 3) { troopCount = 3; }
+        return ownedTerritories;
     }
     [ContextMenu("Update Neighbours")]
     public void UpdatesNeighbours()
@@ -60,11 +105,20 @@ public class Map : MonoBehaviour
     public void SetupMap()
     //Adds all territories to the map as a context menu option so map operations can be performed when the program is not running
     {
+        territories = new List<Territory>();
+        continents = new Dictionary<Territory.Continent, List<Territory>>();
         instance = this;
         foreach (Transform child in transform)
         {
             if (child.TryGetComponent<Territory>(out Territory territory))
+            {
                 territories.Add(territory);
+                if (!continents.ContainsKey(territory.GetContinent()))
+                {
+                    continents[territory.GetContinent()] = new List<Territory>();
+                }
+                continents[territory.GetContinent()].Add(territory);
+            }
         }
     }
 

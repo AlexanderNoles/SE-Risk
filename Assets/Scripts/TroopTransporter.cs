@@ -74,7 +74,7 @@ public class TroopTransporter : MonoBehaviour
                 UpdateTroopCounts();
             }       
         }
-        else if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && toTroopCount>1)
+        else if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)) && toTroopCount>toTerritory.GetCurrentTroops())
         {
             UpdateTroopCounts(-1);
         }

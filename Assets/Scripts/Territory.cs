@@ -6,7 +6,7 @@ using TMPro;
 
 public class Territory : MonoBehaviour
 {
-    object owner;
+    Player owner;
     int currentTroops;
     [SerializeField]
     List<Vector3> borderPoints;
@@ -20,7 +20,7 @@ public class Territory : MonoBehaviour
     List<Territory> neighbours = new List<Territory>();
     [SerializeField]
     Continent continent;
-    enum Continent { Africa, South_America, North_America, Europe, Asia, Australia }
+    public enum Continent { Africa=3, South_America=2, North_America=5, Europe=5, Asia=7, Australia =2}
     const float inflationRatio = 1.1f;
     private SpriteRenderer spriteRenderer;
     private TextMeshProUGUI troopLabel;
@@ -70,8 +70,12 @@ public class Territory : MonoBehaviour
     public Bounds GetBounds() { return bounds; }
     public Vector3 GetCentrePoint() { return centrePoint; }
     public void SetCentrePoint(Vector3 centrePoint) { this.centrePoint = centrePoint; }
-    public object GetOwner () { return owner; }
-    public void SetOwner (object owner) { this.owner = owner;}
+    public Player GetOwner () { return owner; }
+    public void SetOwner (Player owner) 
+    { 
+        this.owner = owner; 
+        spriteRenderer.color = owner.GetColor(); 
+    }
     public int GetCurrentTroops() { return currentTroops; }
     public void SetCurrentTroops(int currentTroops) 
     { 
@@ -86,6 +90,7 @@ public class Territory : MonoBehaviour
     }
     public List<Territory> GetNeighbours() { return neighbours; }
     public void SetNeighbours(List<Territory> neighbours) { this.neighbours = neighbours; }
+    public Continent GetContinent() { return continent; }
     public void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();

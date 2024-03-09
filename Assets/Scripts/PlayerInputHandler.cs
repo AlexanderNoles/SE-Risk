@@ -5,108 +5,129 @@ using UnityEngine;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    private Camera m_Camera;
-    private Vector3 mousePosLastFrame;
-    private Territory currentTerritoryUnderMouse = null;
-    private state currentState;
-    private float zoomTime = 0.2f;
-    private Vector3 startPos;
-    private Vector3 cameraMoveVector;
-    private float startSize;
-    private float endSize;
-    private float executionTime;
+    Camera m_Camera;
+    Vector3 mousePosLastFrame;
+    Territory currentTerritoryUnderMouse = null;
+    static state currentState;
+    turnPhase currentPhase;
+    float zoomTime = 0.2f;
+    Vector3 startPos;
+    Vector3 cameraMoveVector;
+    float startSize;
+    float endSize;
+    float executionTime;
     const float defaultCameraSize = 5.4f;
     [SerializeField]
     UIManagement pools;
     [SerializeField]
     TroopTransporter troopTransporter;
-    private enum state {MapView,Selected,Zooming}
+    static PlayerInputHandler instance;
+    public static void SetLocalPlayer(LocalPlayer player)
+    {
+        instance.localPlayer = player;
+    }
+    LocalPlayer localPlayer;
+    enum state {MapView,Selected,Zooming}
+    enum turnPhase {Deploying,Attacking,Fortifying,Waiting }
     public void Awake()
     {
+        instance = this;
         m_Camera = Camera.main;
-        currentState = state.MapView;
+        currentPhase = turnPhase.Waiting;
     }
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K)){ Debug.Log("Hi"); }
-        //inputs are handled differently based on the current state of the game
-        if (currentState == state.MapView)
+        if (currentPhase != turnPhase.Waiting)
         {
-            Vector3 mousePosThisFrame = m_Camera.ScreenToWorldPoint(Input.mousePosition);
-            mousePosThisFrame.z = 0;
-            if (mousePosThisFrame != mousePosLastFrame)
+            if (localPlayer.GetTroopCount() == 0 && currentState!=state.Zooming && currentPhase==turnPhase.Deploying)
             {
-                //checks if the mouse has moved
-                mousePosLastFrame = mousePosThisFrame;
-                Territory hoveredTerritory = Map.GetTerritoryUnderPosition(mousePosThisFrame);
-
-                if (currentTerritoryUnderMouse != hoveredTerritory)
+                currentTerritoryUnderMouse = null;
+                currentPhase= turnPhase.Waiting;
+                MatchManager.EndTurn();
+            }
+            //inputs are handled differently based on the current state of the game
+            if (currentState == state.MapView)
+            {
+                Vector3 mousePosThisFrame = m_Camera.ScreenToWorldPoint(Input.mousePosition);
+                mousePosThisFrame.z = 0;
+                if (mousePosThisFrame != mousePosLastFrame)
                 {
-                    //checks if the territory under the mouse has changed and inflates and deflates territories accordingly
-                    if (currentTerritoryUnderMouse != null)
+                    //checks if the mouse has moved
+                    mousePosLastFrame = mousePosThisFrame;
+                    Territory hoveredTerritory = Map.GetTerritoryUnderPosition(mousePosThisFrame);
+
+                    if (currentTerritoryUnderMouse != hoveredTerritory)
                     {
-                        currentTerritoryUnderMouse.Deflate();
+                        //checks if the territory under the mouse has changed and inflates and deflates territories accordingly
+                        if (currentTerritoryUnderMouse != null)
+                        {
+                            currentTerritoryUnderMouse.Deflate();
+                        }
+                        if (hoveredTerritory != null)
+                        {
+                            hoveredTerritory.Inflate();
+                        }
                     }
-                    if (hoveredTerritory != null)
+                    currentTerritoryUnderMouse = hoveredTerritory;
+                }
+                if (currentTerritoryUnderMouse != null)
+                {
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        hoveredTerritory.Inflate();
+                        if (localPlayer.GetTerritories().Contains(currentTerritoryUnderMouse))
+                        {
+                            SelectTerritory();
+                        }
                     }
                 }
-                currentTerritoryUnderMouse = hoveredTerritory;
             }
-            if (currentTerritoryUnderMouse != null)
+
+
+            else if (currentState == state.Selected)
             {
-                if (Input.GetMouseButtonDown(0))
+                // if we're zoomed in on a territory
+                if (Input.GetKeyDown(KeyCode.Escape))
                 {
-                    SelectTerritory();
+                    troopTransporter.gameObject.SetActive(false);
+                    DeselectTerritory();
+                }
+                else if (Input.GetKeyDown(KeyCode.Return))
+                {
+
+                    localPlayer.SetTroopCount(troopTransporter.FinaliseTerritoryTroopCounts());
+                    DeselectTerritory();
                 }
             }
-        }
 
 
-        else if (currentState==state.Selected)
-        {
-            // if we're zoomed in on a territory
-            if (Input.GetKeyDown(KeyCode.Escape))
+            else if (currentState == state.Zooming)
             {
-                troopTransporter.gameObject.SetActive(false);
-                DeselectTerritory();
-            }
-            else if (Input.GetKeyDown(KeyCode.Return))
-            {
-                troopTransporter.FinaliseTerritoryTroopCounts();
-                DeselectTerritory();
-            }
-        }
-
-
-        else if (currentState==state.Zooming) 
-        {
-            //if we're currently zooming into a territory
-            if (executionTime < zoomTime)
-            {
-                //calculates the percentage through the zoom we are and changes camera position and size to match
-                float deltaTime = Time.deltaTime;
-                executionTime += deltaTime;
-                float completionRate = (executionTime / zoomTime);
-                m_Camera.transform.position = startPos + (cameraMoveVector * completionRate);
-                m_Camera.orthographicSize = startSize - ((startSize-endSize) * completionRate);
-            }
-            else
-            {
-                //once the zoom is done, ensure the final position is correct, then switch state
-                m_Camera.transform.position = startPos + cameraMoveVector;
-                m_Camera.orthographicSize = endSize;
-                if (m_Camera.orthographicSize == defaultCameraSize)
+                //if we're currently zooming into a territory
+                if (executionTime < zoomTime)
                 {
-                    currentState = state.MapView;
+                    //calculates the percentage through the zoom we are and changes camera position and size to match
+                    float deltaTime = Time.deltaTime;
+                    executionTime += deltaTime;
+                    float completionRate = (executionTime / zoomTime);
+                    m_Camera.transform.position = startPos + (cameraMoveVector * completionRate);
+                    m_Camera.orthographicSize = startSize - ((startSize - endSize) * completionRate);
                 }
-                else 
+                else
                 {
-                    currentState = state.Selected;
-                    troopTransporter.SetupTroopTransporter(currentTerritoryUnderMouse,999);
+                    //once the zoom is done, ensure the final position is correct, then switch state
+                    m_Camera.transform.position = startPos + cameraMoveVector;
+                    m_Camera.orthographicSize = endSize;
+                    if (m_Camera.orthographicSize == defaultCameraSize)
+                    {
+                        currentState = state.MapView;
+                    }
+                    else
+                    {
+                        currentState = state.Selected;
+                        troopTransporter.SetupTroopTransporter(currentTerritoryUnderMouse, localPlayer.GetTroopCount());
+                    }
+
                 }
-                
             }
         }
     }
@@ -136,5 +157,9 @@ public class PlayerInputHandler : MonoBehaviour
         endSize = defaultCameraSize;
         executionTime = 0;
         pools.GetComponent<Canvas>().sortingOrder = 1200;
+    }
+    public static void StopWaiting()
+    {
+        currentState = state.MapView;
     }
 }
