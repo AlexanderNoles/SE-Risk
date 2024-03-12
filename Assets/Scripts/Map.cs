@@ -30,10 +30,11 @@ public class Map : MonoBehaviour
     {
         instance.greyPlane.SetActive(active);
     }
-    public static void Attack(Territory attacker, Territory defender, int attackingTroops)
+    public static bool Attack(Territory attacker, Territory defender, int attackingTroops)
     {
         List<int> attackingRolls = new List<int>();
         List<int> defendingRolls = new List<int>();
+        bool taken = false;
         for (int i = 0; i < attackingTroops && i<3; i++)
         {
             attackingRolls.Add(Random.Range(1, 7));
@@ -50,7 +51,6 @@ public class Map : MonoBehaviour
         {
             if (attackingRolls[i] > defendingRolls[i])
             {
-                Debug.Log("hi");
                 defender.SetCurrentTroops(defender.GetCurrentTroops()-1);
             }
             else
@@ -58,6 +58,15 @@ public class Map : MonoBehaviour
                 attacker.SetCurrentTroops(attacker.GetCurrentTroops() - 1);
             }
         }
+        if(defender.GetCurrentTroops() <= 0)
+        {
+            defender.SetOwner(attacker.GetOwner());
+            defender.SetCurrentTroops(attacker.GetCurrentTroops()-1);
+            attacker.SetCurrentTroops(1);
+            attacker.GetOwner().AddTerritory(defender);
+            taken = true;
+        }
+        return taken;
     }
     public static List<Territory> GetTerritories() { return instance.territories; }
     public static List<Territory> TerritoriesOwnedByPlayer(Player player, out int troopCount)
@@ -72,10 +81,11 @@ public class Map : MonoBehaviour
                 if (territory.GetOwner()==player) { ownedTerritories.Add(territory); }
                 else { continentOwned = false; }
             }
-            if( continentOwned ) { troopCount += (int)continent; }
+            if( continentOwned ) { troopCount += Territory.continentValues[continent]; }
         }
-        troopCount += (int)Mathf.Floor(ownedTerritories.Count/3);
-        if (troopCount < 3) { troopCount = 3; }
+        int territoryWorth = (int)Mathf.Floor(ownedTerritories.Count / 3);
+        if (territoryWorth < 3) { troopCount += 3; }
+        else {  troopCount += territoryWorth; }
         return ownedTerritories;
     }
     [ContextMenu("Update Neighbours")]

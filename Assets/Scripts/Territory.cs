@@ -20,7 +20,8 @@ public class Territory : MonoBehaviour
     List<Territory> neighbours = new List<Territory>();
     [SerializeField]
     Continent continent;
-    public enum Continent { Africa=3, South_America=2, North_America=5, Europe=5, Asia=7, Australia =2}
+    public enum Continent { Africa, South_America, North_America, Europe, Asia, Australia }
+    public static Dictionary<Continent, int> continentValues = new Dictionary<Continent,int>() { { Continent.Africa, 3 }, { Continent.Europe, 5 }, { Continent.Asia, 7 }, { Continent.North_America, 5 }, { Continent.Australia, 2 }, { Continent.South_America, 2 } };
     const float inflationRatio = 1.1f;
     private SpriteRenderer spriteRenderer;
     private TextMeshProUGUI troopLabel;
@@ -99,7 +100,7 @@ public class Territory : MonoBehaviour
     {
         //spawns a troop label for each territory and sets it to display 0
         troopLabel = UIManagement.Spawn<TextMeshProUGUI>(centrePoint + textOffset, 0).component;
-        SetCurrentTroops(0);
+        SetCurrentTroops(1);//change this 
     }
 
 

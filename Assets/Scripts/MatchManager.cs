@@ -43,7 +43,7 @@ public class MatchManager : MonoBehaviour
     }
     public static void Attack()
     {
-        instance.playerList[instance.currentTurnIndex].Attack(instance.currentPlayerTerritories);
+        instance.playerList[instance.currentTurnIndex].Attack();
     }
     public static void Fortify()
     {

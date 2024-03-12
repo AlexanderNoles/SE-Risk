@@ -9,18 +9,16 @@ public class LocalPlayer : Player
         PlayerInputHandler.SetLocalPlayer(this);
     }
 
-    int troopCount;
-    List<Territory> territories;
     public override bool Deploy(List<Territory> territories, int troopCount)
     {
         this.troopCount = troopCount;
         this.territories = territories;
-        PlayerInputHandler.StopWaiting();
+        PlayerInputHandler.Deploy();
         return true;
     }
-    public override bool Attack(List<Territory> territories)
+    public override bool Attack()
     {
-
+        PlayerInputHandler.Attack();
         return true;
     }
         public int GetTroopCount(){ return troopCount; }
