@@ -813,7 +813,7 @@ MonoBehaviour:
   centrePoint: {x: -3.657633, y: 2.612068, z: 0}
   textOffset: {x: 0, y: 0.2, z: 0}
   neighbours:
-  - {fileID: 2018647791}
+  - {fileID: 1052722737}
   - {fileID: 786620686}
   - {fileID: 1733551328}
   continent: 2
@@ -1786,6 +1786,7 @@ MonoBehaviour:
   neighbours:
   - {fileID: 50025244}
   - {fileID: 1433758182}
+  - {fileID: 1219060910}
   continent: 5
 --- !u!212 &165419107
 SpriteRenderer:
@@ -2263,7 +2264,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50, y: -160}
+  m_AnchoredPosition: {x: -75, y: -160}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &362843055
@@ -3826,7 +3827,7 @@ MonoBehaviour:
   - {fileID: 1591794144}
   - {fileID: 1897040168}
   - {fileID: 1733551328}
-  - {fileID: 1052722737}
+  - {fileID: 2018647791}
   continent: 2
 --- !u!212 &676728473
 SpriteRenderer:
@@ -8006,7 +8007,7 @@ GameObject:
   - component: {fileID: 1052722737}
   - component: {fileID: 1052722736}
   m_Layer: 0
-  m_Name: Western United States
+  m_Name: Eastern United States
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11113,7 +11114,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: -160}
+  m_AnchoredPosition: {x: 75, y: -160}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1149244256
@@ -15364,7 +15365,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -50, y: -200}
+  m_AnchoredPosition: {x: -75, y: -200}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1591794141
@@ -16819,7 +16820,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: -200}
+  m_AnchoredPosition: {x: 75, y: -200}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1674417518
@@ -19366,7 +19367,7 @@ GameObject:
   - component: {fileID: 2018647791}
   - component: {fileID: 2018647790}
   m_Layer: 0
-  m_Name: Eastern United States
+  m_Name: Western United States
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

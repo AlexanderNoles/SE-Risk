@@ -38,6 +38,12 @@ public class MatchManager : MonoBehaviour
     public static void Deploy()
     {
         instance.currentPlayerTerritories = Map.TerritoriesOwnedByPlayer(instance.playerList[instance.currentTurnIndex],out int troopCount);
+        if(instance.currentPlayerTerritories.Count == 0)
+        {
+            instance.playerList.Remove(instance.playerList[instance.currentTurnIndex]);
+            instance.currentTurnIndex--;
+            instance.SwitchPlayer();
+        }
         instance.troopCount = troopCount;
         instance.playerList[instance.currentTurnIndex].Deploy(instance.currentPlayerTerritories,troopCount);
     }
@@ -49,7 +55,7 @@ public class MatchManager : MonoBehaviour
     {
 
     }
-    public void SwitchPlayer() { if (currentTurnIndex == playerList.Count - 1) { currentTurnIndex = 0; } else { currentTurnIndex++; } }
+    public void SwitchPlayer() { if (currentTurnIndex == playerList.Count - 1|| currentTurnIndex<0) { currentTurnIndex = 0; } else { currentTurnIndex++; } }
     public List<Territory> GetCurrentPlayerTerritories() {  return currentPlayerTerritories; }
     public static void EndTurn()
     {

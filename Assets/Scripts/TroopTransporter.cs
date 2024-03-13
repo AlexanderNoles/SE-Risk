@@ -41,6 +41,7 @@ public class TroopTransporter : MonoBehaviour
     {
         //same as above but for when you are placing new troops onto the board
         this.toTerritory = toTerritory;
+        this.fromTerritory = null;
         this.fromTroopCount = fromTroopCount;
         this.gameObject.SetActive(true);
         toTroopCount = toTerritory.GetCurrentTroops();

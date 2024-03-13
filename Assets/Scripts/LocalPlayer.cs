@@ -23,7 +23,6 @@ public class LocalPlayer : Player
     }
         public int GetTroopCount(){ return troopCount; }
     public void SetTroopCount(int troopCount) { this.troopCount = troopCount; }
-    public List<Territory> GetTerritories() {  return territories; }
 
 
 }

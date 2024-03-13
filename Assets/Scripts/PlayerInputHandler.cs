@@ -52,20 +52,6 @@ public class PlayerInputHandler : MonoBehaviour
                     //checks if the mouse has moved
                     mousePosLastFrame = mousePosThisFrame;
                     newTerritoryUnderMouse = Map.GetTerritoryUnderPosition(mousePosThisFrame);
-
-                    //if (currentTerritoryUnderMouse != hoveredTerritory)
-                    // {
-                    ////checks if the territory under the mouse has changed and inflates and deflates territories accordingly
-                    //if (currentTerritoryUnderMouse != null)
-                    //{
-                    //    currentTerritoryUnderMouse.Deflate();
-                    //}
-                    //if (hoveredTerritory != null)
-                    //{
-                    //    hoveredTerritory.Inflate();
-                    //}
-                    //}
-                    //currentTerritoryUnderMouse = hoveredTerritory;
                 }
             }
             Territory overridenTerr = newTerritoryUnderMouse;
@@ -97,6 +83,7 @@ public class PlayerInputHandler : MonoBehaviour
                     {
                         if (localPlayer.GetTerritories().Contains(currentTerritoryUnderMouse))
                         {
+                            currentState = state.Zooming;
                             SelectTerritory();
                         }
                     }
@@ -113,42 +100,15 @@ public class PlayerInputHandler : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Escape))
                     {
                         troopTransporter.gameObject.SetActive(false);
+                        currentState = state.Zooming;
                         DeselectTerritory();
                     }
                     else if (Input.GetKeyDown(KeyCode.Return))
                     {
 
                         localPlayer.SetTroopCount(troopTransporter.FinaliseTerritoryTroopCounts());
+                        currentState = state.Zooming;
                         DeselectTerritory();
-                    }
-                }
-                else if (currentState == state.Zooming)
-                {
-                    //if we're currently zooming into a territory
-                    if (executionTime < zoomTime)
-                    {
-                        //calculates the percentage through the zoom we are and changes camera position and size to match
-                        float deltaTime = Time.deltaTime;
-                        executionTime += deltaTime;
-                        float completionRate = (executionTime / zoomTime);
-                        m_Camera.transform.position = startPos + (cameraMoveVector * completionRate);
-                        m_Camera.orthographicSize = startSize - ((startSize - endSize) * completionRate);
-                    }
-                    else
-                    {
-                        //once the zoom is done, ensure the final position is correct, then switch state
-                        m_Camera.transform.position = startPos + cameraMoveVector;
-                        m_Camera.orthographicSize = endSize;
-                        if (m_Camera.orthographicSize == defaultCameraSize)
-                        {
-                            currentState = state.MapView;
-                        }
-                        else
-                        {
-                            currentState = state.Selected;
-                            troopTransporter.SetupTroopTransporter(currentTerritoryUnderMouse, localPlayer.GetTroopCount());
-                        }
-
                     }
                 }
             }
@@ -169,15 +129,23 @@ public class PlayerInputHandler : MonoBehaviour
                         {
                             if (selectedTerritory.GetNeighbours().Contains(newTerritoryUnderMouse))
                             {
-                                Map.Attack(selectedTerritory, newTerritoryUnderMouse, selectedTerritory.GetCurrentTroops() - 1);
+                                if(Map.Attack(selectedTerritory, newTerritoryUnderMouse, selectedTerritory.GetCurrentTroops() - 1))
+                                {
+                                    territoryToAttack = newTerritoryUnderMouse;
+                                    currentState = state.Zooming;
+                                    newTerritoryUnderMouse.Inflate();
+                                    SelectTerritory();
+                                }
                             }
                         }
 
                     }
                 }
+                if (currentState == state.MapView)
+                {
                 if(selectedTerritory != null)
                 {
-                    if(Input.GetKeyDown(KeyCode.Escape))
+                    if(Input.GetKeyDown(KeyCode.Escape)||selectedTerritory.GetCurrentTroops()==1)
                     {
                         selectedTerritory.Deflate();
                         selectedTerritory =null;
@@ -190,8 +158,57 @@ public class PlayerInputHandler : MonoBehaviour
                         MatchManager.EndTurn();
                     }
                 }
+
+                }
+                else if (currentState == state.Selected)
+                {
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        troopTransporter.FinaliseTerritoryTroopCounts();
+                        selectedTerritory.Deflate();
+                        territoryToAttack.Deflate();
+                        currentState = state.Zooming;
+                        DeselectTerritory();
+                    }
+                }
             }
-            currentTerritoryUnderMouse = overridenTerr;
+            if (currentState == state.Zooming)
+            {
+                //if we're currently zooming into a territory
+                if (executionTime < zoomTime)
+                {
+                    //calculates the percentage through the zoom we are and changes camera position and size to match
+                    float deltaTime = Time.deltaTime;
+                    executionTime += deltaTime;
+                    float completionRate = (executionTime / zoomTime);
+                    m_Camera.transform.position = startPos + (cameraMoveVector * completionRate);
+                    m_Camera.orthographicSize = startSize - ((startSize - endSize) * completionRate);
+                }
+                else
+                {
+                    //once the zoom is done, ensure the final position is correct, then switch state
+                    m_Camera.transform.position = startPos + cameraMoveVector;
+                    m_Camera.orthographicSize = endSize;
+                    if (m_Camera.orthographicSize == defaultCameraSize)
+                    {
+                        currentState = state.MapView;
+                    }
+                    else
+                    {
+                        currentState = state.Selected;
+                        if (currentPhase==turnPhase.Deploying)
+                        {
+                            troopTransporter.SetupTroopTransporter(currentTerritoryUnderMouse, localPlayer.GetTroopCount());
+                        }
+                        else
+                        {
+                            troopTransporter.SetupTroopTransporter(territoryToAttack, selectedTerritory);
+                        }
+                    }
+
+                }
+            }
+            if(currentState == state.MapView) { currentTerritoryUnderMouse = overridenTerr; }
         }
     }
 
@@ -199,9 +216,8 @@ public class PlayerInputHandler : MonoBehaviour
     {
         //precomputes the vlaues needed for the zoom and moves the troop labels behind the grey plane
         selectedTerritory = currentTerritoryUnderMouse;
-        if (currentPhase == turnPhase.Deploying)
+        if (currentState == state.Zooming)
         {
-            currentState = state.Zooming;
             Map.SetActiveGreyPlane(true);
             Vector3 extents = currentTerritoryUnderMouse.GetBounds().extents;
             float diagLength = Mathf.Sqrt(extents.x * extents.x + extents.y * extents.y);
@@ -217,9 +233,8 @@ public class PlayerInputHandler : MonoBehaviour
     {
         //same as SelectTerritory but in reverse
         selectedTerritory = null;
-        if (currentPhase == turnPhase.Deploying)
+        if (currentState == state.Zooming)
         {
-            currentState = state.Zooming;
             Map.SetActiveGreyPlane(false);
             startPos = m_Camera.transform.position;
             cameraMoveVector = new Vector3(0, 0, -10) - startPos;

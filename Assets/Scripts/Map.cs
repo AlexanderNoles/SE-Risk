@@ -61,9 +61,9 @@ public class Map : MonoBehaviour
         if(defender.GetCurrentTroops() <= 0)
         {
             defender.SetOwner(attacker.GetOwner());
-            defender.SetCurrentTroops(attacker.GetCurrentTroops()-1);
-            attacker.SetCurrentTroops(1);
             attacker.GetOwner().AddTerritory(defender);
+            defender.SetCurrentTroops(attacker.GetCurrentTroops()-1>=3?3:attacker.GetCurrentTroops()-1);
+            attacker.SetCurrentTroops(attacker.GetCurrentTroops() - defender.GetCurrentTroops());
             taken = true;
         }
         return taken;
