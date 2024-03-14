@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     {
         for(int i = 0; i<territories.Count;i++)
         {
-            Territory territory = territories[i];//just like among us!!!!
+            Territory territory = territories[i];
             if (territory.GetCurrentTroops() > 1)
             {
                 foreach (Territory neighbour in territory.GetNeighbours())
@@ -42,8 +42,30 @@ public class Player : MonoBehaviour
                 }
             }
         }
-        MatchManager.EndTurn();
+        MatchManager.Fortify();
         return true; 
+    }
+
+    public virtual void Fortify()
+    {
+        for (int i = 0; i < territories.Count; i++)
+        {
+            Territory territory = territories[i];
+            if (territory.GetCurrentTroops() > 1 && Random.Range(0, 2) == 0)
+            {
+                foreach (Territory endNode in territories)
+                {
+                    if (AreTerritoriesConnected(territory,endNode) && Random.Range(0, 2) == 0)
+                    {
+                      endNode.SetCurrentTroops(territory.GetCurrentTroops()+endNode.GetCurrentTroops()-1);
+                        territory.SetCurrentTroops(1);
+                        MatchManager.EndTurn();
+                        return;
+                    }
+                }
+            }
+        }
+        MatchManager.EndTurn();
     }
     public Color GetColor()
     {
@@ -54,5 +76,11 @@ public class Player : MonoBehaviour
     public void AddTerritory(Territory territory)
     {
         territories.Add(territory);
+    }
+    public bool AreTerritoriesConnected(Territory startTerritory, Territory endTerritory)
+    {
+        TerritoryNode startNode = new TerritoryNode().SetTerritory(startTerritory);
+        TerritoryNode endNode = new TerritoryNode().SetTerritory(endTerritory);
+        return Pathfinding.AStar.FindPath(startNode, endNode,false).Count>0;
     }
 }

@@ -21,6 +21,10 @@ public class LocalPlayer : Player
         PlayerInputHandler.Attack();
         return true;
     }
+    public override void Fortify()
+    {
+        PlayerInputHandler.Fortify();
+    }
         public int GetTroopCount(){ return troopCount; }
     public void SetTroopCount(int troopCount) { this.troopCount = troopCount; }
 

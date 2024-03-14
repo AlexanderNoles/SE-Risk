@@ -24,7 +24,7 @@ public class PlayerInputHandler : MonoBehaviour
     static PlayerInputHandler instance;
     Territory newTerritoryUnderMouse;
     Territory selectedTerritory = null;
-    Territory territoryToAttack;
+    Territory toTerritory;
     public static void SetLocalPlayer(LocalPlayer player)
     {
         instance.localPlayer = player;
@@ -81,7 +81,7 @@ public class PlayerInputHandler : MonoBehaviour
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        if (localPlayer.GetTerritories().Contains(currentTerritoryUnderMouse))
+                        if (localPlayer.GetTerritories().Contains(currentTerritoryUnderMouse) && selectedTerritory==null)
                         {
                             currentState = state.Zooming;
                             SelectTerritory();
@@ -99,13 +99,14 @@ public class PlayerInputHandler : MonoBehaviour
                     // if we're zoomed in on a territory
                     if (Input.GetKeyDown(KeyCode.Escape))
                     {
+                        selectedTerritory = null;
                         troopTransporter.gameObject.SetActive(false);
                         currentState = state.Zooming;
                         DeselectTerritory();
                     }
                     else if (Input.GetKeyDown(KeyCode.Return))
                     {
-
+                        selectedTerritory = null;
                         localPlayer.SetTroopCount(troopTransporter.FinaliseTerritoryTroopCounts());
                         currentState = state.Zooming;
                         DeselectTerritory();
@@ -127,11 +128,11 @@ public class PlayerInputHandler : MonoBehaviour
                         }
                         else
                         {
-                            if (selectedTerritory.GetNeighbours().Contains(newTerritoryUnderMouse))
+                            if (selectedTerritory.GetNeighbours().Contains(newTerritoryUnderMouse) && newTerritoryUnderMouse.GetOwner()!=selectedTerritory.GetOwner())
                             {
                                 if(Map.Attack(selectedTerritory, newTerritoryUnderMouse, selectedTerritory.GetCurrentTroops() - 1))
                                 {
-                                    territoryToAttack = newTerritoryUnderMouse;
+                                    toTerritory = newTerritoryUnderMouse;
                                     currentState = state.Zooming;
                                     newTerritoryUnderMouse.Inflate();
                                     SelectTerritory();
@@ -155,7 +156,7 @@ public class PlayerInputHandler : MonoBehaviour
                 {
                     if(Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown(KeyCode.Space))
                     {
-                        MatchManager.EndTurn();
+                        MatchManager.Fortify();
                     }
                 }
 
@@ -166,9 +167,70 @@ public class PlayerInputHandler : MonoBehaviour
                     {
                         troopTransporter.FinaliseTerritoryTroopCounts();
                         selectedTerritory.Deflate();
-                        territoryToAttack.Deflate();
+                        toTerritory.Deflate();
                         currentState = state.Zooming;
                         DeselectTerritory();
+                    }
+                }
+            }
+            else if (currentPhase == turnPhase.Fortifying)
+            {
+                if (currentTerritoryUnderMouse != null)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        if (selectedTerritory == null)
+                        {
+                            if (localPlayer.GetTerritories().Contains(currentTerritoryUnderMouse))
+                            {
+                                SelectTerritory();
+                            }
+                        }
+                        else
+                        {
+                            if (newTerritoryUnderMouse.GetOwner() == selectedTerritory.GetOwner() && localPlayer.AreTerritoriesConnected(selectedTerritory, newTerritoryUnderMouse))
+                            {
+                                troopTransporter.SetupTroopTransporter(newTerritoryUnderMouse, selectedTerritory);
+                                Map.SetActiveGreyPlane(true);
+                                newTerritoryUnderMouse.Inflate();
+                                toTerritory = newTerritoryUnderMouse;
+                                currentState = state.Selected;
+                            }
+                        }
+
+                    }
+                }
+                if (currentState == state.MapView)
+                {
+                    if (selectedTerritory != null)
+                    {
+                        if (Input.GetKeyDown(KeyCode.Escape) || selectedTerritory.GetCurrentTroops() == 1)
+                        {
+                            selectedTerritory.Deflate();
+                            selectedTerritory = null;
+                        }
+                    }
+                    else
+                    {
+                        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
+                        {
+                            currentPhase = turnPhase.Waiting;
+                            Debug.Log("Unlucky");
+                            MatchManager.EndTurn();
+                        }
+                    }
+
+                }
+                else if (currentState == state.Selected)
+                {
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        troopTransporter.FinaliseTerritoryTroopCounts();
+                        Map.SetActiveGreyPlane(false);
+                        troopTransporter.gameObject.SetActive(false);
+                        DeselectTerritory();
+                        toTerritory.Deflate();
+                        currentState = state.MapView;
                     }
                 }
             }
@@ -202,7 +264,7 @@ public class PlayerInputHandler : MonoBehaviour
                         }
                         else
                         {
-                            troopTransporter.SetupTroopTransporter(territoryToAttack, selectedTerritory);
+                            troopTransporter.SetupTroopTransporter(toTerritory, selectedTerritory);
                         }
                     }
 
@@ -253,5 +315,10 @@ public class PlayerInputHandler : MonoBehaviour
     {
         currentState = state.MapView;
         currentPhase = turnPhase.Attacking;
+    }
+    public static void Fortify()
+    {
+        currentState = state.MapView;
+        currentPhase = turnPhase.Fortifying;
     }
 }
