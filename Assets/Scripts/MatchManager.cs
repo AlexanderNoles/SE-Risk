@@ -11,6 +11,7 @@ public class MatchManager : MonoBehaviour
     [SerializeField]
     List<Player> playerList;
     int currentTurnIndex;
+    int turnNumber;
     List<Territory> currentPlayerTerritories;
     int troopCount;
     static MatchManager instance;
@@ -33,6 +34,7 @@ public class MatchManager : MonoBehaviour
                 else { i--;}
             }
         }
+        turnNumber = 1;
         Deploy();
     }
     public static void Deploy()
@@ -45,22 +47,29 @@ public class MatchManager : MonoBehaviour
             EndTurn();
             return;
         }
+        UpdateInfoText("Deploy");
         instance.troopCount = troopCount;
         instance.playerList[instance.currentTurnIndex].Deploy(instance.currentPlayerTerritories,troopCount);
     }
     public static void Attack()
     {
+        UpdateInfoText("Attack");
         instance.playerList[instance.currentTurnIndex].Attack();
     }
     public static void Fortify()
     {
+        UpdateInfoText("Fortify");
         instance.playerList[instance.currentTurnIndex].Fortify();
     }
-    public void SwitchPlayer() { if (currentTurnIndex == playerList.Count - 1|| currentTurnIndex<0) { currentTurnIndex = 0; } else { currentTurnIndex++; } }
+    public void SwitchPlayer() { if (currentTurnIndex == playerList.Count - 1|| currentTurnIndex<0) { currentTurnIndex = 0;turnNumber++; } else { currentTurnIndex++; } }
     public List<Territory> GetCurrentPlayerTerritories() {  return currentPlayerTerritories; }
     public static void EndTurn()
     {
         instance.SwitchPlayer();
         Deploy();
+    }
+    public static void UpdateInfoText(string turnPhase)
+    {
+        UIManagement.SetText($"{instance.playerList[instance.currentTurnIndex].GetColorName()} Turn {instance.turnNumber} : {turnPhase}");
     }
 }

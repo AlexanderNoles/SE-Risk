@@ -188,7 +188,7 @@ public class PlayerInputHandler : MonoBehaviour
                         }
                         else
                         {
-                            if (newTerritoryUnderMouse.GetOwner() == selectedTerritory.GetOwner() && localPlayer.AreTerritoriesConnected(selectedTerritory, newTerritoryUnderMouse))
+                            if (newTerritoryUnderMouse!=null &&newTerritoryUnderMouse!=selectedTerritory &&newTerritoryUnderMouse.GetOwner() == selectedTerritory.GetOwner() && localPlayer.AreTerritoriesConnected(selectedTerritory, newTerritoryUnderMouse))
                             {
                                 troopTransporter.SetupTroopTransporter(newTerritoryUnderMouse, selectedTerritory);
                                 Map.SetActiveGreyPlane(true);
@@ -215,7 +215,6 @@ public class PlayerInputHandler : MonoBehaviour
                         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
                         {
                             currentPhase = turnPhase.Waiting;
-                            Debug.Log("Unlucky");
                             MatchManager.EndTurn();
                         }
                     }
@@ -229,6 +228,15 @@ public class PlayerInputHandler : MonoBehaviour
                         Map.SetActiveGreyPlane(false);
                         troopTransporter.gameObject.SetActive(false);
                         DeselectTerritory();
+                        toTerritory.Deflate();
+                        currentState = state.MapView;
+                        MatchManager.EndTurn();
+                    }
+                    else if (Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        Map.SetActiveGreyPlane(false);
+                        selectedTerritory = null;
+                        troopTransporter.gameObject.SetActive(false);
                         toTerritory.Deflate();
                         currentState = state.MapView;
                     }

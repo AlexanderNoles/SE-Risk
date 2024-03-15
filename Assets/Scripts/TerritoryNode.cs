@@ -11,7 +11,7 @@ public class TerritoryNode : INode
         List<INode> nodes = new List<INode>();
         foreach (Territory territory in territories)
         {
-            if (territory.GetOwner() != this.territory.GetOwner()) { nodes.Add(new TerritoryNode().SetTerritory(territory)); }
+            if (territory.GetOwner() == this.territory.GetOwner()) { nodes.Add(new TerritoryNode().SetTerritory(territory)); }
         }
         return nodes;
     }
