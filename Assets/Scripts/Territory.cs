@@ -100,7 +100,7 @@ public class Territory : MonoBehaviour
     {
         //spawns a troop label for each territory and sets it to display 0
         troopLabel = UIManagement.Spawn<TextMeshProUGUI>(centrePoint + textOffset, 0).component;
-        SetCurrentTroops(1);//change this 
+        SetCurrentTroops(0); 
     }
 
 

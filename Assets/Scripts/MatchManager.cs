@@ -16,26 +16,39 @@ public class MatchManager : MonoBehaviour
     int troopCount;
     static MatchManager instance;
     enum TurnState { Deploying, Attacking, Fortifying };
+    private Dictionary<int, int> StartingTroopCounts = new Dictionary<int, int>{{3,35}, { 4, 30 } , { 5, 25 } , { 6, 20 } };
+    int troopDeployCount;
     public void Awake()
     {
         instance = this;
     }
     public void Start()
     {
-        foreach (Player player in playerList)
+        instance.troopDeployCount = StartingTroopCounts[playerList.Count];
+        Debug.Log(troopDeployCount);
+        turnNumber = 1;
+        Setup();
+    }
+    public static void Setup()
+    {
+        if (instance.troopDeployCount > 0)
         {
-            for (int i = 0; i < 7; i++)
+            instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex], out List<Territory> playerTerritories);
+            if (instance.currentPlayerTerritories.Count != 0)
             {
-                Territory territory = Map.GetTerritories()[Random.Range(0, Map.GetTerritories().Count)];
-                if(territory.GetOwner() == null)
-                {
-                    territory.SetOwner(player);
-                }
-                else { i--;}
+                instance.playerList[instance.currentTurnIndex].Setup(instance.currentPlayerTerritories);
+            }
+            else
+            {
+                instance.playerList[instance.currentTurnIndex].Setup(playerTerritories);
             }
         }
-        turnNumber = 1;
-        Deploy();
+        else
+        {
+            instance.turnNumber = 1;
+            Deploy();
+            return;
+        }
     }
     public static void Deploy()
     {
@@ -67,6 +80,13 @@ public class MatchManager : MonoBehaviour
     {
         instance.SwitchPlayer();
         Deploy();
+    }
+    public static void SwitchPlayerSetup()
+    {
+        if (instance.currentTurnIndex == instance.playerList.Count - 1) { instance.troopDeployCount--; }
+        Debug.Log(instance.troopDeployCount);
+        instance.SwitchPlayer();
+        Setup();
     }
     public static void UpdateInfoText(string turnPhase)
     {

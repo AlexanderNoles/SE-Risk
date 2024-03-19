@@ -9,6 +9,11 @@ public class LocalPlayer : Player
         PlayerInputHandler.SetLocalPlayer(this);
     }
 
+    public override void Setup(List<Territory> territories)
+    {
+        this.territories = territories;
+        PlayerInputHandler.Setup();
+    }
     public override bool Deploy(List<Territory> territories, int troopCount)
     {
         this.troopCount = troopCount;

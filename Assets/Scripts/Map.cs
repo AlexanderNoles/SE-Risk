@@ -88,6 +88,23 @@ public class Map : MonoBehaviour
         else {  troopCount += territoryWorth; }
         return ownedTerritories;
     }
+    public static List<Territory> GetUnclaimedTerritories(Player player, out List<Territory> playerTerritories )
+    {
+        List<Territory> unownedTerritories = new List<Territory>();
+        playerTerritories = new List<Territory>();
+        foreach (Territory territory in instance.territories)
+        {
+            if (territory.GetOwner() == null)
+            {
+                unownedTerritories.Add(territory);
+            }
+            else if (territory.GetOwner() == player)
+            {
+                playerTerritories.Add(territory);
+            }
+        }
+        return unownedTerritories;
+    }
     [ContextMenu("Update Neighbours")]
     public void UpdatesNeighbours()
     //Provides a rough estimation for neighbours that is around 80% accurate,

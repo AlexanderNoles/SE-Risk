@@ -12,6 +12,19 @@ public class Player : MonoBehaviour
     Dictionary<PlayerColour, Color> playerColorToColor = new Dictionary<PlayerColour, Color>{ { PlayerColour.Red, new Color(135/255f,14 / 255f, 5 / 255f, 1f) }, { PlayerColour.Blue, new Color(1 / 255f, 1 / 255f, 99 / 255f, 1f) }, { PlayerColour.Orange, new Color(171 / 255f, 71 / 255f, 14 / 255f, 1f) }, { PlayerColour.Green, new Color(6 / 255f, 66 / 255f, 14 / 255f, 1f)}, { PlayerColour.Purple, new Color(92 / 255f, 14 / 255f, 171 / 255f, 1f)}, { PlayerColour.Pink, new Color(166 / 255f, 8 / 255f, 140 / 255f, 1f)} };
     protected int troopCount;
     protected List<Territory> territories;
+    public virtual void Setup(List<Territory> territories)
+    {
+        this.territories = territories;
+        StartCoroutine(nameof(SetupWait), troopCount);
+    }
+    private IEnumerator SetupWait()
+    {
+        yield return new WaitForSecondsRealtime(turnDelay);
+        Territory deployTerriory = territories[Random.Range(0, territories.Count)];
+        deployTerriory.SetCurrentTroops(1 + deployTerriory.GetCurrentTroops());
+        deployTerriory.SetOwner(this);
+        MatchManager.SwitchPlayerSetup();
+    }
     public virtual bool Deploy(List<Territory> territories, int troopCount) 
     {
         this.territories = territories;

@@ -4652,6 +4652,7 @@ MonoBehaviour:
   - {fileID: 427254487}
   - {fileID: 782784089}
   - {fileID: 1110549167}
+  - {fileID: 773879357}
   continent: 0
 --- !u!212 &762844577
 SpriteRenderer:
@@ -17435,6 +17436,7 @@ MonoBehaviour:
   - {fileID: 1052722737}
   - {fileID: 58168306}
   - {fileID: 1897040168}
+  - {fileID: 786620686}
   continent: 2
 --- !u!212 &1733551329
 SpriteRenderer:

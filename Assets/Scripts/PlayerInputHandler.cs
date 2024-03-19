@@ -31,7 +31,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
     LocalPlayer localPlayer;
     enum state {MapView,Selected,Zooming}
-    enum turnPhase {Deploying,Attacking,Fortifying,Waiting }
+    enum turnPhase {Setup,Deploying,Attacking,Fortifying,Waiting}
     public void Awake()
     {
         instance = this;
@@ -71,7 +71,21 @@ public class PlayerInputHandler : MonoBehaviour
                     overridenTerr.Inflate();
                 }
             }
-
+            if(currentPhase == turnPhase.Setup)
+            {
+                if (currentTerritoryUnderMouse != null)
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        if (localPlayer.GetTerritories().Contains(currentTerritoryUnderMouse) && selectedTerritory == null)
+                        {
+                            currentTerritoryUnderMouse.SetCurrentTroops(1+currentTerritoryUnderMouse.GetCurrentTroops());
+                            currentTerritoryUnderMouse.SetOwner(localPlayer);
+                            MatchManager.SwitchPlayerSetup();
+                        }
+                    }
+                }
+            }
             if (currentPhase==turnPhase.Deploying)
             {
                 if(currentState == state.MapView) {
@@ -214,6 +228,7 @@ public class PlayerInputHandler : MonoBehaviour
                     {
                         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
                         {
+                            if (overridenTerr != null) { overridenTerr.Deflate(); }
                             currentPhase = turnPhase.Waiting;
                             MatchManager.EndTurn();
                         }
@@ -313,6 +328,11 @@ public class PlayerInputHandler : MonoBehaviour
             executionTime = 0;
             pools.GetComponent<Canvas>().sortingOrder = 1200;
         }
+    }
+    public static void Setup()
+    {
+        currentState = state.MapView;
+        currentPhase = turnPhase.Setup;
     }
     public static void Deploy()
     {
