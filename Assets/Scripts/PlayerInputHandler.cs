@@ -86,7 +86,7 @@ public class PlayerInputHandler : MonoBehaviour
                     }
                 }
             }
-            if (currentPhase==turnPhase.Deploying)
+            else if (currentPhase==turnPhase.Deploying)
             {
                 if(currentState == state.MapView) {
                    
