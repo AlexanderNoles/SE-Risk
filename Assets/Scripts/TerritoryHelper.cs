@@ -1,10 +1,6 @@
 using Pathfinding;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Pool;
-using UnityEngine.UIElements;
 
 #if UNITY_EDITOR
 //only used for pregenerating maps, which does not need to be done on the user end
