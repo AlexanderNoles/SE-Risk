@@ -81,6 +81,7 @@ public class PlayerInputHandler : MonoBehaviour
                         {
                             currentTerritoryUnderMouse.SetCurrentTroops(1+currentTerritoryUnderMouse.GetCurrentTroops());
                             currentTerritoryUnderMouse.SetOwner(localPlayer);
+                            currentPhase = turnPhase.Waiting;
                             MatchManager.SwitchPlayerSetup();
                         }
                     }
