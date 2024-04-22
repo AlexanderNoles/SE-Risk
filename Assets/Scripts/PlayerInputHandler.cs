@@ -55,6 +55,7 @@ public class PlayerInputHandler : MonoBehaviour
                     newTerritoryUnderMouse = Map.GetTerritoryUnderPosition(mousePosThisFrame);
                 }
             }
+
             Territory overridenTerr = newTerritoryUnderMouse;
             if(selectedTerritory != null)
             {
@@ -337,6 +338,8 @@ public class PlayerInputHandler : MonoBehaviour
     {
         currentState = state.MapView;
         currentPhase = turnPhase.Deploying;
+
+        instance.currentTerritoryUnderMouse = null;
     }
     public static void Attack()
     {
