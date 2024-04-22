@@ -8,8 +8,13 @@ public class Map : MonoBehaviour
     [SerializeField]
     List<Territory> territories = new List<Territory>();
     Dictionary<Territory.Continent, List<Territory>> continents = new Dictionary<Territory.Continent, List<Territory>>(); 
-    public GameObject greyPlane;
     static Map instance;
+    public enum AttackResult
+    {
+        Won,
+        Lost,
+        Cancelled //Can only be triggered by players
+    }
 
     public void Awake()
     {
@@ -26,20 +31,57 @@ public class Map : MonoBehaviour
         }
         return null;
     }
-    public static void SetActiveGreyPlane(bool active)
+
+    public static void RequestAttack(Territory attacker, Territory defender)
     {
-        instance.greyPlane.SetActive(active);
+        //! We don't currently account for the attacker and defender both being players but on different machines
+        //will do that when it is needed
+
+        //Need this later
+        //After attack has finished we need to notify the attacker that they have won or lost
+        //No need to notify defender (at least the actual game object) with current game structure
+        Player attackingPlayer = attacker.GetOwner();
+        //Need to pass this to ask them how many troops they want to defend with
+        Player defenderPlayer = defender.GetOwner();
+
+        if (attackingPlayer == null || defenderPlayer == null) 
+        {
+            Debug.LogError("Player is null!");
+            Application.Quit();
+        }
+
+        //If the attacker and defender are both ai skip over ui step
+        //If not we need to wait (open dice roll menu) and come back to it later
+        //Dice roll menu will then run attack when it is needed
+        bool attackerIsLocalPlayer = attackingPlayer is LocalPlayer;
+        bool defenderIsLocalPlayer = defenderPlayer is LocalPlayer;
+
+        if (attackerIsLocalPlayer && defenderIsLocalPlayer) 
+        {
+            Debug.LogError("LocalPlayer is attacking itself!");
+            Application.Quit();
+        }
+        else if (attackerIsLocalPlayer || defenderIsLocalPlayer)
+        {
+            //Activate dice roll menu
+            DiceRollMenu.Activate(attacker, defender, attackerIsLocalPlayer);
+        }
+        else
+        {
+            //Just straight run attack
+            Attack(attacker, defender, attackingPlayer.GetAttackingDice(attacker), defenderPlayer.GetDefendingDice(defender));
+        }
     }
-    public static bool Attack(Territory attacker, Territory defender, int attackingTroops)
+
+    public static void Attack(Territory attacker, Territory defender, int attackingDice, int defendingDice)
     {
         List<int> attackingRolls = new List<int>();
         List<int> defendingRolls = new List<int>();
-        bool taken = false;
-        for (int i = 0; i < attackingTroops && i<3; i++)
+        for (int i = 0; i < attackingDice; i++)
         {
             attackingRolls.Add(Random.Range(1, 7));
         }
-        for (int i = 0; i < defender.GetCurrentTroops() && i<2 && i<attackingRolls.Count; i++)
+        for (int i = 0; i < defendingDice; i++)
         {
             defendingRolls.Add(Random.Range(1, 7));
         }
@@ -47,26 +89,41 @@ public class Map : MonoBehaviour
         attackingRolls.Reverse();
         defendingRolls.Sort();
         defendingRolls.Reverse();
-        for (int i = 0; i < defendingRolls.Count; i++)
+
+        for (int i = 0; i < defendingRolls.Count && i < attackingRolls.Count; i++)
         {
+            string newOutputLine = "(" + attackingRolls[i] + " vs " + defendingRolls[i] + ")";
             if (attackingRolls[i] > defendingRolls[i])
             {
-                defender.SetCurrentTroops(defender.GetCurrentTroops()-1);
+                defender.SetCurrentTroops(defender.GetCurrentTroops() - 1);
             }
             else
             {
                 attacker.SetCurrentTroops(attacker.GetCurrentTroops() - 1);
             }
+            UIManagement.AddLineToRollOutput(newOutputLine);
         }
-        if(defender.GetCurrentTroops() <= 0)
+
+        AttackResult attackResult = defender.GetCurrentTroops() <= 0 ? AttackResult.Won : AttackResult.Lost;
+
+        if (defender.GetCurrentTroops() <= 0)
         {
             defender.SetOwner(attacker.GetOwner());
             attacker.GetOwner().AddTerritory(defender);
-            defender.SetCurrentTroops(attacker.GetCurrentTroops()-1>=3?3:attacker.GetCurrentTroops()-1);
+            defender.SetCurrentTroops(attacker.GetCurrentTroops() - 1 >= 3 ? 3 : attacker.GetCurrentTroops() - 1);
             attacker.SetCurrentTroops(attacker.GetCurrentTroops() - defender.GetCurrentTroops());
-            taken = true;
+            UIManagement.AddLineToRollOutput("Territory Taken!");
         }
-        return taken;
+        else
+        {
+            UIManagement.AddLineToRollOutput("Territory Defended!");
+        }
+
+        //Notify the attacker
+        attacker.GetOwner().OnAttackEnd(attackResult, attacker, defender);
+
+        //Refresh UI
+        UIManagement.RefreshRollOutput();
     }
     public static List<Territory> GetTerritories() { return instance.territories; }
     public static List<Territory> TerritoriesOwnedByPlayer(Player player, out int troopCount)

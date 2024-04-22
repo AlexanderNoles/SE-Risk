@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Player : MonoBehaviour
 {
     [SerializeField]
     PlayerColour colour;
     const float turnDelay = 0.1f;
+    private bool inTheMiddleOfAttack;
+    private Coroutine attackCoroutine = null;
     public enum PlayerColour {Red, Blue, Green, Pink, Orange, Purple};
     Dictionary<PlayerColour, Color> playerColorToColor = new Dictionary<PlayerColour, Color>{ { PlayerColour.Red, new Color(135/255f,14 / 255f, 5 / 255f, 1f) }, { PlayerColour.Blue, new Color(1 / 255f, 1 / 255f, 99 / 255f, 1f) }, { PlayerColour.Orange, new Color(171 / 255f, 71 / 255f, 14 / 255f, 1f) }, { PlayerColour.Green, new Color(6 / 255f, 66 / 255f, 14 / 255f, 1f)}, { PlayerColour.Purple, new Color(92 / 255f, 14 / 255f, 171 / 255f, 1f)}, { PlayerColour.Pink, new Color(166 / 255f, 8 / 255f, 140 / 255f, 1f)} };
     protected int troopCount;
@@ -45,9 +49,10 @@ public class Player : MonoBehaviour
     }
     public virtual bool Attack()
     {
-        StartCoroutine(nameof(AttackWait));
+        attackCoroutine = StartCoroutine(nameof(AttackWait));
         return true; 
     }
+
     private IEnumerator AttackWait()
     {
         for (int i = 0; i < territories.Count; i++)
@@ -63,19 +68,70 @@ public class Player : MonoBehaviour
                         {
                             while (territory.GetCurrentTroops() > 1)
                             {
-                                yield return new WaitForSecondsRealtime(turnDelay);
-                                if(Map.Attack(territory, neighbour, territory.GetCurrentTroops() - 1)) {
-                                    neighbour.SetCurrentTroops(territory.GetCurrentTroops() + neighbour.GetCurrentTroops() - 1);
-                                    territory.SetCurrentTroops(1);
-                                    break; };
+                                if (!inTheMiddleOfAttack)
+                                {
+                                    yield return new WaitForSecondsRealtime(turnDelay);
+                                    inTheMiddleOfAttack = true;
+                                    Map.RequestAttack(territory, neighbour);
+                                }
+                                else
+                                {
+                                    yield return new WaitForEndOfFrame();
+                                }
                             }
                         }
                     }
                 }
             }
         }
+
         MatchManager.Fortify();
     }
+
+    public int GetMaxAttackingDice(Territory target)
+    {
+        //Must have one more army than the number of dice we want to roll, clamped to range 1...3
+        return Mathf.Clamp(target.GetCurrentTroops(), 2, 4);
+    }
+
+    public virtual int GetAttackingDice(Territory attacker)
+    {
+        return Random.Range(1, GetMaxAttackingDice(attacker));
+    }
+
+    public int GetMaxDefendingDice(Territory target)
+    {
+        //Random Range function is max exclusive, so we add 1 to the current troops
+        //This is accounted for in the dice ui, if this is changed to not used Random.Range, make sure to update that code as well!
+        return Mathf.Clamp(target.GetCurrentTroops() + 1, 2, 3);
+    }
+
+    public virtual int GetDefendingDice(Territory defender)
+    {
+        //Return any value between 1 and 2 inclusive, if we have more than 1 troop
+        if(defender.GetCurrentTroops() > 1)
+        {
+            return Random.Range(1, GetMaxDefendingDice(defender));
+        }
+
+        return 1;
+    }
+
+    public virtual void OnAttackEnd(Map.AttackResult attackResult, Territory attacker, Territory defender)
+    {
+        if (attackResult == Map.AttackResult.Won)
+        {
+            //Temp measure, just move all troops
+            defender.SetCurrentTroops(attacker.GetCurrentTroops() + defender.GetCurrentTroops() - 1);
+            attacker.SetCurrentTroops(1);
+        }
+
+        //Allow attacking again
+        //Eithier on this turn or the next
+        inTheMiddleOfAttack = false;
+    }
+
+
     public virtual void Fortify()
     {
         StartCoroutine(nameof(FortifyWait));

@@ -10,6 +10,7 @@ public class PlayerInputHandler : MonoBehaviour
     Territory currentTerritoryUnderMouse = null;
     static state currentState;
     static turnPhase currentPhase;
+    private bool inMiddleOfAttack;
     float zoomTime = 0.2f;
     Vector3 startPos;
     Vector3 cameraMoveVector;
@@ -130,7 +131,7 @@ public class PlayerInputHandler : MonoBehaviour
             }
             else if (currentPhase == turnPhase.Attacking)
             {
-                if (currentTerritoryUnderMouse != null)
+                if (currentTerritoryUnderMouse != null && !inMiddleOfAttack)
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
@@ -145,36 +146,33 @@ public class PlayerInputHandler : MonoBehaviour
                         {
                             if (selectedTerritory.GetNeighbours().Contains(newTerritoryUnderMouse) && newTerritoryUnderMouse.GetOwner()!=selectedTerritory.GetOwner())
                             {
-                                if(Map.Attack(selectedTerritory, newTerritoryUnderMouse, selectedTerritory.GetCurrentTroops() - 1))
+                                if (selectedTerritory.GetCurrentTroops() > 1)
                                 {
-                                    toTerritory = newTerritoryUnderMouse;
-                                    currentState = state.Zooming;
-                                    newTerritoryUnderMouse.Inflate();
-                                    SelectTerritory();
+                                    inMiddleOfAttack = true;
+                                    Map.RequestAttack(selectedTerritory, newTerritoryUnderMouse);
                                 }
                             }
                         }
 
                     }
                 }
-                if (currentState == state.MapView)
+                if (currentState == state.MapView && !inMiddleOfAttack)
                 {
-                if(selectedTerritory != null)
-                {
-                    if(Input.GetKeyDown(KeyCode.Escape)||selectedTerritory.GetCurrentTroops()==1)
+                    if(selectedTerritory != null)
                     {
-                        selectedTerritory.Deflate();
-                        selectedTerritory =null;
+                        if(Input.GetKeyDown(KeyCode.Escape)||selectedTerritory.GetCurrentTroops()==1)
+                        {
+                            selectedTerritory.Deflate();
+                            selectedTerritory =null;
+                        }
                     }
-                }
-                else
-                {
-                    if(Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown(KeyCode.Space))
+                    else
                     {
-                        MatchManager.Fortify();
+                        if(Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown(KeyCode.Space))
+                        {
+                            MatchManager.Fortify();
+                        }
                     }
-                }
-
                 }
                 else if (currentState == state.Selected)
                 {
@@ -206,7 +204,7 @@ public class PlayerInputHandler : MonoBehaviour
                             if (newTerritoryUnderMouse!=null &&newTerritoryUnderMouse!=selectedTerritory &&newTerritoryUnderMouse.GetOwner() == selectedTerritory.GetOwner() && localPlayer.AreTerritoriesConnected(selectedTerritory, newTerritoryUnderMouse))
                             {
                                 troopTransporter.SetupTroopTransporter(newTerritoryUnderMouse, selectedTerritory);
-                                Map.SetActiveGreyPlane(true);
+                                UIManagement.SetActiveGreyPlane(true);
                                 newTerritoryUnderMouse.Inflate();
                                 toTerritory = newTerritoryUnderMouse;
                                 currentState = state.Selected;
@@ -241,7 +239,7 @@ public class PlayerInputHandler : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.Return))
                     {
                         troopTransporter.FinaliseTerritoryTroopCounts();
-                        Map.SetActiveGreyPlane(false);
+                        UIManagement.SetActiveGreyPlane(false);
                         troopTransporter.gameObject.SetActive(false);
                         DeselectTerritory();
                         toTerritory.Deflate();
@@ -250,7 +248,7 @@ public class PlayerInputHandler : MonoBehaviour
                     }
                     else if (Input.GetKeyDown(KeyCode.Escape))
                     {
-                        Map.SetActiveGreyPlane(false);
+                        UIManagement.SetActiveGreyPlane(false);
                         selectedTerritory = null;
                         troopTransporter.gameObject.SetActive(false);
                         toTerritory.Deflate();
@@ -304,7 +302,7 @@ public class PlayerInputHandler : MonoBehaviour
         selectedTerritory = currentTerritoryUnderMouse;
         if (currentState == state.Zooming)
         {
-            Map.SetActiveGreyPlane(true);
+            UIManagement.SetActiveGreyPlane(true);
             Vector3 extents = currentTerritoryUnderMouse.GetBounds().extents;
             float diagLength = Mathf.Sqrt(extents.x * extents.x + extents.y * extents.y);
             startPos = m_Camera.transform.position;
@@ -321,7 +319,7 @@ public class PlayerInputHandler : MonoBehaviour
         selectedTerritory = null;
         if (currentState == state.Zooming)
         {
-            Map.SetActiveGreyPlane(false);
+            UIManagement.SetActiveGreyPlane(false);
             startPos = m_Camera.transform.position;
             cameraMoveVector = new Vector3(0, 0, -10) - startPos;
             startSize = m_Camera.orthographicSize;
@@ -345,6 +343,21 @@ public class PlayerInputHandler : MonoBehaviour
         currentState = state.MapView;
         currentPhase = turnPhase.Attacking;
     }
+
+    public static void OnAttackEnd(Map.AttackResult attackResult, Territory attacker, Territory defender)
+    {
+        //We can keep attacking
+        instance.inMiddleOfAttack = false;
+
+        if (attackResult == Map.AttackResult.Won)
+        {
+            instance.toTerritory = defender;
+            currentState = state.Zooming;
+            defender.Inflate();
+            instance.SelectTerritory();
+        }
+    }
+
     public static void Fortify()
     {
         currentState = state.MapView;

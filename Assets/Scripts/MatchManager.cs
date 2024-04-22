@@ -92,7 +92,6 @@ public class MatchManager : MonoBehaviour
             instance.troopDeployCount--;
             UpdateInfoTextSetup(instance.troopDeployCount);
         }
-        Debug.Log(instance.troopDeployCount);
         instance.SwitchPlayer();
         Setup();
     }
