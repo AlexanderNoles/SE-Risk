@@ -42,6 +42,11 @@ static public class Deck
 
     public static Card Draw()
     {
+        if (cards.Count == 0)
+        {
+            throw new System.Exception("Deck is empty!");
+        }
+
         int count = Random.Range(0, cards.Count);
         Card card = cards[count];
         cards.Remove(card);

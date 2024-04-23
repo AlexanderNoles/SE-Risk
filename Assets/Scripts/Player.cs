@@ -193,7 +193,6 @@ public class Player : MonoBehaviour
 
     public virtual void OnTurnEnd()
     {
-        //Sex wth a man
         if (territoryTakenThisTurn)
         {
             hand.Add(Deck.Draw());
