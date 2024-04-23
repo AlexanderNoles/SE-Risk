@@ -1,7 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Map : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class Map : MonoBehaviour
         Won,
         Lost,
         Cancelled //Can only be triggered by players
+    }
+
+    public static bool IsSimulated()
+    {
+        return SceneManager.GetActiveScene().buildIndex == 1; //Menu Scene
     }
 
     public void Awake()

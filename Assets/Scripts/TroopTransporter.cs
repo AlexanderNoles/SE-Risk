@@ -17,7 +17,7 @@ public class TroopTransporter : MonoBehaviour
     int fromTroopCount;
     int toTroopCount;
     float holdTime;
-    public void UpdateTroopCounts(int count=1)
+    public void UpdateTroopCounts(int count=1)            
     {
         //updates the display and local variables to current troop distribution
         fromTroopCount -= count;
@@ -77,10 +77,28 @@ public class TroopTransporter : MonoBehaviour
                 UpdateTroopCounts();
             }       
         }
-        else if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && toTroopCount>toTerritory.GetCurrentTroops() && Time.time - holdTime > 1 / 7f)
+        else if ((Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) && Time.time - holdTime > 1 / 7f)
         {
+            if (toTroopCount > toTerritory.GetCurrentTroops())
+            {
+                UpdateTroopCounts(-1);
+            }
+            else
+            {
+                int allTroopCount;
+                if (MatchManager.GetTurnState() == MatchManager.TurnState.Deploying)
+                {
+                    allTroopCount = fromTroopCount;
+                }
+                else
+                {
+                    allTroopCount = fromTroopCount-1;
+                }
+
+                UpdateTroopCounts(allTroopCount);
+            }
+
             holdTime = Time.time;
-            UpdateTroopCounts(-1);
         }
     }
 }

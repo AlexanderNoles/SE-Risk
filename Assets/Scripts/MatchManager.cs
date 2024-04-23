@@ -7,7 +7,12 @@ using static Territory;
 
 public class MatchManager : MonoBehaviour
 {
-    TurnState state;
+    static TurnState state;
+    public static TurnState GetTurnState()
+    {
+        return state;
+    }
+
     [SerializeField]
     List<Player> playerList;
     int currentTurnIndex;
@@ -15,7 +20,7 @@ public class MatchManager : MonoBehaviour
     List<Territory> currentPlayerTerritories;
     int troopCount;
     static MatchManager instance;
-    enum TurnState { Deploying, Attacking, Fortifying };
+    public enum TurnState { Deploying, Attacking, Fortifying };
     private Dictionary<int, int> StartingTroopCounts = new Dictionary<int, int>{{3,35}, { 4, 30 } , { 5, 25 } , { 6, 20 } };
     int troopDeployCount;
     public static int GetCurrentTroopDeployCount()
@@ -24,6 +29,7 @@ public class MatchManager : MonoBehaviour
     }
     public void Awake()
     {
+        state = TurnState.Deploying;
         instance = this;
     }
     public void Start()
@@ -56,6 +62,7 @@ public class MatchManager : MonoBehaviour
     }
     public static void Deploy()
     {
+        state = TurnState.Deploying;
         instance.currentPlayerTerritories = Map.TerritoriesOwnedByPlayer(instance.playerList[instance.currentTurnIndex],out int troopCount);
         if(instance.currentPlayerTerritories.Count == 0)
         {
@@ -70,11 +77,13 @@ public class MatchManager : MonoBehaviour
     }
     public static void Attack()
     {
+        state = TurnState.Attacking;
         UpdateInfoTextDefault("Attack");
         instance.playerList[instance.currentTurnIndex].Attack();
     }
     public static void Fortify()
     {
+        state = TurnState.Fortifying;
         UpdateInfoTextDefault("Fortify");
         instance.playerList[instance.currentTurnIndex].Fortify();
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class Territory : MonoBehaviour
 {
@@ -81,7 +82,11 @@ public class Territory : MonoBehaviour
     public void SetCurrentTroops(int currentTroops) 
     { 
         this.currentTroops = currentTroops;
-        troopLabel.text = currentTroops.ToString();
+
+        if (!Map.IsSimulated())
+        {
+            troopLabel.text = currentTroops.ToString();
+        }
     }
     public List<Vector3> GetBorderPoints () {  return borderPoints; }
     public void SetBorderPoints(List<Vector3> newPoints) 
@@ -99,7 +104,10 @@ public class Territory : MonoBehaviour
     public void Start()
     {
         //spawns a troop label for each territory and sets it to display 0
-        troopLabel = UIManagement.Spawn<TextMeshProUGUI>(centrePoint + textOffset, 0).component;
+        if(!Map.IsSimulated())
+        {
+            troopLabel = UIManagement.Spawn<TextMeshProUGUI>(centrePoint + textOffset, 0).component;
+        }
         SetCurrentTroops(0); 
     }
 
