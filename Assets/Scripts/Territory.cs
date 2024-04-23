@@ -21,6 +21,8 @@ public class Territory : MonoBehaviour
     List<Territory> neighbours = new List<Territory>();
     [SerializeField]
     Continent continent;
+    [SerializeField]
+    Sprite cardSprite;
     public enum Continent { Africa, South_America, North_America, Europe, Asia, Australia }
     public static Dictionary<Continent, int> continentValues = new Dictionary<Continent,int>() { { Continent.Africa, 3 }, { Continent.Europe, 5 }, { Continent.Asia, 7 }, { Continent.North_America, 5 }, { Continent.Australia, 2 }, { Continent.South_America, 2 } };
     const float inflationRatio = 1.1f;
@@ -101,6 +103,7 @@ public class Territory : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
+    public Sprite getCardSprite() { return cardSprite; }
     public void Start()
     {
         //spawns a troop label for each territory and sets it to display 0

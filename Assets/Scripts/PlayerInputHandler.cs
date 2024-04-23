@@ -22,6 +22,8 @@ public class PlayerInputHandler : MonoBehaviour
     UIManagement pools;
     [SerializeField]
     TroopTransporter troopTransporter;
+    [SerializeField]
+    CardDisplayer cardDisplayer;
     static PlayerInputHandler instance;
     Territory newTerritoryUnderMouse;
     Territory selectedTerritory = null;
@@ -31,8 +33,8 @@ public class PlayerInputHandler : MonoBehaviour
         instance.localPlayer = player;
     }
     LocalPlayer localPlayer;
-    enum state {MapView,Selected,Zooming}
-    enum turnPhase {Setup,Deploying,Attacking,Fortifying,Waiting}
+    enum state { MapView, Selected, Zooming }
+    enum turnPhase { Setup, Deploying, Attacking, Fortifying, Waiting }
     public void Awake()
     {
         instance = this;
@@ -57,7 +59,7 @@ public class PlayerInputHandler : MonoBehaviour
             }
 
             Territory overridenTerr = newTerritoryUnderMouse;
-            if(selectedTerritory != null)
+            if (selectedTerritory != null)
             {
                 overridenTerr = selectedTerritory;
             }
@@ -73,7 +75,7 @@ public class PlayerInputHandler : MonoBehaviour
                     overridenTerr.Inflate();
                 }
             }
-            if(currentPhase == turnPhase.Setup)
+            if (currentPhase == turnPhase.Setup)
             {
                 if (currentTerritoryUnderMouse != null)
                 {
@@ -81,7 +83,7 @@ public class PlayerInputHandler : MonoBehaviour
                     {
                         if (localPlayer.GetTerritories().Contains(currentTerritoryUnderMouse) && selectedTerritory == null)
                         {
-                            currentTerritoryUnderMouse.SetCurrentTroops(1+currentTerritoryUnderMouse.GetCurrentTroops());
+                            currentTerritoryUnderMouse.SetCurrentTroops(1 + currentTerritoryUnderMouse.GetCurrentTroops());
                             currentTerritoryUnderMouse.SetOwner(localPlayer);
                             currentPhase = turnPhase.Waiting;
                             MatchManager.SwitchPlayerSetup();
@@ -89,16 +91,17 @@ public class PlayerInputHandler : MonoBehaviour
                     }
                 }
             }
-            else if (currentPhase==turnPhase.Deploying)
+            else if (currentPhase == turnPhase.Deploying)
             {
-                if(currentState == state.MapView) {
-                   
+                if (currentState == state.MapView)
+                {
+
                 }
                 if (currentTerritoryUnderMouse != null)
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        if (localPlayer.GetTerritories().Contains(currentTerritoryUnderMouse) && selectedTerritory==null)
+                        if (localPlayer.GetTerritories().Contains(currentTerritoryUnderMouse) && selectedTerritory == null)
                         {
                             currentState = state.Zooming;
                             SelectTerritory();
@@ -145,7 +148,7 @@ public class PlayerInputHandler : MonoBehaviour
                         }
                         else
                         {
-                            if (selectedTerritory.GetNeighbours().Contains(newTerritoryUnderMouse) && newTerritoryUnderMouse.GetOwner()!=selectedTerritory.GetOwner())
+                            if (selectedTerritory.GetNeighbours().Contains(newTerritoryUnderMouse) && newTerritoryUnderMouse.GetOwner() != selectedTerritory.GetOwner())
                             {
                                 if (selectedTerritory.GetCurrentTroops() > 1)
                                 {
@@ -159,17 +162,17 @@ public class PlayerInputHandler : MonoBehaviour
                 }
                 if (currentState == state.MapView && !inMiddleOfAttack)
                 {
-                    if(selectedTerritory != null)
+                    if (selectedTerritory != null)
                     {
-                        if(Input.GetKeyDown(KeyCode.Escape)||selectedTerritory.GetCurrentTroops()==1)
+                        if (Input.GetKeyDown(KeyCode.Escape) || selectedTerritory.GetCurrentTroops() == 1)
                         {
                             selectedTerritory.Deflate();
-                            selectedTerritory =null;
+                            selectedTerritory = null;
                         }
                     }
                     else
                     {
-                        if(Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown(KeyCode.Space))
+                        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
                         {
                             MatchManager.Fortify();
                         }
@@ -202,7 +205,7 @@ public class PlayerInputHandler : MonoBehaviour
                         }
                         else
                         {
-                            if (newTerritoryUnderMouse!=null &&newTerritoryUnderMouse!=selectedTerritory &&newTerritoryUnderMouse.GetOwner() == selectedTerritory.GetOwner() && localPlayer.AreTerritoriesConnected(selectedTerritory, newTerritoryUnderMouse))
+                            if (newTerritoryUnderMouse != null && newTerritoryUnderMouse != selectedTerritory && newTerritoryUnderMouse.GetOwner() == selectedTerritory.GetOwner() && localPlayer.AreTerritoriesConnected(selectedTerritory, newTerritoryUnderMouse))
                             {
                                 troopTransporter.SetupTroopTransporter(newTerritoryUnderMouse, selectedTerritory);
                                 UIManagement.SetActiveGreyPlane(true);
@@ -281,7 +284,7 @@ public class PlayerInputHandler : MonoBehaviour
                     else
                     {
                         currentState = state.Selected;
-                        if (currentPhase==turnPhase.Deploying)
+                        if (currentPhase == turnPhase.Deploying)
                         {
                             troopTransporter.SetupTroopTransporter(currentTerritoryUnderMouse, localPlayer.GetTroopCount());
                         }
@@ -293,7 +296,7 @@ public class PlayerInputHandler : MonoBehaviour
 
                 }
             }
-            if(currentState == state.MapView) { currentTerritoryUnderMouse = overridenTerr; }
+            if (currentState == state.MapView) { currentTerritoryUnderMouse = overridenTerr; }
         }
     }
 
@@ -366,4 +369,5 @@ public class PlayerInputHandler : MonoBehaviour
         currentState = state.MapView;
         currentPhase = turnPhase.Fortifying;
     }
+
 }

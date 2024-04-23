@@ -16,9 +16,12 @@ public class Player : MonoBehaviour
     Dictionary<PlayerColour, Color> playerColorToColor = new Dictionary<PlayerColour, Color>{ { PlayerColour.Red, new Color(135/255f,14 / 255f, 5 / 255f, 1f) }, { PlayerColour.Blue, new Color(1 / 255f, 1 / 255f, 99 / 255f, 1f) }, { PlayerColour.Orange, new Color(171 / 255f, 71 / 255f, 14 / 255f, 1f) }, { PlayerColour.Green, new Color(6 / 255f, 66 / 255f, 14 / 255f, 1f)}, { PlayerColour.Purple, new Color(92 / 255f, 14 / 255f, 171 / 255f, 1f)}, { PlayerColour.Pink, new Color(166 / 255f, 8 / 255f, 140 / 255f, 1f)} };
     protected int troopCount;
     protected List<Territory> territories;
+    protected List<Card> hand;
+    protected bool territoryTakenThisTurn;
     public virtual void Setup(List<Territory> territories)
     {
         this.territories = territories;
+        hand = new List<Card>();
         StartCoroutine(nameof(SetupWait), troopCount);
     }
     private IEnumerator SetupWait()
@@ -31,6 +34,7 @@ public class Player : MonoBehaviour
     }
     public virtual bool Deploy(List<Territory> territories, int troopCount) 
     {
+        territoryTakenThisTurn = false;
         this.territories = territories;
         StartCoroutine(nameof(DeployWait), troopCount);
         return true;
@@ -124,6 +128,7 @@ public class Player : MonoBehaviour
             //Temp measure, just move all troops
             defender.SetCurrentTroops(attacker.GetCurrentTroops() + defender.GetCurrentTroops() - 1);
             attacker.SetCurrentTroops(1);
+            territoryTakenThisTurn = true;
         }
 
         //Allow attacking again
@@ -174,10 +179,24 @@ public class Player : MonoBehaviour
     {
         territories.Add(territory);
     }
+
+    public List<Card> GetHand()
+    {
+        return hand;
+    }
     public bool AreTerritoriesConnected(Territory startTerritory, Territory endTerritory)
     {
         TerritoryNode startNode = new TerritoryNode().SetTerritory(startTerritory);
         TerritoryNode endNode = new TerritoryNode().SetTerritory(endTerritory);
         return Pathfinding.AStar.FindPath(startNode, endNode,false).Count>0;
+    }
+
+    public virtual void OnTurnEnd()
+    {
+        //Sex wth a man
+        if (territoryTakenThisTurn)
+        {
+            hand.Add(Deck.Draw());
+        }
     }
 }

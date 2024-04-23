@@ -37,10 +37,12 @@ public class MatchManager : MonoBehaviour
         troopDeployCount = StartingTroopCounts[playerList.Count];
         UpdateInfoTextSetup(troopDeployCount);
         turnNumber = 1;
+        Deck.CreateDeck();
         Setup();
     }
     public static void Setup()
     {
+
         if (instance.troopDeployCount > 0)
         {
             instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex], out List<Territory> playerTerritories);
@@ -91,6 +93,8 @@ public class MatchManager : MonoBehaviour
     public List<Territory> GetCurrentPlayerTerritories() {  return currentPlayerTerritories; }
     public static void EndTurn()
     {
+        instance.playerList[instance.currentTurnIndex].OnTurnEnd();
+
         instance.SwitchPlayer();
         Deploy();
     }
