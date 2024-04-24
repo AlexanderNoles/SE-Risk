@@ -7,6 +7,7 @@ static public class Deck
     static List<Card> cards = new List<Card>();
     static public void CreateDeck()
     {
+        cards.Clear();
         List<Territory> territories = Map.GetTerritories();
         List<int> designCounts = new List<int>();
         int count = territories.Count;
@@ -28,7 +29,7 @@ static public class Deck
             int choice = 0;
             while(!chosen)
             {
-                choice = Random.Range(0, 2);
+                choice = Random.Range(0, 3); //change back to 3 when done testing
                 if (designCounts[choice] > 0)
                 {
                     chosen = true;

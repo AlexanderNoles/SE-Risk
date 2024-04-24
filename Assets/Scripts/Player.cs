@@ -9,19 +9,19 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     PlayerColour colour;
-    const float turnDelay = 0.1f; //Typical value is 0.1f
+    const float turnDelay = 0.001f; //Typical value is 0.1f
     private bool inTheMiddleOfAttack;
     private Coroutine attackCoroutine = null;
     public enum PlayerColour {Red, Blue, Green, Pink, Orange, Purple};
     Dictionary<PlayerColour, Color> playerColorToColor = new Dictionary<PlayerColour, Color>{ { PlayerColour.Red, new Color(135/255f,14 / 255f, 5 / 255f, 1f) }, { PlayerColour.Blue, new Color(1 / 255f, 1 / 255f, 99 / 255f, 1f) }, { PlayerColour.Orange, new Color(171 / 255f, 71 / 255f, 14 / 255f, 1f) }, { PlayerColour.Green, new Color(6 / 255f, 66 / 255f, 14 / 255f, 1f)}, { PlayerColour.Purple, new Color(92 / 255f, 14 / 255f, 171 / 255f, 1f)}, { PlayerColour.Pink, new Color(166 / 255f, 8 / 255f, 140 / 255f, 1f)} };
     protected int troopCount;
     protected List<Territory> territories;
-    protected List<Card> hand;
+    protected Hand hand;
     protected bool territoryTakenThisTurn;
 
     private void Start()
     {
-        hand = new List<Card>();
+        hand = new Hand();
     }
 
     public virtual void Setup(List<Territory> territories)
@@ -58,6 +58,13 @@ public class Player : MonoBehaviour
 
     public virtual bool Deploy(List<Territory> territories, int troopCount) 
     {
+        //Card check
+        if (hand.FindValidSet(out List<Card> validSet, true))
+        {
+            troopCount += Hand.NumberOfTroopsForSet(this, validSet);
+        }
+
+        //Normal process
         territoryTakenThisTurn = false;
         this.territories = territories;
         StartCoroutine(nameof(DeployWait), troopCount);
@@ -207,7 +214,7 @@ public class Player : MonoBehaviour
         territories.Add(territory);
     }
 
-    public List<Card> GetHand()
+    public Hand GetHand()
     {
         return hand;
     }
@@ -220,9 +227,9 @@ public class Player : MonoBehaviour
 
     public virtual void OnTurnEnd()
     {
-        if (territoryTakenThisTurn)
+        if (territoryTakenThisTurn && hand.Count() < 6)
         {
-            hand.Add(Deck.Draw());
+            hand.AddCard(Deck.Draw());
         }
     }
 }

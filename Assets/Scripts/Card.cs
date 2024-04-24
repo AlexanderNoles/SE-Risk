@@ -9,8 +9,10 @@ public class Card
     public enum cardDesign {Troop, Cavalry, Artillery,WildCard,Empty}
     Territory territory;
     cardDesign design;
+    bool selected;
     public Card(Territory territory, int design)
     {
+        selected = false;
         this.territory = territory;
         switch (design)
         {

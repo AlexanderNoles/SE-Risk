@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,6 @@ public class CardDisplayer : MonoBehaviour
     [SerializeField]
     List<Sprite> designSprites = new List<Sprite>();
     GameObject[] gameObjects = new GameObject[6];
-    Bounds[] bounds = new Bounds[6];
     List<Card> selected = new List<Card>();
     private bool showing = false;
     private bool hiding = false;
@@ -27,9 +27,14 @@ public class CardDisplayer : MonoBehaviour
     [SerializeField]
     AnimationCurve HideCurve;
     bool cardsOnScreen;
+    bool AbleToTurnInCards;
     Camera m_Camera;
+    bool slidingSelected = false;
+    float timer;
+    bool timing;
     public void Start()
     {
+        AbleToTurnInCards = false;
         player = FindObjectOfType<LocalPlayer>();
         inputHandler = FindObjectOfType<PlayerInputHandler>();
 
@@ -49,36 +54,74 @@ public class CardDisplayer : MonoBehaviour
 
     public void Update()
     {
-        if (showing||hiding)
+        if (showing || hiding)
         {
             float deltaTime = Time.deltaTime;
             executionTime += deltaTime;
             float completionRate = executionTime / showTime;
 
-            for (int i =0;i< gameObjects.Length; i++)
+            for (int i = 0; i < gameObjects.Length; i++)
             {
                 GameObject go = gameObjects[i];
                 if (executionTime < showTime)
                 {
-                    Vector3 endPos = Vector3.right * ((318 * (i))-(startPos.x+796));
+                    Vector3 endPos = Vector3.right * ((318 * (i)) - (startPos.x + 796));
                     if (showing) { go.transform.localPosition = startPos + (endPos * ShowCurve.Evaluate(completionRate)); }
-                    else { go.transform.localPosition = (startPos + endPos) - (endPos * HideCurve.Evaluate(completionRate));}
+                    else { go.transform.localPosition = (startPos + endPos) - (endPos * HideCurve.Evaluate(completionRate)); }
                 }
                 else
                 {
                     if (hiding) { go.SetActive(false); }
                     if (i == 5)
                     {
-                        if (showing) 
-                        { 
-                            showing = false; cardsOnScreen = true; 
-                            for(int j =0;j< gameObjects.Length; j++)
-                            {
-                                Rect rect = gameObjects[j].GetComponent<RectTransform>().rect;
-                                bounds[j] = new Bounds(rect.center,rect.size);
-                            }
+                        if (showing)
+                        {
+                            showing = false; cardsOnScreen = true;
                         }
                         else { hiding = false; cardsOnScreen = false; }
+                    }
+                }
+            }
+        }
+        else if (slidingSelected)
+        {
+            float deltaTime = Time.deltaTime;
+            executionTime += deltaTime;
+            float completionRate = executionTime / showTime;
+
+            for (int i = 0; i < gameObjects.Length; i++)
+            {
+                if (selected.Contains(cards[i]))
+                {
+                    GameObject go = gameObjects[i];
+                    if (executionTime < showTime)
+                    {
+                        Vector3 endPos = go.transform.position;
+                        endPos.y = 5000;
+                        go.transform.localPosition = new Vector3(endPos.x, (endPos.y * HideCurve.Evaluate(completionRate)), 0);
+                    }
+                    else
+                    {
+                        go.SetActive(false);
+                        slidingSelected = false;
+                    }
+                }
+            }
+            if (executionTime >= showTime)
+            {
+                selected.Clear();
+            }
+            if (timing)
+            {
+                timer += Time.deltaTime;
+                if (timer > 1)
+                {
+                    timing = false;
+                    timer = 0;
+                    for (int i = 0; i < gameObjects.Length; i++)
+                    {
+                        GameObject go = gameObjects[i];
+                        go.GetComponent<Image>().color = Color.black;
                     }
                 }
             }
@@ -119,13 +162,13 @@ public class CardDisplayer : MonoBehaviour
         cards[0] = newCard;
     }
 
-    public void SetHand(List<Card> cards)
+    public void SetHand(Hand cards)
     {
         for (int i = 0; i < 6; i++)
         {
-            if (i < cards.Count)
+            if (i < cards.Count())
             {
-                this.cards[i] = cards[i];
+                this.cards[i] = cards.GetCard(i);
             }
             else
             {
@@ -157,6 +200,14 @@ public class CardDisplayer : MonoBehaviour
     {
         hiding = true;
         executionTime = 0;
+        for(int i = 0;i < gameObjects.Length; i++)
+        {
+            if (selected.Contains<Card>(cards[i]))
+            {
+                gameObjects[i].GetComponent<Image>().color = Color.black;
+                selected.Remove(cards[i]);
+            }
+        }
     }
 
     public int GetCardState()
@@ -166,38 +217,58 @@ public class CardDisplayer : MonoBehaviour
         else if (!cardsOnScreen) { return 0; }
         else { return 1; }
     }
-
-    public void OnCardClick()
+    public void OnCardClick(int index)
     {
-        if (cardsOnScreen)
+        if (cardsOnScreen && AbleToTurnInCards&& cards[index].GetDesign()!=Card.cardDesign.Empty)
         {
-            Vector3 mousePosThisFrame = m_Camera.ScreenToWorldPoint(Input.mousePosition);
-            mousePosThisFrame.z = 0;
-            for (int i = 0; i < gameObjects.Length; i++)
-            {
-                Debug.Log(bounds[i].center);
-                if (bounds[i].Contains(mousePosThisFrame))
+                if (selected.Contains<Card>(cards[index]))
                 {
-                    if (selected.Contains<Card>(cards[i]))
+                    gameObjects[index].GetComponent<Image>().color = Color.black;
+                selected.Remove(cards[index]);
+                }
+                else
+                {
+                    gameObjects[index].GetComponent<Image>().color = Color.green;
+                selected.Add(cards[index]);
+                }
+            if (selected.Count == 3)
+            {
+                if (Hand.IsArrayAValidSet(selected))
+                {
+                    slidingSelected = true;
+                    executionTime = 0;
+                    player.SetTroopCount(player.GetTroopCount()+Hand.NumberOfTroopsForSet(player,selected));
+                    foreach(Card card in selected)
                     {
-                        gameObjects[i].GetComponent<Image>().color = Color.black;
-                        selected.Remove(cards[i]);
+                        player.GetHand().RemoveCard(card);
                     }
-                    else
+                }
+                else
+                {
+                    for (int i = 0; i < gameObjects.Length; i++)
                     {
-                        gameObjects[i].GetComponent<Image>().color = Color.green;
-                        selected.Add(cards[i]);
+                        if (selected.Contains(cards[i]))
+                        {
+                            GameObject go = gameObjects[i];
+                            go.GetComponent<Image>().color = Color.red;
+                            selected.Remove(cards[i]);
+                            timing = true;
+                        }
                     }
                 }
             }
         }
     }
+    public void SetAbleToTurnInCards(bool isAbleToTurnInCards)
+    {
+        AbleToTurnInCards = isAbleToTurnInCards;
+    }
+
 
     public void ToggleCardMenuButton()
     {
         if (GetCardState() != -1)
         {
-            inputHandler.ToggleCardView();
             if (GetCardState() == 0)
             {
                 player.SetCardDisplayerHand();
@@ -209,6 +280,11 @@ public class CardDisplayer : MonoBehaviour
                 HideCards();
             }
         }
+    }
+
+    public bool GetCardsOnScreen()
+    {
+        return cardsOnScreen;
     }
 
 }

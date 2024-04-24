@@ -9,7 +9,7 @@ public class LocalPlayer : Player
     private void Start()
     {
         PlayerInputHandler.SetLocalPlayer(this);
-        hand = new List<Card>();
+        hand = new Hand();
     }
 
     public override void ClaimCapital(List<Territory> territories)
@@ -28,11 +28,13 @@ public class LocalPlayer : Player
         this.troopCount = troopCount;
         this.territories = territories;
         territoryTakenThisTurn = false;
+        cardDisplayer.SetAbleToTurnInCards(true);
         PlayerInputHandler.Deploy();
         return true;
     }
     public override bool Attack()
     {
+        cardDisplayer.SetAbleToTurnInCards(false);
         PlayerInputHandler.Attack();
         return true;
     }
@@ -62,7 +64,7 @@ public class LocalPlayer : Player
     {
         if (territoryTakenThisTurn)
         {
-            cardDisplayer.SetCard(hand[^1]);
+            cardDisplayer.SetCard(hand.GetLastCard());
             cardDisplayer.UpdateCardVisuals();
             StartCoroutine(ShowOneCard());
         }

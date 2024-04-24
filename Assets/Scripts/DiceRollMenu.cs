@@ -101,7 +101,7 @@ public class DiceRollMenu : MonoBehaviour
                 string descripterText = 
                     "Number of dice to " + 
                     (playerIsAttacker ? "attack " : "defend ") +
-                    (playerIsAttacker ? attackingTerritory.name : defendingTerritory.name) 
+                    defendingTerritory.name
                     + " with:";
 
                 descripter.text = descripterText;

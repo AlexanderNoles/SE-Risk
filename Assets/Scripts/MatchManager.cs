@@ -123,7 +123,7 @@ public class MatchManager : MonoBehaviour
         {
             instance.playerList.Remove(instance.playerList[instance.currentTurnIndex]);
             instance.currentTurnIndex--;
-            EndTurn();
+            EndTurn(true);
             return;
         }
         UpdateInfoTextDefault("Deploy");
@@ -155,9 +155,12 @@ public class MatchManager : MonoBehaviour
         } 
     }
     public List<Territory> GetCurrentPlayerTerritories() {  return currentPlayerTerritories; }
-    public static void EndTurn()
+    public static void EndTurn(bool playerRemoved = false)
     {
-        instance.playerList[instance.currentTurnIndex].OnTurnEnd();
+        if (!playerRemoved)
+        {
+            instance.playerList[instance.currentTurnIndex].OnTurnEnd();
+        }
 
         instance.SwitchPlayer();
         Deploy();
@@ -184,6 +187,11 @@ public class MatchManager : MonoBehaviour
 
     public static void WinCheck(Player current)
     {
+        if (Map.IsSimulated())
+        {
+            return;
+        }
+
         //We get the current player as an argument in case of a break in some other part of the code
         //that would cause a player to attack not on their turn (or more likely the code doesn't think it is their turn) 
 
