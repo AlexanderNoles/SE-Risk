@@ -1,16 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static Territory;
-using static UnityEditor.Experimental.GraphView.GraphView;
+using static MatchManager;
 
 public class MatchManager : MonoBehaviour
 {
     private static bool gameOver;
+    public struct GameWonInfo
+    {
+        public string winnerName;
+        public Color winnerColor;
+    }
 
+    private static GameWonInfo gameWonInfo;
+
+    public static GameWonInfo GetGameWonInfo()
+    {
+        return gameWonInfo;
+    }
 
     static TurnState state;
     public static TurnState GetTurnState()
@@ -207,6 +215,11 @@ public class MatchManager : MonoBehaviour
 
         if (gameOver)
         {
+            //Create game won info, to be used by game won screen
+            gameWonInfo = new GameWonInfo();
+            gameWonInfo.winnerName = current.GetColorName();
+            gameWonInfo.winnerColor = current.GetColor();
+
             //Load win screen menu
             TransitionControl.onTransitionOver.AddListener(OnOutTransitionOver);
             TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn);
