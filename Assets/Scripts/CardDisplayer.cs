@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class CardDisplayer : MonoBehaviour
     [SerializeField]
     List<Sprite> designSprites = new List<Sprite>();
     GameObject[] gameObjects = new GameObject[6];
+    Bounds[] bounds = new Bounds[6];
+    List<Card> selected = new List<Card>();
     private bool showing = false;
     private bool hiding = false;
     private float showTime=1.0f;
@@ -22,8 +25,10 @@ public class CardDisplayer : MonoBehaviour
     [SerializeField]
     AnimationCurve HideCurve;
     bool cardsOnScreen;
+    Camera m_Camera;
     public void Start()
     {
+        m_Camera = Camera.main;
         cards = new Card[6];
         for(int i=0; i<6; i++) 
         {
@@ -59,7 +64,15 @@ public class CardDisplayer : MonoBehaviour
                     if (hiding) { go.SetActive(false); }
                     if (i == 5)
                     {
-                        if (showing) { showing = false; cardsOnScreen = true; }
+                        if (showing) 
+                        { 
+                            showing = false; cardsOnScreen = true; 
+                            for(int j =0;j< gameObjects.Length; j++)
+                            {
+                                Rect rect = gameObjects[j].GetComponent<RectTransform>().rect;
+                                bounds[j] = new Bounds(rect.center,rect.size);
+                            }
+                        }
                         else { hiding = false; cardsOnScreen = false; }
                     }
                 }
@@ -148,4 +161,31 @@ public class CardDisplayer : MonoBehaviour
         else if (!cardsOnScreen) { return 0; }
         else { return 1; }
     }
+
+    public void OnCardClick()
+    {
+        if (cardsOnScreen)
+        {
+            Vector3 mousePosThisFrame = m_Camera.ScreenToWorldPoint(Input.mousePosition);
+            mousePosThisFrame.z = 0;
+            for (int i = 0; i < gameObjects.Length; i++)
+            {
+                Debug.Log(bounds[i].center);
+                if (bounds[i].Contains(mousePosThisFrame))
+                {
+                    if (selected.Contains<Card>(cards[i]))
+                    {
+                        gameObjects[i].GetComponent<Image>().color = Color.black;
+                        selected.Remove(cards[i]);
+                    }
+                    else
+                    {
+                        gameObjects[i].GetComponent<Image>().color = Color.green;
+                        selected.Add(cards[i]);
+                    }
+                }
+            }
+        }
+    }
+
 }

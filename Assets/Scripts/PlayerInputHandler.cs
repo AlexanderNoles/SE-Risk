@@ -28,12 +28,13 @@ public class PlayerInputHandler : MonoBehaviour
     Territory newTerritoryUnderMouse;
     Territory selectedTerritory = null;
     Territory toTerritory;
+    
     public static void SetLocalPlayer(LocalPlayer player)
     {
         instance.localPlayer = player;
     }
     LocalPlayer localPlayer;
-    enum state { MapView, Selected, Zooming }
+    enum state { MapView, Selected, Zooming, CardView }
     enum turnPhase { Setup, Deploying, Attacking, Fortifying, Waiting }
     public void Awake()
     {
@@ -41,6 +42,7 @@ public class PlayerInputHandler : MonoBehaviour
         m_Camera = Camera.main;
         currentPhase = turnPhase.Waiting;
         currentState = state.MapView;
+        cardDisplayer = FindObjectOfType<CardDisplayer>();
     }
     public void Update()
     {
@@ -93,9 +95,12 @@ public class PlayerInputHandler : MonoBehaviour
             }
             else if (currentPhase == turnPhase.Deploying)
             {
-                if (currentState == state.MapView)
+                if (currentState == state.CardView)
                 {
-
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
+                    {
+                        cardDisplayer.OnCardClick();
+                    }
                 }
                 if (currentTerritoryUnderMouse != null)
                 {
@@ -370,4 +375,15 @@ public class PlayerInputHandler : MonoBehaviour
         currentPhase = turnPhase.Fortifying;
     }
 
+    public void ToggleCardView()
+    {
+        if (currentState == state.MapView)
+        {
+            currentState = state.CardView;
+        }
+        else
+        {
+            currentState = state.MapView;
+        }
+    }
 }
