@@ -74,6 +74,10 @@ public class Territory : MonoBehaviour
     public Bounds GetBounds() { return bounds; }
     public Vector3 GetCentrePoint() { return centrePoint; }
     public void SetCentrePoint(Vector3 centrePoint) { this.centrePoint = centrePoint; }
+    public Vector2 GetUIOffset()
+    {
+        return centrePoint + textOffset;
+    }
     public Player GetOwner () { return owner; }
     public void SetOwner (Player owner) 
     { 
@@ -109,7 +113,7 @@ public class Territory : MonoBehaviour
         //spawns a troop label for each territory and sets it to display 0
         if(!Map.IsSimulated())
         {
-            troopLabel = UIManagement.Spawn<TextMeshProUGUI>(centrePoint + textOffset, 0).component;
+            troopLabel = UIManagement.Spawn<TextMeshProUGUI>(GetUIOffset(), 0).component;
         }
         SetCurrentTroops(0); 
     }

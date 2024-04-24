@@ -18,10 +18,15 @@ public class Player : MonoBehaviour
     protected List<Territory> territories;
     protected List<Card> hand;
     protected bool territoryTakenThisTurn;
+
+    private void Start()
+    {
+        hand = new List<Card>();
+    }
+
     public virtual void Setup(List<Territory> territories)
     {
         this.territories = territories;
-        hand = new List<Card>();
         StartCoroutine(nameof(SetupWait), troopCount);
     }
     private IEnumerator SetupWait()
@@ -32,6 +37,25 @@ public class Player : MonoBehaviour
         deployTerriory.SetOwner(this);
         MatchManager.SwitchPlayerSetup();
     }
+
+    public virtual void ClaimCapital(List<Territory> territories)
+    {
+        this.territories = territories;
+        StartCoroutine(nameof(ClaimWait), troopCount);
+    }
+
+    private IEnumerator ClaimWait()
+    {
+        yield return new WaitForSecondsRealtime(turnDelay);
+        Territory capital = territories[Random.Range(0, territories.Count)];
+        capital.SetCurrentTroops(1);
+        capital.SetOwner(this);
+
+        Map.AddCapital(capital, this);
+
+        MatchManager.SwitchPlayerSetup();
+    }
+
     public virtual bool Deploy(List<Territory> territories, int troopCount) 
     {
         territoryTakenThisTurn = false;

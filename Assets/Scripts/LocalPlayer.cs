@@ -9,12 +9,18 @@ public class LocalPlayer : Player
     private void Start()
     {
         PlayerInputHandler.SetLocalPlayer(this);
+        hand = new List<Card>();
+    }
+
+    public override void ClaimCapital(List<Territory> territories)
+    {
+        this.territories = territories;
+        PlayerInputHandler.Setup(claimingCapital: true);
     }
 
     public override void Setup(List<Territory> territories)
     {
         this.territories = territories;
-        hand = new List<Card>();
         PlayerInputHandler.Setup();
     }
     public override bool Deploy(List<Territory> territories, int troopCount)

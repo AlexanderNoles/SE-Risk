@@ -22,12 +22,16 @@ public class MatchManager : MonoBehaviour
     int troopCount;
     static MatchManager instance;
     public enum TurnState { Deploying, Attacking, Fortifying };
+
+    private static int capitalsPlaced;
     private Dictionary<int, int> StartingTroopCounts = new Dictionary<int, int>{{3,35}, { 4, 30 } , { 5, 25 } , { 6, 20 } };
     int troopDeployCount;
     public static int GetCurrentTroopDeployCount()
     {
         return instance.troopDeployCount;
     }
+
+
     public void Awake()
     {
         state = TurnState.Deploying;
@@ -49,6 +53,7 @@ public class MatchManager : MonoBehaviour
             }
         }
 
+        //Assertion
         if (playerList.Count < 3)
         {
             //Less than 3 players in lobby, this shouldn't occur unless there has been some issue with the play menu
@@ -61,11 +66,19 @@ public class MatchManager : MonoBehaviour
         turnNumber = 1;
         Deck.CreateDeck();
 
+        capitalsPlaced = 0;
         Setup();
     }
     public static void Setup()
     {
-        if (instance.troopDeployCount > 0)
+        if (PlayOptionsManagement.IsConquestMode() && capitalsPlaced < instance.playerList.Count)
+        {
+            instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex], out List<Territory> playerTerritories);
+
+            instance.playerList[instance.currentTurnIndex].ClaimCapital(instance.currentPlayerTerritories);
+            capitalsPlaced += 1;
+        }
+        else if (instance.troopDeployCount > 0)
         {
             instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex], out List<Territory> playerTerritories);
             if (instance.currentPlayerTerritories.Count != 0)

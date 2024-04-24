@@ -18694,7 +18694,7 @@ Transform:
   m_GameObject: {fileID: 1514708326}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.51002765, y: 0.56345177, z: -0.13392012}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23885,6 +23885,11 @@ MonoBehaviour:
   - name: TroopLabel
     baseObject: {fileID: 8454121172598914614, guid: 349e78a0520e0cd45b158cfe709d5064, type: 3}
     baseNumberOfObjects: 45
+    generateAsNeeded: 1
+    automaticallySetParent: 1
+  - name: CapitalSign
+    baseObject: {fileID: 3837589383030290074, guid: d6082a01f3d59d4449cf11367565deed, type: 3}
+    baseNumberOfObjects: 6
     generateAsNeeded: 1
     automaticallySetParent: 1
 --- !u!114 &2139969089

@@ -3,11 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Map : MonoBehaviour
 {
     [SerializeField]
     List<Territory> territories = new List<Territory>();
+
+    private static HashSet<(Territory, Player)> capitals = new HashSet<(Territory, Player)>();
+
+    public static void AddCapital(Territory territory, Player owner)
+    {
+        capitals.Add((territory, owner));
+
+        //Spawn ui element signify this territory is a capital
+        Color capitalColor = owner.GetColor();
+        capitalColor *= 1.25f;
+        capitalColor.a = 1f;
+
+        UIManagement.Spawn<Image>(territory.GetUIOffset(), 1).component.color = capitalColor;
+    }
+
+
     Dictionary<Territory.Continent, List<Territory>> continents = new Dictionary<Territory.Continent, List<Territory>>(); 
     static Map instance;
     public enum AttackResult
@@ -193,8 +210,13 @@ public class Map : MonoBehaviour
     }
     [ContextMenu("Setup Map")]
     public void SetupMap()
-    //Adds all territories to the map as a context menu option so map operations can be performed when the program is not running
     {
+        if (PlayOptionsManagement.IsConquestMode())
+        {
+            capitals.Clear();
+        }
+
+
         territories = new List<Territory>();
         continents = new Dictionary<Territory.Continent, List<Territory>>();
         instance = this;

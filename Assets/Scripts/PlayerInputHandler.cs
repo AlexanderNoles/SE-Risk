@@ -28,6 +28,8 @@ public class PlayerInputHandler : MonoBehaviour
     Territory newTerritoryUnderMouse;
     Territory selectedTerritory = null;
     Territory toTerritory;
+
+    private bool claimingCapital;
     
     public static void SetLocalPlayer(LocalPlayer player)
     {
@@ -88,6 +90,14 @@ public class PlayerInputHandler : MonoBehaviour
                             currentTerritoryUnderMouse.SetCurrentTroops(1 + currentTerritoryUnderMouse.GetCurrentTroops());
                             currentTerritoryUnderMouse.SetOwner(localPlayer);
                             currentPhase = turnPhase.Waiting;
+
+                            if (claimingCapital)
+                            {
+                                //Mark chosen territory as capital
+                                Map.AddCapital(currentTerritoryUnderMouse, localPlayer);
+                                claimingCapital = false;
+                            }
+
                             MatchManager.SwitchPlayerSetup();
                         }
                     }
@@ -337,10 +347,12 @@ public class PlayerInputHandler : MonoBehaviour
             pools.GetComponent<Canvas>().sortingOrder = 1200;
         }
     }
-    public static void Setup()
+    public static void Setup(bool claimingCapital = false)
     {
         currentState = state.MapView;
         currentPhase = turnPhase.Setup;
+
+        instance.claimingCapital = claimingCapital;
     }
     public static void Deploy()
     {

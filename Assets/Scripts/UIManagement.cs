@@ -33,6 +33,7 @@ public class UIManagement : MonoBehaviour
     {
         return pools.SpawnObject<T>(poolIndex, pos);
     }
+
     public static void SetText(string text)
     {
         if (!Map.IsSimulated())
