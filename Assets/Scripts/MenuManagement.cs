@@ -11,7 +11,8 @@ public class MenuManagement : MonoBehaviour
     {
         Main,
         Play,
-        Options
+        Options,
+        WinScreen
     }
 
     private static Menu defaultMenu = Menu.Main;

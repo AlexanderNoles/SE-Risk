@@ -10,7 +10,7 @@ public class MatchManager : MonoBehaviour
     public struct GameWonInfo
     {
         public string winnerName;
-        public Color winnerColor;
+        public string winnerColor;
     }
 
     private static GameWonInfo gameWonInfo;
@@ -178,7 +178,7 @@ public class MatchManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             gameOver = true;
-            WinCheck(null);
+            WinCheck(playerList[0]);
         }
     }
 
@@ -217,8 +217,16 @@ public class MatchManager : MonoBehaviour
         {
             //Create game won info, to be used by game won screen
             gameWonInfo = new GameWonInfo();
-            gameWonInfo.winnerName = current.GetColorName();
-            gameWonInfo.winnerColor = current.GetColor();
+            if (current != null)
+            {
+                gameWonInfo.winnerName = current.GetColorName();
+                gameWonInfo.winnerColor = current.GetColorName().ToLower();
+            }
+            else
+            {
+                gameWonInfo.winnerName = "None";
+                gameWonInfo.winnerColor = "white";
+            }
 
             //Load win screen menu
             TransitionControl.onTransitionOver.AddListener(OnOutTransitionOver);
@@ -229,7 +237,7 @@ public class MatchManager : MonoBehaviour
     public static void OnOutTransitionOver()
     {
         TransitionControl.onTransitionOver.RemoveListener(OnOutTransitionOver);
-        MenuManagement.SetDefaultMenu(MenuManagement.Menu.Play);
+        MenuManagement.SetDefaultMenu(MenuManagement.Menu.WinScreen);
         SceneManager.LoadScene(1);
     }
 
