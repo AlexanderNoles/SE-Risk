@@ -3,13 +3,27 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Player : MonoBehaviour
 {
     [SerializeField]
     PlayerColour colour;
-    const float turnDelay = 0.001f; //Typical value is 0.1f
+    float turnDelay
+    {
+        get
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 0) //Main Scene
+            {
+                return 0.1f;
+            }
+            else
+            {
+                return 0.01f;
+            }
+        }
+    }
     private bool inTheMiddleOfAttack;
     private Coroutine attackCoroutine = null;
     public enum PlayerColour {Red, Blue, Green, Pink, Orange, Purple};
