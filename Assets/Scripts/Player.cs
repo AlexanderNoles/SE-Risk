@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     PlayerColour colour;
-    const float turnDelay = 0.1f;
+    const float turnDelay = 0.1f; //Typical value is 0.1f
     private bool inTheMiddleOfAttack;
     private Coroutine attackCoroutine = null;
     public enum PlayerColour {Red, Blue, Green, Pink, Orange, Purple};

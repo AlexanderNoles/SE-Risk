@@ -14,6 +14,14 @@ public class MenuManagement : MonoBehaviour
         Options
     }
 
+    private static Menu defaultMenu = Menu.Main;
+
+    public static void SetDefaultMenu(Menu menu)
+    {
+        defaultMenu = menu;
+    }
+
+
     public static Menu currentMenu = Menu.Main;
     private static Menu intendedMenu = Menu.Main;
     public List<GameObject> menuObjects = new List<GameObject>();
@@ -26,8 +34,13 @@ public class MenuManagement : MonoBehaviour
     private void Start()
     {
         //In start to not run into conflicts with instance identification in transition control
-        LoadMenu(Menu.Main, false);
-        TransitionControl.HideMaskedTextForNextTransition();
+        LoadMenu(defaultMenu, false);
+
+        if (defaultMenu == Menu.Main)
+        {
+            TransitionControl.HideMaskedTextForNextTransition();
+        }
+
         TransitionControl.RunTransition(TransitionControl.Transitions.SwipeOut);
     }
 
@@ -65,12 +78,6 @@ public class MenuManagement : MonoBehaviour
 
     public static void LoadMenu(Menu menu, bool doTransition = true)
     {
-        if (SceneManager.GetActiveScene().buildIndex != 1)
-        {
-            //Load menu scene
-            SceneManager.LoadScene(1);
-        }
-
         intendedMenu = menu;
 
         if (doTransition)

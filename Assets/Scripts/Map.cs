@@ -14,6 +14,12 @@ public class Map : MonoBehaviour
 
     public static void AddCapital(Territory territory, Player owner)
     {
+        if (IsSimulated())
+        {
+            return;
+        }
+
+
         capitals.Add((territory, owner));
 
         //Spawn ui element signify this territory is a capital
@@ -22,6 +28,21 @@ public class Map : MonoBehaviour
         capitalColor.a = 1f;
 
         UIManagement.Spawn<Image>(territory.GetUIOffset(), 1).component.color = capitalColor;
+    }
+
+    public static bool DoesPlayerHoldAllCapitals(Player target)
+    {
+        foreach ((Territory, Player) capital in capitals)
+        {
+            //If they don't own this capital
+            if (capital.Item1.GetOwner() != target)
+            {
+                //Quit early
+                return false;
+            }
+        }
+
+        return true;
     }
 
 
@@ -147,6 +168,11 @@ public class Map : MonoBehaviour
 
         //Refresh UI
         UIManagement.RefreshRollOutput();
+
+        //Send a message to the match manager 
+        //So it can check if the game is now over
+        MatchManager.WinCheck(attacker.GetOwner());
+
     }
     public static List<Territory> GetTerritories() { return instance.territories; }
     public static List<Territory> TerritoriesOwnedByPlayer(Player player, out int troopCount)

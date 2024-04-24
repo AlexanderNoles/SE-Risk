@@ -70,7 +70,7 @@ public class PlayOptionsManagement : MonoBehaviour
     private void Awake()
     {
         playOptions = new PlayOptions(PlayOptions.Mode.Normal, 0);
-        SetPlayModeNormal();
+        SetPlayModeNormal(false);
         UpdatePlayerUI();
     }
 
@@ -85,16 +85,24 @@ public class PlayOptionsManagement : MonoBehaviour
         }
     }
 
-    public void SetPlayModeNormal()
+    public void SetPlayModeNormal(bool playSound = true)
     {
-        AudioManagement.PlaySound("ButtonPress");
+        if (playSound)
+        {
+            AudioManagement.PlaySound("ButtonPress");
+        }
+
         playOptions.mode = PlayOptions.Mode.Normal;
         UpdateModeUI(normalImage, conquestImage);
     }
 
-    public void SetPlayModeConquest()
+    public void SetPlayModeConquest(bool playSound = true)
     {
-        AudioManagement.PlaySound("ButtonPress");
+        if (playSound)
+        {
+            AudioManagement.PlaySound("ButtonPress");
+        }
+
         playOptions.mode = PlayOptions.Mode.Conquest;
         UpdateModeUI(conquestImage, normalImage);
     }

@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static Territory;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class MatchManager : MonoBehaviour
 {
+    private static bool gameOver;
+
+
     static TurnState state;
     public static TurnState GetTurnState()
     {
@@ -34,6 +38,7 @@ public class MatchManager : MonoBehaviour
 
     public void Awake()
     {
+        gameOver = false;
         state = TurnState.Deploying;
         instance = this;
     }
@@ -71,9 +76,11 @@ public class MatchManager : MonoBehaviour
     }
     public static void Setup()
     {
-        if (PlayOptionsManagement.IsConquestMode() && capitalsPlaced < instance.playerList.Count)
+        if (PlayOptionsManagement.IsConquestMode() && !Map.IsSimulated() && capitalsPlaced < instance.playerList.Count)
         {
             instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex], out List<Territory> playerTerritories);
+
+            UpdateInfoTextDefault("Capital Placement");
 
             instance.playerList[instance.currentTurnIndex].ClaimCapital(instance.currentPlayerTerritories);
             capitalsPlaced += 1;
@@ -81,6 +88,9 @@ public class MatchManager : MonoBehaviour
         else if (instance.troopDeployCount > 0)
         {
             instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex], out List<Territory> playerTerritories);
+
+            UpdateInfoTextSetup(instance.troopDeployCount);
+
             if (instance.currentPlayerTerritories.Count != 0)
             {
                 instance.playerList[instance.currentTurnIndex].Setup(instance.currentPlayerTerritories);
@@ -124,7 +134,18 @@ public class MatchManager : MonoBehaviour
         UpdateInfoTextDefault("Fortify");
         instance.playerList[instance.currentTurnIndex].Fortify();
     }
-    public void SwitchPlayer() { if (currentTurnIndex == playerList.Count - 1|| currentTurnIndex<0) { currentTurnIndex = 0;turnNumber++; } else { currentTurnIndex++; } }
+    public void SwitchPlayer() 
+    {
+        if (currentTurnIndex == playerList.Count - 1|| currentTurnIndex<0) 
+        { 
+            currentTurnIndex = 0;
+            turnNumber++; 
+        } 
+        else 
+        { 
+            currentTurnIndex++; 
+        } 
+    }
     public List<Territory> GetCurrentPlayerTerritories() {  return currentPlayerTerritories; }
     public static void EndTurn()
     {
@@ -138,11 +159,67 @@ public class MatchManager : MonoBehaviour
         if (instance.currentTurnIndex == instance.playerList.Count - 1)
         {
             instance.troopDeployCount--;
-            UpdateInfoTextSetup(instance.troopDeployCount);
         }
         instance.SwitchPlayer();
         Setup();
     }
+
+    private void Update()
+    {
+        //Testing code
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            gameOver = true;
+            WinCheck(null);
+        }
+    }
+
+    public static void WinCheck(Player current)
+    {
+        //We get the current player as an argument in case of a break in some other part of the code
+        //that would cause a player to attack not on their turn (or more likely the code doesn't think it is their turn) 
+
+        if (current != null)
+        {
+            if (PlayOptionsManagement.IsConquestMode())
+            {
+                //Check if the current player has all the capitals in their possesion 
+                if (Map.DoesPlayerHoldAllCapitals(current))
+                {
+                    gameOver = true;
+                }
+            }
+            else
+            {
+                //Check if only one player is left, this is pretty easy
+                //We can't check if only one player is left in the list
+                //as they are removed during THEIR deploy phase
+                //So we need to simply check if the amount of territories the current player holds is
+                //equal to all the territories
+
+                if (current.GetTerritories().Count == Map.GetTerritories().Count)
+                {
+                    //This Player has won!
+                    gameOver = true;
+                }
+            }
+        }  
+
+        if (gameOver)
+        {
+            //Load win screen menu
+            TransitionControl.onTransitionOver.AddListener(OnOutTransitionOver);
+            TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn);
+        }
+    }
+
+    public static void OnOutTransitionOver()
+    {
+        TransitionControl.onTransitionOver.RemoveListener(OnOutTransitionOver);
+        MenuManagement.SetDefaultMenu(MenuManagement.Menu.Play);
+        SceneManager.LoadScene(1);
+    }
+
     public static void UpdateInfoTextDefault(string turnPhase)
     {
         UIManagement.SetText($"{instance.playerList[instance.currentTurnIndex].GetColorName()} Turn {instance.turnNumber} : {turnPhase}");
