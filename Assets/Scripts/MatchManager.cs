@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using static Territory;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class MatchManager : MonoBehaviour
 {
@@ -46,6 +47,13 @@ public class MatchManager : MonoBehaviour
 
                 playerList.Add(newAI);
             }
+        }
+
+        if (playerList.Count < 3)
+        {
+            //Less than 3 players in lobby, this shouldn't occur unless there has been some issue with the play menu
+            //as it shouldn't let you run the game until at least 3 players are in
+            throw new System.Exception("Less than 3 players in lobby");
         }
 
         troopDeployCount = StartingTroopCounts[playerList.Count];

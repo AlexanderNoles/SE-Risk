@@ -17,7 +17,7 @@ public class TransitionControl : MonoBehaviour
     private static bool swipeIn;
     private static float swipeT;
 
-
+    public GameObject raycastBlocker;
 
     public enum Transitions
     {
@@ -32,6 +32,7 @@ public class TransitionControl : MonoBehaviour
 
     public static void RunTransition(Transitions transitions)
     {
+        instance.raycastBlocker.SetActive(true);
         if (transitions == Transitions.SwipeIn)
         {
             swipeIn = true;
@@ -74,8 +75,16 @@ public class TransitionControl : MonoBehaviour
 
             if (swipeT <= 0.0f)
             {
-                onTransitionOver.Invoke();
+                EndTransition();
             }
         }
+    }
+
+    private void EndTransition()
+    {
+        //Turn off raycast blocker before calling on transition over
+        //in case a class wants to immediately call another transiton after this one completes
+        raycastBlocker.SetActive(false);
+        onTransitionOver.Invoke();
     }
 }

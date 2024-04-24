@@ -6365,7 +6365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &624279476
 Transform:
   m_ObjectHideFlags: 0
@@ -6439,6 +6439,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  startButton: {fileID: 846808599}
   extraPlayerSlots:
   - {fileID: 1422354350}
   - {fileID: 1973073115}
@@ -9408,7 +9409,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 341178435}
   m_OnClick:
     m_PersistentCalls:

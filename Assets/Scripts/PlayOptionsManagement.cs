@@ -21,6 +21,12 @@ public class PlayOptionsManagement : MonoBehaviour
             this.mode = mode;
             numberOfAIPlayers = numAIPlayers;
         }
+
+        public int TotalNumberOfPlayers()
+        {
+            //Always assume 1 as that is the pc this is running on
+            return 1 + numberOfAIPlayers;
+        }
     }
 
     //If you run from just the play scene these default settings will be used
@@ -32,6 +38,9 @@ public class PlayOptionsManagement : MonoBehaviour
 
     private float buttonT;
     private Image targetImageForAnimation;
+
+    [Header("Start Button")]
+    public Button startButton;
 
     [Header("Player List")]
     public List<RectTransform> extraPlayerSlots = new List<RectTransform>();
@@ -50,6 +59,11 @@ public class PlayOptionsManagement : MonoBehaviour
     public static int GetNumberOfAIPlayers()
     {
         return playOptions.numberOfAIPlayers;
+    }
+
+    public static int GetTotalNumberOfPlayers()
+    {
+        return playOptions.TotalNumberOfPlayers();
     }
 
     private void Awake()
@@ -111,6 +125,8 @@ public class PlayOptionsManagement : MonoBehaviour
 
     private void UpdatePlayerUI()
     {
+        startButton.interactable = GetTotalNumberOfPlayers() >= 3;
+
         bool setAddButtonActive = false;
         float yPos = -195;
 

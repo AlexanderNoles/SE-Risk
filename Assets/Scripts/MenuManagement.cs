@@ -33,16 +33,19 @@ public class MenuManagement : MonoBehaviour
 
     public void LoadMainMenuButton()
     {
+        AudioManagement.PlaySound("ButtonPress");
         LoadMenu(Menu.Main);
     }
 
     public void LoadPlayMenuButton()
     {
+        AudioManagement.PlaySound("ButtonPress");
         LoadMenu(Menu.Play);
     }
 
     public void LoadMainSceneButton()
     {
+        AudioManagement.PlaySound("ButtonPress");
         TransitionControl.onTransitionOver.AddListener(ActuallyLoadMainScene);
         TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn);
     }
@@ -56,6 +59,7 @@ public class MenuManagement : MonoBehaviour
 
     public void LoadOptionsButton()
     {
+        AudioManagement.PlaySound("ButtonPress");
         LoadMenu(Menu.Options);
     }
 
