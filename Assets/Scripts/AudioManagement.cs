@@ -77,6 +77,11 @@ public class AudioManagement : MonoBehaviour
 
     public static AudioSource PlaySound(string soundName)
     {
+        if (_instance == null)
+        {
+            return null;
+        }
+
         foreach(Sound sound in _instance.sounds)
         {
             if(sound.name.ToLower() == soundName.ToLower())
@@ -102,7 +107,12 @@ public class AudioManagement : MonoBehaviour
 
     public static void PlayMusic(string trackName)
     {
-        foreach(Music music in _instance.music)
+        if (_instance == null)
+        {
+            return;
+        }
+
+        foreach (Music music in _instance.music)
         {
             if(music.name.ToLower() == trackName.ToLower())
             {

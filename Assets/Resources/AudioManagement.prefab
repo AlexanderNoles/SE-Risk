@@ -46,7 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: ButtonPress
+    actualSound: {fileID: 8300000, guid: 10c8dff462bd95144be0649a4a986416, type: 3}
+    volume: 0.5
+  - name: Refuse
     actualSound: {fileID: 8300000, guid: 7b06a6387f967774ca1b583f3f0fd12e, type: 3}
-    volume: 1
+    volume: 4
   jukeBox: {fileID: 0}
   music: []

@@ -41,6 +41,7 @@ public class PlayOptionsManagement : MonoBehaviour
 
     [Header("Start Button")]
     public Button startButton;
+    public GameObject cantStartButton;
 
     [Header("Player List")]
     public List<RectTransform> extraPlayerSlots = new List<RectTransform>();
@@ -86,12 +87,14 @@ public class PlayOptionsManagement : MonoBehaviour
 
     public void SetPlayModeNormal()
     {
+        AudioManagement.PlaySound("ButtonPress");
         playOptions.mode = PlayOptions.Mode.Normal;
         UpdateModeUI(normalImage, conquestImage);
     }
 
     public void SetPlayModeConquest()
     {
+        AudioManagement.PlaySound("ButtonPress");
         playOptions.mode = PlayOptions.Mode.Conquest;
         UpdateModeUI(conquestImage, normalImage);
     }
@@ -113,19 +116,27 @@ public class PlayOptionsManagement : MonoBehaviour
 
     public void AddAIPlayer()
     {
+        AudioManagement.PlaySound("ButtonPress");
         playOptions.numberOfAIPlayers++;
         UpdatePlayerUI();
     }
 
     public void RemoveAIPlayer()
     {
+        AudioManagement.PlaySound("ButtonPress");
         playOptions.numberOfAIPlayers--;
         UpdatePlayerUI();
+    }
+
+    public void CantStartGame()
+    {
+        AudioManagement.PlaySound("Refuse");
     }
 
     private void UpdatePlayerUI()
     {
         startButton.interactable = GetTotalNumberOfPlayers() >= 3;
+        cantStartButton.SetActive(!startButton.interactable);
 
         bool setAddButtonActive = false;
         float yPos = -195;
