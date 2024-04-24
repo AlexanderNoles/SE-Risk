@@ -84,6 +84,15 @@ public class Territory : MonoBehaviour
         this.owner = owner; 
         spriteRenderer.color = owner.GetColor(); 
     }
+    public void ResetOwner(bool resetColour)
+    {
+        this.owner = null;
+
+        if (spriteRenderer != null && resetColour)
+        {
+            spriteRenderer.color = Color.white;
+        }
+    }
     public int GetCurrentTroops() { return currentTroops; }
     public void SetCurrentTroops(int currentTroops) 
     { 
@@ -115,9 +124,13 @@ public class Territory : MonoBehaviour
         {
             troopLabel = UIManagement.Spawn<TextMeshProUGUI>(GetUIOffset(), 0).component;
         }
-        SetCurrentTroops(0); 
     }
 
+    public void ResetTerritory(bool resetColour)
+    {
+        SetCurrentTroops(0);
+        ResetOwner(resetColour);
+    }
 
 
     private void OnDrawGizmos()

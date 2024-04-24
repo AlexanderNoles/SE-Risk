@@ -30,7 +30,7 @@ public class PlayOptionsManagement : MonoBehaviour
     }
 
     //If you run from just the play scene these default settings will be used
-    private static PlayOptions playOptions = new PlayOptions(PlayOptions.Mode.Conquest, 5);
+    private static PlayOptions playOptions = new PlayOptions(PlayOptions.Mode.Normal, 5);
     public RectTransform selectionOutline;
     public Image normalImage;
     public Image conquestImage;

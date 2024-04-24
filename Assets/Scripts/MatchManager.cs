@@ -26,6 +26,7 @@ public class MatchManager : MonoBehaviour
         return state;
     }
 
+    private List<Player> originalPlayers;
     [SerializeField]
     List<Player> playerList;
     int currentTurnIndex;
@@ -46,10 +47,41 @@ public class MatchManager : MonoBehaviour
 
     public void Awake()
     {
-        gameOver = false;
-        state = TurnState.Deploying;
         instance = this;
     }
+
+    public void ResetGame(bool initialReset)
+    {
+        gameOver = false;
+        state = TurnState.Deploying;
+
+        if (!initialReset)
+        {
+            Map.ResetInstanceMap();
+            //Setup players list again from original players
+            playerList.Clear();
+            foreach (Player player in originalPlayers)
+            {
+                playerList.Add(player);
+            }
+        }
+
+        //Reset players
+        foreach (Player player in playerList)
+        {
+            player.ResetPlayer();
+        }
+
+        //Reset match
+        troopDeployCount = StartingTroopCounts[playerList.Count];
+        UpdateInfoTextSetup(troopDeployCount);
+        turnNumber = 1;
+        Deck.CreateDeck();
+
+        capitalsPlaced = 0;
+        Setup();
+    }
+
     public void Start()
     {
         //Create the number of neccesary A.I, but only in the actual game
@@ -74,19 +106,22 @@ public class MatchManager : MonoBehaviour
             throw new System.Exception("Less than 3 players in lobby");
         }
 
-        troopDeployCount = StartingTroopCounts[playerList.Count];
-        UpdateInfoTextSetup(troopDeployCount);
-        turnNumber = 1;
-        Deck.CreateDeck();
+        originalPlayers = new List<Player>();
+        //Setup original players list as copy
+        foreach (Player player in playerList)
+        {
+            originalPlayers.Add(player);
+        }
 
-        capitalsPlaced = 0;
-        Setup();
+        ResetGame(true);
     }
     public static void Setup()
     {
         if (PlayOptionsManagement.IsConquestMode() && !Map.IsSimulated() && capitalsPlaced < instance.playerList.Count)
         {
             instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex], out List<Territory> playerTerritories);
+
+            Debug.Log(instance.currentPlayerTerritories);
 
             UpdateInfoTextDefault("Capital Placement");
 
@@ -187,11 +222,6 @@ public class MatchManager : MonoBehaviour
 
     public static void WinCheck(Player current)
     {
-        if (Map.IsSimulated())
-        {
-            return;
-        }
-
         //We get the current player as an argument in case of a break in some other part of the code
         //that would cause a player to attack not on their turn (or more likely the code doesn't think it is their turn) 
 
@@ -223,22 +253,30 @@ public class MatchManager : MonoBehaviour
 
         if (gameOver)
         {
-            //Create game won info, to be used by game won screen
-            gameWonInfo = new GameWonInfo();
-            if (current != null)
+            if (Map.IsSimulated())
             {
-                gameWonInfo.winnerName = current.GetColorName();
-                gameWonInfo.winnerColor = current.GetColorName().ToLower();
+                //Restart game
+                instance.ResetGame(false);
             }
             else
             {
-                gameWonInfo.winnerName = "None";
-                gameWonInfo.winnerColor = "white";
-            }
+                //Create game won info, to be used by game won screen
+                gameWonInfo = new GameWonInfo();
+                if (current != null)
+                {
+                    gameWonInfo.winnerName = current.GetColorName();
+                    gameWonInfo.winnerColor = current.GetColorName().ToLower();
+                }
+                else
+                {
+                    gameWonInfo.winnerName = "None";
+                    gameWonInfo.winnerColor = "white";
+                }
 
-            //Load win screen menu
-            TransitionControl.onTransitionOver.AddListener(OnOutTransitionOver);
-            TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn);
+                //Load win screen menu
+                TransitionControl.onTransitionOver.AddListener(OnOutTransitionOver);
+                TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn);
+            }
         }
     }
 

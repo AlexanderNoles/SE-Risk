@@ -9,7 +9,6 @@ public class LocalPlayer : Player
     private void Start()
     {
         PlayerInputHandler.SetLocalPlayer(this);
-        hand = new Hand();
     }
 
     public override void ClaimCapital(List<Territory> territories)

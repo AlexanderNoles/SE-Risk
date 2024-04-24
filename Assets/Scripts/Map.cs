@@ -90,8 +90,7 @@ public class Map : MonoBehaviour
 
         if (attackingPlayer == null || defenderPlayer == null) 
         {
-            Debug.LogError("Player is null!");
-            Application.Quit();
+            throw new System.Exception("Player is null!");
         }
 
         //If the attacker and defender are both ai skip over ui step
@@ -163,16 +162,20 @@ public class Map : MonoBehaviour
             UIManagement.AddLineToRollOutput("Territory Defended!");
         }
 
-        //Notify the attacker
-        attacker.GetOwner().OnAttackEnd(attackResult, attacker, defender);
-
-        //Refresh UI
-        UIManagement.RefreshRollOutput();
-
         //Send a message to the match manager 
         //So it can check if the game is now over
         MatchManager.WinCheck(attacker.GetOwner());
 
+        //Notify the attacker
+        //owner will be null if game was just won
+        //This is why the win check is placed above this function call
+        if (attacker.GetOwner() != null)
+        {
+            attacker.GetOwner().OnAttackEnd(attackResult, attacker, defender);
+        }
+
+        //Refresh UI
+        UIManagement.RefreshRollOutput();
     }
     public static List<Territory> GetTerritories() { return instance.territories; }
     public static List<Territory> TerritoriesOwnedByPlayer(Player player, out int troopCount)
@@ -234,14 +237,19 @@ public class Map : MonoBehaviour
             }
         }
     }
-    [ContextMenu("Setup Map")]
+
+
+    public static void ResetInstanceMap()
+    {
+        instance.SetupMap();
+    }
+
     public void SetupMap()
     {
         if (PlayOptionsManagement.IsConquestMode())
         {
             capitals.Clear();
         }
-
 
         territories = new List<Territory>();
         continents = new Dictionary<Territory.Continent, List<Territory>>();
@@ -251,6 +259,8 @@ public class Map : MonoBehaviour
             if (child.TryGetComponent<Territory>(out Territory territory))
             {
                 territories.Add(territory);
+                territory.ResetTerritory(false);
+
                 if (!continents.ContainsKey(territory.GetContinent()))
                 {
                     continents[territory.GetContinent()] = new List<Territory>();

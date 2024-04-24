@@ -32,10 +32,15 @@ public class Player : MonoBehaviour
     protected List<Territory> territories;
     protected Hand hand;
     protected bool territoryTakenThisTurn;
+    private bool hasBeenReset;
 
-    private void Start()
+    public virtual void ResetPlayer()
     {
         hand = new Hand();
+        territoryTakenThisTurn = false;
+        hasBeenReset = true;
+        inTheMiddleOfAttack = false;
+        territories = new List<Territory>();
     }
 
     public virtual void Setup(List<Territory> territories)
@@ -98,6 +103,9 @@ public class Player : MonoBehaviour
     }
     public virtual bool Attack()
     {
+        //This means the coroutine is only reset when has been reset is set to true in the middle of it running
+        hasBeenReset = false;
+
         attackCoroutine = StartCoroutine(nameof(AttackWait));
         return true; 
     }
@@ -117,7 +125,11 @@ public class Player : MonoBehaviour
                         {
                             while (territory.GetCurrentTroops() > 1)
                             {
-                                if (!inTheMiddleOfAttack)
+                                if (hasBeenReset)
+                                {
+                                    yield break;
+                                }
+                                else if (!inTheMiddleOfAttack)
                                 {
                                     yield return new WaitForSecondsRealtime(turnDelay);
                                     inTheMiddleOfAttack = true;
@@ -134,7 +146,10 @@ public class Player : MonoBehaviour
             }
         }
 
-        MatchManager.Fortify();
+        if (!hasBeenReset)
+        {
+            MatchManager.Fortify();
+        }
     }
 
     public int GetMaxAttackingDice(Territory target)
