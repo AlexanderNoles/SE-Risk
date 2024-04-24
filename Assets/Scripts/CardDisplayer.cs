@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class CardDisplayer : MonoBehaviour
 {
+    LocalPlayer player;
+    PlayerInputHandler inputHandler;
     Card[] cards;
     [SerializeField]
     List<Sprite> designSprites = new List<Sprite>();
@@ -28,6 +30,9 @@ public class CardDisplayer : MonoBehaviour
     Camera m_Camera;
     public void Start()
     {
+        player = FindObjectOfType<LocalPlayer>();
+        inputHandler = FindObjectOfType<PlayerInputHandler>();
+
         m_Camera = Camera.main;
         cards = new Card[6];
         for(int i=0; i<6; i++) 
@@ -184,6 +189,24 @@ public class CardDisplayer : MonoBehaviour
                         selected.Add(cards[i]);
                     }
                 }
+            }
+        }
+    }
+
+    public void ToggleCardMenuButton()
+    {
+        if (GetCardState() != -1)
+        {
+            inputHandler.ToggleCardView();
+            if (GetCardState() == 0)
+            {
+                player.SetCardDisplayerHand();
+                UpdateCardVisuals();
+                ShowCards();
+            }
+            else
+            {
+                HideCards();
             }
         }
     }
