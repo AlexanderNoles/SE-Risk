@@ -68,4 +68,9 @@ public class LocalPlayer : Player
         cardDisplayer.HideCards();
     }
 
+    public void SetCardDisplayerHand()
+    {
+        cardDisplayer.SetHand(hand);
+    }
+
 }

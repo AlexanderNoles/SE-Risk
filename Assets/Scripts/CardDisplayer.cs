@@ -21,6 +21,7 @@ public class CardDisplayer : MonoBehaviour
     AnimationCurve ShowCurve;
     [SerializeField]
     AnimationCurve HideCurve;
+    bool cardsOnScreen;
     public void Start()
     {
         cards = new Card[6];
@@ -33,6 +34,7 @@ public class CardDisplayer : MonoBehaviour
         {
             gameObjects[i] = gameObject.transform.GetChild(i).gameObject;
         }
+        cardsOnScreen = false;
     }
 
     public void Update()
@@ -57,8 +59,8 @@ public class CardDisplayer : MonoBehaviour
                     if (hiding) { go.SetActive(false); }
                     if (i == 5)
                     {
-                        if (showing) { showing = false; }
-                        else { hiding = false; }
+                        if (showing) { showing = false; cardsOnScreen = true; }
+                        else { hiding = false; cardsOnScreen = false; }
                     }
                 }
             }
@@ -99,16 +101,21 @@ public class CardDisplayer : MonoBehaviour
         cards[0] = newCard;
     }
 
-    public void SetHand(Card[] cards)
+    public void SetHand(List<Card> cards)
     {
-        this.cards = cards;
-        for (int i = cards.Length-1; i < 6-cards.Length; i++)
+        for (int i = 0; i < 6; i++)
         {
-            Card card = new Card(null,3);
-            this.cards[i] = card;
+            if (i < cards.Count)
+            {
+                this.cards[i] = cards[i];
+            }
+            else
+            {
+                Card card = new Card(null, 3);
+                this.cards[i] = card;
+            }
         }
     }
-    [ContextMenu("Show Cards")]
     public void ShowCards()
     {
         foreach (GameObject go in gameObjects)
@@ -118,7 +125,6 @@ public class CardDisplayer : MonoBehaviour
         showing = true;
         executionTime = 0;
     }
-    [ContextMenu("Show One Card")]
     public void ShowOneCard()
     {
         for(int i  = 1; i < gameObjects.Length; i++) 
@@ -129,10 +135,17 @@ public class CardDisplayer : MonoBehaviour
         showing = true;
         executionTime = 0;
     }
-    [ContextMenu("HideCards")]
     public void HideCards()
     {
         hiding = true;
         executionTime = 0;
+    }
+
+    public int GetCardState()
+    {
+        //returns an integer signialing to current state of the on screen cards
+        if (showing || hiding) { return -1; }
+        else if (!cardsOnScreen) { return 0; }
+        else { return 1; }
     }
 }
