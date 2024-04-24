@@ -16,14 +16,15 @@ public class PlayOptionsManagement : MonoBehaviour
         public Mode mode;
         public int numberOfAIPlayers;
 
-        public PlayOptions(Mode mode)
+        public PlayOptions(Mode mode, int numAIPlayers)
         {
             this.mode = mode;
-            numberOfAIPlayers = 0;
+            numberOfAIPlayers = numAIPlayers;
         }
     }
 
-    private static PlayOptions playOptions = new PlayOptions(PlayOptions.Mode.Normal);
+    //If you run from just the play scene these default settings will be used
+    private static PlayOptions playOptions = new PlayOptions(PlayOptions.Mode.Normal, 5);
     public RectTransform selectionOutline;
     public Image normalImage;
     public Image conquestImage;
@@ -46,8 +47,14 @@ public class PlayOptionsManagement : MonoBehaviour
         return playOptions.mode == PlayOptions.Mode.Normal;
     }
 
+    public static int GetNumberOfAIPlayers()
+    {
+        return playOptions.numberOfAIPlayers;
+    }
+
     private void Awake()
     {
+        playOptions = new PlayOptions(PlayOptions.Mode.Normal, 0);
         SetPlayModeNormal();
         UpdatePlayerUI();
     }

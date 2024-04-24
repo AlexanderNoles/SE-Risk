@@ -34,15 +34,29 @@ public class MatchManager : MonoBehaviour
     }
     public void Start()
     {
+        //Create the number of neccesary A.I, but only in the actual game
+        if (!Map.IsSimulated())
+        {
+            for (int i = 0; i < PlayOptionsManagement.GetNumberOfAIPlayers(); i++)
+            {
+                //Should load this from options
+                Player newAI = Instantiate(Resources.Load("AIPlayer") as GameObject).GetComponent<Player>();
+
+                newAI.SetColor((Player.PlayerColour)(i));
+
+                playerList.Add(newAI);
+            }
+        }
+
         troopDeployCount = StartingTroopCounts[playerList.Count];
         UpdateInfoTextSetup(troopDeployCount);
         turnNumber = 1;
         Deck.CreateDeck();
+
         Setup();
     }
     public static void Setup()
     {
-
         if (instance.troopDeployCount > 0)
         {
             instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex], out List<Territory> playerTerritories);

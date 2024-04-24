@@ -366,6 +366,7 @@ MonoBehaviour:
   - {fileID: 840838796}
   - {fileID: 1307806449}
   continent: 0
+  cardSprite: {fileID: 0}
 --- !u!114 &24609990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,6 +757,7 @@ MonoBehaviour:
   - {fileID: 1606196050}
   - {fileID: 1421086514}
   continent: 5
+  cardSprite: {fileID: 0}
 --- !u!114 &88193887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1448,6 +1450,7 @@ MonoBehaviour:
   - {fileID: 164817372}
   - {fileID: 1780558262}
   continent: 4
+  cardSprite: {fileID: 0}
 --- !u!212 &107700218
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1693,6 +1696,7 @@ MonoBehaviour:
   - {fileID: 1084292136}
   - {fileID: 1159317494}
   continent: 2
+  cardSprite: {fileID: 0}
 --- !u!114 &122804379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2067,6 +2071,7 @@ MonoBehaviour:
   - {fileID: 1780558262}
   - {fileID: 107700217}
   continent: 4
+  cardSprite: {fileID: 0}
 --- !u!114 &148057993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2793,6 +2798,7 @@ MonoBehaviour:
   - {fileID: 107700217}
   - {fileID: 646216184}
   continent: 4
+  cardSprite: {fileID: 0}
 --- !u!114 &164817373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3691,6 +3697,7 @@ MonoBehaviour:
   - {fileID: 476618539}
   - {fileID: 1933661747}
   continent: 3
+  cardSprite: {fileID: 0}
 --- !u!114 &240816053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4771,6 +4778,7 @@ MonoBehaviour:
   - {fileID: 1916186531}
   - {fileID: 730050711}
   continent: 0
+  cardSprite: {fileID: 0}
 --- !u!114 &345682076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5495,6 +5503,7 @@ MonoBehaviour:
   - {fileID: 1933661747}
   - {fileID: 240816052}
   continent: 3
+  cardSprite: {fileID: 0}
 --- !u!114 &476618540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5888,6 +5897,7 @@ MonoBehaviour:
   - {fileID: 164817372}
   - {fileID: 1870516130}
   continent: 4
+  cardSprite: {fileID: 0}
 --- !u!114 &482342377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6765,6 +6775,7 @@ MonoBehaviour:
   - {fileID: 1084292136}
   - {fileID: 164817372}
   continent: 2
+  cardSprite: {fileID: 0}
 --- !u!114 &646216185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7110,6 +7121,7 @@ MonoBehaviour:
   - {fileID: 775120733}
   - {fileID: 1008265559}
   continent: 1
+  cardSprite: {fileID: 0}
 --- !u!114 &657450773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7666,6 +7678,7 @@ MonoBehaviour:
   - {fileID: 1780558262}
   - {fileID: 1538460301}
   continent: 4
+  cardSprite: {fileID: 0}
 --- !u!114 &688234869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8119,6 +8132,7 @@ MonoBehaviour:
   - {fileID: 345682075}
   - {fileID: 1353367274}
   continent: 0
+  cardSprite: {fileID: 0}
 --- !u!114 &730050712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8559,6 +8573,7 @@ MonoBehaviour:
   - {fileID: 657450772}
   - {fileID: 1595442839}
   continent: 2
+  cardSprite: {fileID: 0}
 --- !u!114 &775120734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9232,6 +9247,7 @@ MonoBehaviour:
   - {fileID: 24609989}
   - {fileID: 1934411412}
   continent: 0
+  cardSprite: {fileID: 0}
 --- !u!114 &840838797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9781,6 +9797,7 @@ MonoBehaviour:
   - {fileID: 88193886}
   - {fileID: 1106772973}
   continent: 5
+  cardSprite: {fileID: 0}
 --- !u!114 &893476852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10333,6 +10350,7 @@ MonoBehaviour:
   - {fileID: 840838796}
   - {fileID: 730050711}
   continent: 0
+  cardSprite: {fileID: 0}
 --- !u!114 &927368062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10845,6 +10863,7 @@ MonoBehaviour:
   - {fileID: 1934411412}
   - {fileID: 657450772}
   continent: 1
+  cardSprite: {fileID: 0}
 --- !u!114 &1008265560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11271,6 +11290,7 @@ MonoBehaviour:
   - {fileID: 1087849825}
   - {fileID: 1159317494}
   continent: 2
+  cardSprite: {fileID: 0}
 --- !u!114 &1084292137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11639,6 +11659,7 @@ MonoBehaviour:
   - {fileID: 1159317494}
   - {fileID: 122804378}
   continent: 2
+  cardSprite: {fileID: 0}
 --- !u!114 &1087849826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12108,6 +12129,7 @@ MonoBehaviour:
   - {fileID: 1240191966}
   - {fileID: 893476851}
   continent: 4
+  cardSprite: {fileID: 0}
 --- !u!114 &1106772974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12204,7 +12226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1118382031
 Transform:
   m_ObjectHideFlags: 0
@@ -12619,6 +12641,7 @@ MonoBehaviour:
   - {fileID: 1084292136}
   - {fileID: 122804378}
   continent: 2
+  cardSprite: {fileID: 0}
 --- !u!114 &1159317495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13201,6 +13224,7 @@ MonoBehaviour:
   - {fileID: 1934411412}
   - {fileID: 1008265559}
   continent: 1
+  cardSprite: {fileID: 0}
 --- !u!114 &1190150296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13795,6 +13819,7 @@ MonoBehaviour:
   - {fileID: 1916186531}
   - {fileID: 1106772973}
   continent: 4
+  cardSprite: {fileID: 0}
 --- !u!114 &1240191967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14257,6 +14282,7 @@ MonoBehaviour:
   - {fileID: 1295499482}
   - {fileID: 1538460301}
   continent: 4
+  cardSprite: {fileID: 0}
 --- !u!114 &1288785394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14993,6 +15019,7 @@ MonoBehaviour:
   - {fileID: 1307806449}
   - {fileID: 1538460301}
   continent: 3
+  cardSprite: {fileID: 0}
 --- !u!114 &1295499483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15432,6 +15459,7 @@ MonoBehaviour:
   - {fileID: 1320004923}
   - {fileID: 1320004923}
   continent: 3
+  cardSprite: {fileID: 0}
 --- !u!114 &1307806450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15864,6 +15892,7 @@ MonoBehaviour:
   - {fileID: 2010364045}
   - {fileID: 1307806449}
   continent: 3
+  cardSprite: {fileID: 0}
 --- !u!114 &1320004924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16150,6 +16179,7 @@ MonoBehaviour:
   - {fileID: 345682075}
   - {fileID: 730050711}
   continent: 0
+  cardSprite: {fileID: 0}
 --- !u!114 &1353367275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16722,6 +16752,7 @@ MonoBehaviour:
   - {fileID: 893476851}
   - {fileID: 88193886}
   continent: 5
+  cardSprite: {fileID: 0}
 --- !u!114 &1421086515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16990,6 +17021,7 @@ MonoBehaviour:
   - {fileID: 1928686514}
   - {fileID: 1595442839}
   continent: 2
+  cardSprite: {fileID: 0}
 --- !u!114 &1421202673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17777,6 +17809,7 @@ MonoBehaviour:
   - {fileID: 1780558262}
   - {fileID: 1295499482}
   continent: 4
+  cardSprite: {fileID: 0}
 --- !u!114 &1538460302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18512,6 +18545,7 @@ MonoBehaviour:
   - {fileID: 122804378}
   - {fileID: 1087849825}
   continent: 2
+  cardSprite: {fileID: 0}
 --- !u!114 &1595442840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18890,6 +18924,7 @@ MonoBehaviour:
   - {fileID: 893476851}
   - {fileID: 88193886}
   continent: 5
+  cardSprite: {fileID: 0}
 --- !u!114 &1606196051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20340,6 +20375,7 @@ MonoBehaviour:
   - {fileID: 1538460301}
   - {fileID: 107700217}
   continent: 4
+  cardSprite: {fileID: 0}
 --- !u!114 &1780558263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21103,6 +21139,7 @@ MonoBehaviour:
   - {fileID: 482342376}
   - {fileID: 148057992}
   continent: 4
+  cardSprite: {fileID: 0}
 --- !u!114 &1870516131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21865,6 +21902,7 @@ MonoBehaviour:
   - {fileID: 1307806449}
   - {fileID: 1295499482}
   continent: 4
+  cardSprite: {fileID: 0}
 --- !u!114 &1916186532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22123,6 +22161,7 @@ MonoBehaviour:
   - {fileID: 122804378}
   - {fileID: 1421202672}
   continent: 2
+  cardSprite: {fileID: 0}
 --- !u!114 &1928686515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22609,6 +22648,7 @@ MonoBehaviour:
   - {fileID: 2010364045}
   - {fileID: 240816052}
   continent: 3
+  cardSprite: {fileID: 0}
 --- !u!114 &1933661748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23164,6 +23204,7 @@ MonoBehaviour:
   - {fileID: 657450772}
   - {fileID: 840838796}
   continent: 1
+  cardSprite: {fileID: 0}
 --- !u!114 &1934411413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23689,6 +23730,7 @@ MonoBehaviour:
   - {fileID: 1320004923}
   - {fileID: 1933661747}
   continent: 3
+  cardSprite: {fileID: 0}
 --- !u!114 &2010364046
 MonoBehaviour:
   m_ObjectHideFlags: 0

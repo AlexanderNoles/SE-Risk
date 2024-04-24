@@ -164,7 +164,10 @@ public class Player : MonoBehaviour
         }
         MatchManager.EndTurn();
     }
-
+    public void SetColor(PlayerColour colour)
+    {
+        this.colour = colour;
+    }
     public Color GetColor()
     {
         return playerColorToColor[colour];
