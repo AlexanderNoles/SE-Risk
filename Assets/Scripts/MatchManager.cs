@@ -54,7 +54,6 @@ public class MatchManager : MonoBehaviour
     {
         gameOver = false;
         state = TurnState.Deploying;
-
         if (!initialReset)
         {
             Map.ResetInstanceMap();

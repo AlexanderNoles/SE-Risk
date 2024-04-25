@@ -39,6 +39,10 @@ public class Hand
         return list.Count;
     }
 
+    public static void IncrementTurnInCount()
+    {
+        setsTurnedIn++;
+    }
     List<Card> list;
     public static int NumberOfTroopsForSet(Player player, List<Card> set)
     {
@@ -121,6 +125,14 @@ public class Hand
         else
         {
             return 15+(5*(setsTurnedIn-6));
+        }
+    }
+
+    public void DebugHand()
+    {
+        foreach(Card card in list)
+        {
+            Debug.Log(card.GetDesign());
         }
     }
 }

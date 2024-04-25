@@ -60,16 +60,10 @@ public class Map : MonoBehaviour
         return SceneManager.GetActiveScene().buildIndex == 1; //Menu Scene
     }
 
-    public void Awake()
-    {
-        instance = this;
-    }
-
-    private void Start()
+    public void Start()
     {
         SetupMap();
     }
-
     public static Territory GetTerritoryUnderPosition(Vector3 pos)
     {
         foreach(Territory currentTerritory in instance.territories) 
@@ -157,11 +151,17 @@ public class Map : MonoBehaviour
 
         if (defender.GetCurrentTroops() <= 0)
         {
+            Player oldOwner = defender.GetOwner();
             defender.SetOwner(attacker.GetOwner());
             attacker.GetOwner().AddTerritory(defender);
+            oldOwner.RemoveTerritory(defender);
             defender.SetCurrentTroops(attacker.GetCurrentTroops() - 1 >= 3 ? 3 : attacker.GetCurrentTroops() - 1);
             attacker.SetCurrentTroops(attacker.GetCurrentTroops() - defender.GetCurrentTroops());
             UIManagement.AddLineToRollOutput("Territory Taken!");
+            if (oldOwner.IsDead())
+            {
+                attacker.GetOwner().Killed(oldOwner);
+            }
         }
         else
         {
@@ -259,6 +259,7 @@ public class Map : MonoBehaviour
 
         territories = new List<Territory>();
         continents = new Dictionary<Territory.Continent, List<Territory>>();
+        instance = this;
         foreach (Transform child in transform)
         {
             if (child.TryGetComponent<Territory>(out Territory territory))

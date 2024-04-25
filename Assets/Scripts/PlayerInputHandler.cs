@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -116,7 +117,7 @@ public class PlayerInputHandler : MonoBehaviour
                         }
                     }
                 }
-                if (localPlayer.GetTroopCount() == 0 && currentState != state.Zooming)
+                if (localPlayer.GetTroopCount() == 0 && currentState != state.Zooming && localPlayer.GetHand().Count()<5)
                 {
                     currentTerritoryUnderMouse = null;
                     currentPhase = turnPhase.Waiting;
@@ -288,6 +289,10 @@ public class PlayerInputHandler : MonoBehaviour
                     if (m_Camera.orthographicSize == defaultCameraSize)
                     {
                         currentState = state.MapView;
+                        if (localPlayer.GetHand().Count() >= 6 && localPlayer.KilledAPlayerThisTurn)
+                        {
+                            localPlayer.ContinueTurn();
+                        }
                     }
                     else
                     {

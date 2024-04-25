@@ -24,6 +24,12 @@ public class LocalPlayer : Player
     }
     public override bool Deploy(List<Territory> territories, int troopCount)
     {
+        if (turnReset)
+        {
+            cardDisplayer.SetHand(hand);
+            cardDisplayer.UpdateCardVisuals();
+            cardDisplayer.ShowCards(true);
+        }
         this.troopCount = troopCount;
         this.territories = territories;
         territoryTakenThisTurn = false;
@@ -55,6 +61,7 @@ public class LocalPlayer : Player
 
     public override void OnTurnEnd()
     {
+        turnReset = false;
         base.OnTurnEnd();
         DrawAndDisplayNewCard();
     }
@@ -72,7 +79,7 @@ public class LocalPlayer : Player
     {
         cardDisplayer.ShowOneCard();
         yield return new WaitForSecondsRealtime(3);
-        cardDisplayer.HideCards();
+        cardDisplayer.HideCards(false);
     }
 
     public void SetCardDisplayerHand()

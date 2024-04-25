@@ -15,7 +15,7 @@ public class CardDisplayer : MonoBehaviour
     Card[] cards;
     [SerializeField]
     List<Sprite> designSprites = new List<Sprite>();
-    GameObject[] gameObjects = new GameObject[6];
+    GameObject[] gameObjects = new GameObject[10];
     List<Card> selected = new List<Card>();
     private bool showing = false;
     private bool hiding = false;
@@ -32,6 +32,9 @@ public class CardDisplayer : MonoBehaviour
     bool slidingSelected = false;
     float timer;
     bool timing;
+    bool slidingTen = false;
+    Vector3[] endPositions = new Vector3[10];
+    bool tenCardsOnScreen = false;
     public void Start()
     {
         AbleToTurnInCards = false;
@@ -39,8 +42,8 @@ public class CardDisplayer : MonoBehaviour
         inputHandler = FindObjectOfType<PlayerInputHandler>();
 
         m_Camera = Camera.main;
-        cards = new Card[6];
-        for(int i=0; i<6; i++) 
+        cards = new Card[10];
+        for(int i=0; i<cards.Count(); i++) 
         {
             Card card = new Card(null, 3);
             cards[i] = card;
@@ -60,25 +63,25 @@ public class CardDisplayer : MonoBehaviour
             executionTime += deltaTime;
             float completionRate = executionTime / showTime;
 
-            for (int i = 0; i < gameObjects.Length; i++)
+            for (int i = 0; i < (slidingTen?10:6); i++)
             {
                 GameObject go = gameObjects[i];
                 if (executionTime < showTime)
                 {
-                    Vector3 endPos = Vector3.right * ((318 * (i)) - (startPos.x + 796));
-                    if (showing) { go.transform.localPosition = startPos + (endPos * ShowCurve.Evaluate(completionRate)); }
-                    else { go.transform.localPosition = (startPos + endPos) - (endPos * HideCurve.Evaluate(completionRate)); }
+                    if (showing) { go.transform.localPosition = startPos + (endPositions[i] * ShowCurve.Evaluate(completionRate)); }
+                    else { go.transform.localPosition = (startPos + endPositions[i]) - (endPositions[i] * HideCurve.Evaluate(completionRate)); }
                 }
                 else
                 {
-                    if (hiding) { go.SetActive(false); }
-                    if (i == 5)
+                    if (hiding) {go.SetActive(false); }
+                    if (i == (slidingTen?9:5))
                     {
                         if (showing)
                         {
                             showing = false; cardsOnScreen = true;
                         }
                         else { hiding = false; cardsOnScreen = false; }
+                        slidingTen = false;
                     }
                 }
             }
@@ -89,26 +92,29 @@ public class CardDisplayer : MonoBehaviour
             executionTime += deltaTime;
             float completionRate = executionTime / showTime;
 
-            for (int i = 0; i < gameObjects.Length; i++)
+            for (int i = 0; i < 10; i++)
             {
                 if (selected.Contains(cards[i]))
                 {
                     GameObject go = gameObjects[i];
                     if (executionTime < showTime)
                     {
-                        Vector3 endPos = go.transform.position;
-                        endPos.y = 5000;
-                        go.transform.localPosition = new Vector3(endPos.x, (endPos.y * HideCurve.Evaluate(completionRate)), 0);
+                        go.transform.localPosition = new Vector3(endPositions[i].x, (5000 * HideCurve.Evaluate(completionRate)), 0);
                     }
                     else
                     {
+                        if (tenCardsOnScreen && player.GetHand().Count() < 5)
+                        {
+                            HideCards(true);
+                        }
+                        go.GetComponent<Image>().color = Color.black;
                         go.SetActive(false);
-                        slidingSelected = false;
                     }
                 }
             }
             if (executionTime >= showTime)
             {
+                slidingSelected = false;
                 selected.Clear();
             }
             if (timing)
@@ -129,7 +135,7 @@ public class CardDisplayer : MonoBehaviour
     }
     public void UpdateCardVisuals() 
     {
-        for (int i=0;i<6;i++)
+        for (int i=0;i<cards.Length;i++)
         {
             GameObject go = gameObjects[i];
             if (cards[i].GetDesign() != Card.cardDesign.Empty)
@@ -164,7 +170,7 @@ public class CardDisplayer : MonoBehaviour
 
     public void SetHand(Hand cards)
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < this.cards.Count(); i++)
         {
             if (i < cards.Count())
             {
@@ -177,14 +183,18 @@ public class CardDisplayer : MonoBehaviour
             }
         }
     }
-    public void ShowCards()
+    public void ShowCards(bool slidingTen)
     {
-        foreach (GameObject go in gameObjects)
+        this.slidingTen = slidingTen;
+        tenCardsOnScreen = slidingTen;
+        for(int i  = 0; i < (slidingTen?10:6); i++)
         {
+            GameObject go = gameObjects[i];
             go.SetActive(true);
         }
         showing = true;
         executionTime = 0;
+        CalculateEndPositions();
     }
     public void ShowOneCard()
     {
@@ -195,12 +205,15 @@ public class CardDisplayer : MonoBehaviour
         gameObjects[0].SetActive(true);
         showing = true;
         executionTime = 0;
+        CalculateEndPositions();
     }
-    public void HideCards()
+    public void HideCards(bool slidingTen)
     {
         hiding = true;
         executionTime = 0;
-        for(int i = 0;i < gameObjects.Length; i++)
+        this.slidingTen = slidingTen;
+        tenCardsOnScreen = false;
+        for (int i = 0;i < gameObjects.Length; i++)
         {
             if (selected.Contains<Card>(cards[i]))
             {
@@ -208,6 +221,7 @@ public class CardDisplayer : MonoBehaviour
                 selected.Remove(cards[i]);
             }
         }
+        CalculateEndPositions();
     }
 
     public int GetCardState()
@@ -219,7 +233,7 @@ public class CardDisplayer : MonoBehaviour
     }
     public void OnCardClick(int index)
     {
-        if (cardsOnScreen && AbleToTurnInCards&& cards[index].GetDesign()!=Card.cardDesign.Empty)
+        if (cardsOnScreen && AbleToTurnInCards&& cards[index].GetDesign()!=Card.cardDesign.Empty && (!(player.GetTurnReset()&&!tenCardsOnScreen)))
         {
                 if (selected.Contains<Card>(cards[index]))
                 {
@@ -237,8 +251,10 @@ public class CardDisplayer : MonoBehaviour
                 {
                     slidingSelected = true;
                     executionTime = 0;
+                    CalculateEndPositions();
                     player.SetTroopCount(player.GetTroopCount()+Hand.NumberOfTroopsForSet(player,selected));
-                    foreach(Card card in selected)
+                    Hand.IncrementTurnInCount();
+                    foreach (Card card in selected)
                     {
                         player.GetHand().RemoveCard(card);
                     }
@@ -267,17 +283,17 @@ public class CardDisplayer : MonoBehaviour
 
     public void ToggleCardMenuButton()
     {
-        if (GetCardState() != -1)
+        if (GetCardState() != -1 && tenCardsOnScreen==false)
         {
             if (GetCardState() == 0)
             {
-                player.SetCardDisplayerHand();
+                SetHand(player.GetHand());
                 UpdateCardVisuals();
-                ShowCards();
+                ShowCards(false);
             }
             else
             {
-                HideCards();
+                HideCards(false);
             }
         }
     }
@@ -285,6 +301,26 @@ public class CardDisplayer : MonoBehaviour
     public bool GetCardsOnScreen()
     {
         return cardsOnScreen;
+    }
+
+    public void CalculateEndPositions()
+    {
+        for (int i = 0; i < (slidingTen ? 10 : 6); i++)
+        {
+            Vector3 endPos = Vector3.right * ((318 * (i < 6 ? i : i - 4)) - (startPos.x + 796));
+            if (slidingTen)
+            {
+                if (i >= 2 && i < 6)
+                {
+                    endPos += Vector3.up * 150;
+                }
+                else if (i >= 6 && i < 10)
+                {
+                    endPos += Vector3.up * -370;
+                }
+            }
+            endPositions[i] = endPos;   
+        }
     }
 
 }

@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().buildIndex == 0) //Main Scene
             {
-                return 0.1f;
+                return 0.01f;
             }
             else
             {
@@ -26,14 +26,15 @@ public class Player : MonoBehaviour
     }
     private bool inTheMiddleOfAttack;
     private Coroutine attackCoroutine = null;
-    public enum PlayerColour {Red, Blue, Green, Pink, Orange, Purple};
-    Dictionary<PlayerColour, Color> playerColorToColor = new Dictionary<PlayerColour, Color>{ { PlayerColour.Red, new Color(135/255f,14 / 255f, 5 / 255f, 1f) }, { PlayerColour.Blue, new Color(1 / 255f, 1 / 255f, 99 / 255f, 1f) }, { PlayerColour.Orange, new Color(171 / 255f, 71 / 255f, 14 / 255f, 1f) }, { PlayerColour.Green, new Color(6 / 255f, 66 / 255f, 14 / 255f, 1f)}, { PlayerColour.Purple, new Color(92 / 255f, 14 / 255f, 171 / 255f, 1f)}, { PlayerColour.Pink, new Color(166 / 255f, 8 / 255f, 140 / 255f, 1f)} };
+    public enum PlayerColour { Red, Blue, Green, Pink, Orange, Purple };
+    Dictionary<PlayerColour, Color> playerColorToColor = new Dictionary<PlayerColour, Color> { { PlayerColour.Red, new Color(135 / 255f, 14 / 255f, 5 / 255f, 1f) }, { PlayerColour.Blue, new Color(1 / 255f, 1 / 255f, 99 / 255f, 1f) }, { PlayerColour.Orange, new Color(171 / 255f, 71 / 255f, 14 / 255f, 1f) }, { PlayerColour.Green, new Color(6 / 255f, 66 / 255f, 14 / 255f, 1f) }, { PlayerColour.Purple, new Color(92 / 255f, 14 / 255f, 171 / 255f, 1f) }, { PlayerColour.Pink, new Color(166 / 255f, 8 / 255f, 140 / 255f, 1f) } };
     protected int troopCount;
     protected List<Territory> territories;
     protected Hand hand;
     protected bool territoryTakenThisTurn;
     private bool hasBeenReset;
-
+    protected bool turnReset;
+    public bool KilledAPlayerThisTurn = false;
     public virtual void ResetPlayer()
     {
         hand = new Hand();
@@ -41,10 +42,12 @@ public class Player : MonoBehaviour
         hasBeenReset = true;
         inTheMiddleOfAttack = false;
         territories = new List<Territory>();
+        turnReset = false;
     }
 
     public virtual void Setup(List<Territory> territories)
     {
+        turnReset = false;
         this.territories = territories;
         StartCoroutine(nameof(SetupWait), troopCount);
     }
@@ -75,14 +78,18 @@ public class Player : MonoBehaviour
         MatchManager.SwitchPlayerSetup();
     }
 
-    public virtual bool Deploy(List<Territory> territories, int troopCount) 
+    public virtual bool Deploy(List<Territory> territories, int troopCount)
     {
+        KilledAPlayerThisTurn = false;
         //Card check
-        if (hand.FindValidSet(out List<Card> validSet, true))
-        {
-            troopCount += Hand.NumberOfTroopsForSet(this, validSet);
-        }
-
+        //        do
+        //      {
+        //          if (hand.FindValidSet(out List<Card> validSet, true))
+        //          {
+        //               troopCount += Hand.NumberOfTroopsForSet(this, validSet);
+                         //Hand.IncrementTurnInCount();
+        //           }
+        //       } while (hand.Count() >= 5);
         //Normal process
         territoryTakenThisTurn = false;
         this.territories = territories;
@@ -107,7 +114,7 @@ public class Player : MonoBehaviour
         hasBeenReset = false;
 
         attackCoroutine = StartCoroutine(nameof(AttackWait));
-        return true; 
+        return true;
     }
 
     private IEnumerator AttackWait()
@@ -173,7 +180,7 @@ public class Player : MonoBehaviour
     public virtual int GetDefendingDice(Territory defender)
     {
         //Return any value between 1 and 2 inclusive, if we have more than 1 troop
-        if(defender.GetCurrentTroops() > 1)
+        if (defender.GetCurrentTroops() > 1)
         {
             return Random.Range(1, GetMaxDefendingDice(defender));
         }
@@ -189,6 +196,10 @@ public class Player : MonoBehaviour
             defender.SetCurrentTroops(attacker.GetCurrentTroops() + defender.GetCurrentTroops() - 1);
             attacker.SetCurrentTroops(1);
             territoryTakenThisTurn = true;
+        }
+        if (hand.Count() >= 6 && KilledAPlayerThisTurn)
+        {
+            ContinueTurn();
         }
 
         //Allow attacking again
@@ -212,7 +223,7 @@ public class Player : MonoBehaviour
             {
                 foreach (Territory endNode in territories)
                 {
-                    if (endNode!= territory && AreTerritoriesConnected(territory, endNode) && Random.Range(0, 2) == 0)
+                    if (endNode != territory && AreTerritoriesConnected(territory, endNode) && Random.Range(0, 2) == 0)
                     {
                         endNode.SetCurrentTroops(territory.GetCurrentTroops() + endNode.GetCurrentTroops() - 1);
                         territory.SetCurrentTroops(1);
@@ -222,6 +233,7 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        turnReset = false;
         MatchManager.EndTurn();
     }
     public void SetColor(PlayerColour colour)
@@ -237,10 +249,15 @@ public class Player : MonoBehaviour
         return colour.ToString();
     }
     public PlayerColour GetPlayerColour() { return colour; }
-    public List<Territory> GetTerritories() {  return territories; }
+    public List<Territory> GetTerritories() { return territories; }
     public void AddTerritory(Territory territory)
     {
         territories.Add(territory);
+    }
+
+    public void RemoveTerritory(Territory territory)
+    {
+        territories.Remove(territory);
     }
 
     public Hand GetHand()
@@ -251,7 +268,7 @@ public class Player : MonoBehaviour
     {
         TerritoryNode startNode = new TerritoryNode().SetTerritory(startTerritory);
         TerritoryNode endNode = new TerritoryNode().SetTerritory(endTerritory);
-        return Pathfinding.AStar.FindPath(startNode, endNode,false).Count>0;
+        return Pathfinding.AStar.FindPath(startNode, endNode, false).Count > 0;
     }
 
     public virtual void OnTurnEnd()
@@ -260,5 +277,32 @@ public class Player : MonoBehaviour
         {
             hand.AddCard(Deck.Draw());
         }
+    }
+
+    public bool IsDead()
+    {
+        Debug.Log(territories.Count);
+        return territories.Count <= 0;
+    }
+
+    public void Killed(Player killed)
+    {
+        Hand killedHand = killed.GetHand();
+        for (int i = 0; i < killedHand.Count(); i++)
+        {
+            hand.AddCard(killedHand.GetCard(i));
+        }
+        KilledAPlayerThisTurn = true;
+    }
+
+    public void ContinueTurn()
+    {
+        turnReset = true;
+        Deploy(territories, 0);
+    }
+
+    public bool GetTurnReset()
+    {
+        return turnReset;
     }
 }
