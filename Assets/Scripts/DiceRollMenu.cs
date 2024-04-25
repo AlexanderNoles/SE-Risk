@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
-/// <c>DiceRollMenu</c> is a monobehaviour class that controls the dice rolling UIW
+/// <c>DiceRollMenu</c> is a monobehaviour class that controls the dice rolling UI
 /// </summary>
 public class DiceRollMenu : MonoBehaviour
 {
