@@ -100,6 +100,9 @@ $(function(){initNavTree('class_play_options_management.html',''); initResizable
   <div class="headertitle"><div class="title">PlayOptionsManagement Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code><a class="el" href="class_play_options_management.html" title="PlayOptionsManagement manages the play options (mode, number of AI playes) for a given match....">PlayOptionsManagement</a></code> manages the play options (mode, number of AI playes) for a given match. Allows their modification through the play screen, which it controls.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for PlayOptionsManagement:</div>
 <div class="dyncontent">
@@ -110,54 +113,73 @@ Inheritance diagram for PlayOptionsManagement:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_play_options_management_1_1_play_options.html">PlayOptions</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores all the PlayOptions needed for a given match.  <a href="struct_play_options_management_1_1_play_options.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a766f4798c5ec8df4f6ae0e0f60aec579" id="r_a766f4798c5ec8df4f6ae0e0f60aec579"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a766f4798c5ec8df4f6ae0e0f60aec579">SetPlayModeNormal</a> (bool playSound=true)</td></tr>
+<tr class="memdesc:a766f4798c5ec8df4f6ae0e0f60aec579"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current game mode to Normal, used by UI buttons and code in Awake.  <br /></td></tr>
 <tr class="separator:a766f4798c5ec8df4f6ae0e0f60aec579"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c38d86af7546e333db7dfb7779c6424" id="r_a9c38d86af7546e333db7dfb7779c6424"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c38d86af7546e333db7dfb7779c6424">SetPlayModeConquest</a> (bool playSound=true)</td></tr>
+<tr class="memdesc:a9c38d86af7546e333db7dfb7779c6424"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current game mode to Conquest, used by UI buttons.  <br /></td></tr>
 <tr class="separator:a9c38d86af7546e333db7dfb7779c6424"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36295f41b1a767bd99a1362186b0c1b3" id="r_a36295f41b1a767bd99a1362186b0c1b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36295f41b1a767bd99a1362186b0c1b3">AddAIPlayer</a> ()</td></tr>
+<tr class="memdesc:a36295f41b1a767bd99a1362186b0c1b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an AI player. Used by UI buttons.  <br /></td></tr>
 <tr class="separator:a36295f41b1a767bd99a1362186b0c1b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6ec578ecab9629a41dc49f8742beac5" id="r_ae6ec578ecab9629a41dc49f8742beac5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6ec578ecab9629a41dc49f8742beac5">RemoveAIPlayer</a> ()</td></tr>
+<tr class="memdesc:ae6ec578ecab9629a41dc49f8742beac5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove an AI player. Used by UI buttons.  <br /></td></tr>
 <tr class="separator:ae6ec578ecab9629a41dc49f8742beac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a21db0dba5ea2355e4e2abdf72475254a" id="r_a21db0dba5ea2355e4e2abdf72475254a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21db0dba5ea2355e4e2abdf72475254a">CantStartGame</a> ()</td></tr>
+<tr class="memdesc:a21db0dba5ea2355e4e2abdf72475254a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Play a sound to give feedback on start game refused. Used by UI buttons.  <br /></td></tr>
 <tr class="separator:a21db0dba5ea2355e4e2abdf72475254a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:af169c19e38f501e4873f671355337409" id="r_af169c19e38f501e4873f671355337409"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af169c19e38f501e4873f671355337409">IsConquestMode</a> ()</td></tr>
+<tr class="memdesc:af169c19e38f501e4873f671355337409"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static function that returns true if current set mode is Conquest mode.  <br /></td></tr>
 <tr class="separator:af169c19e38f501e4873f671355337409"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a527aef1d6e26b0879a381c33c3042cc7" id="r_a527aef1d6e26b0879a381c33c3042cc7"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a527aef1d6e26b0879a381c33c3042cc7">IsNormalMode</a> ()</td></tr>
+<tr class="memdesc:a527aef1d6e26b0879a381c33c3042cc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static function that returns true if current set mode is Normal mode.  <br /></td></tr>
 <tr class="separator:a527aef1d6e26b0879a381c33c3042cc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd62043b4e13d8a2f1d2e2cd4f81875c" id="r_afd62043b4e13d8a2f1d2e2cd4f81875c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd62043b4e13d8a2f1d2e2cd4f81875c">GetNumberOfAIPlayers</a> ()</td></tr>
+<tr class="memdesc:afd62043b4e13d8a2f1d2e2cd4f81875c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static function that returns the current number of AI players.  <br /></td></tr>
 <tr class="separator:afd62043b4e13d8a2f1d2e2cd4f81875c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88ba5218d916053f649365caf1c09789" id="r_a88ba5218d916053f649365caf1c09789"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88ba5218d916053f649365caf1c09789">GetTotalNumberOfPlayers</a> ()</td></tr>
+<tr class="memdesc:a88ba5218d916053f649365caf1c09789"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static function that returns the total number of players.  <br /></td></tr>
 <tr class="separator:a88ba5218d916053f649365caf1c09789"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a220e335f2bfd5ee736e0b215a4b99a44" id="r_a220e335f2bfd5ee736e0b215a4b99a44"><td class="memItemLeft" align="right" valign="top">RectTransform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a220e335f2bfd5ee736e0b215a4b99a44">selectionOutline</a></td></tr>
+<tr class="memdesc:a220e335f2bfd5ee736e0b215a4b99a44"><td class="mdescLeft">&#160;</td><td class="mdescRight">UI object refrence for the selected mode outline, setup in inspector.  <br /></td></tr>
 <tr class="separator:a220e335f2bfd5ee736e0b215a4b99a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af41e0fa4d8ec09100f2d3d8b4c872136" id="r_af41e0fa4d8ec09100f2d3d8b4c872136"><td class="memItemLeft" align="right" valign="top">Image&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af41e0fa4d8ec09100f2d3d8b4c872136">normalImage</a></td></tr>
+<tr class="memdesc:af41e0fa4d8ec09100f2d3d8b4c872136"><td class="mdescLeft">&#160;</td><td class="mdescRight">UI object refrence, for the normal mode button, setup in inspector.  <br /></td></tr>
 <tr class="separator:af41e0fa4d8ec09100f2d3d8b4c872136"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdd0ac3e052d783497328aaea6441e79" id="r_abdd0ac3e052d783497328aaea6441e79"><td class="memItemLeft" align="right" valign="top">Image&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdd0ac3e052d783497328aaea6441e79">conquestImage</a></td></tr>
+<tr class="memdesc:abdd0ac3e052d783497328aaea6441e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">UI object refrence, for the conquest mode button, setup in inspector.  <br /></td></tr>
 <tr class="separator:abdd0ac3e052d783497328aaea6441e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16ebf6224c29e7ea185eaab5018e0ad3" id="r_a16ebf6224c29e7ea185eaab5018e0ad3"><td class="memItemLeft" align="right" valign="top">AnimationCurve&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16ebf6224c29e7ea185eaab5018e0ad3">buttonFeedbackAnimationCurve</a></td></tr>
+<tr class="memdesc:a16ebf6224c29e7ea185eaab5018e0ad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Animation Curve ditacting the ease function for the on mode button click effect, setup in inspector.  <br /></td></tr>
 <tr class="separator:a16ebf6224c29e7ea185eaab5018e0ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27689f9175a23283043e6d2a5d143a52" id="r_a27689f9175a23283043e6d2a5d143a52"><td class="memItemLeft" align="right" valign="top">Button&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27689f9175a23283043e6d2a5d143a52">startButton</a></td></tr>
+<tr class="memdesc:a27689f9175a23283043e6d2a5d143a52"><td class="mdescLeft">&#160;</td><td class="mdescRight">UI object refrence, for the start game button, setup in inspector.  <br /></td></tr>
 <tr class="separator:a27689f9175a23283043e6d2a5d143a52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48f7843746708245facdc4eaaae02fce" id="r_a48f7843746708245facdc4eaaae02fce"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48f7843746708245facdc4eaaae02fce">cantStartButton</a></td></tr>
+<tr class="memdesc:a48f7843746708245facdc4eaaae02fce"><td class="mdescLeft">&#160;</td><td class="mdescRight">UI object refrence, for the start game button, setup in inspector.  <br /></td></tr>
 <tr class="separator:a48f7843746708245facdc4eaaae02fce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab41b154740b95f91a71b5f10231abf4f" id="r_ab41b154740b95f91a71b5f10231abf4f"><td class="memItemLeft" align="right" valign="top">List&lt; RectTransform &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab41b154740b95f91a71b5f10231abf4f">extraPlayerSlots</a> = new List&lt;RectTransform&gt;()</td></tr>
+<tr class="memdesc:ab41b154740b95f91a71b5f10231abf4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">UI object refrence, for the extra player slots, setup in inspector.  <br /></td></tr>
 <tr class="separator:ab41b154740b95f91a71b5f10231abf4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a447444d2f7ecf5b2dffda54fe7a2164f" id="r_a447444d2f7ecf5b2dffda54fe7a2164f"><td class="memItemLeft" align="right" valign="top">RectTransform&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a447444d2f7ecf5b2dffda54fe7a2164f">addSlotButton</a></td></tr>
+<tr class="memdesc:a447444d2f7ecf5b2dffda54fe7a2164f"><td class="mdescLeft">&#160;</td><td class="mdescRight">UI object refrence, for the add AI player to game button, setup in inspector.  <br /></td></tr>
 <tr class="separator:a447444d2f7ecf5b2dffda54fe7a2164f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00006">6</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<div class="textblock"><p><code><a class="el" href="class_play_options_management.html" title="PlayOptionsManagement manages the play options (mode, number of AI playes) for a given match....">PlayOptionsManagement</a></code> manages the play options (mode, number of AI playes) for a given match. Allows their modification through the play screen, which it controls. </p>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00009">9</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a36295f41b1a767bd99a1362186b0c1b3" name="a36295f41b1a767bd99a1362186b0c1b3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a36295f41b1a767bd99a1362186b0c1b3">&#9670;&#160;</a></span>AddAIPlayer()</h2>
@@ -174,7 +196,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00125">125</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>Add an AI player. Used by UI buttons. </p>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00195">195</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -193,7 +217,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00139">139</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>Play a sound to give feedback on start game refused. Used by UI buttons. </p>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00215">215</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -220,7 +246,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00060">60</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>Static function that returns the current number of AI players. </p>
+<dl class="section return"><dt>Returns</dt><dd>Current number of AI players as int.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00112">112</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -247,7 +276,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00065">65</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>Static function that returns the total number of players. </p>
+<dl class="section return"><dt>Returns</dt><dd>Total number of players as int.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00121">121</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -274,7 +306,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00050">50</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>Static function that returns true if current set mode is Conquest mode. </p>
+<dl class="section return"><dt>Returns</dt><dd>Is current mode Conquest?</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00094">94</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -301,7 +336,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00055">55</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>Static function that returns true if current set mode is Normal mode. </p>
+<dl class="section return"><dt>Returns</dt><dd>Is current mode Normal?</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00103">103</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -320,7 +358,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00132">132</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>Remove an AI player. Used by UI buttons. </p>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00205">205</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -339,7 +379,15 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00099">99</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>Set the current game mode to Conquest, used by UI buttons. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">playSound</td><td>Should sound be played when this function is run? Used to give feedback on button press.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00164">164</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -358,7 +406,15 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00088">88</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>Set the current game mode to Normal, used by UI buttons and code in Awake. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">playSound</td><td>Should sound be played when this function is run? Used to give feedback on button press.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00149">149</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -375,7 +431,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00048">48</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>UI object refrence, for the add AI player to game button, setup in inspector. </p>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00088">88</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -391,7 +449,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00037">37</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>Animation Curve ditacting the ease function for the on mode button click effect, setup in inspector. </p>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00065">65</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -407,7 +467,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00044">44</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>UI object refrence, for the start game button, setup in inspector. </p>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00078">78</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -423,7 +485,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00036">36</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>UI object refrence, for the conquest mode button, setup in inspector. </p>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00061">61</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -439,7 +503,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00047">47</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>UI object refrence, for the extra player slots, setup in inspector. </p>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00084">84</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -455,7 +521,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00035">35</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>UI object refrence, for the normal mode button, setup in inspector. </p>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00057">57</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -471,7 +539,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00034">34</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>UI object refrence for the selected mode outline, setup in inspector. </p>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00053">53</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>
@@ -487,7 +557,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00043">43</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
+<p>UI object refrence, for the start game button, setup in inspector. </p>
+
+<p class="definition">Definition at line <a class="el" href="_play_options_management_8cs_source.html#l00074">74</a> of file <a class="el" href="_play_options_management_8cs_source.html">PlayOptionsManagement.cs</a>.</p>
 
 </div>
 </div>

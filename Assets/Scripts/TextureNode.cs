@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+/// <summary>
+/// INode implementation used to pass data to the Pathfinding namespace. Used to navigate certain coloured pixels of a texture node. Used to assist with generating accurate polygonal representations of sprites.
+/// </summary>
 public class TextureNode : INode
 {
     //The class for our nodes in the A* path finding algorithm
@@ -22,6 +25,11 @@ public class TextureNode : INode
     {
         new Vector3(0,1),new Vector3(-1,0)
     };
+
+    /// <summary>
+    /// Gets the neighbouring pixels aslong as they pass the neccesary colour checks.
+    /// </summary>
+    /// <returns>The list of neighbours.</returns>
     public List<INode> GetNeighbours()
     {
         //Returns a list of all orthoganoly neighbouring black pixels that are omnidirectionally neighbouring a white pixel
@@ -43,6 +51,10 @@ public class TextureNode : INode
         }
         return returnList;
     }
+    /// <summary>
+    /// Gets the end node based on the target texture, this is the pixel that will be pathfinded to.
+    /// </summary>
+    /// <returns>The generated end position. If none is found Vector3.zero is returned.</returns>
     public Vector3 GetEndNode()
     {
         //looks for a valid black pixel to the left of or above the start pixel, this is what we'll find a path to
@@ -60,7 +72,11 @@ public class TextureNode : INode
         }
         return Vector3.zero;
     }
-
+    /// <summary>
+    /// Checks if any neighbouring (in all orthagonal directions) are white, this helps with colour filtering in GetNeighbours().
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns>true or false</returns>
     public bool CheckNeighbouringWhiteNodes(Vector3 pos)
     {
         //looks at the neighbouring pixels in all 8 directions and returns true if any of those pixels are white
@@ -74,14 +90,27 @@ public class TextureNode : INode
         }
         return false;
     }
+    /// <summary>
+    /// Get the position of the node.
+    /// </summary>
+    /// <returns>The position as a Vector3.</returns>
     public Vector3 GetPosition()
     {
         return position;
     }
+
+    /// <summary>
+    /// Set the position of the node.
+    /// </summary>
+    /// <param name="position">The new position.</param>
     public void SetPosition(Vector3 position)
     {
         this.position = position;
     }
+    /// <summary>
+    /// Set the texture of the node.
+    /// </summary>
+    /// <param name="texture">The new texture</param>
     public void SetTexture(Texture2D texture)
     {
         this.texture = texture;

@@ -98,6 +98,9 @@ $(function(){initNavTree('class_territory_node.html',''); initResizable(); });
   <div class="headertitle"><div class="title">TerritoryNode Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>INode implementation used to pass data to the <a class="el" href="namespace_pathfinding.html">Pathfinding</a> namespace. Used to navigate territory map.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for TerritoryNode:</div>
 <div class="dyncontent">
@@ -111,20 +114,25 @@ Inheritance diagram for TerritoryNode:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0dc9612c744d6057a993f41a183b186a" id="r_a0dc9612c744d6057a993f41a183b186a"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="interface_pathfinding_1_1_i_node.html">INode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0dc9612c744d6057a993f41a183b186a">GetNeighbours</a> ()</td></tr>
+<tr class="memdesc:a0dc9612c744d6057a993f41a183b186a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used in the pathfinding algorithm to determine what nodes are next to each other.  <br /></td></tr>
 <tr class="separator:a0dc9612c744d6057a993f41a183b186a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae34a104039d01c4434467dea73284d23" id="r_ae34a104039d01c4434467dea73284d23"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae34a104039d01c4434467dea73284d23">GetPosition</a> ()</td></tr>
+<tr class="memdesc:ae34a104039d01c4434467dea73284d23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the position of the node, this is just the centre point of the territory. Used by the pathfinding algorithm to calculate heuristics.  <br /></td></tr>
 <tr class="separator:ae34a104039d01c4434467dea73284d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07979bc26b66d12e629dcef1aa079d20" id="r_a07979bc26b66d12e629dcef1aa079d20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_territory_node.html">TerritoryNode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07979bc26b66d12e629dcef1aa079d20">SetTerritory</a> (<a class="el" href="class_territory.html">Territory</a> <a class="el" href="#ab7fbf490d88becfefa5dd71766c28f02">territory</a>)</td></tr>
+<tr class="memdesc:a07979bc26b66d12e629dcef1aa079d20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the target territoy for this node.  <br /></td></tr>
 <tr class="separator:a07979bc26b66d12e629dcef1aa079d20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ab7fbf490d88becfefa5dd71766c28f02" id="r_ab7fbf490d88becfefa5dd71766c28f02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_territory.html">Territory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7fbf490d88becfefa5dd71766c28f02">territory</a></td></tr>
+<tr class="memdesc:ab7fbf490d88becfefa5dd71766c28f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">The target territory of this node.  <br /></td></tr>
 <tr class="separator:ab7fbf490d88becfefa5dd71766c28f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_territory_node_8cs_source.html#l00005">5</a> of file <a class="el" href="_territory_node_8cs_source.html">TerritoryNode.cs</a>.</p>
+<div class="textblock"><p>INode implementation used to pass data to the <a class="el" href="namespace_pathfinding.html">Pathfinding</a> namespace. Used to navigate territory map. </p>
+
+<p class="definition">Definition at line <a class="el" href="_territory_node_8cs_source.html#l00009">9</a> of file <a class="el" href="_territory_node_8cs_source.html">TerritoryNode.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a0dc9612c744d6057a993f41a183b186a" name="a0dc9612c744d6057a993f41a183b186a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0dc9612c744d6057a993f41a183b186a">&#9670;&#160;</a></span>GetNeighbours()</h2>
@@ -141,9 +149,12 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Used in the pathfinding algorithm to determine what nodes are next to each other. </p>
+<dl class="section return"><dt>Returns</dt><dd>A list of all the neighbour nodes.</dd></dl>
+
 <p>Implements <a class="el" href="interface_pathfinding_1_1_i_node.html#a531db0213b0bd8edfb23524bc9fa50be">Pathfinding.INode</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_territory_node_8cs_source.html#l00008">8</a> of file <a class="el" href="_territory_node_8cs_source.html">TerritoryNode.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_territory_node_8cs_source.html#l00020">20</a> of file <a class="el" href="_territory_node_8cs_source.html">TerritoryNode.cs</a>.</p>
 
 </div>
 </div>
@@ -162,9 +173,12 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Gets the position of the node, this is just the centre point of the territory. Used by the pathfinding algorithm to calculate heuristics. </p>
+<dl class="section return"><dt>Returns</dt><dd>The world space position of the centre point of the territory.</dd></dl>
+
 <p>Implements <a class="el" href="interface_pathfinding_1_1_i_node.html#a3be0bc97889b733458bb41ddcef756d5">Pathfinding.INode</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_territory_node_8cs_source.html#l00019">19</a> of file <a class="el" href="_territory_node_8cs_source.html">TerritoryNode.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_territory_node_8cs_source.html#l00037">37</a> of file <a class="el" href="_territory_node_8cs_source.html">TerritoryNode.cs</a>.</p>
 
 </div>
 </div>
@@ -183,7 +197,16 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_territory_node_8cs_source.html#l00023">23</a> of file <a class="el" href="_territory_node_8cs_source.html">TerritoryNode.cs</a>.</p>
+<p>Set the target territoy for this node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">territory</td><td>The new target territory.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns this object, now with a new target territory. This is not a copy of the object.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_territory_node_8cs_source.html#l00047">47</a> of file <a class="el" href="_territory_node_8cs_source.html">TerritoryNode.cs</a>.</p>
 
 </div>
 </div>
@@ -200,7 +223,9 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_territory_node_8cs_source.html#l00007">7</a> of file <a class="el" href="_territory_node_8cs_source.html">TerritoryNode.cs</a>.</p>
+<p>The target territory of this node. </p>
+
+<p class="definition">Definition at line <a class="el" href="_territory_node_8cs_source.html#l00014">14</a> of file <a class="el" href="_territory_node_8cs_source.html">TerritoryNode.cs</a>.</p>
 
 </div>
 </div>
