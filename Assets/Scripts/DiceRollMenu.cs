@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// <c>DiceRollMenu</c> is a monobehaviour class that controls the dice rolling UIW
+/// </summary>
 public class DiceRollMenu : MonoBehaviour
 {
+    /// <summary>
+    /// A serialized list of GameObjects to be set active after setup. It is done this way to avoid the UI flashing on screen for one frame if no dice actually need to be rolled.
+    /// </summary>
     public List<GameObject> thingsToSetActiveAfter;
 
-    //Indicates if the player needs to slec
+    //Indicates if the player needs to select a number of troops to defend/attack withs
     private static bool active;
     private static bool currentSetupDone;
     private static bool playerIsAttacker;
@@ -20,9 +26,19 @@ public class DiceRollMenu : MonoBehaviour
     private static int currentNumberOfDice;
 
     [Header("References")]
+    /// <summary>
+    /// Text UI element
+    /// </summary>
     public TextMeshProUGUI descripter;
+    /// <summary>
+    /// Number UI element
+    /// </summary>
     public TextMeshProUGUI diceCount;
 
+    /// <summary>
+    /// Returns the active state of the UI
+    /// </summary>
+    /// <returns>true or false</returns>
     public static bool IsActive()
     {
         return active;
@@ -33,6 +49,12 @@ public class DiceRollMenu : MonoBehaviour
         active = false;
     }
 
+    /// <summary>
+    /// <c>Activate</c> is called when the UI needs to be activated. This is done when the localPlayer needs to make a decision about the number of dice to rolled. Sometimes the number of dice to be rolled is a range of a single value, in this case, the UI will immediately close.
+    /// </summary>
+    /// <param name="attacker">The Attacking Territory</param>
+    /// <param name="defender">The Defending Territory</param>
+    /// <param name="isAttacker">Does the attacking Territory belong to the player?</param>
     public static void Activate(Territory attacker, Territory defender, bool isAttacker) 
     {
         active = true;
@@ -75,6 +97,7 @@ public class DiceRollMenu : MonoBehaviour
             {
                 int attackingDice, defendingDice;
 
+                //Get dice for both the player and whoever they are attacking
                 if (playerIsAttacker)
                 {
                     attackingDice = currentNumberOfDice;
@@ -87,6 +110,8 @@ public class DiceRollMenu : MonoBehaviour
                 }
 
                 UIManagement.SetActiveGreyPlane(false);
+
+                //Actually call attack
                 Map.Attack(attackingTerritory, defendingTerritory, attackingDice, defendingDice);
 
                 active = false;
@@ -112,6 +137,7 @@ public class DiceRollMenu : MonoBehaviour
                     gameObject.SetActive(true);
                 }
 
+                //Update ui elements
                 UpdateDiceCountText();
             }
 
@@ -125,8 +151,9 @@ public class DiceRollMenu : MonoBehaviour
                 AdjustCurrentNumberOfDice(-1);
             }
         }
-        else if (!active)
+        else if (!active && thingsToSetActiveAfter[0].activeSelf)
         {
+            //Hide all UI elements if they are active
             foreach(GameObject gameObject in thingsToSetActiveAfter)
             {
                 gameObject.SetActive(false);

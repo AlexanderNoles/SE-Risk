@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-static public class Deck 
+/// <summary>
+/// <c>Deck</c> is a static class that contains a list of Cards. It has various methods to interact with the list of cards.
+/// </summary>
+public class Deck 
 {
     static List<Card> cards = new List<Card>();
-    static public void CreateDeck()
+
+    /// <summary>
+    /// <c>CreateDeck</c> intializes and creates a new deck based of the current territories on the current Map instance.
+    /// </summary>
+    public static void CreateDeck()
     {
         cards.Clear();
         List<Territory> territories = Map.GetTerritories();
@@ -41,6 +48,11 @@ static public class Deck
 
     }
 
+    /// <summary>
+    /// <c>Draw</c> removes a Card from the deck and returns it
+    /// </summary>
+    /// <returns>The drawn Card</returns>
+    /// <exception cref="System.Exception">Thrown when the deck is empty. With a max of 6 players, as long as the game is running correctly, this should never happen.</exception>
     public static Card Draw()
     {
         if (cards.Count == 0)
@@ -54,6 +66,10 @@ static public class Deck
         return card;
     }
 
+    /// <summary>
+    /// <c>ReturnToDeck</c> returns a Card to the deck.
+    /// </summary>
+    /// <param name="card">The Card being returned</param>
     public static void ReturnToDeck(Card card)
     {
         cards.Add(card);
