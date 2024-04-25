@@ -4,7 +4,7 @@ using UnityEngine;
 using Pathfinding;
 
 /// <summary>
-/// INode implementation used to pass data to the Pathfinding namespace.
+/// INode implementation used to pass data to the Pathfinding namespace. Used to navigate territory map.
 /// </summary>
 public class TerritoryNode : INode
 {
