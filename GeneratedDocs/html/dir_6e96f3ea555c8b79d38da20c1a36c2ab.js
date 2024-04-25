@@ -17,7 +17,7 @@ var dir_6e96f3ea555c8b79d38da20c1a36c2ab =
     [ "Player.cs", "_player_8cs.html", "_player_8cs" ],
     [ "PlayerInputHandler.cs", "_player_input_handler_8cs.html", "_player_input_handler_8cs" ],
     [ "PlayOptionsManagement.cs", "_play_options_management_8cs.html", "_play_options_management_8cs" ],
-    [ "PolygonUtility.cs", "_polygon_utility_8cs.html", null ],
+    [ "PolygonUtility.cs", "_polygon_utility_8cs.html", "_polygon_utility_8cs" ],
     [ "RawImageMoveOverTime.cs", "_raw_image_move_over_time_8cs.html", "_raw_image_move_over_time_8cs" ],
     [ "Territory.cs", "_territory_8cs.html", "_territory_8cs" ],
     [ "TerritoryHelper.cs", "_territory_helper_8cs.html", null ],

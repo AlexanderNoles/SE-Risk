@@ -19,6 +19,7 @@ var annotated_dup =
     [ "Player", "class_player.html", "class_player" ],
     [ "PlayerInputHandler", "class_player_input_handler.html", "class_player_input_handler" ],
     [ "PlayOptionsManagement", "class_play_options_management.html", "class_play_options_management" ],
+    [ "PolygonUtility", "class_polygon_utility.html", null ],
     [ "RawImageMoveOverTime", "class_raw_image_move_over_time.html", "class_raw_image_move_over_time" ],
     [ "Territory", "class_territory.html", "class_territory" ],
     [ "TerritoryNode", "class_territory_node.html", "class_territory_node" ],

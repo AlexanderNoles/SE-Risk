@@ -35,5 +35,6 @@ var hierarchy =
     [ "MultiObjectPool.ObjectFromPool< T >", "struct_multi_object_pool_1_1_object_from_pool.html", null ],
     [ "MultiObjectPool.ObjectPool", "class_multi_object_pool_1_1_object_pool.html", null ],
     [ "PlayOptionsManagement.PlayOptions", "struct_play_options_management_1_1_play_options.html", null ],
+    [ "PolygonUtility", "class_polygon_utility.html", null ],
     [ "AudioManagement.Sound", "class_audio_management_1_1_sound.html", null ]
 ];

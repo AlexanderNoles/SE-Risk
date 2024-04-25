@@ -13,6 +13,8 @@ var searchData=
   ['dicerollmenu_2ecs_10',['DiceRollMenu.cs',['../_dice_roll_menu_8cs.html',1,'']]],
   ['direction_11',['direction',['../class_raw_image_move_over_time.html#a9aef4d7c990af98ad0125bbea15968e3',1,'RawImageMoveOverTime']]],
   ['doesplayerholdallcapitals_12',['DoesPlayerHoldAllCapitals',['../class_map.html#ae03054a1dd84dabb4dff83c9087cd454',1,'Map']]],
-  ['draw_13',['Draw',['../class_deck.html#a38b58012c2d83ba244a185c13949f05f',1,'Deck']]],
-  ['drawanddisplaynewcard_14',['DrawAndDisplayNewCard',['../class_local_player.html#aec0461b9abbc3ec90839d3c6eb91465c',1,'LocalPlayer']]]
+  ['doespointexistinsidepolygon_13',['DoesPointExistInsidePolygon',['../class_polygon_utility.html#a33719e5465149135b88f57a6ef28aac7',1,'PolygonUtility']]],
+  ['dolinesegmentsintersect_14',['DoLineSegmentsIntersect',['../class_polygon_utility.html#a9b436c6a3fb21e4960e6cd98dc055aae',1,'PolygonUtility.DoLineSegmentsIntersect(Vector2 line1point1, Vector2 line1point2, Vector2 line2point1, Vector2 line2point2)'],['../class_polygon_utility.html#a37a062772031c8f3e7dca3e540530cc9',1,'PolygonUtility.DoLineSegmentsIntersect(Vector3 line1point1, Vector3 line1point2, Vector3 line2point1, Vector3 line2point2)']]],
+  ['draw_15',['Draw',['../class_deck.html#a38b58012c2d83ba244a185c13949f05f',1,'Deck']]],
+  ['drawanddisplaynewcard_16',['DrawAndDisplayNewCard',['../class_local_player.html#aec0461b9abbc3ec90839d3c6eb91465c',1,'LocalPlayer']]]
 ];
