@@ -82,14 +82,14 @@ public class Player : MonoBehaviour
     {
         KilledAPlayerThisTurn = false;
         //Card check
-        //        do
-        //      {
-        //          if (hand.FindValidSet(out List<Card> validSet, true))
-        //          {
-        //               troopCount += Hand.NumberOfTroopsForSet(this, validSet);
-                         //Hand.IncrementTurnInCount();
-        //           }
-        //       } while (hand.Count() >= 5);
+                do
+              {
+                  if (hand.FindValidSet(out List<Card> validSet, true))
+                  {
+                      troopCount += Hand.NumberOfTroopsForSet(this, validSet);
+                      Hand.IncrementTurnInCount();
+                 }
+               } while (hand.Count() >= 5);
         //Normal process
         territoryTakenThisTurn = false;
         this.territories = territories;

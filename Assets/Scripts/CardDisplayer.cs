@@ -99,16 +99,19 @@ public class CardDisplayer : MonoBehaviour
                     GameObject go = gameObjects[i];
                     if (executionTime < showTime)
                     {
-                        go.transform.localPosition = new Vector3(endPositions[i].x, (5000 * HideCurve.Evaluate(completionRate)), 0);
+                        go.transform.localPosition = new Vector3(endPositions[i].x + startPos.x, startPos.y + (5000 * HideCurve.Evaluate(completionRate)), 0);
                     }
                     else
                     {
-                        if (tenCardsOnScreen && player.GetHand().Count() < 5)
-                        {
-                            HideCards(true);
-                        }
                         go.GetComponent<Image>().color = Color.black;
                         go.SetActive(false);
+                    }
+                }
+                if (executionTime >= showTime)
+                {
+                    if (i == 9 && tenCardsOnScreen && player.GetHand().Count() < 5)
+                    {
+                        HideCards(true);
                     }
                 }
             }
