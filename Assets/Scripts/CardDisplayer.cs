@@ -19,13 +19,15 @@ public class CardDisplayer : MonoBehaviour
     List<Card> selected = new List<Card>();
     private bool showing = false;
     private bool hiding = false;
-    private float showTime=1.0f;
+    private float showTime = 1.0f;
     private float executionTime;
     private Vector3 startPos = new Vector3(-10000, 100, 0);
     [SerializeField]
     AnimationCurve ShowCurve;
     [SerializeField]
     AnimationCurve HideCurve;
+    [SerializeField]
+    TextMeshProUGUI currentTurnInText;
     bool cardsOnScreen;
     bool AbleToTurnInCards;
     Camera m_Camera;
@@ -57,6 +59,7 @@ public class CardDisplayer : MonoBehaviour
 
     public void Update()
     {
+        UpdateTurnInText();
         if (showing || hiding)
         {
             float deltaTime = Time.deltaTime;
@@ -326,4 +329,8 @@ public class CardDisplayer : MonoBehaviour
         }
     }
 
+    public void UpdateTurnInText()
+    {
+        currentTurnInText.text = Hand.CalculateSetWorth().ToString();
+    }
 }

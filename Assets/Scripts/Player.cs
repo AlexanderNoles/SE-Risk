@@ -88,6 +88,7 @@ public class Player : MonoBehaviour
                   {
                       troopCount += Hand.NumberOfTroopsForSet(this, validSet);
                       Hand.IncrementTurnInCount();
+                      
                  }
                } while (hand.Count() >= 5);
         //Normal process

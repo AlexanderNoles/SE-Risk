@@ -116,7 +116,7 @@ public class Hand
         setsTurnedIn = 0;
     }
 
-    private static int CalculateSetWorth()
+    public static int CalculateSetWorth()
     {
         if(setsTurnedIn < 6) 
         {
