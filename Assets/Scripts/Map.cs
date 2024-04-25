@@ -62,8 +62,14 @@ public class Map : MonoBehaviour
 
     public void Awake()
     {
+        instance = this;
+    }
+
+    private void Start()
+    {
         SetupMap();
     }
+
     public static Territory GetTerritoryUnderPosition(Vector3 pos)
     {
         foreach(Territory currentTerritory in instance.territories) 
@@ -253,7 +259,6 @@ public class Map : MonoBehaviour
 
         territories = new List<Territory>();
         continents = new Dictionary<Territory.Continent, List<Territory>>();
-        instance = this;
         foreach (Transform child in transform)
         {
             if (child.TryGetComponent<Territory>(out Territory territory))

@@ -121,8 +121,6 @@ public class MatchManager : MonoBehaviour
         {
             instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex], out List<Territory> playerTerritories);
 
-            Debug.Log(instance.currentPlayerTerritories);
-
             UpdateInfoTextDefault("Capital Placement");
 
             instance.playerList[instance.currentTurnIndex].ClaimCapital(instance.currentPlayerTerritories);

@@ -95,11 +95,15 @@ public class Territory : MonoBehaviour
     }
     public int GetCurrentTroops() { return currentTroops; }
     public void SetCurrentTroops(int currentTroops) 
-    { 
+    {
         this.currentTroops = currentTroops;
 
         if (!Map.IsSimulated())
         {
+            if (troopLabel == null)
+            {
+                troopLabel = UIManagement.Spawn<TextMeshProUGUI>(GetUIOffset(), 0).component;
+            }
             troopLabel.text = currentTroops.ToString();
         }
     }
@@ -117,14 +121,6 @@ public class Territory : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public Sprite getCardSprite() { return cardSprite; }
-    public void Start()
-    {
-        //spawns a troop label for each territory and sets it to display 0
-        if(!Map.IsSimulated())
-        {
-            troopLabel = UIManagement.Spawn<TextMeshProUGUI>(GetUIOffset(), 0).component;
-        }
-    }
 
     public void ResetTerritory(bool resetColour)
     {
