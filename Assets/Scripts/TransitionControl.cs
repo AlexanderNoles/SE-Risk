@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 
 [IntializeAtRuntime("TransitionCanvas")]
+/// <summary>
+///
+/// </summary>
 public class TransitionControl : MonoBehaviour
 {
     private static TransitionControl instance;

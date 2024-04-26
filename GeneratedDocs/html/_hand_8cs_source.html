@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: E:/UnityProjects/SE-Risk/Assets/Scripts/Hand.cs Source File</title>
+<title>World Conquest: Assets/Scripts/Hand.cs Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,8 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">World Conquest
    </div>
+   <div id="projectbrief">Implementation of the Risk board game for our Software Engineering module.</div>
   </td>
  </tr>
  </tbody>
@@ -171,7 +172,7 @@ $(function(){initNavTree('_hand_8cs_source.html',''); initResizable(); });
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            }</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        }</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> CalculateSetWorth();</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="class_hand.html#a9b6a941a1b41af4e984ec2fcdeab0b74">CalculateSetWorth</a>();</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
 </div>
@@ -240,7 +241,8 @@ $(function(){initNavTree('_hand_8cs_source.html',''); initResizable(); });
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
 </div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">int</span> CalculateSetWorth()</div>
+<div class="foldopen" id="foldopen00119" data-start="{" data-end="}">
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="class_hand.html#a9b6a941a1b41af4e984ec2fcdeab0b74">  119</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="class_hand.html#a9b6a941a1b41af4e984ec2fcdeab0b74">CalculateSetWorth</a>()</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    {</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <span class="keywordflow">if</span>(setsTurnedIn &lt; 6) </div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        {</div>
@@ -251,6 +253,7 @@ $(function(){initNavTree('_hand_8cs_source.html',''); initResizable(); });
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            <span class="keywordflow">return</span> 15+(5*(setsTurnedIn-6));</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        }</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    }</div>
+</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
 <div class="foldopen" id="foldopen00131" data-start="{" data-end="}">
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="class_hand.html#a91e9346b3a9d458009e035a9a401783d">  131</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_hand.html#a91e9346b3a9d458009e035a9a401783d">DebugHand</a>()</div>
@@ -277,11 +280,12 @@ $(function(){initNavTree('_hand_8cs_source.html',''); initResizable(); });
 <div class="ttc" id="aclass_hand_html_a65b598b720e092aff8210d16d481fb34"><div class="ttname"><a href="class_hand.html#a65b598b720e092aff8210d16d481fb34">Hand.IncrementTurnInCount</a></div><div class="ttdeci">static void IncrementTurnInCount()</div><div class="ttdef"><b>Definition</b> <a href="#l00042">Hand.cs:42</a></div></div>
 <div class="ttc" id="aclass_hand_html_a8c0943a609d9b9db799ae91a16ea9ee1"><div class="ttname"><a href="class_hand.html#a8c0943a609d9b9db799ae91a16ea9ee1">Hand.GetCard</a></div><div class="ttdeci">Card GetCard(int index)</div><div class="ttdef"><b>Definition</b> <a href="#l00027">Hand.cs:27</a></div></div>
 <div class="ttc" id="aclass_hand_html_a91e9346b3a9d458009e035a9a401783d"><div class="ttname"><a href="class_hand.html#a91e9346b3a9d458009e035a9a401783d">Hand.DebugHand</a></div><div class="ttdeci">void DebugHand()</div><div class="ttdef"><b>Definition</b> <a href="#l00131">Hand.cs:131</a></div></div>
+<div class="ttc" id="aclass_hand_html_a9b6a941a1b41af4e984ec2fcdeab0b74"><div class="ttname"><a href="class_hand.html#a9b6a941a1b41af4e984ec2fcdeab0b74">Hand.CalculateSetWorth</a></div><div class="ttdeci">static int CalculateSetWorth()</div><div class="ttdef"><b>Definition</b> <a href="#l00119">Hand.cs:119</a></div></div>
 <div class="ttc" id="aclass_hand_html_aa6c2ef473833fa4a497a6549125e4f7d"><div class="ttname"><a href="class_hand.html#aa6c2ef473833fa4a497a6549125e4f7d">Hand.GetLastCard</a></div><div class="ttdeci">Card GetLastCard()</div><div class="ttdef"><b>Definition</b> <a href="#l00032">Hand.cs:32</a></div></div>
 <div class="ttc" id="aclass_hand_html_ad4af5137358fc02202b757e8f3f98485"><div class="ttname"><a href="class_hand.html#ad4af5137358fc02202b757e8f3f98485">Hand.IsArrayAValidSet</a></div><div class="ttdeci">static bool IsArrayAValidSet(List&lt; Card &gt; cardArray)</div><div class="ttdef"><b>Definition</b> <a href="#l00096">Hand.cs:96</a></div></div>
 <div class="ttc" id="aclass_hand_html_adcc679673bf7f07dc505f2eada5e6385"><div class="ttname"><a href="class_hand.html#adcc679673bf7f07dc505f2eada5e6385">Hand.AddCard</a></div><div class="ttdeci">void AddCard(Card card)</div><div class="ttdef"><b>Definition</b> <a href="#l00015">Hand.cs:15</a></div></div>
 <div class="ttc" id="aclass_hand_html_aef2c90936230877ea3e43b44eb702ae4"><div class="ttname"><a href="class_hand.html#aef2c90936230877ea3e43b44eb702ae4">Hand.NumberOfTroopsForSet</a></div><div class="ttdeci">static int NumberOfTroopsForSet(Player player, List&lt; Card &gt; set)</div><div class="ttdef"><b>Definition</b> <a href="#l00047">Hand.cs:47</a></div></div>
-<div class="ttc" id="aclass_player_html"><div class="ttname"><a href="class_player.html">Player</a></div><div class="ttdef"><b>Definition</b> <a href="_player_8cs_source.html#l00009">Player.cs:10</a></div></div>
+<div class="ttc" id="aclass_player_html"><div class="ttname"><a href="class_player.html">Player</a></div><div class="ttdef"><b>Definition</b> <a href="_player_8cs_source.html#l00008">Player.cs:9</a></div></div>
 <div class="ttc" id="aclass_territory_html_a084c9dde837d04e91d77bd6277dd2985"><div class="ttname"><a href="class_territory.html#a084c9dde837d04e91d77bd6277dd2985">Territory.SetCurrentTroops</a></div><div class="ttdeci">void SetCurrentTroops(int currentTroops)</div><div class="ttdef"><b>Definition</b> <a href="_territory_8cs_source.html#l00097">Territory.cs:97</a></div></div>
 <div class="ttc" id="aclass_territory_html_a59ae567aafa02f01be2dad23fe177e5b"><div class="ttname"><a href="class_territory.html#a59ae567aafa02f01be2dad23fe177e5b">Territory.GetOwner</a></div><div class="ttdeci">Player GetOwner()</div><div class="ttdef"><b>Definition</b> <a href="_territory_8cs_source.html#l00081">Territory.cs:81</a></div></div>
 <div class="ttc" id="aclass_territory_html_a7cafd823a3cb9edf66b5c5a5bb278818"><div class="ttname"><a href="class_territory.html#a7cafd823a3cb9edf66b5c5a5bb278818">Territory.GetCurrentTroops</a></div><div class="ttdeci">int GetCurrentTroops()</div><div class="ttdef"><b>Definition</b> <a href="_territory_8cs_source.html#l00096">Territory.cs:96</a></div></div>
@@ -290,7 +294,7 @@ $(function(){initNavTree('_hand_8cs_source.html',''); initResizable(); });
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_addde2bca92537f29d074531c0b3f35b.html">UnityProjects</a></li><li class="navelem"><a class="el" href="dir_8909c563b4bf76f241cfb0d7381a8628.html">SE-Risk</a></li><li class="navelem"><a class="el" href="dir_042760aad1a3a6cacef2b0e6145968c8.html">Assets</a></li><li class="navelem"><a class="el" href="dir_6e96f3ea555c8b79d38da20c1a36c2ab.html">Scripts</a></li><li class="navelem"><a class="el" href="_hand_8cs.html">Hand.cs</a></li>
+    <li class="navelem"><a class="el" href="dir_84bbf7b3c7f28a5a18725745e1505219.html">Assets</a></li><li class="navelem"><a class="el" href="dir_f13b41af88cf68434578284aaf699e39.html">Scripts</a></li><li class="navelem"><a class="el" href="_hand_8cs.html">Hand.cs</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
   </ul>
 </div>

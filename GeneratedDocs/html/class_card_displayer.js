@@ -13,5 +13,6 @@ var class_card_displayer =
     [ "Start", "class_card_displayer.html#a9a57f28fa7c40729ffe5778afe3a201b", null ],
     [ "ToggleCardMenuButton", "class_card_displayer.html#a55d2cd7d42924c4e7e29910db04d3347", null ],
     [ "Update", "class_card_displayer.html#a04701adf0d6de0fb577b6d6abec133b3", null ],
-    [ "UpdateCardVisuals", "class_card_displayer.html#a68af0e057c663f4ecf8d4e6d357c3f97", null ]
+    [ "UpdateCardVisuals", "class_card_displayer.html#a68af0e057c663f4ecf8d4e6d357c3f97", null ],
+    [ "UpdateTurnInText", "class_card_displayer.html#aeae39c6ba65346f8d7c60c7f50e90557", null ]
 ];

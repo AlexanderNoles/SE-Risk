@@ -2,14 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// A generic pathfinding namespace, project agnostic. Utilizes an interface to be intergrated with existing code. Currently only implements AStar.
+/// </summary>
 namespace Pathfinding
 {
+    /// <summary>
+    /// Interface implemented by classes that the pathfinding will treat as nodes.
+    /// </summary>
     public interface INode
     {
         public Vector3 GetPosition();
         public List<INode> GetNeighbours();
     }
 
+    /// <summary>
+    /// Static class implementation of AStar Pathfinding. Main access point is FindPath.
+    /// </summary>
     public static class AStar
     {
         //implements A* path finding to find a valid path from one node to another

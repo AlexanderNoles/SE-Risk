@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "My Project", "index.html", [
+  [ "World Conquest", "index.html", [
     [ "Packages", "namespaces.html", [
       [ "Package List", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -48,7 +48,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_a_i_player_8cs.html",
-"class_raw_image_move_over_time.html"
+"class_polygon_utility.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: Pathfinding Namespace Reference</title>
+<title>World Conquest: Pathfinding Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,8 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">World Conquest
    </div>
+   <div id="projectbrief">Implementation of the Risk board game for our Software Engineering module.</div>
   </td>
  </tr>
  </tbody>
@@ -96,15 +97,22 @@ $(function(){initNavTree('namespace_pathfinding.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Pathfinding Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A generic pathfinding namespace, project agnostic. Utilizes an interface to be intergrated with existing code. Currently only implements AStar.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><b>AStar</b></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static class implementation of AStar <a class="el" href="namespace_pathfinding.html" title="A generic pathfinding namespace, project agnostic. Utilizes an interface to be intergrated with exist...">Pathfinding</a>. Main access point is FindPath. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">interface &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_pathfinding_1_1_i_node.html">INode</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interface implemented by classes that the pathfinding will treat as nodes.  <a href="interface_pathfinding_1_1_i_node.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A generic pathfinding namespace, project agnostic. Utilizes an interface to be intergrated with existing code. Currently only implements AStar. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
