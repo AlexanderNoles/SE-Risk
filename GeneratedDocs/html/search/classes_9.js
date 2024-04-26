@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['player_0',['Player',['../class_player.html',1,'']]],
-  ['playerinputhandler_1',['PlayerInputHandler',['../class_player_input_handler.html',1,'']]],
-  ['playoptions_2',['PlayOptions',['../struct_play_options_management_1_1_play_options.html',1,'PlayOptionsManagement']]],
-  ['playoptionsmanagement_3',['PlayOptionsManagement',['../class_play_options_management.html',1,'']]],
-  ['polygonutility_4',['PolygonUtility',['../class_polygon_utility.html',1,'']]]
+  ['objectfrompool_0',['ObjectFromPool',['../struct_multi_object_pool_1_1_object_from_pool.html',1,'MultiObjectPool']]],
+  ['objectpool_1',['ObjectPool',['../class_multi_object_pool_1_1_object_pool.html',1,'MultiObjectPool']]],
+  ['objectpoolinfostorage_2',['ObjectPoolInfoStorage',['../class_object_pool_info_storage.html',1,'']]]
 ];

@@ -6,6 +6,7 @@ var dir_f13b41af88cf68434578284aaf699e39 =
     [ "CardDisplayer.cs", "_card_displayer_8cs.html", "_card_displayer_8cs" ],
     [ "Deck.cs", "_deck_8cs.html", "_deck_8cs" ],
     [ "DiceRollMenu.cs", "_dice_roll_menu_8cs.html", "_dice_roll_menu_8cs" ],
+    [ "Flasher.cs", "_flasher_8cs.html", "_flasher_8cs" ],
     [ "Hand.cs", "_hand_8cs.html", "_hand_8cs" ],
     [ "LocalPlayer.cs", "_local_player_8cs.html", "_local_player_8cs" ],
     [ "Map.cs", "_map_8cs.html", "_map_8cs" ],

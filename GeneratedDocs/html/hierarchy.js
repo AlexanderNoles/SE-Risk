@@ -12,6 +12,7 @@ var hierarchy =
       [ "AudioManagement", "class_audio_management.html", null ],
       [ "CardDisplayer", "class_card_displayer.html", null ],
       [ "DiceRollMenu", "class_dice_roll_menu.html", null ],
+      [ "Flasher", "class_flasher.html", null ],
       [ "Map", "class_map.html", null ],
       [ "MatchManager", "class_match_manager.html", null ],
       [ "MenuManagement", "class_menu_management.html", null ],

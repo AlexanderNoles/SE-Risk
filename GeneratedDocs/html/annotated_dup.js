@@ -9,6 +9,7 @@ var annotated_dup =
     [ "CardDisplayer", "class_card_displayer.html", "class_card_displayer" ],
     [ "Deck", "class_deck.html", null ],
     [ "DiceRollMenu", "class_dice_roll_menu.html", "class_dice_roll_menu" ],
+    [ "Flasher", "class_flasher.html", "class_flasher" ],
     [ "Hand", "class_hand.html", "class_hand" ],
     [ "LocalPlayer", "class_local_player.html", "class_local_player" ],
     [ "Map", "class_map.html", "class_map" ],

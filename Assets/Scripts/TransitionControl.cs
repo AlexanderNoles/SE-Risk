@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 [IntializeAtRuntime("TransitionCanvas")]
 /// <summary>
-///
+/// <c>TransitionControl</c> handles all screen transitions. It uses <c>IntializeAtRuntime</c> to load and instantiate the prefab containing the transition UI from Resources. Access point is RunTransition.
 /// </summary>
 public class TransitionControl : MonoBehaviour
 {

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hand_0',['Hand',['../class_hand.html',1,'']]]
+  ['gamewoninfo_0',['GameWonInfo',['../struct_match_manager_1_1_game_won_info.html',1,'MatchManager']]]
 ];

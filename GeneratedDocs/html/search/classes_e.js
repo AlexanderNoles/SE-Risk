@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['visualcard_0',['VisualCard',['../class_visual_card.html',1,'']]]
+  ['uimanagement_0',['UIManagement',['../class_u_i_management.html',1,'']]]
 ];

@@ -48,7 +48,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_a_i_player_8cs.html",
-"class_polygon_utility.html"
+"class_player_input_handler.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
