@@ -20716,7 +20716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools: {fileID: 2139969089}
   troopTransporter: {fileID: 1674417519}
-  cardDisplayer: {fileID: 0}
+  cardsButton: {fileID: 194500460}
 --- !u!4 &1493258053
 Transform:
   m_ObjectHideFlags: 0

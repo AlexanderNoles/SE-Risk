@@ -23,12 +23,14 @@ public class PlayerInputHandler : MonoBehaviour
     UIManagement pools;
     [SerializeField]
     TroopTransporter troopTransporter;
-    [SerializeField]
     CardDisplayer cardDisplayer;
     static PlayerInputHandler instance;
     Territory newTerritoryUnderMouse;
     Territory selectedTerritory = null;
     Territory toTerritory;
+    [SerializeField]
+    GameObject cardsButton;
+    bool flashed = false;
 
     private bool claimingCapital;
     
@@ -117,11 +119,20 @@ public class PlayerInputHandler : MonoBehaviour
                         }
                     }
                 }
-                if (localPlayer.GetTroopCount() == 0 && currentState != state.Zooming && localPlayer.GetHand().Count()<5)
+                if (localPlayer.GetTroopCount() == 0 && currentState != state.Zooming)
                 {
-                    currentTerritoryUnderMouse = null;
-                    currentPhase = turnPhase.Waiting;
-                    MatchManager.Attack();
+                    if (localPlayer.GetHand().Count() >= 5 && !flashed)
+                    {
+                        Flasher.Flash(Color.red,1f,cardsButton);
+                        flashed = true;
+                    }
+                    else if (localPlayer.GetHand().Count() < 5)
+                    {
+                        flashed = false;
+                        currentTerritoryUnderMouse = null;
+                        currentPhase = turnPhase.Waiting;
+                        MatchManager.Attack();
+                    }
                 }
                 else if (currentState == state.Selected)
                 {
@@ -317,6 +328,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         //precomputes the vlaues needed for the zoom and moves the troop labels behind the grey plane
         selectedTerritory = currentTerritoryUnderMouse;
+        AudioManagement.PlaySound("Whoosh");
         if (currentState == state.Zooming)
         {
             UIManagement.SetActiveGreyPlane(true);

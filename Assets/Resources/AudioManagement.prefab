@@ -51,5 +51,11 @@ MonoBehaviour:
   - name: Refuse
     actualSound: {fileID: 8300000, guid: 7b06a6387f967774ca1b583f3f0fd12e, type: 3}
     volume: 4
+  - name: Pop
+    actualSound: {fileID: 8300000, guid: 1b70efcd78ade3146b2b31f1a01326a5, type: 3}
+    volume: 0.2
+  - name: Whoosh
+    actualSound: {fileID: 8300000, guid: c5eeea9f010b5964aaa1f19ca6ad3132, type: 3}
+    volume: 4
   jukeBox: {fileID: 0}
   music: []

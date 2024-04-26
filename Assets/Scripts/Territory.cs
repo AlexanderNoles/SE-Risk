@@ -56,6 +56,7 @@ public class Territory : MonoBehaviour
     public void Inflate()
     {
         //increases the size of the territory slightly and brings it to the front of the sorting order
+        AudioManagement.PlaySound("Pop");
         transform.localScale = Vector3.one*inflationRatio;
         Vector3 newCentre = centrePoint * inflationRatio;
         Vector3 difference= newCentre-centrePoint;

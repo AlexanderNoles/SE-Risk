@@ -32,8 +32,6 @@ public class CardDisplayer : MonoBehaviour
     bool AbleToTurnInCards;
     Camera m_Camera;
     bool slidingSelected = false;
-    float timer;
-    bool timing;
     bool slidingTen = false;
     Vector3[] endPositions = new Vector3[10];
     bool tenCardsOnScreen = false;
@@ -122,20 +120,6 @@ public class CardDisplayer : MonoBehaviour
             {
                 slidingSelected = false;
                 selected.Clear();
-            }
-            if (timing)
-            {
-                timer += Time.deltaTime;
-                if (timer > 1)
-                {
-                    timing = false;
-                    timer = 0;
-                    for (int i = 0; i < gameObjects.Length; i++)
-                    {
-                        GameObject go = gameObjects[i];
-                        go.GetComponent<Image>().color = Color.black;
-                    }
-                }
             }
         }
     }
@@ -239,42 +223,52 @@ public class CardDisplayer : MonoBehaviour
     }
     public void OnCardClick(int index)
     {
-        if (cardsOnScreen && AbleToTurnInCards&& cards[index].GetDesign()!=Card.cardDesign.Empty && (!(player.GetTurnReset()&&!tenCardsOnScreen)))
+        if (cardsOnScreen && AbleToTurnInCards&& cards[index].GetDesign()!=Card.cardDesign.Empty)
         {
+            if ((player.GetTurnReset() && !tenCardsOnScreen))
+            {
+                foreach(GameObject go in gameObjects)
+                {
+                    Flasher.Flash(Color.red,1f,go);
+                }
+            }
+            else
+            {
                 if (selected.Contains<Card>(cards[index]))
                 {
                     gameObjects[index].GetComponent<Image>().color = Color.black;
-                selected.Remove(cards[index]);
+                    selected.Remove(cards[index]);
                 }
                 else
                 {
                     gameObjects[index].GetComponent<Image>().color = Color.green;
-                selected.Add(cards[index]);
+                    selected.Add(cards[index]);
                 }
-            if (selected.Count == 3)
-            {
-                if (Hand.IsArrayAValidSet(selected))
+                if (selected.Count == 3)
                 {
-                    slidingSelected = true;
-                    executionTime = 0;
-                    CalculateEndPositions();
-                    player.SetTroopCount(player.GetTroopCount()+Hand.NumberOfTroopsForSet(player,selected));
-                    Hand.IncrementTurnInCount();
-                    foreach (Card card in selected)
+                    if (Hand.IsArrayAValidSet(selected))
                     {
-                        player.GetHand().RemoveCard(card);
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < gameObjects.Length; i++)
-                    {
-                        if (selected.Contains(cards[i]))
+                        slidingSelected = true;
+                        executionTime = 0;
+                        CalculateEndPositions();
+                        player.SetTroopCount(player.GetTroopCount() + Hand.NumberOfTroopsForSet(player, selected));
+                        Hand.IncrementTurnInCount();
+                        foreach (Card card in selected)
                         {
-                            GameObject go = gameObjects[i];
-                            go.GetComponent<Image>().color = Color.red;
-                            selected.Remove(cards[i]);
-                            timing = true;
+                            player.GetHand().RemoveCard(card);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < gameObjects.Length; i++)
+                        {
+                            if (selected.Contains(cards[i]))
+                            {
+                                GameObject go = gameObjects[i];
+                                go.GetComponent<Image>().color = Color.black;
+                                selected.Remove(cards[i]);
+                                Flasher.Flash(Color.red, 1f, go);
+                            }
                         }
                     }
                 }

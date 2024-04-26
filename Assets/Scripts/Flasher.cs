@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,34 +9,39 @@ public class Flasher : MonoBehaviour
     Image flashBox;
     Color flashColor;
     float flashDuration;
-    public void Flash(Color color, float flashDuration)
+    GameObject passedGameObject;
+    static Flasher instance;
+
+    public void Start()
     {
-        flashColor = color;
-        this.flashDuration = flashDuration;
-        StartCoroutine(nameof(FlashFade));
+        instance = this;
+    }
+    public static void Flash(Color color, float flashDuration,GameObject go)
+    {
+        instance.flashColor = color;
+        instance.flashDuration = flashDuration;
+        instance.passedGameObject = go;
+        instance.StartCoroutine(nameof(FlashFade));
     }
     public IEnumerator FlashFade()
     {
         GameObject go = new GameObject();
-        go.transform.parent = this.transform.parent;
-        go.transform.position = this.transform.position;
-        go.transform.rotation = this.transform.rotation;
+        go.transform.parent = passedGameObject.transform.parent;
+        go.transform.position = passedGameObject.transform.position;
+        go.transform.rotation = passedGameObject.transform.rotation;
 
-        RectTransform transform = (RectTransform)gameObject.transform;
+        RectTransform transform = (RectTransform)passedGameObject.transform;
         go.transform.localScale = new Vector3(transform.rect.width*transform.localScale.x / 100, transform.rect.height * transform.localScale.y / 100, 1);
         go.transform.position += Vector3.forward*5;
         go.layer = 5;
 
         flashBox = go.AddComponent<Image>();
         flashBox.color = flashColor;
-        flashBox.canvasRenderer.SetAlpha(0f);
+        flashBox.canvasRenderer.SetAlpha(1f);
 
-        flashBox.CrossFadeAlpha(1,flashDuration/2,false);
-        yield return new WaitForSeconds(flashDuration/4);
+        flashBox.CrossFadeAlpha(0,flashDuration,false);
         AudioManagement.PlaySound("Refuse");
-        yield return new WaitForSeconds(flashDuration / 4);
-        flashBox.CrossFadeAlpha(0f, flashDuration / 2, false);
-        yield return new WaitForSeconds(flashDuration / 2);
+        yield return new WaitForSeconds(flashDuration);
 
         Destroy(go);
     }
