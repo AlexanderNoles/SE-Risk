@@ -11,6 +11,15 @@ public class MatchManager : MonoBehaviour
     {
         public string winnerName;
         public string winnerColor;
+
+        public bool localPlayerWon;
+
+        public GameWonInfo(bool lpw)
+        {
+            localPlayerWon = lpw;
+            winnerName = "";
+            winnerColor = "";
+        }
     }
 
     private static GameWonInfo gameWonInfo;
@@ -258,7 +267,7 @@ public class MatchManager : MonoBehaviour
             else
             {
                 //Create game won info, to be used by game won screen
-                gameWonInfo = new GameWonInfo();
+                gameWonInfo = new GameWonInfo(!instance.playerList[0].IsDead());
                 if (current != null)
                 {
                     gameWonInfo.winnerName = current.GetColorName();

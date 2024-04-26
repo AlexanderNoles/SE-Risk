@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['gamewoninfo_0',['GameWonInfo',['../struct_match_manager_1_1_game_won_info.html',1,'MatchManager']]],
+  ['gamewoninfo_0',['GameWonInfo',['../struct_match_manager_1_1_game_won_info.html',1,'MatchManager.GameWonInfo'],['../struct_match_manager_1_1_game_won_info.html#aab6e1653798941e2972a945a8d4ad62f',1,'MatchManager.GameWonInfo.GameWonInfo()']]],
   ['generateasneeded_1',['generateAsNeeded',['../class_multi_object_pool_1_1_object_pool.html#ac05953ab655574711a2d381262007381',1,'MultiObjectPool::ObjectPool']]],
   ['generateobject_2',['GenerateObject',['../class_multi_object_pool_1_1_object_pool.html#a7e40f30771320ff1742b9e45b4b3e3b9',1,'MultiObjectPool::ObjectPool']]],
   ['generateonstart_3',['GenerateOnStart',['../class_multi_object_pool.html#a93f3b24894d9682f2c8517a998ebce8a',1,'MultiObjectPool']]],

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['name_0',['name',['../class_audio_management_1_1_sound.html#a791e96ed811ee39cb0e2c1239bf74042',1,'AudioManagement.Sound.name'],['../class_audio_management_1_1_music.html#a5fe2dde463a8fb77d11c128bb47ccf1f',1,'AudioManagement.Music.name'],['../class_multi_object_pool_1_1_object_pool.html#ad3629ee543e213fb1682c24df515d3ac',1,'MultiObjectPool.ObjectPool.name']]],
-  ['normalimage_1',['normalImage',['../class_play_options_management.html#af41e0fa4d8ec09100f2d3d8b4c872136',1,'PlayOptionsManagement']]],
-  ['numberofaiplayers_2',['numberOfAIPlayers',['../struct_play_options_management_1_1_play_options.html#ad3a795c274c7c0d3057bbe1824c8a84f',1,'PlayOptionsManagement::PlayOptions']]]
+  ['maskedui_0',['maskedUI',['../class_transition_control.html#ad44e7d3f9b27e4100d4e497baa2e9a54',1,'TransitionControl']]],
+  ['menuobjects_1',['menuObjects',['../class_menu_management.html#afab78d0513024332839d9b26a952bc42',1,'MenuManagement']]],
+  ['mode_2',['mode',['../struct_play_options_management_1_1_play_options.html#ad6c6f3f2df358308a9c8e2ebaacf3d4e',1,'PlayOptionsManagement::PlayOptions']]],
+  ['music_3',['music',['../class_audio_management_1_1_music.html#ad218795c0a539d366bd6422c206d1477',1,'AudioManagement.Music.music'],['../class_audio_management.html#acf93a8b36b8f18ffc89f37367bd07409',1,'AudioManagement.music']]]
 ];

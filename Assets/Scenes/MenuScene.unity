@@ -2911,6 +2911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colour: 0
+  KilledAPlayerThisTurn: 0
 --- !u!4 &173462940
 Transform:
   m_ObjectHideFlags: 0
@@ -6085,6 +6086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colour: 2
+  KilledAPlayerThisTurn: 0
 --- !u!4 &493992205
 Transform:
   m_ObjectHideFlags: 0
@@ -6410,6 +6412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colour: 4
+  KilledAPlayerThisTurn: 0
 --- !u!4 &565658940
 Transform:
   m_ObjectHideFlags: 0
@@ -12897,7 +12900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1118382031
 Transform:
   m_ObjectHideFlags: 0
@@ -14602,6 +14605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colour: 1
+  KilledAPlayerThisTurn: 0
 --- !u!4 &1246681397
 Transform:
   m_ObjectHideFlags: 0
@@ -20755,6 +20759,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winnerText: {fileID: 1768045939}
+  title: {fileID: 1669123136}
+  backing: {fileID: 647492726}
 --- !u!1 &1780558261
 GameObject:
   m_ObjectHideFlags: 0
@@ -21470,6 +21476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colour: 3
+  KilledAPlayerThisTurn: 0
 --- !u!4 &1801881521
 Transform:
   m_ObjectHideFlags: 0
@@ -24900,6 +24907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colour: 5
+  KilledAPlayerThisTurn: 0
 --- !u!4 &2054263308
 Transform:
   m_ObjectHideFlags: 0
