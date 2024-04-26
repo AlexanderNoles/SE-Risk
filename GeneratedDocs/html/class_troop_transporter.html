@@ -98,6 +98,9 @@ $(function(){initNavTree('class_troop_transporter.html',''); initResizable(); })
   <div class="headertitle"><div class="title">TroopTransporter Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Controls the transport of troops from one territory to another. This includes controlling the troop transporter UI.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for TroopTransporter:</div>
 <div class="dyncontent">
@@ -108,19 +111,22 @@ Inheritance diagram for TroopTransporter:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a037dc8d34deb8a89cdf114d4aeedbe92" id="r_a037dc8d34deb8a89cdf114d4aeedbe92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a037dc8d34deb8a89cdf114d4aeedbe92">UpdateTroopCounts</a> (int count=1)</td></tr>
+<tr class="memdesc:a037dc8d34deb8a89cdf114d4aeedbe92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adjusts the troops of both territories by some amount. Decreasing the from territory and increasing the to territory. A negative number will do the inverse.  <br /></td></tr>
 <tr class="separator:a037dc8d34deb8a89cdf114d4aeedbe92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7aade3644d617a4c59282ce7fa81801" id="r_af7aade3644d617a4c59282ce7fa81801"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7aade3644d617a4c59282ce7fa81801">SetupTroopTransporter</a> (<a class="el" href="class_territory.html">Territory</a> toTerritory, <a class="el" href="class_territory.html">Territory</a> fromTerritory)</td></tr>
+<tr class="memdesc:af7aade3644d617a4c59282ce7fa81801"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the troop transporter UI. This is only run when a player owns one of the territories.  <br /></td></tr>
 <tr class="separator:af7aade3644d617a4c59282ce7fa81801"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab7afa6aea44e390c09af3fa951401c5" id="r_aab7afa6aea44e390c09af3fa951401c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab7afa6aea44e390c09af3fa951401c5">SetupTroopTransporter</a> (<a class="el" href="class_territory.html">Territory</a> toTerritory, int fromTroopCount)</td></tr>
+<tr class="memdesc:aab7afa6aea44e390c09af3fa951401c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the troop transporter UI. This is only run when a player owns one of the territories. Used when there is no from territory, such as during the deploy phase.  <br /></td></tr>
 <tr class="separator:aab7afa6aea44e390c09af3fa951401c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8b2dbfb9942a62466cfbcc6c8451409" id="r_af8b2dbfb9942a62466cfbcc6c8451409"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8b2dbfb9942a62466cfbcc6c8451409">FinaliseTerritoryTroopCounts</a> ()</td></tr>
+<tr class="memdesc:af8b2dbfb9942a62466cfbcc6c8451409"><td class="mdescLeft">&#160;</td><td class="mdescRight">Automatically runs at the end to troop transfer and in shows that the territories have the correct amount of troops.  <br /></td></tr>
 <tr class="separator:af8b2dbfb9942a62466cfbcc6c8451409"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53348c6c2abce7ccf8b4038c1fe0421c" id="r_a53348c6c2abce7ccf8b4038c1fe0421c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53348c6c2abce7ccf8b4038c1fe0421c">Update</a> ()</td></tr>
-<tr class="separator:a53348c6c2abce7ccf8b4038c1fe0421c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_troop_transporter_8cs_source.html#l00005">5</a> of file <a class="el" href="_troop_transporter_8cs_source.html">TroopTransporter.cs</a>.</p>
+<div class="textblock"><p>Controls the transport of troops from one territory to another. This includes controlling the troop transporter UI. </p>
+
+<p class="definition">Definition at line <a class="el" href="_troop_transporter_8cs_source.html#l00008">8</a> of file <a class="el" href="_troop_transporter_8cs_source.html">TroopTransporter.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="af8b2dbfb9942a62466cfbcc6c8451409" name="af8b2dbfb9942a62466cfbcc6c8451409"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af8b2dbfb9942a62466cfbcc6c8451409">&#9670;&#160;</a></span>FinaliseTerritoryTroopCounts()</h2>
@@ -137,7 +143,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_troop_transporter_8cs_source.html#l00054">54</a> of file <a class="el" href="_troop_transporter_8cs_source.html">TroopTransporter.cs</a>.</p>
+<p>Automatically runs at the end to troop transfer and in shows that the territories have the correct amount of troops. </p>
+<dl class="section return"><dt>Returns</dt><dd>The amount of troops left to deploy or zero if not in deploy phase.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_troop_transporter_8cs_source.html#l00075">75</a> of file <a class="el" href="_troop_transporter_8cs_source.html">TroopTransporter.cs</a>.</p>
 
 </div>
 </div>
@@ -160,7 +169,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_troop_transporter_8cs_source.html#l00041">41</a> of file <a class="el" href="_troop_transporter_8cs_source.html">TroopTransporter.cs</a>.</p>
+<p>Setup the troop transporter UI. This is only run when a player owns one of the territories. Used when there is no from territory, such as during the deploy phase. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">toTerritory</td><td>The territory troops are being transferred to.</td></tr>
+    <tr><td class="paramname">fromTroopCount</td><td>The maximun amount of troops that can be transported to that territory.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_troop_transporter_8cs_source.html#l00058">58</a> of file <a class="el" href="_troop_transporter_8cs_source.html">TroopTransporter.cs</a>.</p>
 
 </div>
 </div>
@@ -183,26 +201,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_troop_transporter_8cs_source.html#l00028">28</a> of file <a class="el" href="_troop_transporter_8cs_source.html">TroopTransporter.cs</a>.</p>
+<p>Setup the troop transporter UI. This is only run when a player owns one of the territories. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">toTerritory</td><td>The territory troops are being transferred to.</td></tr>
+    <tr><td class="paramname">fromTerritory</td><td>The territory troops are being transferred from.</td></tr>
+  </table>
+  </dd>
+</dl>
 
-</div>
-</div>
-<a id="a53348c6c2abce7ccf8b4038c1fe0421c" name="a53348c6c2abce7ccf8b4038c1fe0421c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53348c6c2abce7ccf8b4038c1fe0421c">&#9670;&#160;</a></span>Update()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TroopTransporter.Update </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_troop_transporter_8cs_source.html#l00070">70</a> of file <a class="el" href="_troop_transporter_8cs_source.html">TroopTransporter.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_troop_transporter_8cs_source.html#l00040">40</a> of file <a class="el" href="_troop_transporter_8cs_source.html">TroopTransporter.cs</a>.</p>
 
 </div>
 </div>
@@ -221,7 +229,15 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_troop_transporter_8cs_source.html#l00020">20</a> of file <a class="el" href="_troop_transporter_8cs_source.html">TroopTransporter.cs</a>.</p>
+<p>Adjusts the troops of both territories by some amount. Decreasing the from territory and increasing the to territory. A negative number will do the inverse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">count</td><td>The adjustment to be made. Default value is +1.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_troop_transporter_8cs_source.html#l00027">27</a> of file <a class="el" href="_troop_transporter_8cs_source.html">TroopTransporter.cs</a>.</p>
 
 </div>
 </div>

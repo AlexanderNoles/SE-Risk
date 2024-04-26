@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+/// <summary>
+/// Controls the transport of troops from one territory to another. This includes controlling the troop transporter UI.
+/// </summary>
 public class TroopTransporter : MonoBehaviour
 {
     [SerializeField]
@@ -17,6 +20,10 @@ public class TroopTransporter : MonoBehaviour
     int fromTroopCount;
     int toTroopCount;
     float holdTime;
+    /// <summary>
+    /// Adjusts the troops of both territories by some amount. Decreasing the from territory and increasing the to territory. A negative number will do the inverse. 
+    /// </summary>
+    /// <param name="count">The adjustment to be made. Default value is +1.</param>
     public void UpdateTroopCounts(int count=1)            
     {
         //updates the display and local variables to current troop distribution
@@ -25,6 +32,11 @@ public class TroopTransporter : MonoBehaviour
         fromTroopDisplay.text = fromTroopCount.ToString();
         toTroopDisplay.text = toTroopCount.ToString();
     }
+    /// <summary>
+    /// Setup the troop transporter UI. This is only run when a player owns one of the territories.
+    /// </summary>
+    /// <param name="toTerritory">The territory troops are being transferred to.</param>
+    /// <param name="fromTerritory">The territory troops are being transferred from.</param>
     public void SetupTroopTransporter(Territory toTerritory, Territory fromTerritory)
     {
         //runs when a territory is selected and initialises some variables for upcoming operations
@@ -38,6 +50,11 @@ public class TroopTransporter : MonoBehaviour
         fromTerritoryName.SetText(fromTerritory.name);
         toTerritoryName.SetText(toTerritory.name);
     }
+    /// <summary>
+    /// Setup the troop transporter UI. This is only run when a player owns one of the territories. Used when there is no from territory, such as during the deploy phase.
+    /// </summary>
+    /// <param name="toTerritory">The territory troops are being transferred to.</param>
+    /// <param name="fromTroopCount">The maximun amount of troops that can be transported to that territory.</param>
     public void SetupTroopTransporter(Territory toTerritory, int fromTroopCount)
     {
         //same as above but for when you are placing new troops onto the board
@@ -51,6 +68,10 @@ public class TroopTransporter : MonoBehaviour
         fromTerritoryName.SetText("Deploy");
         toTerritoryName.SetText(toTerritory.name);
     }
+    /// <summary>
+    /// Automatically runs at the end to troop transfer and in shows that the territories have the correct amount of troops.
+    /// </summary>
+    /// <returns>The amount of troops left to deploy or zero if not in deploy phase.</returns>
     public int FinaliseTerritoryTroopCounts()
     {
         //runs at the end of the troop transfer and ensures the territories hold the correct number of troops
@@ -67,7 +88,7 @@ public class TroopTransporter : MonoBehaviour
         }
     }
 
-    public void Update()
+    private void Update()
     {
         if (Input.GetKey(KeyCode.RightArrow)|| Input.GetKey(KeyCode.D))
         {

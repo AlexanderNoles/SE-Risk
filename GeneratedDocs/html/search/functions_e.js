@@ -30,7 +30,7 @@ var searchData=
   ['spawn_3c_20t_20_3e_27',['Spawn&lt; T &gt;',['../class_u_i_management.html#a8db68ebe36abd1a53aeb9538b7b3a471',1,'UIManagement']]],
   ['spawnobject_28',['SpawnObject',['../class_multi_object_pool.html#ae7c84587b002b0423f82cfd26ed3e31c',1,'MultiObjectPool.SpawnObject(int poolIndex, Vector3 position)'],['../class_multi_object_pool.html#a92c257f03f24062c87034741975d86b3',1,'MultiObjectPool.SpawnObject(Enum enumEntry, Vector3 position)']]],
   ['spawnobject_3c_20t_20_3e_29',['SpawnObject&lt; T &gt;',['../class_multi_object_pool.html#a165b5b301cd927b98f50a2f2a991993e',1,'MultiObjectPool.SpawnObject&lt; T &gt;(int poolIndex, Vector3 position)'],['../class_multi_object_pool.html#a012f32d297cb6c71d2c3c8a4b68e0a8a',1,'MultiObjectPool.SpawnObject&lt; T &gt;(Enum enumEntry, Vector3 position)']]],
-  ['start_30',['Start',['../class_card_displayer.html#a9a57f28fa7c40729ffe5778afe3a201b',1,'CardDisplayer.Start()'],['../class_map.html#aa05a1b54e72d4d93633e139bd8b44819',1,'Map.Start()'],['../class_match_manager.html#adc74f7f0c5eaa4a717bf634b7aa9444d',1,'MatchManager.Start()'],['../class_visual_card.html#a666b6b9cd0bdb88f17ba1a2450dd6c29',1,'VisualCard.Start()']]],
+  ['start_30',['Start',['../class_card_displayer.html#a9a57f28fa7c40729ffe5778afe3a201b',1,'CardDisplayer.Start()'],['../class_map.html#aa05a1b54e72d4d93633e139bd8b44819',1,'Map.Start()'],['../class_match_manager.html#adc74f7f0c5eaa4a717bf634b7aa9444d',1,'MatchManager.Start()']]],
   ['switchplayer_31',['SwitchPlayer',['../class_match_manager.html#af05db91055253533d230d8dec666d4c4',1,'MatchManager']]],
   ['switchplayersetup_32',['SwitchPlayerSetup',['../class_match_manager.html#a0fd6f89e2bedaf5c20121bab64dd0be1',1,'MatchManager']]]
 ];
