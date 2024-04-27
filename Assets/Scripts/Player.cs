@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Territory;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Player : MonoBehaviour
@@ -34,8 +35,11 @@ public class Player : MonoBehaviour
     private bool hasBeenReset;
     protected bool turnReset;
     public bool KilledAPlayerThisTurn = false;
+    private bool placingFirstTerritory = true;
+    private int difficulty = 1;
     public virtual void ResetPlayer()
     {
+        placingFirstTerritory = true;
         hand = new Hand();
         territoryTakenThisTurn = false;
         hasBeenReset = true;
@@ -50,15 +54,113 @@ public class Player : MonoBehaviour
         this.territories = territories;
         StartCoroutine(nameof(SetupWait), troopCount);
     }
+
+    public Territory EvaluateCapitalPlacement()
+    {
+        ShuffleTerritoryList();
+        Territory deployTerritory = territories[Random.Range(0, territories.Count)];
+        foreach (Territory territory in territories)
+        {
+            if(territory.GetOwner() == null)
+            {
+                if (deployTerritory.GetNeighbours().Count-Random.Range(0,difficulty) > territory.GetNeighbours().Count)
+                {
+                    deployTerritory = territory;
+                }
+            }
+        }
+        return deployTerritory;
+    }
+
+    public void ShuffleTerritoryList()
+    {
+        List<Territory> shuffledTerritories = new List<Territory>();
+        for (int i = 0; i < territories.Count; i++)
+        {
+            int rndIndex = Random.Range(0, territories.Count);
+            shuffledTerritories.Add(territories[rndIndex]);
+            territories.Remove(territories[rndIndex]);
+        }
+        territories = shuffledTerritories;
+    }
+    public Territory EvaluateNextTerritory()
+    {
+        List<Territory> ownedTerritories = Map.GetTerritoriesOwnedByPlayer(this);
+        Territory.Continent continent = Map.GetContinentClosestToCaptured(this);
+        ShuffleTerritoryList();
+        foreach (Territory territory in ownedTerritories)
+        {
+                foreach (Territory neighbor in territory.GetNeighbours())
+                {
+                    if (neighbor.GetContinent() == continent && neighbor.GetOwner() == null)
+                    {
+                        Debug.Log("Hi");
+                        return neighbor;
+                    }
+                }
+        }
+        foreach (Territory territory in Map.GetTerritories())
+        {
+            if (territory.GetOwner() == null)
+            {
+                return territory;
+            }
+        }
+        Debug.Log("Could not find next territory!");
+        return null;
+    }
+
+    public Territory EvaluateNextTroopPlacement()
+    {
+        Territory minTroopTerritory = territories[0];
+        ShuffleTerritoryList();
+        foreach (Territory territory in territories)
+        {
+                foreach (Territory neighbor in territory.GetNeighbours())
+                {
+                    if (neighbor.GetOwner() != minTroopTerritory.GetOwner() && territory.GetCurrentTroops()<minTroopTerritory.GetCurrentTroops())
+                    {
+                        minTroopTerritory= territory;
+                    }
+                }
+        }
+        return minTroopTerritory;
+    }
     private IEnumerator SetupWait()
     {
         yield return new WaitForSecondsRealtime(turnDelay);
-        Territory deployTerriory = territories[Random.Range(0, territories.Count)];
-        deployTerriory.SetCurrentTroops(1 + deployTerriory.GetCurrentTroops());
-        deployTerriory.SetOwner(this);
+        Territory deployTerritory;
+        if (placingFirstTerritory)
+        {
+            deployTerritory = EvaluateCapitalPlacement();
+            placingFirstTerritory = false;
+        }
+        else if (!AllTerritoriesClaimed())
+        {
+            deployTerritory = EvaluateNextTerritory();
+        }
+        else
+        {
+            deployTerritory = EvaluateNextTroopPlacement();
+        }
+        deployTerritory.SetCurrentTroops(1 + deployTerritory.GetCurrentTroops());
+        deployTerritory.SetOwner(this);
         MatchManager.SwitchPlayerSetup();
     }
 
+    private bool AllTerritoriesClaimed()
+    {
+        bool allTerritoriesClaimed= true;
+        foreach(Territory territory in territories)
+        {
+            if (territory.GetOwner() == null)
+            {
+                allTerritoriesClaimed = false;
+                break;
+            }
+        }
+        return allTerritoriesClaimed;
+    }
     public virtual void ClaimCapital(List<Territory> territories)
     {
         this.territories = territories;
@@ -68,7 +170,7 @@ public class Player : MonoBehaviour
     private IEnumerator ClaimWait()
     {
         yield return new WaitForSecondsRealtime(turnDelay);
-        Territory capital = territories[Random.Range(0, territories.Count)];
+        Territory capital = EvaluateCapitalPlacement();
         capital.SetCurrentTroops(1);
         capital.SetOwner(this);
 

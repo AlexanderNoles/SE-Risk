@@ -170,7 +170,7 @@ public class MatchManager : MonoBehaviour
     public static void Deploy()
     {
         state = TurnState.Deploying;
-        instance.currentPlayerTerritories = Map.TerritoriesOwnedByPlayer(instance.playerList[instance.currentTurnIndex],out int troopCount);
+        instance.currentPlayerTerritories = Map.TerritoriesOwnedByPlayerWorth(instance.playerList[instance.currentTurnIndex],out int troopCount);
         if(instance.currentPlayerTerritories.Count == 0)
         {
             PlayerInfoHandler.UpdateInfo();

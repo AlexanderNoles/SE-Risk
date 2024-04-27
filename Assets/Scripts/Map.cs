@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Territory;
 
 public class Map : MonoBehaviour
 {
@@ -184,7 +185,7 @@ public class Map : MonoBehaviour
         UIManagement.RefreshRollOutput();
     }
     public static List<Territory> GetTerritories() { return instance.territories; }
-    public static List<Territory> TerritoriesOwnedByPlayer(Player player, out int troopCount)
+    public static List<Territory> TerritoriesOwnedByPlayerWorth(Player player, out int troopCount)
     {
         List<Territory> ownedTerritories = new List<Territory>();
         troopCount = 0;
@@ -202,6 +203,42 @@ public class Map : MonoBehaviour
         if (territoryWorth < 3) { troopCount += 3; }
         else {  troopCount += territoryWorth; }
         return ownedTerritories;
+    }
+
+    public static List<Territory> GetTerritoriesOwnedByPlayer(Player player)
+    {
+        List<Territory> ownedTerritories = new List<Territory>();
+        foreach (Territory.Continent continent in instance.continents.Keys)
+        {
+            foreach (Territory territory in instance.continents[continent])
+            {
+                if (territory.GetOwner() == player) { ownedTerritories.Add(territory); }
+            }
+        }
+        return ownedTerritories;
+    }
+    public static Continent GetContinentClosestToCaptured(Player player)
+    {
+        bool continentFullyOwned = true;
+        int territoriesLeft = 0;
+        int bestTerritoriesLeft = 1000;
+        Continent bestContinent = Continent.Asia;
+        foreach(Continent continent in instance.continents.Keys)
+        {
+            foreach (Territory territory in instance.continents[continent])
+            {
+                if (territory.GetOwner() == null) { continentFullyOwned = false; }
+                if (territory.GetOwner()!=player) { territoriesLeft++; }
+            }
+            if ((territoriesLeft < bestTerritoriesLeft) && !continentFullyOwned)
+            {
+                bestTerritoriesLeft = territoriesLeft;
+                bestContinent = continent;
+            }
+            territoriesLeft = 0;
+            continentFullyOwned = false;
+        }
+        return bestContinent;
     }
     public static List<Territory> GetUnclaimedTerritories(Player player, out List<Territory> playerTerritories )
     {
