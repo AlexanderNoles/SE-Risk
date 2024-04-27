@@ -47,6 +47,7 @@ public class LocalPlayer : Player
     {
         if (attackResult == Map.AttackResult.Won)
         {
+            AudioManagement.PlaySound("Territory Capture");
             territoryTakenThisTurn = true;
         }
         PlayerInputHandler.OnAttackEnd(attackResult, attacker, defender);

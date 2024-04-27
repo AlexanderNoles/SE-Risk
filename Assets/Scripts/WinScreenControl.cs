@@ -27,6 +27,7 @@ public class WinScreenControl : MonoBehaviour
 
         winnerText.text = "GAME WON BY <color=" + info.winnerColor + ">" + info.winnerName + "</color>";
         title.text = info.localPlayerWon ? "YOU WON!" : "YOU LOST!";
+        AudioManagement.PlaySound(info.localPlayerWon? "Victory":"Loss");
         backing.color = info.localPlayerWon ? 
             new Color(0.764151f, 0.7370255f, 0.4000979f) : 
             new Color(0.4f, 0.4681f, 0.7647f);

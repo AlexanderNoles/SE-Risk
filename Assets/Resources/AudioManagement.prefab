@@ -53,9 +53,30 @@ MonoBehaviour:
     volume: 4
   - name: Pop
     actualSound: {fileID: 8300000, guid: 1b70efcd78ade3146b2b31f1a01326a5, type: 3}
-    volume: 0.2
-  - name: Whoosh
-    actualSound: {fileID: 8300000, guid: c5eeea9f010b5964aaa1f19ca6ad3132, type: 3}
+    volume: 0.5
+  - name: Attack
+    actualSound: {fileID: 8300000, guid: 21dbc77612b640842993d5ee90254975, type: 3}
+    volume: 4
+  - name: Card Select
+    actualSound: {fileID: 8300000, guid: 370744c45fd835e46b3e9dcbeba76f83, type: 3}
+    volume: 4
+  - name: Victory
+    actualSound: {fileID: 8300000, guid: c1ecbf80d6b8a044d814edf4a330b86c, type: 3}
+    volume: 4
+  - name: Loss
+    actualSound: {fileID: 8300000, guid: 6e7d815a923ec394faa722652b779022, type: 3}
+    volume: 4
+  - name: Place
+    actualSound: {fileID: 8300000, guid: f7ec2d9e07252a74e8aa1dbd99ed00a3, type: 3}
+    volume: 4
+  - name: Transfer Click
+    actualSound: {fileID: 8300000, guid: 74ace9484caff564d823da02689b7d25, type: 3}
+    volume: 4
+  - name: Territory Capture
+    actualSound: {fileID: 8300000, guid: b407b3e1ebf192b4b8c102d1a0a3e595, type: 3}
+    volume: 4
+  - name: Zoom
+    actualSound: {fileID: 8300000, guid: 7066d47f0b61b7547bfcfe220ca7c7c9, type: 3}
     volume: 4
   jukeBox: {fileID: 0}
   music: []

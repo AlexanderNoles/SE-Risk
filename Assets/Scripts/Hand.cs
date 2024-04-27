@@ -46,6 +46,7 @@ public class Hand
     List<Card> list;
     public static int NumberOfTroopsForSet(Player player, List<Card> set)
     {
+        PlayerInfoHandler.UpdateInfo();
         foreach(Card card in set)
         {
             if(card.GetTerritory().GetOwner() == player)

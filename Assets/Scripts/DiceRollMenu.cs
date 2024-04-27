@@ -96,7 +96,7 @@ public class DiceRollMenu : MonoBehaviour
             if (maxDice == minDice || Input.GetKeyDown(KeyCode.Return) || Input.GetMouseButtonDown(0))
             {
                 int attackingDice, defendingDice;
-
+                AudioManagement.PlaySound("Attack");
                 //Get dice for both the player and whoever they are attacking
                 if (playerIsAttacker)
                 {

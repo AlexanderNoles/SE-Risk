@@ -27,6 +27,7 @@ public class TroopTransporter : MonoBehaviour
     public void UpdateTroopCounts(int count=1)            
     {
         //updates the display and local variables to current troop distribution
+        AudioManagement.PlaySound("Transfer Click");
         fromTroopCount -= count;
         toTroopCount += count;
         fromTroopDisplay.text = fromTroopCount.ToString();

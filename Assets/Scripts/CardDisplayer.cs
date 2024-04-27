@@ -234,6 +234,7 @@ public class CardDisplayer : MonoBehaviour
             }
             else
             {
+                AudioManagement.PlaySound("Card Select");
                 if (selected.Contains<Card>(cards[index]))
                 {
                     gameObjects[index].GetComponent<Image>().color = Color.black;
@@ -251,12 +252,12 @@ public class CardDisplayer : MonoBehaviour
                         slidingSelected = true;
                         executionTime = 0;
                         CalculateEndPositions();
-                        player.SetTroopCount(player.GetTroopCount() + Hand.NumberOfTroopsForSet(player, selected));
-                        Hand.IncrementTurnInCount();
                         foreach (Card card in selected)
                         {
                             player.GetHand().RemoveCard(card);
                         }
+                        player.SetTroopCount(player.GetTroopCount() + Hand.NumberOfTroopsForSet(player, selected));
+                        Hand.IncrementTurnInCount();
                     }
                     else
                     {

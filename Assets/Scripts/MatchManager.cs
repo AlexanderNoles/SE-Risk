@@ -53,6 +53,13 @@ public class MatchManager : MonoBehaviour
         return instance.troopDeployCount;
     }
 
+    public PlayerInfoHandler infoHandler;
+
+    private static bool inSetup = false;
+    public static bool InSetup()
+    {
+        return inSetup;
+    }
 
     public void Awake()
     {
@@ -79,6 +86,9 @@ public class MatchManager : MonoBehaviour
         {
             player.ResetPlayer();
         }
+
+        inSetup = true;
+        infoHandler.SetPlayers(playerList);
 
         //Reset match
         troopDeployCount = StartingTroopCounts[playerList.Count];
@@ -152,6 +162,7 @@ public class MatchManager : MonoBehaviour
         else
         {
             instance.turnNumber = 1;
+            inSetup = false;
             Deploy();
             return;
         }
@@ -162,6 +173,7 @@ public class MatchManager : MonoBehaviour
         instance.currentPlayerTerritories = Map.TerritoriesOwnedByPlayer(instance.playerList[instance.currentTurnIndex],out int troopCount);
         if(instance.currentPlayerTerritories.Count == 0)
         {
+            PlayerInfoHandler.UpdateInfo();
             instance.playerList.Remove(instance.playerList[instance.currentTurnIndex]);
             instance.currentTurnIndex--;
             EndTurn(true);
@@ -187,7 +199,7 @@ public class MatchManager : MonoBehaviour
     {
         if (currentTurnIndex == playerList.Count - 1|| currentTurnIndex<0) 
         { 
-            currentTurnIndex = 0;
+            currentTurnIndex = 1;
             turnNumber++; 
         } 
         else 
@@ -201,6 +213,7 @@ public class MatchManager : MonoBehaviour
         if (!playerRemoved)
         {
             instance.playerList[instance.currentTurnIndex].OnTurnEnd();
+            PlayerInfoHandler.UpdateInfo();
         }
 
         instance.SwitchPlayer();

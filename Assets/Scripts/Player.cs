@@ -284,8 +284,7 @@ public class Player : MonoBehaviour
 
     public bool IsDead()
     {
-        Debug.Log(territories.Count);
-        return territories.Count <= 0;
+        return !MatchManager.InSetup() && territories.Count <= 0;
     }
 
     public void Killed(Player killed)
@@ -295,6 +294,8 @@ public class Player : MonoBehaviour
         {
             hand.AddCard(killedHand.GetCard(i));
         }
+
+        PlayerInfoHandler.UpdateInfo();
         KilledAPlayerThisTurn = true;
     }
 

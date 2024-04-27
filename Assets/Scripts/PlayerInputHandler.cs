@@ -91,6 +91,7 @@ public class PlayerInputHandler : MonoBehaviour
                         if (localPlayer.GetTerritories().Contains(currentTerritoryUnderMouse) && selectedTerritory == null)
                         {
                             currentTerritoryUnderMouse.SetCurrentTroops(1 + currentTerritoryUnderMouse.GetCurrentTroops());
+                            AudioManagement.PlaySound("Place");
                             currentTerritoryUnderMouse.SetOwner(localPlayer);
                             currentPhase = turnPhase.Waiting;
 
@@ -328,9 +329,9 @@ public class PlayerInputHandler : MonoBehaviour
     {
         //precomputes the vlaues needed for the zoom and moves the troop labels behind the grey plane
         selectedTerritory = currentTerritoryUnderMouse;
-        AudioManagement.PlaySound("Whoosh");
         if (currentState == state.Zooming)
         {
+            AudioManagement.PlaySound("Zoom");
             UIManagement.SetActiveGreyPlane(true);
             Vector3 extents = currentTerritoryUnderMouse.GetBounds().extents;
             float diagLength = Mathf.Sqrt(extents.x * extents.x + extents.y * extents.y);
