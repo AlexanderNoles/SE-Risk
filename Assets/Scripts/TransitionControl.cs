@@ -32,6 +32,8 @@ public class TransitionControl : MonoBehaviour
     private static bool swipeIn;
     private static float swipeT;
 
+    private static float animationSpeed = 1.0f;
+
     /// <summary>
     /// UI Reference. Setup in insepector. Used to block button inputs when transition is playing. 
     /// </summary>
@@ -55,8 +57,9 @@ public class TransitionControl : MonoBehaviour
     /// Runs a transition when called. 
     /// </summary>
     /// <param name="transitions">The transition to be called.</param>
-    public static void RunTransition(Transitions transitions)
+    public static void RunTransition(Transitions transitions, float transitionSpeed = 1.0f)
     {
+        animationSpeed = transitionSpeed;
         instance.raycastBlocker.SetActive(true);
         if (transitions == Transitions.SwipeIn)
         {
@@ -92,7 +95,7 @@ public class TransitionControl : MonoBehaviour
     {
         if (swipeT > 0.0f)
         {
-            swipeT -= Time.deltaTime * 2.0f;
+            swipeT -= Time.deltaTime * 2.0f * animationSpeed;
             if (swipeIn)
             {
                 swipeImage.rectTransform.anchoredPosition = new Vector2(Mathf.Lerp(0, -800, swipeCurve.Evaluate(swipeT)), 0);

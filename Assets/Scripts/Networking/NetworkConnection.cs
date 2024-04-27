@@ -5,29 +5,86 @@ using UnityEngine;
 
 public class NetworkConnection : NetworkBehaviour
 {
-    private NetworkIdentity identity;
-    private bool isHost = false;
+    private static NetworkConnection instance;
+    public bool isOnHost = false;
+    private static bool touchedServer = false;
+
+    public static bool ActuallyConnectedToServer()
+    {
+        return touchedServer;
+    }
+
+    public static void ResetTouchedServer()
+    {
+        touchedServer = false;
+    }
 
     private void Awake()
     {
-        identity = GetComponent<NetworkIdentity>();
+        instance = this;
     }
 
     public override void OnStartClient()
     {
-        if (isHost)
+        if (!isLocalPlayer || isOnHost)
         {
             return;
         }
-        Debug.Log("CLIENT CONNECTED");
+        else
+        {
+            Debug.Log("CLIENT CONNECTED: " + NetworkDataCommunicator.GetTotalNumberOfPlayers() + " in lobby");
+            touchedServer = true;
 
-        //Check if the host has any avliable slots
-        //if so request to be added
+            //Check if the host has any avaliable slots
+            //if not then disconnect
+            if (NetworkDataCommunicator.GetTotalNumberOfPlayers() > 5)
+            {
+                //Go offline immediately
+                //Notify the playoptions management so it doesn't run the swipe out transition
+                //as the join button is already doing those transitions
+                PlayOptionsManagement.DontRunDisconnectTransitions();
+                NetworkManagement.UpdateClientNetworkState(NetworkManagement.ClientState.Offline);
+            }
+            else
+            {
+                //Update our local play screen ui
+                //a.k.a remove ability to add AI and change mode
+                //and add number of AI set by host
+                NetworkDataCommunicator.UpdatePlayUI(-1, -1);
+            }
+        }
+    }
+
+    public override void OnStopClient()
+    {
+        if (!isLocalPlayer && isOnHost)
+        {
+            Debug.Log("Connection Lost");
+
+            PlayOptionsManagement.NotifyHostOfLostConnection();
+        }
     }
 
     public override void OnStartServer()
     {
-        Debug.Log("HOST STARTED");
-        isHost = true;
+        if (isOnHost)
+        {
+            return;
+        }
+
+        //This means this runs only on inital connection
+        isOnHost = true;
+
+        if (!isLocalPlayer)
+        {
+            Debug.Log("Connection added!");
+
+            PlayOptionsManagement.NotifyHostOfNewConnection();
+        }
+        else
+        {
+            touchedServer = true;
+            PlayOptionsManagement.NewHostSetup();
+        }
     }
 }

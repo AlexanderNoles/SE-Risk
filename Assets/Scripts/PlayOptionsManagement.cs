@@ -1,5 +1,7 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +10,8 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayOptionsManagement : MonoBehaviour
 {
+    private static PlayOptionsManagement instance;
+
     /// <summary>
     /// Stores all the PlayOptions needed for a given match.
     /// </summary>
@@ -21,6 +25,7 @@ public class PlayOptionsManagement : MonoBehaviour
 
         public Mode mode;
         public int numberOfAIPlayers;
+        public int numberOfNetworkPlayers;
 
         /// <summary>
         /// Standard PlayOptions constructor.
@@ -31,6 +36,7 @@ public class PlayOptionsManagement : MonoBehaviour
         {
             this.mode = mode;
             numberOfAIPlayers = numAIPlayers;
+            numberOfNetworkPlayers = 1; //The host pc
         }
 
         /// <summary>
@@ -39,14 +45,15 @@ public class PlayOptionsManagement : MonoBehaviour
         /// <returns>Currently returns the number of AI players + 1 (for the host player).</returns>
         public int TotalNumberOfPlayers()
         {
-            //Always assume 1 as that is the pc this is running on
-            return 1 + numberOfAIPlayers;
+            return numberOfAIPlayers + numberOfNetworkPlayers;
         }
     }
 
     //If you run from just the play scene these default settings will be used
     private static PlayOptions playOptions = new PlayOptions(PlayOptions.Mode.Normal, 5);
 
+    public GameObject modeRaycastBlocker;
+            
     /// <summary>
     /// UI object refrence for the selected mode outline, setup in inspector.
     /// </summary>
@@ -82,6 +89,7 @@ public class PlayOptionsManagement : MonoBehaviour
     /// UI object refrence, for the extra player slots, setup in inspector.
     /// </summary>
     public List<RectTransform> extraPlayerSlots = new List<RectTransform>();
+    private List<(Image, TextMeshProUGUI, GameObject)> playerSlotRefrences = new List<(Image, TextMeshProUGUI, GameObject)>();
     /// <summary>
     /// UI object refrence, for the add AI player to game button, setup in inspector.
     /// </summary>
@@ -97,9 +105,30 @@ public class PlayOptionsManagement : MonoBehaviour
     /// </summary>
     public GameObject startHostButton;
     /// <summary>
-    /// UI object refrence,for the go offline button, setup in inspector.
+    /// UI object refrence,for the start client button, setup in inspector.
     /// </summary>
     public GameObject startClientButton;
+    /// <summary>
+    /// UI object refrence,for the start client button, setup in inspector.
+    /// </summary>
+    public TextMeshProUGUI menuTitle;
+
+    public RawImage checkerBacking;
+    public Color lanLobbyColour;
+
+    private void SetLobbySchemeActive(bool active)
+    {
+        if (active)
+        {
+            menuTitle.text = "LAN Lobby";
+            checkerBacking.color = lanLobbyColour;
+        }
+        else
+        {
+            menuTitle.text = "Play";
+            checkerBacking.color = new Color(1,1,1, 0.129f);
+        }
+    }
 
     /// <summary>
     /// Static function that returns true if current set mode is Conquest mode.
@@ -137,11 +166,32 @@ public class PlayOptionsManagement : MonoBehaviour
         return playOptions.TotalNumberOfPlayers();
     }
 
+    private static bool dontRunDisconnectTransitions = false;
+    public static void DontRunDisconnectTransitions()
+    {
+        dontRunDisconnectTransitions = true;
+    }
+
+    private const float transitionSpeed = 1.0f;
+
     private void Awake()
     {
+        instance = this;
         playOptions = new PlayOptions(PlayOptions.Mode.Normal, 0);
+        SetLobbySchemeActive(false);
+
+        foreach (RectTransform extraSlot in extraPlayerSlots)
+        {
+            playerSlotRefrences.Add((
+                extraSlot.GetComponent<Image>(),
+                extraSlot.GetChild(0).GetComponent<TextMeshProUGUI>(),
+                extraSlot.GetChild(1).gameObject
+                ));
+        }
+
+
         SetPlayModeNormal(false);
-        UpdateCloseConnectionButton(false, false);
+        UpdateCloseConnectionButton(false);
         UpdatePlayerUI();
     }
 
@@ -180,6 +230,8 @@ public class PlayOptionsManagement : MonoBehaviour
 
         playOptions.mode = PlayOptions.Mode.Normal;
         UpdateModeUI(normalImage, conquestImage);
+
+        NetworkDataCommunicator.UpdateMode(0);
     }
 
     /// <summary>
@@ -195,6 +247,8 @@ public class PlayOptionsManagement : MonoBehaviour
 
         playOptions.mode = PlayOptions.Mode.Conquest;
         UpdateModeUI(conquestImage, normalImage);
+
+        NetworkDataCommunicator.UpdateMode(1);
     }
 
     private void UpdateModeUI(Image selectedImage, Image nonSelectedImage)
@@ -221,7 +275,15 @@ public class PlayOptionsManagement : MonoBehaviour
     {
         AudioManagement.PlaySound("ButtonPress");
         playOptions.numberOfAIPlayers++;
-        UpdatePlayerUI();
+
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Offline)
+        {
+            UpdatePlayerUI();
+        }
+        else
+        {
+            NetworkDataCommunicator.UpdateNumberOfAIPlayers(playOptions.numberOfAIPlayers);
+        }
     }
 
     /// <summary>
@@ -231,7 +293,15 @@ public class PlayOptionsManagement : MonoBehaviour
     {
         AudioManagement.PlaySound("ButtonPress");
         playOptions.numberOfAIPlayers--;
-        UpdatePlayerUI();
+
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Offline)
+        {
+            UpdatePlayerUI();
+        }
+        else
+        {
+            NetworkDataCommunicator.UpdateNumberOfAIPlayers(playOptions.numberOfAIPlayers);
+        }
     }
 
     /// <summary>
@@ -244,27 +314,75 @@ public class PlayOptionsManagement : MonoBehaviour
 
     private void UpdatePlayerUI()
     {
-        startButton.interactable = GetTotalNumberOfPlayers() >= 3;
-        cantStartButton.SetActive(!startButton.interactable);
+        if (NetworkManagement.GetClientState() != NetworkManagement.ClientState.Client)
+        {
+            startButton.gameObject.SetActive(true);
+
+            startButton.interactable = GetTotalNumberOfPlayers() >= 3;
+            cantStartButton.SetActive(!startButton.interactable);
+        }
+        else
+        {
+            startButton.gameObject.SetActive(false);
+            cantStartButton.SetActive(false);
+        }
 
         bool setAddButtonActive = false;
-        float yPos = -195;
+        float yPos = -85;
 
         for (int i = 0; i < extraPlayerSlots.Count; i++)
         {
             yPos -= 120;
             Vector2 newPos = new Vector2(0, yPos);
 
-            if (i < playOptions.numberOfAIPlayers)
+            if (i < playOptions.numberOfNetworkPlayers)
             {
                 extraPlayerSlots[i].gameObject.SetActive(true);
                 extraPlayerSlots[i].anchoredPosition = newPos;
+
+                string labelText = "LAN player";
+                Color color = Color.white;
+                color.a = 0.8f;
+
+                if (i == 0)
+                {
+                    if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Offline)
+                    {
+                        labelText = "You";
+                    }
+                    else if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+                    {
+                        labelText = "You (host)";
+                    }
+                    else
+                    {
+                        labelText = "Host";
+                    }
+                }
+                else if (i == 1 && NetworkManagement.GetClientState() == NetworkManagement.ClientState.Client)
+                {
+                    //Temp, all clients see first player as them
+                    labelText = "You";
+                }
+
+                playerSlotRefrences[i].Item1.color = color;
+                playerSlotRefrences[i].Item2.text = labelText;
+                playerSlotRefrences[i].Item3.SetActive(false);
+            }
+            else if (i-playOptions.numberOfNetworkPlayers < playOptions.numberOfAIPlayers)
+            {
+                extraPlayerSlots[i].gameObject.SetActive(true);
+                extraPlayerSlots[i].anchoredPosition = newPos;
+
+                playerSlotRefrences[i].Item1.color = new Color(0.9f, 0.9f, 0.9f, 0.8f);
+                playerSlotRefrences[i].Item2.text = "AI PLAYER";
+                playerSlotRefrences[i].Item3.SetActive(NetworkManagement.GetClientState() != NetworkManagement.ClientState.Client);
             }
             else 
             {
-                if (i == playOptions.numberOfAIPlayers)
+                if (i == GetTotalNumberOfPlayers())
                 {
-                    setAddButtonActive = true;
+                    setAddButtonActive = NetworkManagement.GetClientState() != NetworkManagement.ClientState.Client;
                     addSlotButton.anchoredPosition = new Vector2(0, yPos);
                 }
 
@@ -278,36 +396,175 @@ public class PlayOptionsManagement : MonoBehaviour
     ///NETWORK STUFF
     public void StartHostButton()
     {
+        AudioManagement.PlaySound("ButtonPress");
+
+        TransitionControl.onTransitionOver.AddListener(ActuallySwitchToHost);
+        TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn, transitionSpeed);
+    }
+
+    private void ActuallySwitchToHost()
+    {
+        SetLobbySchemeActive(true);
+
+        TransitionControl.onTransitionOver.RemoveListener(ActuallySwitchToHost);
+        TransitionControl.RunTransition(TransitionControl.Transitions.SwipeOut, transitionSpeed);
         NetworkManagement.UpdateClientNetworkState(NetworkManagement.ClientState.Host);
         UpdateCloseConnectionButton(true);
     }
 
+    public static void NewHostSetup()
+    {
+        NetworkDataCommunicator.UpdateNumberOfAIPlayers(playOptions.numberOfAIPlayers);
+        //1 representing the host
+        NetworkDataCommunicator.UpdateNumberOPlayers(1);
+
+        NetworkDataCommunicator.UpdateMode((int)playOptions.mode);
+
+        //Force update UI
+        //It would update automatically if the network synced number of ai and network players was different everytime
+        //but they could not be
+        instance.UpdatePlayerUI();
+    }
+
+    public static void NotifyHostOfNewConnection()
+    {
+        instance.OnNewConnection();
+    }
+
+    private void OnNewConnection()
+    {
+        playOptions.numberOfNetworkPlayers++;
+        NetworkDataCommunicator.UpdateNumberOPlayers(playOptions.numberOfNetworkPlayers);
+    }
+
+    public static void NotifyHostOfLostConnection()
+    {
+        instance.OnLostConnection();
+    }
+
+    private void OnLostConnection()
+    {
+        playOptions.numberOfNetworkPlayers--;
+        NetworkDataCommunicator.UpdateNumberOPlayers(playOptions.numberOfNetworkPlayers);
+    }
+
     public void StartClientButton()
     {
+        AudioManagement.PlaySound("ButtonPress");
+        modeRaycastBlocker.SetActive(true);
+        TransitionControl.onTransitionOver.AddListener(ActuallyStartClient);
+        TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn, transitionSpeed);
+    }
+
+    private void ActuallyStartClient()
+    {
+        NetworkConnection.ResetTouchedServer();
+        SetLobbySchemeActive(true);
+        TransitionControl.onTransitionOver.RemoveListener(ActuallyStartClient);
+        TransitionControl.RunTransition(TransitionControl.Transitions.SwipeOut, transitionSpeed);
         NetworkManagement.UpdateClientNetworkState(NetworkManagement.ClientState.Client);
         UpdateCloseConnectionButton(true);
     }
 
+    public static void ForceOnDisconnetToRun()
+    {
+        if (instance == null)
+        {
+            return;
+        }
+
+        instance.OnDisconnect();
+    }
+
     public void OnDisconnect()
     {
-        UpdateCloseConnectionButton(false, false);
+        if (!NetworkConnection.ActuallyConnectedToServer())
+        {
+            DontRunDisconnectTransitions();
+        }
+        else
+        {
+            NetworkConnection.ResetTouchedServer();
+        }
+
+        if (dontRunDisconnectTransitions)
+        {
+            ActuallyDisconnect();
+            return;
+        }
+
+        TransitionControl.onTransitionOver.AddListener(ActuallyDisconnect);
+        TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn, transitionSpeed);
+    }
+
+    private void ActuallyDisconnect()
+    {
+        SetLobbySchemeActive(false);
+        modeRaycastBlocker.SetActive(false);
+        UpdateCloseConnectionButton(false);
+        if (dontRunDisconnectTransitions)
+        {
+            dontRunDisconnectTransitions = false;
+        }
+        else
+        {
+            TransitionControl.onTransitionOver.RemoveListener(ActuallyDisconnect);
+            TransitionControl.RunTransition(TransitionControl.Transitions.SwipeOut, transitionSpeed);
+        }
     }
 
     public void GoOfflineButton()
     {
-        NetworkManagement.UpdateClientNetworkState(NetworkManagement.ClientState.Offline);
         AudioManagement.PlaySound("ButtonPress");
+        NetworkManagement.UpdateClientNetworkState(NetworkManagement.ClientState.Offline);
     }
 
-    private void UpdateCloseConnectionButton(bool active, bool playSound = true)
+    private void UpdateCloseConnectionButton(bool active)
     {
-        if (playSound)
+        if (!active)
         {
-            AudioManagement.PlaySound("ButtonPress");
+            //No longer online
+            playOptions.numberOfNetworkPlayers = 1;
+            playOptions.numberOfAIPlayers = 0;
+
+            SetPlayModeNormal(false);
+            UpdatePlayerUI();
         }
 
         goOfflineButton.SetActive(active);
         startHostButton.SetActive(!active);
         startClientButton.SetActive(!active);
+    }
+
+    public void LeavePlayScreenButton()
+    {
+        GoOfflineButton();
+        MenuManagement.LoadMenu(MenuManagement.Menu.Main);
+    }
+
+    public static void UpdatePlayerUIExternal(int numberOfAI, int numberOfNonAI, int mode)
+    {
+        playOptions.numberOfAIPlayers = numberOfAI;
+        playOptions.numberOfNetworkPlayers = numberOfNonAI;
+        instance.UpdatePlayerUI();
+
+        if (NetworkManagement.GetClientState() != NetworkManagement.ClientState.Host)
+        {
+            if (mode == (int)playOptions.mode)
+            {
+                //Dont update mode if we don't have too
+                //This prevents the button animation from playing
+                return;
+            }
+
+            if (mode == 0)
+            {
+                instance.SetPlayModeNormal(false);
+            }
+            else
+            {
+                instance.SetPlayModeConquest(false);
+            }
+        }
     }
 }

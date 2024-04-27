@@ -8,7 +8,6 @@ using UnityEngine.Events;
 [IntializeAtRuntime("NetworkManager")]
 public class NetworkManagement : NetworkManager
 {
-    private const string HostAddressKey = "HostAddress";
     private static NetworkManagement instance;
 
     public enum ClientState
@@ -19,6 +18,11 @@ public class NetworkManagement : NetworkManager
     }
 
     private static ClientState currentState = ClientState.Offline;
+    public static ClientState GetClientState()
+    {
+        return currentState;
+    }
+
     public static UnityEvent onClientDisconnect = new UnityEvent();
 
     public override void Awake()
@@ -29,6 +33,8 @@ public class NetworkManagement : NetworkManager
 
     public static void UpdateClientNetworkState(ClientState newState)
     {
+        currentState = newState;
+
         //First stop whatever state we are in
         if (instance.isNetworkActive)
         {
@@ -57,14 +63,22 @@ public class NetworkManagement : NetworkManager
         {
             //Need to account for in middle of game
         }
+    }
 
-        currentState = newState;
+    public override void OnClientConnect()
+    {
+        base.OnClientConnect();
     }
 
     public override void OnClientDisconnect()
     {
+        if(GetClientState() != ClientState.Offline)
+        {
+            UpdateClientNetworkState(ClientState.Offline);
+            return;
+        }
+
         base.OnClientDisconnect();
         onClientDisconnect.Invoke();
     }
-
 }
