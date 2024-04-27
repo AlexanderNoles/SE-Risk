@@ -88,7 +88,11 @@ public class MatchManager : MonoBehaviour
         }
 
         inSetup = true;
-        infoHandler.SetPlayers(playerList);
+
+        if (!Map.IsSimulated() && infoHandler != null)
+        {
+            infoHandler.SetPlayers(playerList);
+        }
 
         //Reset match
         troopDeployCount = StartingTroopCounts[playerList.Count];
