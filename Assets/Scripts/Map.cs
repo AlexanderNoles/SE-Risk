@@ -208,17 +208,15 @@ public class Map : MonoBehaviour
     public static List<Territory> GetTerritoriesOwnedByPlayer(Player player)
     {
         List<Territory> ownedTerritories = new List<Territory>();
-        foreach (Territory.Continent continent in instance.continents.Keys)
-        {
-            foreach (Territory territory in instance.continents[continent])
+            foreach (Territory territory in instance.territories)
             {
                 if (territory.GetOwner() == player) { ownedTerritories.Add(territory); }
             }
-        }
         return ownedTerritories;
     }
     public static Continent GetContinentClosestToCaptured(Player player)
     {
+        bool playerHasGround = false;
         bool continentFullyOwned = true;
         int territoriesLeft = 0;
         int bestTerritoriesLeft = 1000;
@@ -229,14 +227,19 @@ public class Map : MonoBehaviour
             {
                 if (territory.GetOwner() == null) { continentFullyOwned = false; }
                 if (territory.GetOwner()!=player) { territoriesLeft++; }
+                else
+                {
+                    playerHasGround = true;
+                }
             }
-            if ((territoriesLeft < bestTerritoriesLeft) && !continentFullyOwned)
+            if ((territoriesLeft < bestTerritoriesLeft) && !continentFullyOwned && playerHasGround)
             {
                 bestTerritoriesLeft = territoriesLeft;
                 bestContinent = continent;
             }
             territoriesLeft = 0;
             continentFullyOwned = false;
+            playerHasGround = false;
         }
         return bestContinent;
     }
