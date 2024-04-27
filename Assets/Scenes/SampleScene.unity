@@ -9520,6 +9520,7 @@ MonoBehaviour:
   - {fileID: 1073075577}
   - {fileID: 1389164114}
   - {fileID: 1733732290}
+  - {fileID: 762844576}
   continent: 0
   cardSprite: {fileID: 21300000, guid: c2cf990740185124c9220c6a4fd02b0e, type: 3}
 --- !u!212 &782784090
@@ -13820,7 +13821,6 @@ MonoBehaviour:
   textOffset: {x: 0.2, y: -0.2, z: 0}
   neighbours:
   - {fileID: 50025244}
-  - {fileID: 165419106}
   - {fileID: 1433758182}
   continent: 5
   cardSprite: {fileID: 21300000, guid: fd8ff2345eb01a9409cef0db5305ff42, type: 3}
@@ -21204,6 +21204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerList:
   - {fileID: 338721590}
+  infoHandler: {fileID: 0}
 --- !u!4 &1514708328
 Transform:
   m_ObjectHideFlags: 0
@@ -25581,7 +25582,7 @@ MonoBehaviour:
   neighbours:
   - {fileID: 1591794144}
   - {fileID: 676728472}
-  - {fileID: 58168306}
+  - {fileID: 1733551328}
   - {fileID: 786620686}
   continent: 2
   cardSprite: {fileID: 21300000, guid: 0ee1e8485a5d4914cb7f2b344556d1a1, type: 3}
