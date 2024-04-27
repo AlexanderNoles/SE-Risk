@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().buildIndex == 0) //Main Scene
             {
-                return 0.01f;
+                return 0.1f;
             }
             else
             {
@@ -94,20 +94,33 @@ public class Player : MonoBehaviour
                 {
                     if (neighbor.GetContinent() == continent && neighbor.GetOwner() == null)
                     {
-                        Debug.Log("Hi");
                         return neighbor;
                     }
                 }
         }
-        foreach (Territory territory in Map.GetTerritories())
+        foreach (Territory territory in territories)
         {
-            if (territory.GetOwner() == null)
+            if (territory.GetContinent() == continent && territory.GetOwner() == null)
             {
                 return territory;
             }
         }
-        Debug.Log("Could not find next territory!");
-        return null;
+        int minLengthBetweenTerritories = 1000;
+        Territory nextTerritory = territories[0];
+        foreach (Territory territory in territories)
+        {
+                foreach (Territory owned in ownedTerritories)
+                {
+                    int routeLength = LengthOfRouteBetweenTerritories(owned, territory);
+                    if (routeLength < minLengthBetweenTerritories)
+                    {
+                        minLengthBetweenTerritories = routeLength;
+                        nextTerritory = territory;
+                    }
+                    return territory;
+                }
+        }
+        return nextTerritory;
     }
 
     public Territory EvaluateNextTroopPlacement()
@@ -375,7 +388,12 @@ public class Player : MonoBehaviour
         TerritoryNode endNode = new TerritoryNode().SetTerritory(endTerritory);
         return Pathfinding.AStar.FindPath(startNode, endNode, false).Count > 0;
     }
-
+    public int LengthOfRouteBetweenTerritories(Territory startTerritory, Territory endTerritory)
+    {
+        TerritoryNode startNode = new TerritoryNode().SetTerritory(startTerritory);
+        TerritoryNode endNode = new TerritoryNode().SetTerritory(endTerritory);
+        return Pathfinding.AStar.FindPath(startNode, endNode, false).Count;
+    }
     public virtual void OnTurnEnd()
     {
         if (territoryTakenThisTurn && hand.Count() < 6)
