@@ -87,6 +87,20 @@ public class PlayOptionsManagement : MonoBehaviour
     /// </summary>
     public RectTransform addSlotButton;
 
+    [Header("Networking")]
+    /// <summary>
+    /// UI object refrence,for the go offline button, setup in inspector.
+    /// </summary>
+    public GameObject goOfflineButton;
+    /// <summary>
+    /// UI object refrence,for the start host button, setup in inspector.
+    /// </summary>
+    public GameObject startHostButton;
+    /// <summary>
+    /// UI object refrence,for the go offline button, setup in inspector.
+    /// </summary>
+    public GameObject startClientButton;
+
     /// <summary>
     /// Static function that returns true if current set mode is Conquest mode.
     /// </summary>
@@ -127,7 +141,18 @@ public class PlayOptionsManagement : MonoBehaviour
     {
         playOptions = new PlayOptions(PlayOptions.Mode.Normal, 0);
         SetPlayModeNormal(false);
+        UpdateCloseConnectionButton(false, false);
         UpdatePlayerUI();
+    }
+
+    private void OnEnable()
+    {
+        NetworkManagement.onClientDisconnect.AddListener(OnDisconnect);
+    }
+
+    private void OnDisable()
+    {
+        NetworkManagement.onClientDisconnect.RemoveListener(OnDisconnect);
     }
 
     private void Update()
@@ -248,5 +273,41 @@ public class PlayOptionsManagement : MonoBehaviour
         }
 
         addSlotButton.gameObject.SetActive(setAddButtonActive);
+    }
+
+    ///NETWORK STUFF
+    public void StartHostButton()
+    {
+        NetworkManagement.UpdateClientNetworkState(NetworkManagement.ClientState.Host);
+        UpdateCloseConnectionButton(true);
+    }
+
+    public void StartClientButton()
+    {
+        NetworkManagement.UpdateClientNetworkState(NetworkManagement.ClientState.Client);
+        UpdateCloseConnectionButton(true);
+    }
+
+    public void OnDisconnect()
+    {
+        UpdateCloseConnectionButton(false, false);
+    }
+
+    public void GoOfflineButton()
+    {
+        NetworkManagement.UpdateClientNetworkState(NetworkManagement.ClientState.Offline);
+        AudioManagement.PlaySound("ButtonPress");
+    }
+
+    private void UpdateCloseConnectionButton(bool active, bool playSound = true)
+    {
+        if (playSound)
+        {
+            AudioManagement.PlaySound("ButtonPress");
+        }
+
+        goOfflineButton.SetActive(active);
+        startHostButton.SetActive(!active);
+        startClientButton.SetActive(!active);
     }
 }
