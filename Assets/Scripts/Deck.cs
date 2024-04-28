@@ -45,7 +45,10 @@ public class Deck
             Card newCard = new Card(t,choice);
             cards.Add(newCard);
         }
-
+        for(int i = 0;i < 10;i++)
+        {
+            cards.Add(new Card());
+        }
     }
 
     /// <summary>

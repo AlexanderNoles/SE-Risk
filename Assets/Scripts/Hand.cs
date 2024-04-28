@@ -49,7 +49,7 @@ public class Hand
         PlayerInfoHandler.UpdateInfo();
         foreach(Card card in set)
         {
-            if(card.GetTerritory().GetOwner() == player)
+            if(card.GetDesign()!=Card.cardDesign.WildCard&&card.GetTerritory().GetOwner() == player)
             {
                 card.GetTerritory().SetCurrentTroops(card.GetTerritory().GetCurrentTroops()+2);
                 break;
@@ -103,6 +103,12 @@ public class Hand
             return true;
         }
         else if (cardArray[0].GetDesign() == cardArray[1].GetDesign() && cardArray[0].GetDesign() == cardArray[2].GetDesign())
+        {
+            return true;
+        }
+        else if ((cardArray[0].GetDesign() == Card.cardDesign.WildCard && cardArray[1].GetDesign()== cardArray[2].GetDesign())||
+                (cardArray[1].GetDesign() == Card.cardDesign.WildCard && cardArray[0].GetDesign() == cardArray[2].GetDesign())||
+                (cardArray[2].GetDesign() == Card.cardDesign.WildCard && cardArray[0].GetDesign() == cardArray[1].GetDesign()))
         {
             return true;
         }

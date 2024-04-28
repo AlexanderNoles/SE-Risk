@@ -134,15 +134,27 @@ public class CardDisplayer : MonoBehaviour
                 TextMeshProUGUI text = go.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
                 Image design = go.transform.GetChild(2).gameObject.GetComponent<Image>();
                 Image territoryImage = go.transform.GetChild(3).gameObject.GetComponent<Image>();
-                text.SetText(cards[i].GetTerritory().name);
-                territoryImage.sprite = cards[i].GetTerritory().getCardSprite();
-                design.sprite = designSprites[(int)cards[i].GetDesign()];
-                foreach (Transform child in go.GetComponentInChildren<Transform>())
+                Image cardBody = go.transform.GetChild(0).gameObject.GetComponent<Image>();
+                if (cards[i].GetDesign() == Card.cardDesign.WildCard)
                 {
-                    child.gameObject.SetActive(true);
+                    design.gameObject.SetActive(false);
+                    text.gameObject.SetActive(false);
+                    territoryImage.gameObject.SetActive(false);
+                    cardBody.sprite = design.sprite = designSprites[4];
+                }
+                else
+                {
+                    cardBody.sprite = null;
+                    text.SetText(cards[i].GetTerritory().name);
+                    territoryImage.sprite = cards[i].GetTerritory().getCardSprite();
+                    design.sprite = designSprites[(int)cards[i].GetDesign()];
+                    foreach (Transform child in go.GetComponentInChildren<Transform>())
+                    {
+                        child.gameObject.SetActive(true);
+                    }
                 }
             }
-            else
+            else if(cards[i].GetDesign() == Card.cardDesign.Empty)
             {
                 foreach (Transform child in go.GetComponentInChildren<Transform>())
                 {

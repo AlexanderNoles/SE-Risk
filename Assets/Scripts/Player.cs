@@ -438,7 +438,6 @@ public class Player : MonoBehaviour
    
     public int GetMaxAttackingDice(Territory target)
     {
-        //Must have one more army than the number of dice we want to roll, clamped to range 1...3
         return Mathf.Clamp(target.GetCurrentTroops()-1, 1, 3);
     }
 
@@ -449,9 +448,7 @@ public class Player : MonoBehaviour
 
     public int GetMaxDefendingDice(Territory target)
     {
-        //Random Range function is max exclusive, so we add 1 to the current troops
-        //This is accounted for in the dice ui, if this is changed to not used Random.Range, make sure to update that code as well!
-        return Mathf.Clamp(target.GetCurrentTroops() + 1, 2, 3);
+        return Mathf.Clamp(target.GetCurrentTroops(),1, 2);
     }
 
     public virtual int GetDefendingDice(Territory defender)
@@ -459,7 +456,7 @@ public class Player : MonoBehaviour
         //Return any value between 1 and 2 inclusive, if we have more than 1 troop
         if (defender.GetCurrentTroops() > 1)
         {
-            return Random.Range(1, GetMaxDefendingDice(defender));
+            return Random.Range(1, GetMaxDefendingDice(defender)+1);
         }
 
         return 1;
@@ -471,17 +468,20 @@ public class Player : MonoBehaviour
         {
             if (expanding == 0)
             {
-                defender.SetCurrentTroops(attacker.GetCurrentTroops() - 1);
+                int troopsToMove = attacker.GetCurrentTroops() - 1;
+                defender.SetCurrentTroops(troopsToMove > attackerDiceCount ? troopsToMove : attackerDiceCount);
                 attacker.SetCurrentTroops(1);
             }
             else
             {
                 int troopsToMove = attacker.GetCurrentTroops() / expanding ;
-                Debug.Log(troopsToMove);
-                Debug.Log(attacker.GetCurrentTroops());
-                Debug.Log(attackerDiceCount);
                 defender.SetCurrentTroops(troopsToMove > attackerDiceCount ? troopsToMove : attackerDiceCount);
                 attacker.SetCurrentTroops(attacker.GetCurrentTroops() - defender.GetCurrentTroops());
+            }
+            if (attacker.GetCurrentTroops() < 1)
+            {
+                attacker.SetCurrentTroops(1);
+                defender.SetCurrentTroops(defender.GetCurrentTroops() - 1);
             }
             territoryTakenThisTurn = true;
         }
