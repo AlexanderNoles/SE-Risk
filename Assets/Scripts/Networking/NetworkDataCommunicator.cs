@@ -8,9 +8,14 @@ public class NetworkDataCommunicator : NetworkBehaviour
 {
     private static NetworkDataCommunicator instance;
 
-    private void Awake()
+    private void OnEnable()
     {
         instance = this;
+    }
+
+    private void OnDisable()
+    {
+        instance = null;
     }
 
     [SyncVar(hook = nameof(UpdatePlayUI))]
