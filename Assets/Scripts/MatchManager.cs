@@ -123,24 +123,31 @@ public class MatchManager : MonoBehaviour
     {
         if (NetworkManagement.GetClientState() != NetworkManagement.ClientState.Client)
         {
-            int colourIndex = 0;
-            //Create the number of neccesary A.I, but only in the actual game
-            for (int i = 0; i < PlayOptionsManagement.GetNumberOfNetworkPlayers(); i++)
+            //start at one because of local player/host
+            int colourIndex = 1;
+            uint targetNetID = 3; //First client id
+            //Create the number of neccesary network players
+            for (int i = 1; i < PlayOptionsManagement.GetNumberOfNetworkPlayers(); i++)
             {
-                //Should load this from options
-                Player newAI = Instantiate(Resources.Load("NetworkPlayer") as GameObject).GetComponent<Player>();
+                //when creating the network player we need to notify the corresponding client
+                //so they know what colour they are, all the other colours etc.
+                NetworkPlayer newNP = Instantiate(Resources.Load("NetworkPlayer") as GameObject).GetComponent<NetworkPlayer>();
 
-                newAI.SetColor((Player.PlayerColour)colourIndex);
+                newNP.SetColor((Player.PlayerColour)colourIndex);
                 colourIndex++;
 
-                playerList.Add(newAI);
+                //Notify client/Setup net player
+                newNP.NotifyClient(targetNetID);
+                targetNetID++;
+
+                playerList.Add(newNP);
             }
 
 
             for (int i = 0; i < PlayOptionsManagement.GetNumberOfAIPlayers(); i++)
             {
                 //Should load this from options
-                Player newAI = Instantiate(Resources.Load("AIPlayer") as GameObject).GetComponent<Player>();
+                Player newAI = Instantiate(Resources.Load("AIPlayer") as GameObject).GetComponent<AIPlayer>();
 
                 newAI.SetColor((Player.PlayerColour)colourIndex);
                 colourIndex++;

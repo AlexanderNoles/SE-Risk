@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using MonitorBreak;
 
-public class NetworkDataCommunicator : NetworkBehaviour
+public class PlayScreenNetworkDataCommunicator : NetworkBehaviour
 {
-    private static NetworkDataCommunicator instance;
+    private static PlayScreenNetworkDataCommunicator instance;
 
     private void OnEnable()
     {

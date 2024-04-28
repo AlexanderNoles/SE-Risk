@@ -26,14 +26,14 @@ public class NetworkManagement : NetworkManager
 
     public static UnityEvent onClientDisconnect = new UnityEvent();
 
-    private static List<GameObject> playerObjects = new List<GameObject>();
+    private static List<NetworkIdentity> playerObjects = new List<NetworkIdentity>();
 
-    public static void AddPlayerObject(GameObject newPlayer)
+    public static void AddPlayerObject(NetworkIdentity newPlayer)
     {
         playerObjects.Add(newPlayer);
     }
 
-    public static void RemovePlayerObject(GameObject player)
+    public static void RemovePlayerObject(NetworkIdentity player)
     {
         playerObjects.Remove(player);
     }
@@ -43,9 +43,23 @@ public class NetworkManagement : NetworkManager
         playerObjects.Clear();
     }
 
+    public static NetworkIdentity GetSpeificPlayerIdentity(uint netID)
+    {
+        foreach (NetworkIdentity player in playerObjects)
+        {
+            if (player.netId == netID)
+            {
+                return player;
+            }
+        }
+
+
+        return null;
+    }
+
     public static void MakePlayerObjectsNonDestroy()
     {
-        foreach (GameObject player in playerObjects)
+        foreach (NetworkIdentity player in playerObjects)
         {
             DontDestroyOnLoad(player);
         }

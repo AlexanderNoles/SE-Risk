@@ -28,6 +28,7 @@ public class Territory : MonoBehaviour
     const float inflationRatio = 1.1f;
     private SpriteRenderer spriteRenderer;
     private TextMeshProUGUI troopLabel;
+    private int indexInMap;
 
     public bool CheckIfPosIsInside (Vector3 pos)
     {
@@ -95,9 +96,22 @@ public class Territory : MonoBehaviour
         }
     }
     public int GetCurrentTroops() { return currentTroops; }
-    public void SetCurrentTroops(int currentTroops) 
+    public void SetCurrentTroops(int currentTroops, bool makeServerRequest = true) 
     {
-        this.currentTroops = currentTroops;
+        NetworkManagement.ClientState clientState = NetworkManagement.GetClientState();
+
+        //Update locally
+        UpdateTroopCount(currentTroops);
+
+        if (makeServerRequest && clientState != NetworkManagement.ClientState.Offline)
+        {
+            NetworkConnection.UpdateTerritoryTroopCountAcrossLobby(indexInMap, currentTroops);
+        }
+    }
+    //Seperated into a different function so client networking doesn't create an ifinite loop
+    public void UpdateTroopCount(int newTroops)
+    {
+        this.currentTroops = newTroops;
         if (!Map.IsSimulated())
         {
             if (troopLabel == null)
@@ -107,6 +121,7 @@ public class Territory : MonoBehaviour
             troopLabel.text = currentTroops.ToString();
         }
     }
+
     public List<Vector3> GetBorderPoints () {  return borderPoints; }
     public void SetBorderPoints(List<Vector3> newPoints) 
     {
@@ -122,9 +137,10 @@ public class Territory : MonoBehaviour
     }
     public Sprite getCardSprite() { return cardSprite; }
 
-    public void ResetTerritory(bool resetColour)
+    public void ResetTerritory(int indexInMap)
     {
-        SetCurrentTroops(0);
+        this.indexInMap = indexInMap;
+        SetCurrentTroops(0, false);
         ResetOwner(true);
     }
 

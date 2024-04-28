@@ -3,10 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Player;
 
 public class NetworkConnection : NetworkBehaviour
 {
     private static NetworkConnection instance;
+    private LocalPlayer clientLocalPlayer;
+
+    private void SetLocalPlayer()
+    {
+        clientLocalPlayer = FindObjectOfType<LocalPlayer>();
+    }
+
+
     public bool isOnHost = false;
     public static uint networkID;
     private static bool touchedServer = false;
@@ -28,19 +37,20 @@ public class NetworkConnection : NetworkBehaviour
             networkID = GetComponent<NetworkIdentity>().netId;
         }
 
-        NetworkManagement.AddPlayerObject(gameObject);
+        NetworkManagement.AddPlayerObject(GetComponent<NetworkIdentity>());
         if (!isLocalPlayer || isOnHost)
         {
             return;
         }
         else
         {
-            Debug.Log("CLIENT CONNECTED: " + NetworkDataCommunicator.GetTotalNumberOfPlayers() + " in lobby");
+            instance = this;
+            Debug.Log("CLIENT CONNECTED: " + PlayScreenNetworkDataCommunicator.GetTotalNumberOfPlayers() + " in lobby");
             touchedServer = true;
 
             //Check if the host has any avaliable slots
             //if not then disconnect
-            if (NetworkDataCommunicator.GetTotalNumberOfPlayers() > 5)
+            if (PlayScreenNetworkDataCommunicator.GetTotalNumberOfPlayers() > 5)
             {
                 //Go offline immediately
                 //Notify the playoptions management so it doesn't run the swipe out transition
@@ -54,7 +64,7 @@ public class NetworkConnection : NetworkBehaviour
                 //Update our local play screen ui
                 //a.k.a remove ability to add AI and change mode
                 //and add number of AI set by host
-                NetworkDataCommunicator.UpdatePlayUI(-1, -1);
+                PlayScreenNetworkDataCommunicator.UpdatePlayUI(-1, -1);
             }
         }
     }
@@ -63,10 +73,7 @@ public class NetworkConnection : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            if (isOnHost)
-            {
-                instance = null;
-            }
+            instance = null;
             NetworkManagement.ResetPlayerObjects();
         }
 
@@ -79,7 +86,7 @@ public class NetworkConnection : NetworkBehaviour
                 PlayOptionsManagement.NotifyHostOfLostConnection();
             }
 
-            NetworkManagement.RemovePlayerObject(gameObject);
+            NetworkManagement.RemovePlayerObject(GetComponent<NetworkIdentity>());
         }
     }
 
@@ -119,10 +126,77 @@ public class NetworkConnection : NetworkBehaviour
 
 
     //COMMUNICATION
+    //Has scene loaded yet?
+    private bool ShouldWait()
+    {
+        return clientLocalPlayer == null;
+    }
+
+    private IEnumerator Wait()
+    {
+        yield return new WaitForEndOfFrame();
+        SetLocalPlayer();
+    }
+
+
+
     [ClientRpc]
     public void RpcStartGame(int sceneIndex)
     {
         NetworkManagement.MakePlayerObjectsNonDestroy();
         SceneManager.LoadScene(sceneIndex);
+    }
+
+    [TargetRpc]
+    public void RpcNotifyTarget(NetworkConnectionToClient target, PlayerColour colour)
+    {
+        StartCoroutine(nameof(WaitBeforeLocalPlayerSetup));
+    }
+
+    private IEnumerator WaitBeforeLocalPlayerSetup()
+    {
+        //We do this because the host will load and run start before the client loads their scene
+        //We should just be waiting for one frame but we wait for the amount needed just in case of ping and whatnot (we are on lan but still)
+        while (ShouldWait())
+        {
+            yield return Wait();
+        }
+
+        //Actually setup local player
+        Debug.Log(clientLocalPlayer);
+    }
+
+    public static void UpdateTerritoryTroopCountAcrossLobby(int territoryIndex, int newTroopCount)
+    {
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+            //Just run on all clients
+            UpdateAllClientsTroopCountOnTerritory(territoryIndex, newTroopCount);
+        }
+        else
+        {
+            //Send to server
+            instance.CmdUpdateChangedTerritoryTroopCount(territoryIndex, newTroopCount);
+        }
+    }
+
+    [Command]
+    public void CmdUpdateChangedTerritoryTroopCount(int index, int newTroopCount)
+    {
+        //Set on server
+        Map.SetTerritoryTroopCount(index, newTroopCount, false);
+        UpdateAllClientsTroopCountOnTerritory(index, newTroopCount);
+    }
+
+    public static void UpdateAllClientsTroopCountOnTerritory(int index, int newTroopCount)
+    {
+        instance.RpcUpdateTroopCountOnClient(index, newTroopCount);
+    }
+
+    [ClientRpc]
+    public void RpcUpdateTroopCountOnClient(int index, int newTroopCount)
+    {
+        //Set on client
+        Map.SetTerritoryTroopCount(index, newTroopCount, false);
     }
 }

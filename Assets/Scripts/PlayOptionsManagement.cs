@@ -240,7 +240,7 @@ public class PlayOptionsManagement : MonoBehaviour
         playOptions.mode = PlayOptions.Mode.Normal;
         UpdateModeUI(normalImage, conquestImage);
 
-        NetworkDataCommunicator.UpdateMode(0);
+        PlayScreenNetworkDataCommunicator.UpdateMode(0);
     }
 
     /// <summary>
@@ -257,7 +257,7 @@ public class PlayOptionsManagement : MonoBehaviour
         playOptions.mode = PlayOptions.Mode.Conquest;
         UpdateModeUI(conquestImage, normalImage);
 
-        NetworkDataCommunicator.UpdateMode(1);
+        PlayScreenNetworkDataCommunicator.UpdateMode(1);
     }
 
     private void UpdateModeUI(Image selectedImage, Image nonSelectedImage)
@@ -291,7 +291,7 @@ public class PlayOptionsManagement : MonoBehaviour
         }
         else
         {
-            NetworkDataCommunicator.UpdateNumberOfAIPlayers(playOptions.numberOfAIPlayers);
+            PlayScreenNetworkDataCommunicator.UpdateNumberOfAIPlayers(playOptions.numberOfAIPlayers);
         }
     }
 
@@ -309,7 +309,7 @@ public class PlayOptionsManagement : MonoBehaviour
         }
         else
         {
-            NetworkDataCommunicator.UpdateNumberOfAIPlayers(playOptions.numberOfAIPlayers);
+            PlayScreenNetworkDataCommunicator.UpdateNumberOfAIPlayers(playOptions.numberOfAIPlayers);
         }
     }
 
@@ -413,6 +413,10 @@ public class PlayOptionsManagement : MonoBehaviour
 
     private void ActuallySwitchToHost()
     {
+        //There is an issue here with ui breaking if someone on the LAN is already hosting
+        //FIX THIS AT SOME POINT
+
+
         SetLobbySchemeActive(true);
 
         TransitionControl.onTransitionOver.RemoveListener(ActuallySwitchToHost);
@@ -423,11 +427,11 @@ public class PlayOptionsManagement : MonoBehaviour
 
     public static void NewHostSetup()
     {
-        NetworkDataCommunicator.UpdateNumberOfAIPlayers(playOptions.numberOfAIPlayers);
+        PlayScreenNetworkDataCommunicator.UpdateNumberOfAIPlayers(playOptions.numberOfAIPlayers);
         //1 representing the host
-        NetworkDataCommunicator.UpdateNumberOPlayers(1);
+        PlayScreenNetworkDataCommunicator.UpdateNumberOPlayers(1);
 
-        NetworkDataCommunicator.UpdateMode((int)playOptions.mode);
+        PlayScreenNetworkDataCommunicator.UpdateMode((int)playOptions.mode);
 
         //Force update UI
         //It would update automatically if the network synced number of ai and network players was different everytime
@@ -443,7 +447,7 @@ public class PlayOptionsManagement : MonoBehaviour
     private void OnNewConnection()
     {
         playOptions.numberOfNetworkPlayers++;
-        NetworkDataCommunicator.UpdateNumberOPlayers(playOptions.numberOfNetworkPlayers);
+        PlayScreenNetworkDataCommunicator.UpdateNumberOPlayers(playOptions.numberOfNetworkPlayers);
     }
 
     public static void NotifyHostOfLostConnection()
@@ -459,7 +463,7 @@ public class PlayOptionsManagement : MonoBehaviour
     private void OnLostConnection()
     {
         playOptions.numberOfNetworkPlayers--;
-        NetworkDataCommunicator.UpdateNumberOPlayers(playOptions.numberOfNetworkPlayers);
+        PlayScreenNetworkDataCommunicator.UpdateNumberOPlayers(playOptions.numberOfNetworkPlayers);
     }
 
     public void StartClientButton()

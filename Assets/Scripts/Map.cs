@@ -12,6 +12,11 @@ public class Map : MonoBehaviour
     [SerializeField]
     List<Territory> territories = new List<Territory>();
 
+    public static void SetTerritoryTroopCount(int index, int newCount, bool makeRequest)
+    {
+        instance.territories[index].SetCurrentTroops(newCount, makeRequest);
+    }
+
     private static HashSet<(Territory, Player)> capitals = new HashSet<(Territory, Player)>();
 
     public static void AddCapital(Territory territory, Player owner)
@@ -53,7 +58,7 @@ public class Map : MonoBehaviour
 
     public void Start()
     {
-        SetupMap(true);
+        SetupMap();
     }
     public static Territory GetTerritoryUnderPosition(Vector3 pos)
     {
@@ -288,10 +293,10 @@ public class Map : MonoBehaviour
 
     public static void ResetInstanceMap()
     {
-        instance.SetupMap(false);
+        instance.SetupMap();
     }
 
-    public void SetupMap(bool first)
+    public void SetupMap()
     {
         if (PlayOptionsManagement.IsConquestMode())
         {
@@ -305,7 +310,7 @@ public class Map : MonoBehaviour
             if (child.TryGetComponent<Territory>(out Territory territory))
             {
                 territories.Add(territory);
-                territory.ResetTerritory(false);
+                territory.ResetTerritory(territories.Count-1);
 
                 if (!continents.ContainsKey(territory.GetContinent()))
                 {
