@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Territory;
+using MonitorBreak.Bebug;
 
 public class Map : MonoBehaviour
 {
@@ -15,12 +16,6 @@ public class Map : MonoBehaviour
 
     public static void AddCapital(Territory territory, Player owner)
     {
-        if (IsSimulated())
-        {
-            return;
-        }
-
-
         capitals.Add((territory, owner));
 
         //Spawn ui element signify this territory is a capital
@@ -47,7 +42,7 @@ public class Map : MonoBehaviour
     }
 
 
-    Dictionary<Territory.Continent, List<Territory>> continents = new Dictionary<Territory.Continent, List<Territory>>(); 
+    public static Dictionary<Territory.Continent, List<Territory>> continents = new Dictionary<Territory.Continent, List<Territory>>(); 
     static Map instance;
     public enum AttackResult
     {
@@ -56,14 +51,9 @@ public class Map : MonoBehaviour
         Cancelled //Can only be triggered by players
     }
 
-    public static bool IsSimulated()
-    {
-        return SceneManager.GetActiveScene().buildIndex == 1; //Menu Scene
-    }
-
     public void Start()
     {
-        SetupMap();
+        SetupMap(true);
     }
     public static Territory GetTerritoryUnderPosition(Vector3 pos)
     {
@@ -89,9 +79,9 @@ public class Map : MonoBehaviour
         //Need to pass this to ask them how many troops they want to defend with
         Player defenderPlayer = defender.GetOwner();
 
-        if (attackingPlayer == null || defenderPlayer == null) 
+        if (defenderPlayer == null || attackingPlayer == null) 
         {
-            throw new System.Exception("Player is null!");
+            return;
         }
 
         //If the attacker and defender are both ai skip over ui step
@@ -156,8 +146,6 @@ public class Map : MonoBehaviour
             defender.SetOwner(attacker.GetOwner());
             attacker.GetOwner().AddTerritory(defender);
             oldOwner.RemoveTerritory(defender);
-            defender.SetCurrentTroops(attacker.GetCurrentTroops() - 1 >= 3 ? 3 : attacker.GetCurrentTroops() - 1);
-            attacker.SetCurrentTroops(attacker.GetCurrentTroops() - defender.GetCurrentTroops());
             UIManagement.AddLineToRollOutput("Territory Taken!");
             if (oldOwner.IsDead())
             {
@@ -169,30 +157,30 @@ public class Map : MonoBehaviour
             UIManagement.AddLineToRollOutput("Territory Defended!");
         }
 
-        //Send a message to the match manager 
-        //So it can check if the game is now over
-        MatchManager.WinCheck(attacker.GetOwner());
-
         //Notify the attacker
         //owner will be null if game was just won
         //This is why the win check is placed above this function call
         if (attacker.GetOwner() != null)
         {
-            attacker.GetOwner().OnAttackEnd(attackResult, attacker, defender);
+            attacker.GetOwner().OnAttackEnd(attackResult, attacker, defender,attackingDice);
         }
 
         //Refresh UI
         UIManagement.RefreshRollOutput();
+    }
+    public static bool IsSimulated()
+    {
+        return SceneManager.GetActiveScene().buildIndex == 1; //Menu Scene
     }
     public static List<Territory> GetTerritories() { return instance.territories; }
     public static List<Territory> TerritoriesOwnedByPlayerWorth(Player player, out int troopCount)
     {
         List<Territory> ownedTerritories = new List<Territory>();
         troopCount = 0;
-        foreach(Territory.Continent continent in instance.continents.Keys)
+        foreach(Territory.Continent continent in Map.continents.Keys)
         {
             bool continentOwned = true;
-            foreach(Territory territory in instance.continents[continent]) 
+            foreach(Territory territory in Map.continents[continent]) 
             {
                 if (territory.GetOwner()==player) { ownedTerritories.Add(territory); }
                 else { continentOwned = false; }
@@ -221,9 +209,9 @@ public class Map : MonoBehaviour
         int territoriesLeft = 0;
         int bestTerritoriesLeft = 1000;
         Continent bestContinent = Continent.Asia;
-        foreach(Continent continent in instance.continents.Keys)
+        foreach(Continent continent in Map.continents.Keys)
         {
-            foreach (Territory territory in instance.continents[continent])
+            foreach (Territory territory in Map.continents[continent])
             {
                 if (territory.GetOwner() == null) { continentFullyOwned = false; }
                 if (territory.GetOwner()!=player) { territoriesLeft++; }
@@ -242,6 +230,19 @@ public class Map : MonoBehaviour
             playerHasGround = false;
         }
         return bestContinent;
+    }
+
+    public static Player GetContinentOwner(Continent continent)
+    {
+        Player owner = Map.continents[continent][0].GetOwner();
+        foreach (Territory territory in Map.continents[continent])
+        {
+            if(territory.GetOwner() != owner)
+            {
+                return null;
+            }
+        }
+        return owner;
     }
     public static List<Territory> GetUnclaimedTerritories(Player player, out List<Territory> playerTerritories )
     {
@@ -287,17 +288,16 @@ public class Map : MonoBehaviour
 
     public static void ResetInstanceMap()
     {
-        instance.SetupMap();
+        instance.SetupMap(false);
     }
 
-    public void SetupMap()
+    public void SetupMap(bool first)
     {
         if (PlayOptionsManagement.IsConquestMode())
         {
             capitals.Clear();
         }
-
-        territories = new List<Territory>();
+        territories = new List<Territory>(); 
         continents = new Dictionary<Territory.Continent, List<Territory>>();
         instance = this;
         foreach (Transform child in transform)

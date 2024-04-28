@@ -6,12 +6,13 @@ using Pathfinding;
 /// <summary>
 /// INode implementation used to pass data to the Pathfinding namespace. Used to navigate territory map.
 /// </summary>
-public class TerritoryNode : INode
+public class EnemyNode : INode
 {
     /// <summary>
     /// The target territory of this node
     /// </summary>
     public Territory territory;
+    public Player ally;
 
     /// <summary>
     /// Used in the pathfinding algorithm to determine what nodes are next to each other.
@@ -25,7 +26,8 @@ public class TerritoryNode : INode
         //Here the node neighbours is just every neighbour the territory has on the map
         foreach (Territory territory in territories)
         {
-            if (territory.GetOwner() == this.territory.GetOwner()) { nodes.Add(new TerritoryNode().SetTerritory(territory)); }
+            if (territory.GetOwner()==null ||!territory.GetOwner().Equals(ally)) 
+            {nodes.Add(new EnemyNode().SetTerritory(territory).SetOwner(ally)); }
         }
         return nodes;
     }
@@ -44,9 +46,15 @@ public class TerritoryNode : INode
     /// </summary>
     /// <param name="territory">The new target territory.</param>
     /// <returns>Returns this object, now with a new target territory. This is not a copy of the object.</returns>
-    public TerritoryNode SetTerritory(Territory territory)
+    public EnemyNode SetTerritory(Territory territory)
     {
         this.territory = territory;
+        return this;
+    }
+
+    public EnemyNode SetOwner(Player player)
+    {
+        ally = player;
         return this;
     }
 }

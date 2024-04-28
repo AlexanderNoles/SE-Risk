@@ -67,11 +67,11 @@ public class DiceRollMenu : MonoBehaviour
         //(the one currently used by the ai)
         if (playerIsAttacker)
         {
-            maxDice = attacker.GetOwner().GetMaxAttackingDice(attacker) - 1;
+            maxDice = attacker.GetOwner().GetMaxAttackingDice(attacker);
         }
         else
         {
-            maxDice = defender.GetOwner().GetMaxDefendingDice(defender) - 1;
+            maxDice = defender.GetOwner().GetMaxDefendingDice(defender);
         }
 
         currentNumberOfDice = maxDice;

@@ -1,6 +1,11 @@
+using MonitorBreak.Bebug;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Territory;
@@ -16,7 +21,7 @@ public class Player : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().buildIndex == 0) //Main Scene
             {
-                return 0.1f;
+                return 0.01f;
             }
             else
             {
@@ -37,6 +42,12 @@ public class Player : MonoBehaviour
     public bool KilledAPlayerThisTurn = false;
     private bool placingFirstTerritory = true;
     private int difficulty = 1;
+    private int expanding = 0;
+    List<Territory> interruptRoute;
+    Territory toExpand;
+    bool doAttack;
+    bool doAttackExpansion;
+
     public virtual void ResetPlayer()
     {
         placingFirstTerritory = true;
@@ -111,7 +122,7 @@ public class Player : MonoBehaviour
         {
                 foreach (Territory owned in ownedTerritories)
                 {
-                    int routeLength = LengthOfRouteBetweenTerritories(owned, territory);
+                    int routeLength = RouteBetweenTerritories(owned, territory).Count;
                     if (routeLength < minLengthBetweenTerritories)
                     {
                         minLengthBetweenTerritories = routeLength;
@@ -192,6 +203,23 @@ public class Player : MonoBehaviour
         MatchManager.SwitchPlayerSetup();
     }
 
+    private Territory EvaluateDeploy()
+    {
+        toExpand = EvaluateExpansion(out doAttackExpansion);
+        interruptRoute = EvaluateInterruptAttack(out doAttack);
+        if (doAttack)
+        {
+            return interruptRoute[0];
+        }
+        else if (toExpand!=null)
+        {
+            return toExpand;
+        }
+        else
+        {
+            return null;
+        }
+    }
     public virtual bool Deploy(List<Territory> territories, int troopCount)
     {
         KilledAPlayerThisTurn = false;
@@ -200,11 +228,7 @@ public class Player : MonoBehaviour
         {
             if (hand.FindValidSet(out List<Card> validSet, true))
             {
-                if (!Map.IsSimulated())
-                {
                     troopCount += Hand.NumberOfTroopsForSet(this, validSet);
-                }
-
                 Hand.IncrementTurnInCount();
             }
         } while (hand.Count() >= 5);
@@ -216,76 +240,198 @@ public class Player : MonoBehaviour
     }
     private IEnumerator DeployWait(int troopCount)
     {
-        while (troopCount > 0)
-        {
             yield return new WaitForSecondsRealtime(turnDelay);
-            int deployCount = Random.Range(1, troopCount + 1);
-            Territory deployTerriory = territories[Random.Range(0, territories.Count)];
-            deployTerriory.SetCurrentTroops(deployCount + deployTerriory.GetCurrentTroops());
-            troopCount -= deployCount;
-        }
-        MatchManager.Attack();
+            Territory deployTerriory = EvaluateDeploy();
+            if (deployTerriory != null)
+            {
+                deployTerriory.SetCurrentTroops(troopCount + deployTerriory.GetCurrentTroops());
+                MatchManager.Attack();
+            }
+            else
+            {
+                MatchManager.WinCheck(this);
+            }
     }
     public virtual bool Attack()
     {
         //This means the coroutine is only reset when has been reset is set to true in the middle of it running
         hasBeenReset = false;
-
         attackCoroutine = StartCoroutine(nameof(AttackWait));
         return true;
     }
 
     private IEnumerator AttackWait()
     {
-        for (int i = 0; i < territories.Count; i++)
-        {
-            Territory territory = territories[i];
-            if (territory.GetCurrentTroops() > 1)
+            Debug.Log("hi");
+            if (doAttack)
             {
-                foreach (Territory neighbour in territory.GetNeighbours())
+                bool routeFailed = false;
+                for (int i = 0; i < interruptRoute.Count - 1; i++)
                 {
-                    if (neighbour.GetOwner() != territory.GetOwner())
+                    if (routeFailed == true)
                     {
-                        if (Random.Range(0, 2) == 0)
+                        break;
+                    }
+                    while (interruptRoute[i + 1].GetOwner() != this)
+                    {
+                        if (interruptRoute[i].GetCurrentTroops() <= 1)
                         {
-                            while (territory.GetCurrentTroops() > 1)
-                            {
-                                if (hasBeenReset)
-                                {
-                                    yield break;
-                                }
-                                else if (!inTheMiddleOfAttack)
-                                {
-                                    yield return new WaitForSecondsRealtime(turnDelay);
-                                    inTheMiddleOfAttack = true;
-                                    Map.RequestAttack(territory, neighbour);
-                                }
-                                else
-                                {
-                                    yield return new WaitForEndOfFrame();
-                                }
-                            }
+                            routeFailed = true;
+                            break;
+                        }
+                        if (hasBeenReset)
+                        {
+                            yield break;
+                        }
+                        else if (!inTheMiddleOfAttack)
+                        {
+                            yield return new WaitForSecondsRealtime(turnDelay);
+                            inTheMiddleOfAttack = true;
+                            Map.RequestAttack(interruptRoute[i], interruptRoute[i + 1]);
+                        }
+                        else
+                        {
+                            yield return new WaitForEndOfFrame();
                         }
                     }
                 }
             }
+            bool onePlayerAlive = false;
+            if (toExpand != null && doAttackExpansion && !onePlayerAlive)
+            {
+                List<Territory> enemyNeighbours = new List<Territory>();
+                foreach (Territory neighbour in toExpand.GetNeighbours())
+                {
+                    if (neighbour.GetOwner() != this)
+                    {
+                        enemyNeighbours.Add(neighbour);
+                    }
+                }
+                expanding = enemyNeighbours.Count + 1;
+                foreach (Territory neighbour in enemyNeighbours)
+                {
+                    if (toExpand == null || neighbour == null || this == null || toExpand.GetCurrentTroops() < neighbour.GetCurrentTroops())
+                    {
+                        break;
+                    }
+                    while (toExpand.GetCurrentTroops() > 1 && neighbour.GetOwner() != this)
+                    {
+                        onePlayerAlive = MatchManager.OnePlayerAlive(this);
+                        if (onePlayerAlive || toExpand == null || neighbour == null || this == null)
+                        {
+                            break;
+                        }
+
+                        if (!inTheMiddleOfAttack && !MatchManager.IsGameOver() && !hasBeenReset)
+                        {
+                            inTheMiddleOfAttack = true;
+                            Map.RequestAttack(toExpand, neighbour);
+                            yield return new WaitForSecondsRealtime(turnDelay);
+                        }
+                        else
+                        {
+                            yield return new WaitForEndOfFrame();
+                        }
+                    }
+                }
+                toExpand = EvaluateExpansion(out doAttackExpansion);
+                expanding = 0;
+            }
+            if (!hasBeenReset)
+            {
+                MatchManager.Fortify();
+            }
+        }
+    private Territory EvaluateExpansion(out bool attempt)
+    {
+        int currentMinNeighbours = 10000;
+        Territory currentTerritoryToExpand = null;
+        foreach (Territory territory in territories)
+        {
+            int enemyNeighbourCount = 0;
+            List<Territory> enemyNeighbours = new List<Territory>();
+            foreach(Territory neighbour in territory.GetNeighbours())
+            {
+                if (neighbour.GetOwner()!= territory.GetOwner())
+                {
+                    enemyNeighbourCount+=neighbour.GetCurrentTroops();
+                }
+            }
+            if (enemyNeighbourCount < currentMinNeighbours && enemyNeighbourCount!=0)
+            {
+                currentTerritoryToExpand = territory;
+                currentMinNeighbours=enemyNeighbourCount;
+            }
         }
 
-        if (!hasBeenReset)
+        attempt = false;
+
+        if (currentTerritoryToExpand != null && currentTerritoryToExpand.GetCurrentTroops() > currentMinNeighbours - Random.Range(0, difficulty)*2)
         {
-            MatchManager.Fortify();
+            attempt = true;
         }
+
+        return currentTerritoryToExpand;
+    }
+    private List<Territory> EvaluateInterruptAttack(out bool attempt)
+    {
+        List<Continent> continentsOwnedByEnemies = new List<Continent>();
+        foreach(Continent continent in System.Enum.GetValues(typeof(Continent)))
+        {
+            Player owner = Map.GetContinentOwner(continent);
+            if (owner!=null && owner!=this)
+            {
+                continentsOwnedByEnemies.Add(continent);
+            }
+        }
+        int minTroopRequirement=10000;
+        List<Territory> bestRoute = new List<Territory>();
+        foreach(Continent continent in continentsOwnedByEnemies)
+        {
+            foreach(Territory endTerritory in Map.continents[continent])
+            {
+                foreach(Territory startTerritory in territories)
+                {
+                    int routeCost =0;
+                    List<Territory> thisRoute = new List<Territory>();
+                    List<Pathfinding.INode> newRoute = RouteBetweenTerritories(startTerritory, endTerritory);
+                    foreach (EnemyNode node in newRoute)
+                    {
+                        thisRoute.Add(node.territory);
+                        if (node.territory.GetOwner() != this)
+                        {
+                            routeCost += (node.territory.GetCurrentTroops()*2)+1;
+                        }
+                    }
+                    if (newRoute.Count>0 && routeCost < minTroopRequirement - Random.Range(0,difficulty))
+                    {
+                        minTroopRequirement = routeCost;
+                        bestRoute = thisRoute;
+                    }
+                }
+            }
+        }
+        if (bestRoute.Count>0 && bestRoute[0].GetCurrentTroops() > minTroopRequirement - Random.Range(0, difficulty))
+        {
+            attempt = true;
+        }
+        else
+        {
+            attempt = false;
+        }
+        return bestRoute;   
     }
 
+   
     public int GetMaxAttackingDice(Territory target)
     {
         //Must have one more army than the number of dice we want to roll, clamped to range 1...3
-        return Mathf.Clamp(target.GetCurrentTroops(), 2, 4);
+        return Mathf.Clamp(target.GetCurrentTroops()-1, 1, 3);
     }
 
     public virtual int GetAttackingDice(Territory attacker)
     {
-        return Random.Range(1, GetMaxAttackingDice(attacker));
+        return GetMaxAttackingDice(attacker);
     }
 
     public int GetMaxDefendingDice(Territory target)
@@ -306,13 +452,24 @@ public class Player : MonoBehaviour
         return 1;
     }
 
-    public virtual void OnAttackEnd(Map.AttackResult attackResult, Territory attacker, Territory defender)
+    public virtual void OnAttackEnd(Map.AttackResult attackResult, Territory attacker, Territory defender, int attackerDiceCount)
     {
         if (attackResult == Map.AttackResult.Won)
         {
-            //Temp measure, just move all troops
-            defender.SetCurrentTroops(attacker.GetCurrentTroops() + defender.GetCurrentTroops() - 1);
-            attacker.SetCurrentTroops(1);
+            if (expanding == 0)
+            {
+                defender.SetCurrentTroops(attacker.GetCurrentTroops() - 1);
+                attacker.SetCurrentTroops(1);
+            }
+            else
+            {
+                int troopsToMove = attacker.GetCurrentTroops() / expanding ;
+                Debug.Log(troopsToMove);
+                Debug.Log(attacker.GetCurrentTroops());
+                Debug.Log(attackerDiceCount);
+                defender.SetCurrentTroops(troopsToMove > attackerDiceCount ? troopsToMove : attackerDiceCount);
+                attacker.SetCurrentTroops(attacker.GetCurrentTroops() - defender.GetCurrentTroops());
+            }
             territoryTakenThisTurn = true;
         }
         if (hand.Count() >= 6 && KilledAPlayerThisTurn)
@@ -325,32 +482,44 @@ public class Player : MonoBehaviour
         inTheMiddleOfAttack = false;
     }
 
-
+    private Territory EvaluateFortify()
+    {
+        Territory maxLockedTerritory = null;
+        foreach (Territory territory in territories)
+        {
+            bool locked = true;
+            foreach (Territory neighbour in territory.GetNeighbours())
+            {
+                if (neighbour.GetOwner() != territory.GetOwner())
+                {
+                    locked = false;
+                    break;
+                }
+            }
+            if(locked && (maxLockedTerritory == null||maxLockedTerritory.GetCurrentTroops() < territory.GetCurrentTroops()) && AreTerritoriesConnected(territory,toExpand))
+            {
+                maxLockedTerritory = territory;
+            }
+        }
+        return maxLockedTerritory;
+    }
     public virtual void Fortify()
     {
-        StartCoroutine(nameof(FortifyWait));
+        MatchManager.WinCheck(this);
+        if (!MatchManager.OnePlayerAlive(this))
+        {
+            StartCoroutine(nameof(FortifyWait));
+        }
     }
     private IEnumerator FortifyWait()
     {
         yield return new WaitForSecondsRealtime(turnDelay);
-        bool territoryFound = false;
-        for (int i = 0; i < territories.Count && !territoryFound; i++)
-        {
-            Territory territory = territories[i];
-            if (territory.GetCurrentTroops() > 1 && Random.Range(0, 2) == 0)
+            Territory territory = EvaluateFortify();
+            if (territory != null && territory.GetCurrentTroops() > 1)
             {
-                foreach (Territory endNode in territories)
-                {
-                    if (endNode != territory && AreTerritoriesConnected(territory, endNode) && Random.Range(0, 2) == 0)
-                    {
-                        endNode.SetCurrentTroops(territory.GetCurrentTroops() + endNode.GetCurrentTroops() - 1);
-                        territory.SetCurrentTroops(1);
-                        territoryFound = true;
-                        break;
-                    }
-                }
+                toExpand.SetCurrentTroops(territory.GetCurrentTroops() + toExpand.GetCurrentTroops() - 1);
+                territory.SetCurrentTroops(1);
             }
-        }
         turnReset = false;
         MatchManager.EndTurn();
     }
@@ -384,15 +553,15 @@ public class Player : MonoBehaviour
     }
     public bool AreTerritoriesConnected(Territory startTerritory, Territory endTerritory)
     {
-        TerritoryNode startNode = new TerritoryNode().SetTerritory(startTerritory);
-        TerritoryNode endNode = new TerritoryNode().SetTerritory(endTerritory);
+        FriendlyNode startNode = new FriendlyNode().SetTerritory(startTerritory);
+        FriendlyNode endNode = new FriendlyNode().SetTerritory(endTerritory);
         return Pathfinding.AStar.FindPath(startNode, endNode, false).Count > 0;
     }
-    public int LengthOfRouteBetweenTerritories(Territory startTerritory, Territory endTerritory)
+    public List<Pathfinding.INode> RouteBetweenTerritories(Territory startTerritory, Territory endTerritory)
     {
-        TerritoryNode startNode = new TerritoryNode().SetTerritory(startTerritory);
-        TerritoryNode endNode = new TerritoryNode().SetTerritory(endTerritory);
-        return Pathfinding.AStar.FindPath(startNode, endNode, false).Count;
+        EnemyNode startNode = new EnemyNode().SetTerritory(startTerritory).SetOwner(this);
+        EnemyNode endNode = new EnemyNode().SetTerritory(endTerritory).SetOwner(endTerritory.GetOwner());
+        return Pathfinding.AStar.FindPath(startNode, endNode, false);
     }
     public virtual void OnTurnEnd()
     {
@@ -417,10 +586,16 @@ public class Player : MonoBehaviour
 
         PlayerInfoHandler.UpdateInfo();
         KilledAPlayerThisTurn = true;
+        //if (MatchManager.OnePlayerAlive(this))
+        //{
+        //    doAttackExpansion = false;
+        //}
+
     }
 
     public void ContinueTurn()
     {
+        //doesnt work for Ai plauyers
         turnReset = true;
         Deploy(territories, 0);
     }

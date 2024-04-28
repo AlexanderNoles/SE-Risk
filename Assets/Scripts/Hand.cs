@@ -73,7 +73,7 @@ public class Hand
                         list[k]
                     };
 
-                    if (IsArrayAValidSet(set))
+                    if (i!=j&&i!=k&&j!=k&&IsArrayAValidSet(set))
                     {
                         validSet = set;
 

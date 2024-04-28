@@ -43,10 +43,13 @@ public class LocalPlayer : Player
         PlayerInputHandler.Attack();
         return true;
     }
-    public override void OnAttackEnd(Map.AttackResult attackResult, Territory attacker, Territory defender)
+    public override void OnAttackEnd(Map.AttackResult attackResult, Territory attacker, Territory defender, int attackerDiceCount)
     {
         if (attackResult == Map.AttackResult.Won)
         {
+            MatchManager.WinCheck(this);
+            defender.SetCurrentTroops(attacker.GetCurrentTroops() - 1 >= attackerDiceCount ? attackerDiceCount : attacker.GetCurrentTroops() - 1);
+            attacker.SetCurrentTroops(attacker.GetCurrentTroops() - defender.GetCurrentTroops());
             AudioManagement.PlaySound("Territory Capture");
             territoryTakenThisTurn = true;
         }

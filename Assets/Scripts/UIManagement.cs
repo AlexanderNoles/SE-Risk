@@ -65,10 +65,7 @@ public class UIManagement : MonoBehaviour
     /// <param name="text">The new text to display.</param>
     public static void SetText(string text)
     {
-        if (!Map.IsSimulated())
-        {
             instance.turnInfoText.text = text;
-        }
     }
 
     /// <summary>
@@ -86,11 +83,6 @@ public class UIManagement : MonoBehaviour
     /// <param name="line">The text to add.</param>
     public static void AddLineToRollOutput(string line)
     {
-        if (Map.IsSimulated()) 
-        {
-            return;
-        }
-
         rollOutputLines.Insert(0, line);
         newLinesAdded++;
 
@@ -105,11 +97,6 @@ public class UIManagement : MonoBehaviour
     /// </summary>
     public static void RefreshRollOutput()
     {
-        if (Map.IsSimulated())
-        {
-            return;
-        }
-
         //Construct output string
         string finalOutputString = "";
 

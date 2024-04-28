@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static MatchManager;
@@ -7,6 +9,12 @@ using static MatchManager;
 public class MatchManager : MonoBehaviour
 {
     private static bool gameOver;
+
+    public static bool IsGameOver()
+    {
+        return gameOver;
+    }
+
     public struct GameWonInfo
     {
         public string winnerName;
@@ -89,7 +97,7 @@ public class MatchManager : MonoBehaviour
 
         inSetup = true;
 
-        if (!Map.IsSimulated() && infoHandler != null)
+        if (infoHandler != null)
         {
             infoHandler.SetPlayers(playerList);
         }
@@ -107,8 +115,6 @@ public class MatchManager : MonoBehaviour
     public void Start()
     {
         //Create the number of neccesary A.I, but only in the actual game
-        if (!Map.IsSimulated())
-        {
             for (int i = 0; i < PlayOptionsManagement.GetNumberOfAIPlayers(); i++)
             {
                 //Should load this from options
@@ -118,7 +124,6 @@ public class MatchManager : MonoBehaviour
 
                 playerList.Add(newAI);
             }
-        }
 
         //Assertion
         if (playerList.Count < 3)
@@ -139,7 +144,7 @@ public class MatchManager : MonoBehaviour
     }
     public static void Setup()
     {
-        if (PlayOptionsManagement.IsConquestMode() && !Map.IsSimulated() && capitalsPlaced < instance.playerList.Count)
+        if (PlayOptionsManagement.IsConquestMode()&& capitalsPlaced < instance.playerList.Count)
         {
             instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex], out List<Territory> playerTerritories);
 
@@ -150,6 +155,7 @@ public class MatchManager : MonoBehaviour
         }
         else if (instance.troopDeployCount > 0)
         {
+            MonitorBreak.Bebug.Console.Log("Normal Setup");
             instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex], out List<Territory> playerTerritories);
 
             UpdateInfoTextSetup(instance.troopDeployCount);
@@ -165,6 +171,7 @@ public class MatchManager : MonoBehaviour
         }
         else
         {
+            MonitorBreak.Bebug.Console.Log("Setup finished");
             instance.turnNumber = 1;
             inSetup = false;
             Deploy();
@@ -173,6 +180,7 @@ public class MatchManager : MonoBehaviour
     }
     public static void Deploy()
     {
+        Debug.Log("deploy");
         state = TurnState.Deploying;
         instance.currentPlayerTerritories = Map.TerritoriesOwnedByPlayerWorth(instance.playerList[instance.currentTurnIndex],out int troopCount);
         if(instance.currentPlayerTerritories.Count == 0)
@@ -189,21 +197,28 @@ public class MatchManager : MonoBehaviour
     }
     public static void Attack()
     {
+        Debug.Log("attack");
         state = TurnState.Attacking;
         UpdateInfoTextDefault("Attack");
         instance.playerList[instance.currentTurnIndex].Attack();
     }
     public static void Fortify()
     {
+        Debug.Log("fortify");
         state = TurnState.Fortifying;
         UpdateInfoTextDefault("Fortify");
         instance.playerList[instance.currentTurnIndex].Fortify();
     }
     public void SwitchPlayer() 
     {
-        if (currentTurnIndex == playerList.Count - 1|| currentTurnIndex<0) 
+        Debug.Log("switched player");
+        if (playerList.Count <= 1)
+        {
+            return;
+        }
+        else if (currentTurnIndex == playerList.Count - 1|| currentTurnIndex<0) 
         { 
-            currentTurnIndex = 1;
+            currentTurnIndex = 0;
             turnNumber++; 
         } 
         else 
@@ -268,6 +283,7 @@ public class MatchManager : MonoBehaviour
 
                 if (current.GetTerritories().Count == Map.GetTerritories().Count)
                 {
+                    Debug.Log("won");
                     //This Player has won!
                     gameOver = true;
                 }
@@ -276,19 +292,15 @@ public class MatchManager : MonoBehaviour
 
         if (gameOver)
         {
-            if (Map.IsSimulated())
-            {
-                //Restart game
-                instance.ResetGame(false);
-            }
-            else
-            {
                 //Create game won info, to be used by game won screen
                 gameWonInfo = new GameWonInfo(!instance.playerList[0].IsDead());
                 if (current != null)
                 {
                     gameWonInfo.winnerName = current.GetColorName();
-                    gameWonInfo.winnerColor = current.GetColorName().ToLower();
+
+                    string winnerColour = "#" + current.GetColor().ToHexString();
+                    
+                    gameWonInfo.winnerColor = winnerColour;
                 }
                 else
                 {
@@ -299,7 +311,6 @@ public class MatchManager : MonoBehaviour
                 //Load win screen menu
                 TransitionControl.onTransitionOver.AddListener(OnOutTransitionOver);
                 TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn);
-            }
         }
     }
 
@@ -317,5 +328,20 @@ public class MatchManager : MonoBehaviour
     public static void UpdateInfoTextSetup(int count)
     {
         UIManagement.SetText($"Current Troops: {count}");
+    }
+
+    public static List<Player> GetPlayers()
+    {
+        return instance.playerList;
+    }
+
+    public static bool OnePlayerAlive(Player current)
+    {
+        if (current.GetTerritories().Count == Map.GetTerritories().Count)
+        {
+            Debug.Log("working");
+            return true;
+        }
+        return false;
     }
 }

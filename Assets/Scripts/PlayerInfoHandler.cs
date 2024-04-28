@@ -28,10 +28,12 @@ public class PlayerInfoHandler : MonoBehaviour
         textBackers = new List<Image>();
         infoTexts = new List<TextMeshProUGUI>();
         crosses = new List<GameObject>();
+        backers = new List<GameObject>();
 
         for (int i = 0; i < 6; i++)
         {
             Transform info = transform.GetChild(i);
+            backers.Add(info.gameObject);
             infoFronts.Add(info.GetChild(0).GetComponent<Image>());
             textBackers.Add(infoFronts[^1].transform.GetChild(1).GetComponent<Image>());
             infoTexts.Add(textBackers[^1].transform.GetChild(0).GetComponent<TextMeshProUGUI>());
@@ -44,7 +46,7 @@ public class PlayerInfoHandler : MonoBehaviour
     static List<Image> textBackers;
     static List<TextMeshProUGUI> infoTexts;
     static List<GameObject> crosses;
-
+    static List<GameObject> backers;
     public void UpdateColours()
     {
         for (int i = 0; i<6; i++)
@@ -56,7 +58,7 @@ public class PlayerInfoHandler : MonoBehaviour
             }
             else
             {
-                infoFronts[i].gameObject.SetActive(false);
+                backers[i].gameObject.SetActive(false);
             }
         }
     }
@@ -71,11 +73,6 @@ public class PlayerInfoHandler : MonoBehaviour
 
     public static void UpdateInfo()
     {
-        if (Map.IsSimulated())
-        {
-            return;
-        }
-
         int j = 0;
         for (int i = 0; i < players.Count; i++)
         {

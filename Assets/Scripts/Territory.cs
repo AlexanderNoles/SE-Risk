@@ -98,7 +98,6 @@ public class Territory : MonoBehaviour
     public void SetCurrentTroops(int currentTroops) 
     {
         this.currentTroops = currentTroops;
-
         if (!Map.IsSimulated())
         {
             if (troopLabel == null)
@@ -126,7 +125,7 @@ public class Territory : MonoBehaviour
     public void ResetTerritory(bool resetColour)
     {
         SetCurrentTroops(0);
-        ResetOwner(resetColour);
+        ResetOwner(true);
     }
 
 
