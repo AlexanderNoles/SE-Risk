@@ -4,6 +4,7 @@ using UnityEngine;
 using MonitorBreak;
 using Mirror;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 [IntializeAtRuntime("NetworkManager")]
 public class NetworkManagement : NetworkManager
@@ -24,6 +25,31 @@ public class NetworkManagement : NetworkManager
     }
 
     public static UnityEvent onClientDisconnect = new UnityEvent();
+
+    private static List<GameObject> playerObjects = new List<GameObject>();
+
+    public static void AddPlayerObject(GameObject newPlayer)
+    {
+        playerObjects.Add(newPlayer);
+    }
+
+    public static void RemovePlayerObject(GameObject player)
+    {
+        playerObjects.Remove(player);
+    }
+
+    public static void ResetPlayerObjects()
+    {
+        playerObjects.Clear();
+    }
+
+    public static void MakePlayerObjectsNonDestroy()
+    {
+        foreach (GameObject player in playerObjects)
+        {
+            DontDestroyOnLoad(player);
+        }
+    }
 
     public override void Awake()
     {

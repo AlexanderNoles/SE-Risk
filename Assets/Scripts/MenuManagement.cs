@@ -89,7 +89,20 @@ public class MenuManagement : MonoBehaviour
     private void ActuallyLoadMainScene()
     {
         TransitionControl.onTransitionOver.RemoveListener(ActuallyLoadMainScene);
+
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+            //Tell clients to load scene
+            NetworkConnection.StartGameServerCommand();
+        }
+
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+            NetworkManagement.MakePlayerObjectsNonDestroy();
+        }
+
         SceneManager.LoadScene(0);
+
         TransitionControl.RunTransition(TransitionControl.Transitions.SwipeOut);
     }
     /// <summary>

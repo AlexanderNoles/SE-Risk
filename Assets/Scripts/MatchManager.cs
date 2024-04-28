@@ -89,55 +89,79 @@ public class MatchManager : MonoBehaviour
             }
         }
 
-        //Reset players
-        foreach (Player player in playerList)
+        if (NetworkManagement.GetClientState() != NetworkManagement.ClientState.Client)
         {
-            player.ResetPlayer();
+            //Reset players
+            foreach (Player player in playerList)
+            {
+                player.ResetPlayer();
+            }
+
+            inSetup = true;
+
+            if (infoHandler != null)
+            {
+                infoHandler.SetPlayers(playerList);
+            }
+
+            //Reset match
+            troopDeployCount = StartingTroopCounts[playerList.Count];
+            UpdateInfoTextSetup(troopDeployCount);
+            turnNumber = 1;
+            Deck.CreateDeck();
+
+            capitalsPlaced = 0;
+            Setup();
         }
-
-        inSetup = true;
-
-        if (infoHandler != null)
+        else
         {
-            infoHandler.SetPlayers(playerList);
+            gameObject.SetActive(false);
         }
-
-        //Reset match
-        troopDeployCount = StartingTroopCounts[playerList.Count];
-        UpdateInfoTextSetup(troopDeployCount);
-        turnNumber = 1;
-        Deck.CreateDeck();
-
-        capitalsPlaced = 0;
-        Setup();
     }
 
     public void Start()
     {
-        //Create the number of neccesary A.I, but only in the actual game
+        if (NetworkManagement.GetClientState() != NetworkManagement.ClientState.Client)
+        {
+            int colourIndex = 0;
+            //Create the number of neccesary A.I, but only in the actual game
+            for (int i = 0; i < PlayOptionsManagement.GetNumberOfNetworkPlayers(); i++)
+            {
+                //Should load this from options
+                Player newAI = Instantiate(Resources.Load("NetworkPlayer") as GameObject).GetComponent<Player>();
+
+                newAI.SetColor((Player.PlayerColour)colourIndex);
+                colourIndex++;
+
+                playerList.Add(newAI);
+            }
+
+
             for (int i = 0; i < PlayOptionsManagement.GetNumberOfAIPlayers(); i++)
             {
                 //Should load this from options
                 Player newAI = Instantiate(Resources.Load("AIPlayer") as GameObject).GetComponent<Player>();
 
-                newAI.SetColor((Player.PlayerColour)(i));
+                newAI.SetColor((Player.PlayerColour)colourIndex);
+                colourIndex++;
 
                 playerList.Add(newAI);
             }
 
-        //Assertion
-        if (playerList.Count < 3)
-        {
-            //Less than 3 players in lobby, this shouldn't occur unless there has been some issue with the play menu
-            //as it shouldn't let you run the game until at least 3 players are in
-            throw new System.Exception("Less than 3 players in lobby");
-        }
+            //Assertion
+            if (playerList.Count < 3)
+            {
+                //Less than 3 players in lobby, this shouldn't occur unless there has been some issue with the play menu
+                //as it shouldn't let you run the game until at least 3 players are in
+                throw new System.Exception("Less than 3 players in lobby");
+            }
 
-        originalPlayers = new List<Player>();
-        //Setup original players list as copy
-        foreach (Player player in playerList)
-        {
-            originalPlayers.Add(player);
+            originalPlayers = new List<Player>();
+            //Setup original players list as copy
+            foreach (Player player in playerList)
+            {
+                originalPlayers.Add(player);
+            }
         }
 
         ResetGame(true);

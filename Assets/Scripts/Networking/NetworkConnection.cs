@@ -2,11 +2,13 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NetworkConnection : NetworkBehaviour
 {
     private static NetworkConnection instance;
     public bool isOnHost = false;
+    public static uint networkID;
     private static bool touchedServer = false;
 
     public static bool ActuallyConnectedToServer()
@@ -19,13 +21,14 @@ public class NetworkConnection : NetworkBehaviour
         touchedServer = false;
     }
 
-    private void Awake()
-    {
-        instance = this;
-    }
-
     public override void OnStartClient()
     {
+        if (isLocalPlayer)
+        {
+            networkID = GetComponent<NetworkIdentity>().netId;
+        }
+
+        NetworkManagement.AddPlayerObject(gameObject);
         if (!isLocalPlayer || isOnHost)
         {
             return;
@@ -42,6 +45,7 @@ public class NetworkConnection : NetworkBehaviour
                 //Go offline immediately
                 //Notify the playoptions management so it doesn't run the swipe out transition
                 //as the join button is already doing those transitions
+                NetworkManagement.ResetPlayerObjects();
                 PlayOptionsManagement.DontRunDisconnectTransitions();
                 NetworkManagement.UpdateClientNetworkState(NetworkManagement.ClientState.Offline);
             }
@@ -57,11 +61,25 @@ public class NetworkConnection : NetworkBehaviour
 
     public override void OnStopClient()
     {
-        if (!isLocalPlayer && isOnHost)
+        if (isLocalPlayer)
         {
-            Debug.Log("Connection Lost");
+            if (isOnHost)
+            {
+                instance = null;
+            }
+            NetworkManagement.ResetPlayerObjects();
+        }
 
-            PlayOptionsManagement.NotifyHostOfLostConnection();
+        if (!isLocalPlayer)
+        {
+            if(isOnHost)
+            {
+                Debug.Log("Connection Lost");
+
+                PlayOptionsManagement.NotifyHostOfLostConnection();
+            }
+
+            NetworkManagement.RemovePlayerObject(gameObject);
         }
     }
 
@@ -84,7 +102,27 @@ public class NetworkConnection : NetworkBehaviour
         else
         {
             touchedServer = true;
+            instance = this;
             PlayOptionsManagement.NewHostSetup();
         }
+    }
+
+    public static void StartGameServerCommand()
+    {
+        if (instance == null)
+        {
+            throw new System.Exception("Shouldn't be running this. Likely a client.");
+        }
+
+        instance.RpcStartGame(0);
+    }
+
+
+    //COMMUNICATION
+    [ClientRpc]
+    public void RpcStartGame(int sceneIndex)
+    {
+        NetworkManagement.MakePlayerObjectsNonDestroy();
+        SceneManager.LoadScene(sceneIndex);
     }
 }

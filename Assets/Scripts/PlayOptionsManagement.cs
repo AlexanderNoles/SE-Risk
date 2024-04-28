@@ -158,6 +158,15 @@ public class PlayOptionsManagement : MonoBehaviour
     }
 
     /// <summary>
+    /// Static function that returns the current number of network players.
+    /// </summary>
+    /// <returns>Current number of network players as int.</returns>
+    public static int GetNumberOfNetworkPlayers()
+    {
+        return playOptions.numberOfNetworkPlayers;
+    }
+
+    /// <summary>
     /// Static function that returns the total number of players.
     /// </summary>
     /// <returns>Total number of players as int.</returns>
@@ -439,6 +448,11 @@ public class PlayOptionsManagement : MonoBehaviour
 
     public static void NotifyHostOfLostConnection()
     {
+        if (instance == null)
+        {
+            return;
+        }
+
         instance.OnLostConnection();
     }
 

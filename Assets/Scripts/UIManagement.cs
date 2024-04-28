@@ -40,7 +40,6 @@ public class UIManagement : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("hi");
         instance = this;
         rollOutputLines = new List<string>();
         RefreshRollOutput();
