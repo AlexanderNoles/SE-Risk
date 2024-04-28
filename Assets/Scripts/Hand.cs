@@ -44,7 +44,7 @@ public class Hand
         setsTurnedIn++;
     }
     List<Card> list;
-    public static int NumberOfTroopsForSet(Player player, List<Card> set)
+    public static int NumberOfTroopsForSet(int player, List<Card> set)
     {
         PlayerInfoHandler.UpdateInfo();
         foreach(Card card in set)

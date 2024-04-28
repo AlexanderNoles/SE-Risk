@@ -31,7 +31,7 @@ public class Map : MonoBehaviour
         UIManagement.Spawn<Image>(territory.GetUIOffset(), 1).component.color = capitalColor;
     }
 
-    public static bool DoesPlayerHoldAllCapitals(Player target)
+    public static bool DoesPlayerHoldAllCapitals(int target)
     {
         foreach ((Territory, Player) capital in capitals)
         {
@@ -80,11 +80,11 @@ public class Map : MonoBehaviour
         //Need this later
         //After attack has finished we need to notify the attacker that they have won or lost
         //No need to notify defender (at least the actual game object) with current game structure
-        Player attackingPlayer = attacker.GetOwner();
+        int attackingPlayer = attacker.GetOwner();
         //Need to pass this to ask them how many troops they want to defend with
-        Player defenderPlayer = defender.GetOwner();
+        int defenderPlayer = defender.GetOwner();
 
-        if (defenderPlayer == null || attackingPlayer == null) 
+        if (defenderPlayer == -1 || attackingPlayer == -1) 
         {
             return;
         }
@@ -92,8 +92,8 @@ public class Map : MonoBehaviour
         //If the attacker and defender are both ai skip over ui step
         //If not we need to wait (open dice roll menu) and come back to it later
         //Dice roll menu will then run attack when it is needed
-        bool attackerIsLocalPlayer = attackingPlayer is LocalPlayer;
-        bool defenderIsLocalPlayer = defenderPlayer is LocalPlayer;
+        bool attackerIsLocalPlayer = attackingPlayer is 0;
+        bool defenderIsLocalPlayer = defenderPlayer is 0;
 
         if (attackerIsLocalPlayer && defenderIsLocalPlayer) 
         {
@@ -108,7 +108,7 @@ public class Map : MonoBehaviour
         else
         {
             //Just straight run attack
-            Attack(attacker, defender, attackingPlayer.GetAttackingDice(attacker), defenderPlayer.GetDefendingDice(defender));
+            Attack(attacker, defender, MatchManager.GetPlayerFromIndex(attackingPlayer).GetAttackingDice(attacker), MatchManager.GetPlayerFromIndex(defenderPlayer).GetDefendingDice(defender));
         }
     }
 
@@ -145,16 +145,18 @@ public class Map : MonoBehaviour
 
         AttackResult attackResult = defender.GetCurrentTroops() <= 0 ? AttackResult.Won : AttackResult.Lost;
 
+        Player attackerPlayer = MatchManager.GetPlayerFromIndex(attacker.GetOwner());
+
         if (defender.GetCurrentTroops() <= 0)
         {
-            Player oldOwner = defender.GetOwner();
+            Player oldOwner = MatchManager.GetPlayerFromIndex(defender.GetOwner());
             defender.SetOwner(attacker.GetOwner());
-            attacker.GetOwner().AddTerritory(defender);
+            attackerPlayer.AddTerritory(defender);
             oldOwner.RemoveTerritory(defender);
             UIManagement.AddLineToRollOutput("Territory Taken!");
             if (oldOwner.IsDead())
             {
-                attacker.GetOwner().Killed(oldOwner);
+                attackerPlayer.Killed(oldOwner);
             }
         }
         else
@@ -165,9 +167,9 @@ public class Map : MonoBehaviour
         //Notify the attacker
         //owner will be null if game was just won
         //This is why the win check is placed above this function call
-        if (attacker.GetOwner() != null)
+        if (attacker.GetOwner() != -1)
         {
-            attacker.GetOwner().OnAttackEnd(attackResult, attacker, defender,attackingDice);
+            attackerPlayer.OnAttackEnd(attackResult, attacker, defender,attackingDice);
         }
 
         //Refresh UI
@@ -178,7 +180,7 @@ public class Map : MonoBehaviour
         return SceneManager.GetActiveScene().buildIndex == 1; //Menu Scene
     }
     public static List<Territory> GetTerritories() { return instance.territories; }
-    public static List<Territory> TerritoriesOwnedByPlayerWorth(Player player, out int troopCount)
+    public static List<Territory> TerritoriesOwnedByPlayerWorth(int player, out int troopCount)
     {
         List<Territory> ownedTerritories = new List<Territory>();
         troopCount = 0;
@@ -198,7 +200,7 @@ public class Map : MonoBehaviour
         return ownedTerritories;
     }
 
-    public static List<Territory> GetTerritoriesOwnedByPlayer(Player player)
+    public static List<Territory> GetTerritoriesOwnedByPlayer(int player)
     {
         List<Territory> ownedTerritories = new List<Territory>();
             foreach (Territory territory in instance.territories)
@@ -207,7 +209,7 @@ public class Map : MonoBehaviour
             }
         return ownedTerritories;
     }
-    public static Continent GetContinentClosestToCaptured(Player player)
+    public static Continent GetContinentClosestToCaptured(int player)
     {
         bool playerHasGround = false;
         bool continentFullyOwned = true;
@@ -218,8 +220,8 @@ public class Map : MonoBehaviour
         {
             foreach (Territory territory in Map.continents[continent])
             {
-                if (territory.GetOwner() == null) { continentFullyOwned = false; }
-                if (territory.GetOwner()!=player) { territoriesLeft++; }
+                if (territory.GetOwner() == -1) { continentFullyOwned = false; }
+                if (territory.GetOwner() != player) { territoriesLeft++; }
                 else
                 {
                     playerHasGround = true;
@@ -237,25 +239,25 @@ public class Map : MonoBehaviour
         return bestContinent;
     }
 
-    public static Player GetContinentOwner(Continent continent)
+    public static int GetContinentOwner(Continent continent)
     {
-        Player owner = Map.continents[continent][0].GetOwner();
+        int owner = Map.continents[continent][0].GetOwner();
         foreach (Territory territory in Map.continents[continent])
         {
             if(territory.GetOwner() != owner)
             {
-                return null;
+                return -1;
             }
         }
         return owner;
     }
-    public static List<Territory> GetUnclaimedTerritories(Player player, out List<Territory> playerTerritories )
+    public static List<Territory> GetUnclaimedTerritories(int player, out List<Territory> playerTerritories )
     {
         List<Territory> unownedTerritories = new List<Territory>();
         playerTerritories = new List<Territory>();
         foreach (Territory territory in instance.territories)
         {
-            if (territory.GetOwner() == null)
+            if (territory.GetOwner() == -1)
             {
                 unownedTerritories.Add(territory);
             }

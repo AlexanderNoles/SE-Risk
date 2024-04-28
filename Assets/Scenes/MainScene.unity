@@ -4047,7 +4047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 783da5346d63efb4893772412dd82f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colour: 5
+  colour: 0
   KilledAPlayerThisTurn: 0
   cardDisplayer: {fileID: 1849718063}
 --- !u!1 &362843053

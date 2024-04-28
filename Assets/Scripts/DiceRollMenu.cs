@@ -67,11 +67,11 @@ public class DiceRollMenu : MonoBehaviour
         //(the one currently used by the ai)
         if (playerIsAttacker)
         {
-            maxDice = attacker.GetOwner().GetMaxAttackingDice(attacker);
+            maxDice = MatchManager.GetPlayerFromIndex(attacker.GetOwner()).GetMaxAttackingDice(attacker);
         }
         else
         {
-            maxDice = defender.GetOwner().GetMaxDefendingDice(defender);
+            maxDice = MatchManager.GetPlayerFromIndex(defender.GetOwner()).GetMaxDefendingDice(defender);
         }
 
         currentNumberOfDice = maxDice;
@@ -101,11 +101,11 @@ public class DiceRollMenu : MonoBehaviour
                 if (playerIsAttacker)
                 {
                     attackingDice = currentNumberOfDice;
-                    defendingDice = defendingTerritory.GetOwner().GetDefendingDice(defendingTerritory);
+                    defendingDice = MatchManager.GetPlayerFromIndex(defendingTerritory.GetOwner()).GetDefendingDice(defendingTerritory);
                 }
                 else
                 {
-                    attackingDice = attackingTerritory.GetOwner().GetAttackingDice(attackingTerritory);
+                    attackingDice = MatchManager.GetPlayerFromIndex(attackingTerritory.GetOwner()).GetAttackingDice(attackingTerritory);
                     defendingDice = currentNumberOfDice;
                 }
 

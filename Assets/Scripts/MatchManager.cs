@@ -46,6 +46,20 @@ public class MatchManager : MonoBehaviour
     private List<Player> originalPlayers;
     [SerializeField]
     List<Player> playerList;
+
+    public static Player GetPlayerFromIndex(int target)
+    {
+        foreach (Player player in instance.playerList)
+        {
+            if (player.GetIndex() == target)
+            {
+                return player;
+            }
+        }
+
+        return null;
+    }
+
     int currentTurnIndex;
     int turnNumber;
     List<Territory> currentPlayerTerritories;
@@ -177,7 +191,7 @@ public class MatchManager : MonoBehaviour
     {
         if (PlayOptionsManagement.IsConquestMode()&& capitalsPlaced < instance.playerList.Count)
         {
-            instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex], out List<Territory> playerTerritories);
+            instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex].GetIndex(), out List<Territory> playerTerritories);
 
             UpdateInfoTextDefault("Capital Placement");
 
@@ -187,7 +201,7 @@ public class MatchManager : MonoBehaviour
         else if (instance.troopDeployCount > 0)
         {
             MonitorBreak.Bebug.Console.Log("Normal Setup");
-            instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex], out List<Territory> playerTerritories);
+            instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex].GetIndex(), out List<Territory> playerTerritories);
 
             UpdateInfoTextSetup(instance.troopDeployCount);
 
@@ -213,7 +227,7 @@ public class MatchManager : MonoBehaviour
     {
         Debug.Log("deploy");
         state = TurnState.Deploying;
-        instance.currentPlayerTerritories = Map.TerritoriesOwnedByPlayerWorth(instance.playerList[instance.currentTurnIndex],out int troopCount);
+        instance.currentPlayerTerritories = Map.TerritoriesOwnedByPlayerWorth(instance.playerList[instance.currentTurnIndex].GetIndex(),out int troopCount);
         if(instance.currentPlayerTerritories.Count == 0)
         {
             PlayerInfoHandler.UpdateInfo();
@@ -299,7 +313,7 @@ public class MatchManager : MonoBehaviour
             if (PlayOptionsManagement.IsConquestMode())
             {
                 //Check if the current player has all the capitals in their possesion 
-                if (Map.DoesPlayerHoldAllCapitals(current))
+                if (Map.DoesPlayerHoldAllCapitals(current.GetIndex()))
                 {
                     gameOver = true;
                 }

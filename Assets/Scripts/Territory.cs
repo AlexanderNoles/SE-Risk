@@ -7,7 +7,7 @@ using System;
 
 public class Territory : MonoBehaviour
 {
-    Player owner;
+    int owner;
     int currentTroops;
     [SerializeField]
     List<Vector3> borderPoints;
@@ -80,15 +80,15 @@ public class Territory : MonoBehaviour
     {
         return centrePoint + textOffset;
     }
-    public Player GetOwner () { return owner; }
-    public void SetOwner (Player owner) 
+    public int GetOwner () { return owner; }
+    public void SetOwner (int newOwner) 
     { 
-        this.owner = owner; 
-        spriteRenderer.color = owner.GetColor(); 
+        owner = newOwner; 
+        spriteRenderer.color = Player.GetColourBasedOnIndex(owner); 
     }
     public void ResetOwner(bool resetColour)
     {
-        this.owner = null;
+        owner = -1;
 
         if (spriteRenderer != null && resetColour)
         {
@@ -101,17 +101,7 @@ public class Territory : MonoBehaviour
         NetworkManagement.ClientState clientState = NetworkManagement.GetClientState();
 
         //Update locally
-        UpdateTroopCount(currentTroops);
-
-        if (makeServerRequest && clientState != NetworkManagement.ClientState.Offline)
-        {
-            NetworkConnection.UpdateTerritoryTroopCountAcrossLobby(indexInMap, currentTroops);
-        }
-    }
-    //Seperated into a different function so client networking doesn't create an ifinite loop
-    public void UpdateTroopCount(int newTroops)
-    {
-        this.currentTroops = newTroops;
+        this.currentTroops = currentTroops;
         if (!Map.IsSimulated())
         {
             if (troopLabel == null)
@@ -119,6 +109,11 @@ public class Territory : MonoBehaviour
                 troopLabel = UIManagement.Spawn<TextMeshProUGUI>(GetUIOffset(), 0).component;
             }
             troopLabel.text = currentTroops.ToString();
+        }
+
+        if (makeServerRequest && clientState != NetworkManagement.ClientState.Offline)
+        {
+            NetworkConnection.UpdateTerritoryTroopCountAcrossLobby(indexInMap, currentTroops);
         }
     }
 

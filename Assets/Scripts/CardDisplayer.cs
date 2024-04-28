@@ -256,7 +256,7 @@ public class CardDisplayer : MonoBehaviour
                         {
                             player.GetHand().RemoveCard(card);
                         }
-                        player.SetTroopCount(player.GetTroopCount() + Hand.NumberOfTroopsForSet(player, selected));
+                        player.SetTroopCount(player.GetTroopCount() + Hand.NumberOfTroopsForSet(player.GetIndex(), selected));
                         Hand.IncrementTurnInCount();
                     }
                     else

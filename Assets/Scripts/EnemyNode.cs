@@ -12,7 +12,7 @@ public class EnemyNode : INode
     /// The target territory of this node
     /// </summary>
     public Territory territory;
-    public Player ally;
+    public int ally;
 
     /// <summary>
     /// Used in the pathfinding algorithm to determine what nodes are next to each other.
@@ -26,7 +26,7 @@ public class EnemyNode : INode
         //Here the node neighbours is just every neighbour the territory has on the map
         foreach (Territory territory in territories)
         {
-            if (territory.GetOwner()==null ||!territory.GetOwner().Equals(ally)) 
+            if (territory.GetOwner() == -1 || !territory.GetOwner().Equals(ally)) 
             {nodes.Add(new EnemyNode().SetTerritory(territory).SetOwner(ally)); }
         }
         return nodes;
@@ -52,7 +52,7 @@ public class EnemyNode : INode
         return this;
     }
 
-    public EnemyNode SetOwner(Player player)
+    public EnemyNode SetOwner(int player)
     {
         ally = player;
         return this;

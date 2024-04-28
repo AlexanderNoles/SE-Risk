@@ -15,6 +15,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     PlayerColour colour;
+
+    public int GetIndex()
+    {
+        return (int)colour;
+    }
+
     float turnDelay
     {
         get
@@ -32,7 +38,13 @@ public class Player : MonoBehaviour
     private bool inTheMiddleOfAttack;
     private Coroutine attackCoroutine = null;
     public enum PlayerColour { Red, Blue, Green, Pink, Orange, Purple };
-    Dictionary<PlayerColour, Color> playerColorToColor = new Dictionary<PlayerColour, Color> { { PlayerColour.Red, new Color(135 / 255f, 14 / 255f, 5 / 255f, 1f) }, { PlayerColour.Blue, new Color(1 / 255f, 1 / 255f, 99 / 255f, 1f) }, { PlayerColour.Orange, new Color(171 / 255f, 71 / 255f, 14 / 255f, 1f) }, { PlayerColour.Green, new Color(6 / 255f, 66 / 255f, 14 / 255f, 1f) }, { PlayerColour.Purple, new Color(92 / 255f, 14 / 255f, 171 / 255f, 1f) }, { PlayerColour.Pink, new Color(166 / 255f, 8 / 255f, 140 / 255f, 1f) } };
+
+    public static Color GetColourBasedOnIndex(int index)
+    {
+        return playerColorToColor[(PlayerColour)index];
+    }
+
+    static Dictionary<PlayerColour, Color> playerColorToColor = new Dictionary<PlayerColour, Color> { { PlayerColour.Red, new Color(135 / 255f, 14 / 255f, 5 / 255f, 1f) }, { PlayerColour.Blue, new Color(1 / 255f, 1 / 255f, 99 / 255f, 1f) }, { PlayerColour.Orange, new Color(171 / 255f, 71 / 255f, 14 / 255f, 1f) }, { PlayerColour.Green, new Color(6 / 255f, 66 / 255f, 14 / 255f, 1f) }, { PlayerColour.Purple, new Color(92 / 255f, 14 / 255f, 171 / 255f, 1f) }, { PlayerColour.Pink, new Color(166 / 255f, 8 / 255f, 140 / 255f, 1f) } };
     protected int troopCount;
     protected List<Territory> territories;
     protected Hand hand;
@@ -72,7 +84,7 @@ public class Player : MonoBehaviour
         Territory deployTerritory = territories[Random.Range(0, territories.Count)];
         foreach (Territory territory in territories)
         {
-            if(territory.GetOwner() == null)
+            if(territory.GetOwner() == -1)
             {
                 if (deployTerritory.GetNeighbours().Count-Random.Range(0,difficulty) > territory.GetNeighbours().Count)
                 {
@@ -96,14 +108,14 @@ public class Player : MonoBehaviour
     }
     public Territory EvaluateNextTerritory()
     {
-        List<Territory> ownedTerritories = Map.GetTerritoriesOwnedByPlayer(this);
-        Territory.Continent continent = Map.GetContinentClosestToCaptured(this);
+        List<Territory> ownedTerritories = Map.GetTerritoriesOwnedByPlayer(GetIndex());
+        Territory.Continent continent = Map.GetContinentClosestToCaptured(GetIndex());
         ShuffleTerritoryList();
         foreach (Territory territory in ownedTerritories)
         {
                 foreach (Territory neighbor in territory.GetNeighbours())
                 {
-                    if (neighbor.GetContinent() == continent && neighbor.GetOwner() == null)
+                    if (neighbor.GetContinent() == continent && neighbor.GetOwner() == -1)
                     {
                         return neighbor;
                     }
@@ -111,7 +123,7 @@ public class Player : MonoBehaviour
         }
         foreach (Territory territory in territories)
         {
-            if (territory.GetContinent() == continent && territory.GetOwner() == null)
+            if (territory.GetContinent() == continent && territory.GetOwner() == -1)
             {
                 return territory;
             }
@@ -168,7 +180,7 @@ public class Player : MonoBehaviour
             deployTerritory = EvaluateNextTroopPlacement();
         }
         deployTerritory.SetCurrentTroops(1 + deployTerritory.GetCurrentTroops());
-        deployTerritory.SetOwner(this);
+        deployTerritory.SetOwner(GetIndex());
         MatchManager.SwitchPlayerSetup();
     }
 
@@ -177,7 +189,7 @@ public class Player : MonoBehaviour
         bool allTerritoriesClaimed= true;
         foreach(Territory territory in territories)
         {
-            if (territory.GetOwner() == null)
+            if (territory.GetOwner() == -1)
             {
                 allTerritoriesClaimed = false;
                 break;
@@ -196,7 +208,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSecondsRealtime(turnDelay);
         Territory capital = EvaluateCapitalPlacement();
         capital.SetCurrentTroops(1);
-        capital.SetOwner(this);
+        capital.SetOwner(GetIndex());
 
         Map.AddCapital(capital, this);
 
@@ -228,7 +240,7 @@ public class Player : MonoBehaviour
         {
             if (hand.FindValidSet(out List<Card> validSet, true))
             {
-                    troopCount += Hand.NumberOfTroopsForSet(this, validSet);
+                    troopCount += Hand.NumberOfTroopsForSet(GetIndex(), validSet);
                 Hand.IncrementTurnInCount();
             }
         } while (hand.Count() >= 5);
@@ -272,7 +284,7 @@ public class Player : MonoBehaviour
                     {
                         break;
                     }
-                    while (interruptRoute[i + 1].GetOwner() != this)
+                    while (interruptRoute[i + 1].GetOwner() != GetIndex())
                     {
                         if (interruptRoute[i].GetCurrentTroops() <= 1)
                         {
@@ -302,7 +314,7 @@ public class Player : MonoBehaviour
                 List<Territory> enemyNeighbours = new List<Territory>();
                 foreach (Territory neighbour in toExpand.GetNeighbours())
                 {
-                    if (neighbour.GetOwner() != this)
+                    if (neighbour.GetOwner() != GetIndex())
                     {
                         enemyNeighbours.Add(neighbour);
                     }
@@ -310,11 +322,12 @@ public class Player : MonoBehaviour
                 expanding = enemyNeighbours.Count + 1;
                 foreach (Territory neighbour in enemyNeighbours)
                 {
+                    //Fix this
                     if (toExpand == null || neighbour == null || this == null || toExpand.GetCurrentTroops() < neighbour.GetCurrentTroops())
                     {
                         break;
                     }
-                    while (toExpand.GetCurrentTroops() > 1 && neighbour.GetOwner() != this)
+                    while (toExpand.GetCurrentTroops() > 1 && neighbour.GetOwner() != GetIndex())
                     {
                         onePlayerAlive = MatchManager.OnePlayerAlive(this);
                         if (onePlayerAlive || toExpand == null || neighbour == null || this == null)
@@ -378,8 +391,8 @@ public class Player : MonoBehaviour
         List<Continent> continentsOwnedByEnemies = new List<Continent>();
         foreach(Continent continent in System.Enum.GetValues(typeof(Continent)))
         {
-            Player owner = Map.GetContinentOwner(continent);
-            if (owner!=null && owner!=this)
+            int owner = Map.GetContinentOwner(continent);
+            if (owner != -1 && owner != GetIndex())
             {
                 continentsOwnedByEnemies.Add(continent);
             }
@@ -398,7 +411,7 @@ public class Player : MonoBehaviour
                     foreach (EnemyNode node in newRoute)
                     {
                         thisRoute.Add(node.territory);
-                        if (node.territory.GetOwner() != this)
+                        if (node.territory.GetOwner() != GetIndex())
                         {
                             routeCost += (node.territory.GetCurrentTroops()*2)+1;
                         }
@@ -559,7 +572,7 @@ public class Player : MonoBehaviour
     }
     public List<Pathfinding.INode> RouteBetweenTerritories(Territory startTerritory, Territory endTerritory)
     {
-        EnemyNode startNode = new EnemyNode().SetTerritory(startTerritory).SetOwner(this);
+        EnemyNode startNode = new EnemyNode().SetTerritory(startTerritory).SetOwner(GetIndex());
         EnemyNode endNode = new EnemyNode().SetTerritory(endTerritory).SetOwner(endTerritory.GetOwner());
         return Pathfinding.AStar.FindPath(startNode, endNode, false);
     }

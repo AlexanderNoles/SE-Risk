@@ -92,7 +92,7 @@ public class PlayerInputHandler : MonoBehaviour
                         {
                             currentTerritoryUnderMouse.SetCurrentTroops(1 + currentTerritoryUnderMouse.GetCurrentTroops());
                             AudioManagement.PlaySound("Place");
-                            currentTerritoryUnderMouse.SetOwner(localPlayer);
+                            currentTerritoryUnderMouse.SetOwner(localPlayer.GetIndex());
                             currentPhase = turnPhase.Waiting;
 
                             if (claimingCapital)
