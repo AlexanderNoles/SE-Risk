@@ -98,7 +98,7 @@ public class PlayerInputHandler : MonoBehaviour
                             if (claimingCapital)
                             {
                                 //Mark chosen territory as capital
-                                Map.AddCapital(currentTerritoryUnderMouse.GetIndexInMap(), localPlayer.GetIndex());
+                                Map.AddCapital(currentTerritoryUnderMouse, localPlayer);
                                 claimingCapital = false;
                             }
 
@@ -324,7 +324,9 @@ public class PlayerInputHandler : MonoBehaviour
             if (currentState == state.MapView) { currentTerritoryUnderMouse = overridenTerr; }
         }
     }
-
+    /// <summary>
+    /// Marks a territory as selected and computes the values needed to zoom on it, then starts the zoom
+    /// </summary>
     public void SelectTerritory()
     {
         //precomputes the vlaues needed for the zoom and moves the troop labels behind the grey plane
@@ -343,6 +345,9 @@ public class PlayerInputHandler : MonoBehaviour
             pools.GetComponent<Canvas>().sortingOrder = 300;
         }
     }
+    /// <summary>
+    /// Marks a territory as not selected and computes the values needed to zoom out from it, then starts the zoom
+    /// </summary>
     public void DeselectTerritory()
     {
         //same as SelectTerritory but in reverse
@@ -358,6 +363,10 @@ public class PlayerInputHandler : MonoBehaviour
             pools.GetComponent<Canvas>().sortingOrder = 1200;
         }
     }
+    /// <summary>
+    /// Sets the current state of the inpute handler to setup, so that it gets the setup territory from the user
+    /// </summary>
+    /// <param name="claimingCapital">Whether or not we are place the capital</param>
     public static void Setup(bool claimingCapital = false)
     {
         currentState = state.MapView;
@@ -365,6 +374,9 @@ public class PlayerInputHandler : MonoBehaviour
 
         instance.claimingCapital = claimingCapital;
     }
+    /// <summary>
+    /// Sets the current state of the inpute handler to deploy, so that it gets the deploy territories from the user
+    /// </summary>
     public static void Deploy()
     {
         currentState = state.MapView;
@@ -372,12 +384,20 @@ public class PlayerInputHandler : MonoBehaviour
 
         instance.currentTerritoryUnderMouse = null;
     }
+    /// <summary>
+    /// Sets the current state of the inpute handler to attack, so that it gets the attack requests from the user
+    /// </summary>
     public static void Attack()
     {
         currentState = state.MapView;
         currentPhase = turnPhase.Attacking;
     }
-
+    /// <summary>
+    /// Manages the result of an attack, such as allowing the player to make another attack, and requesting the input handler to move a particular number of troops if they've taken the territory
+    /// </summary>
+    /// <param name="attackResult"></param>
+    /// <param name="attacker"></param>
+    /// <param name="defender"></param>
     public static void OnAttackEnd(Map.AttackResult attackResult, Territory attacker, Territory defender)
     {
         //We can keep attacking
@@ -391,7 +411,9 @@ public class PlayerInputHandler : MonoBehaviour
             instance.SelectTerritory();
         }
     }
-
+    /// <summary>
+    /// Sets the current state of the inpute handler to fortify, so that it gets the fortify territories from the user
+    /// </summary>
     public static void Fortify()
     {
         currentState = state.MapView;

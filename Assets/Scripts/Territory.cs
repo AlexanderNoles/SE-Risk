@@ -30,11 +30,11 @@ public class Territory : MonoBehaviour
     private TextMeshProUGUI troopLabel;
     private int indexInMap;
 
-    public int GetIndexInMap()
-    {
-        return indexInMap;
-    }
-
+    /// <summary>
+    /// Checks to see if the position is within this territory
+    /// </summary>
+    /// <param name="pos">The position we are checking</param>
+    /// <returns>True if the position does lie within the territory, else false</returns>
     public bool CheckIfPosIsInside (Vector3 pos)
     {
         if (bounds.Contains(pos))
@@ -46,7 +46,9 @@ public class Territory : MonoBehaviour
             return false;
         }
     }
-
+    /// <summary>
+    /// Calculates the minimum bounding box that encapsulates every point on the territory
+    /// </summary>
     public void CalculateBounds()
     {
         //calculates the minimum bounding box that encapsulates all the points of the polygon
@@ -58,7 +60,9 @@ public class Territory : MonoBehaviour
         }
         bounds.Expand(new Vector3(0, 0, 1)); //expands the bounding box so that it exists in 3 dimensions
     }
-   
+    /// <summary>
+    /// Increases the size of the territory and brings it to the front of the sorting order
+    /// </summary>
     public void Inflate()
     {
         //increases the size of the territory slightly and brings it to the front of the sorting order
@@ -69,7 +73,9 @@ public class Territory : MonoBehaviour
         transform.localPosition = -difference;
         spriteRenderer.sortingOrder = 1000;
     }
-
+    /// <summary>
+    /// Decreases the size of the territory and brings it to the back of the sorting order
+    /// </summary>
     public void Deflate()
     {
         //reverses the inflate function
@@ -81,6 +87,10 @@ public class Territory : MonoBehaviour
     public Bounds GetBounds() { return bounds; }
     public Vector3 GetCentrePoint() { return centrePoint; }
     public void SetCentrePoint(Vector3 centrePoint) { this.centrePoint = centrePoint; }
+    /// <summary>
+    /// Gets the position of the troop text for this territory
+    /// </summary>
+    /// <returns></returns>
     public Vector2 GetUIOffset()
     {
         return centrePoint + textOffset;
@@ -100,6 +110,10 @@ public class Territory : MonoBehaviour
             NetworkConnection.UpdateTerritoryOwnerAcrossLobby(indexInMap, newOwner);
         }
     }
+    /// <summary>
+    /// Sets owner to be blank
+    /// </summary>
+    /// <param name="resetColour">Whether or not to reset the colour as well as the territory</param>
     public void ResetOwner(bool resetColour)
     {
         owner = -1;
@@ -143,7 +157,10 @@ public class Territory : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public Sprite getCardSprite() { return cardSprite; }
-
+    /// <summary>
+    /// Resets this territory to the state it is in at the start of a game
+    /// </summary>
+    /// <param name="indexInMap"></param>
     public void ResetTerritory(int indexInMap)
     {
         this.indexInMap = indexInMap;
