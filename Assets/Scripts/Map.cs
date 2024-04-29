@@ -146,7 +146,7 @@ public class Map : MonoBehaviour
         //If the attacker and defender are both ai skip over ui step
         //If not we need to wait (open dice roll menu) and come back to it later
         //Dice roll menu will then run attack when it is needed
-        bool attackerIsLocalPlayer = attackingPlayer == 0;
+        bool attackerIsLocalPlayer = attackingPlayer == PlayerInputHandler.GetLocalPlayerIndex();
 
         if (attackingPlayer == defender.GetOwner()) 
         {

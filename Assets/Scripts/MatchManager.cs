@@ -71,7 +71,19 @@ public class MatchManager : MonoBehaviour
         instance.currentTurnIndex = index;
     }
 
-    int turnNumber;
+    static int turnNumber;
+
+    public static void SetTurnNumber(int newTurnNumber, bool makeRequest = true)
+    {
+        //Update locally
+        turnNumber = newTurnNumber;
+
+        if (makeRequest && NetworkManagement.GetClientState() != NetworkManagement.ClientState.Offline)
+        {
+            NetworkConnection.UpdateTurnNumberAcrossLobby(newTurnNumber);
+        }
+    }
+
     List<Territory> currentPlayerTerritories;
     int troopCount;
     static MatchManager instance;
@@ -134,7 +146,7 @@ public class MatchManager : MonoBehaviour
             //Reset match
             troopDeployCount = StartingTroopCounts[playerList.Count];
             UpdateInfoTextSetup(troopDeployCount);
-            turnNumber = 1;
+            SetTurnNumber(1);
             int seed = UnityEngine.Random.Range(0, 1000);
             Deck.CreateDeck(seed);
 
@@ -245,7 +257,7 @@ public class MatchManager : MonoBehaviour
         else
         {
             MonitorBreak.Bebug.Console.Log("Setup finished");
-            instance.turnNumber = 1;
+            SetTurnNumber(1);
             inSetup = false;
             Deploy(0, false);
             return;
@@ -316,7 +328,7 @@ public class MatchManager : MonoBehaviour
         else if (currentTurnIndex == playerList.Count - 1|| currentTurnIndex<0) 
         { 
             currentTurnIndex = 0;
-            turnNumber++; 
+            SetTurnNumber(turnNumber + 1); 
         } 
         else 
         { 
@@ -458,13 +470,7 @@ public class MatchManager : MonoBehaviour
     /// <param name="turnPhase"></param>
     public static void UpdateInfoTextDefault(string turnPhase)
     {
-        //TEMP, UI DON'T WORK
-        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Client)
-        {
-            return;
-        }
-
-        UIManagement.SetText($"{instance.playerList[instance.currentTurnIndex].GetColorName()} Turn {instance.turnNumber} : {turnPhase}");
+        UIManagement.SetText($"{instance.playerList[instance.currentTurnIndex].GetColorName()} Turn {turnNumber} : {turnPhase}");
     }
     /// <summary>
     /// Updates the turn info text to display the number of troops left to set up

@@ -2,6 +2,7 @@ using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Player;
@@ -484,5 +485,157 @@ public class NetworkConnection : NetworkBehaviour
     {
         //Set on client
         Deck.SetCardTaken(deckIndex, newValue, false);
+    }
+
+    //Turn number
+    public static void UpdateTurnNumberAcrossLobby(int newTurnNumber)
+    {
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+            UpdateTurnNumberAcrossAllClients(newTurnNumber);
+        }
+        else
+        {
+            instance.CmdUpdateTurnNumber(newTurnNumber);
+        }
+    }
+
+    [Command]
+    public void CmdUpdateTurnNumber(int newTurnNumber)
+    {
+        //Set on server
+        MatchManager.SetTurnNumber(newTurnNumber, false); 
+        UpdateTurnNumberAcrossAllClients(newTurnNumber);
+    }
+
+    public static void UpdateTurnNumberAcrossAllClients(int newTurnNumber)
+    {
+        instance.RpcUpdateTurnNumberOnClients(newTurnNumber);
+    }
+
+    [ClientRpc]
+    public void RpcUpdateTurnNumberOnClients(int newTurnNumber)
+    {
+        //Set on client
+        MatchManager.SetTurnNumber(newTurnNumber, false);
+    }
+
+    //////  UI
+    //Turn info text
+    public static void UpdateTurnInfoTextAcrossLobby(string newText)
+    {
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+            UpdateTurnInfoTextAcrossAllClients(newText);
+        }
+        else
+        {
+            instance.CmdSetTurnInfoText(newText);
+        }
+    }
+
+    [Command]
+    public void CmdSetTurnInfoText(string newText)
+    {
+        //Set on server
+        UIManagement.SetText(newText, false);
+        UpdateTurnInfoTextAcrossAllClients(newText);
+    }
+
+    public static void UpdateTurnInfoTextAcrossAllClients(string newText)
+    {
+        instance.RpcUpdateTurnInfoTextOnClients(newText);
+    }
+
+    [ClientRpc]
+    public void RpcUpdateTurnInfoTextOnClients(string newText)
+    {
+        //Set on client
+        StartCoroutine(nameof(WaitTillCanSetText), newText);
+    }
+
+    private IEnumerator WaitTillCanSetText(string newText)
+    {
+        while (!UIManagement.Initialized())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        UIManagement.SetText(newText, false);
+    }
+
+    //Roll output
+    public static void AddLineToRollOutputAcrossLobby(string newText)
+    {
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+            AddLineToRollOutputAllClients(newText);
+        }
+        else
+        {
+            instance.CmdAddLineToRollOutput(newText);
+        }
+    }
+
+    [Command]
+    public void CmdAddLineToRollOutput(string newText)
+    {
+        //Set on server
+        UIManagement.AddLineToRollOutput(newText, false);
+        AddLineToRollOutputAllClients(newText);
+    }
+
+    public static void AddLineToRollOutputAllClients(string newText)
+    {
+        instance.RpcAddLineToRollOutputOnClients(newText);
+    }
+
+    [ClientRpc]
+    public void RpcAddLineToRollOutputOnClients(string newText)
+    {
+        //Set on client
+        UIManagement.AddLineToRollOutput(newText, false);
+    }
+
+    public static void RefreshRollOutputAcrossLobby()
+    {
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+            RefreshRollOutputAllClients();
+        }
+        else
+        {
+            instance.CmdRefreshRollOutput();
+        }
+    }
+
+    [Command]
+    public void CmdRefreshRollOutput()
+    {
+        //Set on server
+        UIManagement.RefreshRollOutput(false);
+        RefreshRollOutputAllClients();
+    }
+
+    public static void RefreshRollOutputAllClients()
+    {
+        instance.RpcRefreshRollOutputOnClients();
+    }
+
+    [ClientRpc]
+    public void RpcRefreshRollOutputOnClients()
+    {
+        //Set on client
+        StartCoroutine(nameof(WaitTillCanRefreshRollOutput));
+    }
+
+    private IEnumerator WaitTillCanRefreshRollOutput()
+    {
+        while (!UIManagement.Initialized())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        UIManagement.RefreshRollOutput(false);
     }
 }

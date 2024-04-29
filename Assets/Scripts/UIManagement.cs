@@ -9,6 +9,12 @@ using UnityEngine.UI;
 public class UIManagement : MonoBehaviour
 {
     static UIManagement instance;
+
+    public static bool Initialized()
+    {
+        return instance != null;
+    }
+
     /// <summary>
     /// UI reference. Setup in inspector. Displays information about the current turn. 
     /// </summary>
@@ -62,9 +68,15 @@ public class UIManagement : MonoBehaviour
     /// Set the text of the turn info text object.
     /// </summary>
     /// <param name="text">The new text to display.</param>
-    public static void SetText(string text)
+    public static void SetText(string text, bool sendRequest = true)
     {
-            instance.turnInfoText.text = text;
+        //Update local
+        instance.turnInfoText.text = text;
+
+        if (sendRequest && NetworkManagement.GetClientState() != NetworkManagement.ClientState.Offline)
+        {
+            NetworkConnection.UpdateTurnInfoTextAcrossLobby(text);
+        }
     }
 
     /// <summary>
@@ -80,39 +92,59 @@ public class UIManagement : MonoBehaviour
     /// Add a line to the roll output text.
     /// </summary>
     /// <param name="line">The text to add.</param>
-    public static void AddLineToRollOutput(string line)
+    public static void AddLineToRollOutput(string line, bool makeRequest = true)
     {
-        rollOutputLines.Insert(0, line);
-        newLinesAdded++;
-
-        if (rollOutputLines.Count > maxLengthOfOutput)
+        //We don't want the client to do this twice
+        //as it would add double the text
+        if (!makeRequest || NetworkManagement.GetClientState() == NetworkManagement.ClientState.Offline)
         {
-            rollOutputLines.RemoveAt(maxLengthOfOutput);
+            rollOutputLines.Insert(0, line);
+            newLinesAdded++;
+
+            if (rollOutputLines.Count > maxLengthOfOutput)
+            {
+                rollOutputLines.RemoveAt(maxLengthOfOutput);
+            }
+        }
+
+        if (makeRequest && NetworkManagement.GetClientState() != NetworkManagement.ClientState.Offline)
+        {
+            NetworkConnection.AddLineToRollOutputAcrossLobby(line);
         }
     }
 
     /// <summary>
     /// Apply the new output text to the actual roll output UI object.
     /// </summary>
-    public static void RefreshRollOutput()
+    public static void RefreshRollOutput(bool makeRequest = true)
     {
-        //Construct output string
-        string finalOutputString = "";
-
-        foreach (string line in rollOutputLines)
+        //We don't want the client to do this twice
+        //as newLinesAdded gets reset
+        if (!makeRequest || NetworkManagement.GetClientState() == NetworkManagement.ClientState.Offline)
         {
-            finalOutputString += line + "\n";
+            //Construct output string
+            string finalOutputString = "";
+
+            foreach (string line in rollOutputLines)
+            {
+                finalOutputString += line + "\n";
+            }
+
+            //Set to output
+            instance.rollOutput.text = finalOutputString;
+            instance.buildUp += 1.0f;
+            instance.fadeOutT = 1.0f;
+
+            instance.textFadeOut.rectTransform.sizeDelta = new Vector2(265, newLinesAdded * 29);
+            instance.textFadeOut.rectTransform.anchoredPosition = new Vector2(0.0f, newLinesAdded * -14.5f);
+
+            newLinesAdded = 0;
         }
 
-        //Set to output
-        instance.rollOutput.text = finalOutputString;
-        instance.buildUp += 1.0f;
-        instance.fadeOutT = 1.0f;
-
-        instance.textFadeOut.rectTransform.sizeDelta = new Vector2(265, newLinesAdded * 29);
-        instance.textFadeOut.rectTransform.anchoredPosition = new Vector2(0.0f, newLinesAdded * -14.5f);
-
-        newLinesAdded = 0;
+        if (makeRequest && NetworkManagement.GetClientState() != NetworkManagement.ClientState.Offline)
+        {
+            NetworkConnection.RefreshRollOutputAcrossLobby();
+        }
     }
 
     private void Update()

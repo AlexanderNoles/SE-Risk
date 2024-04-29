@@ -38,6 +38,12 @@ public class PlayerInputHandler : MonoBehaviour
     {
         instance.localPlayer = player;
     }
+
+    public static int GetLocalPlayerIndex()
+    {
+        return instance.localPlayer.GetIndex();
+    }
+
     LocalPlayer localPlayer;
     enum state { MapView, Selected, Zooming}
     enum turnPhase { Setup, Deploying, Attacking, Fortifying, Waiting }
