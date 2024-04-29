@@ -56,11 +56,10 @@ public class LocalPlayer : Player
     /// Lets the local player take their "Attack Phase", i.e lets them request attacks for territories they own to ones they do not
     /// </summary>
     /// <returns></returns>
-    public override bool Attack()
+    public override void Attack()
     {
         cardDisplayer.SetAbleToTurnInCards(false);
         PlayerInputHandler.Attack();
-        return true;
     }
     /// <summary>
     /// Handles the changes to the local player at the conclusion of an attack, such as setting the correct number of troops to each territory

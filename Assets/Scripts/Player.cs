@@ -677,6 +677,12 @@ public class Player : MonoBehaviour
         FriendlyNode endNode = new FriendlyNode().SetTerritory(endTerritory);
         return Pathfinding.AStar.FindPath(startNode, endNode, false).Count > 0;
     }
+    /// <summary>
+    /// Finds a route between a two territories, only through enemy territories
+    /// </summary>
+    /// <param name="startTerritory">The friendly territory we are routing from</param>
+    /// <param name="endTerritory">The enemy territory we are routing to</param>
+    /// <returns>A list of nodes representing the route between these two territories. The list will be empty if no route exists</returns>
     public List<Pathfinding.INode> RouteBetweenTerritories(Territory startTerritory, Territory endTerritory)
     {
         EnemyNode startNode = new EnemyNode().SetTerritory(startTerritory).SetOwner(GetIndex());
@@ -706,10 +712,6 @@ public class Player : MonoBehaviour
 
         PlayerInfoHandler.UpdateInfo();
         KilledAPlayerThisTurn = true;
-        //if (MatchManager.OnePlayerAlive(this))
-        //{
-        //    doAttackExpansion = false;
-        //}
 
     }
 
