@@ -330,13 +330,13 @@ public class NetworkConnection : NetworkBehaviour
 
     public static void EndTurn()
     {
-        instance.EndTurnOnServer();
+        instance.EndTurnOnServer(instance.clientLocalPlayer.GetIndex());
     }
 
     [Command]
-    public void EndTurnOnServer()
+    public void EndTurnOnServer(int playerIndex)
     {
-        MatchManager.EndTurn();
+        MatchManager.EndTurn(playerIndex);
     }
 
     //TROOP COUNT

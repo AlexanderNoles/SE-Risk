@@ -314,7 +314,7 @@ public class Player : MonoBehaviour
             if (deployTerriory != null)
             {
                 deployTerriory.SetCurrentTroops(troopCount + deployTerriory.GetCurrentTroops());
-                MatchManager.Attack();
+                MatchManager.Attack(GetIndex());
             }
             else
             {
@@ -414,7 +414,7 @@ public class Player : MonoBehaviour
             }
             if (!hasBeenReset)
             {
-                MatchManager.Fortify();
+                MatchManager.Fortify(GetIndex());
             }
         }
     /// <summary>
@@ -625,7 +625,7 @@ public class Player : MonoBehaviour
                 territory.SetCurrentTroops(1);
             }
         turnReset = false;
-        MatchManager.EndTurn();
+        MatchManager.EndTurn(GetIndex());
     }
     public void SetColor(PlayerColour colour)
     {

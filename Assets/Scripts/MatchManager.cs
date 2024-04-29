@@ -65,7 +65,7 @@ public class MatchManager : MonoBehaviour
         return null;
     }
 
-    int currentTurnIndex;
+    int currentTurnIndex = 0;
     int turnNumber;
     List<Territory> currentPlayerTerritories;
     int troopCount;
@@ -133,7 +133,7 @@ public class MatchManager : MonoBehaviour
             Deck.CreateDeck();
 
             capitalsPlaced = 0;
-            Setup();
+            Setup(0, false);
         }
         else
         {
@@ -198,8 +198,14 @@ public class MatchManager : MonoBehaviour
     /// <summary>
     /// Runs the setup phase of a players turn, allowing them to place one troop on an owned or unoccupied territory
     /// </summary>
-    public static void Setup()
+    public static void Setup(int currentPlayer, bool requireValidation = true)
     {
+        if (requireValidation && currentPlayer != instance.currentTurnIndex)
+        {
+            return;
+        }
+
+
         if (PlayOptionsManagement.IsConquestMode()&& capitalsPlaced < instance.playerList.Count)
         {
             instance.currentPlayerTerritories = Map.GetUnclaimedTerritories(instance.playerList[instance.currentTurnIndex].GetIndex(), out List<Territory> playerTerritories);
@@ -230,15 +236,20 @@ public class MatchManager : MonoBehaviour
             MonitorBreak.Bebug.Console.Log("Setup finished");
             instance.turnNumber = 1;
             inSetup = false;
-            Deploy();
+            Deploy(0, false);
             return;
         }
     }
     /// <summary>
     /// Runs the deploy phase of a players turn, allowing them to place some number of troops on territories they own
     /// </summary>
-    public static void Deploy()
+    public static void Deploy(int playerMakingRequest, bool requireValidation = false)
     {
+        if (requireValidation && instance.currentTurnIndex != playerMakingRequest)
+        {
+            return;
+        }
+
         state = TurnState.Deploying;
         instance.currentPlayerTerritories = Map.TerritoriesOwnedByPlayerWorth(instance.playerList[instance.currentTurnIndex].GetIndex(),out int troopCount);
         if(instance.currentPlayerTerritories.Count == 0)
@@ -246,7 +257,7 @@ public class MatchManager : MonoBehaviour
             PlayerInfoHandler.UpdateInfo();
             instance.playerList.Remove(instance.playerList[instance.currentTurnIndex]);
             instance.currentTurnIndex--;
-            EndTurn(true);
+            EndTurn(0, false, true);
             return;
         }
         UpdateInfoTextDefault("Deploy");
@@ -256,8 +267,13 @@ public class MatchManager : MonoBehaviour
     /// <summary>
     /// Runs the attack phase of a players turn, allowing them to request attacks from territories they own to territories they dont
     /// </summary>
-    public static void Attack()
+    public static void Attack(int playerMakingRequest, bool requireValidation = false)
     {
+        if (requireValidation && instance.currentTurnIndex != playerMakingRequest)
+        {
+            return;
+        }
+
         state = TurnState.Attacking;
         UpdateInfoTextDefault("Attack");
         instance.playerList[instance.currentTurnIndex].Attack();
@@ -265,8 +281,13 @@ public class MatchManager : MonoBehaviour
     /// <summary>
     /// Runs the fortify phase of a players turn, allowing them to move troops from one territory they own to one other territory they also own
     /// </summary>
-    public static void Fortify()
+    public static void Fortify(int playerMakingRequest, bool requireValidation = false)
     {
+        if (requireValidation && instance.currentTurnIndex != playerMakingRequest)
+        {
+            return;
+        }
+
         state = TurnState.Fortifying;
         UpdateInfoTextDefault("Fortify");
         instance.playerList[instance.currentTurnIndex].Fortify();
@@ -296,8 +317,13 @@ public class MatchManager : MonoBehaviour
     /// Ends a players turn by drawing a card and then switching to the next player
     /// </summary>
     /// <param name="playerRemoved"></param>
-    public static void EndTurn(bool playerRemoved = false)
+    public static void EndTurn(int playerMakingRequest, bool requireValidation = true, bool playerRemoved = false)
     {
+        if (requireValidation && playerMakingRequest != instance.currentTurnIndex)
+        {
+            return;
+        }
+
         if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Client)
         {
             //Make a request to the server
@@ -313,7 +339,7 @@ public class MatchManager : MonoBehaviour
             }
 
             instance.SwitchPlayer();
-            Deploy();
+            Deploy(0, false);
         }
     }
 
@@ -334,7 +360,7 @@ public class MatchManager : MonoBehaviour
                 instance.troopDeployCount--;
             }
             instance.SwitchPlayer();
-            Setup();
+            Setup(0, false);
         }
     }
 

@@ -134,7 +134,7 @@ public class PlayerInputHandler : MonoBehaviour
                         flashed = false;
                         currentTerritoryUnderMouse = null;
                         currentPhase = turnPhase.Waiting;
-                        MatchManager.Attack();
+                        MatchManager.Attack(localPlayer.GetIndex());
                     }
                 }
                 else if (currentState == state.Selected)
@@ -197,7 +197,7 @@ public class PlayerInputHandler : MonoBehaviour
                     {
                         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
                         {
-                            MatchManager.Fortify();
+                            MatchManager.Fortify(localPlayer.GetIndex());
                         }
                     }
                 }
@@ -256,7 +256,7 @@ public class PlayerInputHandler : MonoBehaviour
                         {
                             if (overridenTerr != null) { overridenTerr.Deflate(); }
                             currentPhase = turnPhase.Waiting;
-                            MatchManager.EndTurn();
+                            MatchManager.EndTurn(localPlayer.GetIndex());
                         }
                     }
 
@@ -271,7 +271,7 @@ public class PlayerInputHandler : MonoBehaviour
                         DeselectTerritory();
                         toTerritory.Deflate();
                         currentState = state.MapView;
-                        MatchManager.EndTurn();
+                        MatchManager.EndTurn(localPlayer.GetIndex());
                     }
                     else if (Input.GetKeyDown(KeyCode.Escape))
                     {
