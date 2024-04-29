@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages the UI elements that display information about the games players
+/// </summary>
 public class PlayerInfoHandler : MonoBehaviour
 {
     static List<Player> players = new List<Player>();
@@ -12,7 +15,10 @@ public class PlayerInfoHandler : MonoBehaviour
     {
         GetUIElements();
     }
-
+    /// <summary>
+    /// Sets the list of players to display through the UI
+    /// </summary>
+    /// <param name="newPlayers">The list of players to display</param>
     public void SetPlayers(List<Player> newPlayers)
     {
         players = newPlayers;

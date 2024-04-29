@@ -689,6 +689,10 @@ public class Player : MonoBehaviour
         EnemyNode endNode = new EnemyNode().SetTerritory(endTerritory).SetOwner(endTerritory.GetOwner());
         return Pathfinding.AStar.FindPath(startNode, endNode, false);
     }
+
+    /// <summary>
+    /// Draws a card if the player has taken a territory this turn
+    /// </summary>
     public virtual void OnTurnEnd()
     {
         if (territoryTakenThisTurn && hand.Count() < 6)
@@ -696,12 +700,19 @@ public class Player : MonoBehaviour
             hand.AddCard(Deck.Draw());
         }
     }
-
+    /// <summary>
+    /// Checks to see if the player is eliminated from the game
+    /// </summary>
+    /// <returns>True if the player has no territories, else returns false</returns>
     public bool IsDead()
     {
         return !MatchManager.InSetup() && territories.Count <= 0;
     }
 
+    /// <summary>
+    /// Takes a players hand
+    /// </summary>
+    /// <param name="killed">The player whos hand you are taking</param>
     public void Killed(Player killed)
     {
         Hand killedHand = killed.GetHand();
@@ -715,6 +726,9 @@ public class Player : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Runs when the player turns in cards during the attack phase. Allows that player to deploy those troops
+    /// </summary>
     public void ContinueTurn()
     {
         //doesnt work for Ai plauyers
