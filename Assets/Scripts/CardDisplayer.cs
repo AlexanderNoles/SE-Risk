@@ -8,10 +8,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// <c>CardDisplayer</c> handles the visual showing of cards to the local player, as well as interaction with those cards
+/// </summary>
 public class CardDisplayer : MonoBehaviour
 {
     LocalPlayer player;
-    PlayerInputHandler inputHandler;
     Card[] cards;
     [SerializeField]
     List<Sprite> designSprites = new List<Sprite>();
@@ -39,7 +41,6 @@ public class CardDisplayer : MonoBehaviour
     {
         AbleToTurnInCards = false;
         player = FindObjectOfType<LocalPlayer>();
-        inputHandler = FindObjectOfType<PlayerInputHandler>();
 
         m_Camera = Camera.main;
         cards = new Card[10];
@@ -123,6 +124,9 @@ public class CardDisplayer : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Updates the visual assets of the cards to match the cards currently in the card displayer
+    /// </summary>
     public void UpdateCardVisuals() 
     {
         for (int i=0;i<cards.Length;i++)
@@ -165,11 +169,19 @@ public class CardDisplayer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets just the first card in the displayer
+    /// </summary>
+    /// <param name="newCard">The card to be displayer in slot 1</param>
     public void SetCard(Card newCard)
     {
         cards[0] = newCard;
     }
 
+    /// <summary>
+    /// Updates the full set of cards to match the cards in a passed hand
+    /// </summary>
+    /// <param name="cards">The hand to match to</param>
     public void SetHand(Hand cards)
     {
         for (int i = 0; i < this.cards.Count(); i++)
@@ -185,6 +197,10 @@ public class CardDisplayer : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Makes the cards visible to the player and moves them on screen
+    /// </summary>
+    /// <param name="slidingTen">Set true to show all 10 cards, false to display 6</param>
     public void ShowCards(bool slidingTen)
     {
         this.slidingTen = slidingTen;
@@ -198,6 +214,9 @@ public class CardDisplayer : MonoBehaviour
         executionTime = 0;
         CalculateEndPositions();
     }
+    /// <summary>
+    /// Makes just the first card in the displayer visible to the player
+    /// </summary>
     public void ShowOneCard()
     {
         for(int i  = 1; i < gameObjects.Length; i++) 
@@ -209,6 +228,10 @@ public class CardDisplayer : MonoBehaviour
         executionTime = 0;
         CalculateEndPositions();
     }
+    /// <summary>
+    /// Hides all cards on the screen
+    /// </summary>
+    /// <param name="slidingTen">True if there are 10 cards on screen, else false</param>
     public void HideCards(bool slidingTen)
     {
         hiding = true;
@@ -225,7 +248,10 @@ public class CardDisplayer : MonoBehaviour
         }
         CalculateEndPositions();
     }
-
+    /// <summary>
+    /// Returns the current state of the cards on screen
+    /// </summary>
+    /// <returns>1 if cards are on screen, 0 if they are not, -1 if the cards are in a different state, such as moving from being on screen to off screen</returns>
     public int GetCardState()
     {
         //returns an integer signialing to current state of the on screen cards
@@ -233,6 +259,10 @@ public class CardDisplayer : MonoBehaviour
         else if (!cardsOnScreen) { return 0; }
         else { return 1; }
     }
+    /// <summary>
+    /// Handles the functions performed when a card is clicked, such as selecting that card, or turning it in if 3 are selected
+    /// </summary>
+    /// <param name="index">The index of the card that has been clicked</param>
     public void OnCardClick(int index)
     {
         if (cardsOnScreen && AbleToTurnInCards&& cards[index].GetDesign()!=Card.cardDesign.Empty)
@@ -288,12 +318,18 @@ public class CardDisplayer : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Sets isAbleToTurnInCards
+    /// </summary>
+    /// <param name="isAbleToTurnInCards">The new value of isAbleToTurnInCards</param>
     public void SetAbleToTurnInCards(bool isAbleToTurnInCards)
     {
         AbleToTurnInCards = isAbleToTurnInCards;
     }
 
-
+    /// <summary>
+    /// Handles the function of the on screen card menu button, such as displaying the current held cards when pressed
+    /// </summary>
     public void ToggleCardMenuButton()
     {
         if (GetCardState() != -1 && tenCardsOnScreen==false)
@@ -310,13 +346,19 @@ public class CardDisplayer : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// Returns whether or not there are currently cards being displayed on screen
+    /// </summary>
+    /// <returns>True when cards are on screen, else false</returns>
     public bool GetCardsOnScreen()
     {
         return cardsOnScreen;
     }
 
-    public void CalculateEndPositions()
+    /// <summary>
+    /// Calculates the positions that each card will have on screen, when displayed
+    /// </summary>
+    private void CalculateEndPositions()
     {
         for (int i = 0; i < (slidingTen ? 10 : 6); i++)
         {
@@ -335,7 +377,9 @@ public class CardDisplayer : MonoBehaviour
             endPositions[i] = endPos;   
         }
     }
-
+    /// <summary>
+    /// Updates the value displayed on the troops for card turn in counter
+    /// </summary>
     public void UpdateTurnInText()
     {
         currentTurnInText.text = Hand.CalculateSetWorth().ToString();

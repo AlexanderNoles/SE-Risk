@@ -7,18 +7,30 @@ using UnityEngine.UI;
 using static Territory;
 using MonitorBreak.Bebug;
 
+/// <summary>
+/// <c>Map</c> represents the logical game map
+/// </summary>
 public class Map : MonoBehaviour
 {
     [SerializeField]
     List<Territory> territories = new List<Territory>();
-
+    /// <summary>
+    /// Sets a particular territories troop count 
+    /// </summary>
+    /// <param name="index">The index of the territory to set</param>
+    /// <param name="newCount">The new troop count</param>
+    /// <param name="makeRequest">Spooky fill this in idk what is does</param>
     public static void SetTerritoryTroopCount(int index, int newCount, bool makeRequest)
     {
         instance.territories[index].SetCurrentTroops(newCount, makeRequest);
     }
 
     private static HashSet<(Territory, Player)> capitals = new HashSet<(Territory, Player)>();
-
+    /// <summary>
+    /// Adds a new capital to a specified territory on the map
+    /// </summary>
+    /// <param name="territory">The territory to add the capital onto</param>
+    /// <param name="owner">The player who owns this capital</param>
     public static void AddCapital(Territory territory, Player owner)
     {
         capitals.Add((territory, owner));
@@ -30,7 +42,11 @@ public class Map : MonoBehaviour
 
         UIManagement.Spawn<Image>(territory.GetUIOffset(), 1).component.color = capitalColor;
     }
-
+    /// <summary>
+    /// Checks to see if a particular player holds every capital on the board
+    /// </summary>
+    /// <param name="target">The ID of the player we want to check</param>
+    /// <returns>True if the specified player has every capital, else false</returns>
     public static bool DoesPlayerHoldAllCapitals(int target)
     {
         foreach ((Territory, Player) capital in capitals)
@@ -60,6 +76,11 @@ public class Map : MonoBehaviour
     {
         SetupMap();
     }
+    /// <summary>
+    /// Gets the territory that encapsulates the position on the board
+    /// </summary>
+    /// <param name="pos">The position to check</param>
+    /// <returns>Returns the territory that the passed position is in if it exists, else it returns false</returns>
     public static Territory GetTerritoryUnderPosition(Vector3 pos)
     {
         foreach(Territory currentTerritory in instance.territories) 
@@ -71,7 +92,11 @@ public class Map : MonoBehaviour
         }
         return null;
     }
-
+    /// <summary>
+    /// Runs the necessary steps before commencing an attack, such as ensuring it is a valid attack and getting the attacking dice count
+    /// </summary>
+    /// <param name="attacker">The territory the attack is coming from</param>
+    /// <param name="defender">The territory being attacked</param>
     public static void RequestAttack(Territory attacker, Territory defender)
     {
         //! We don't currently account for the attacker and defender both being players but on different machines
@@ -111,7 +136,13 @@ public class Map : MonoBehaviour
             Attack(attacker, defender, MatchManager.GetPlayerFromIndex(attackingPlayer).GetAttackingDice(attacker), MatchManager.GetPlayerFromIndex(defenderPlayer).GetDefendingDice(defender));
         }
     }
-
+    /// <summary>
+    /// Calculates the result of an attack and sets troops and territories the match that result
+    /// </summary>
+    /// <param name="attacker">The territory the attack is coming from</param>
+    /// <param name="defender">The territory being attacked</param>
+    /// <param name="attackingDice">The number of dice the attacker is using</param>
+    /// <param name="defendingDice">The number of dice the defender is using</param>
     public static void Attack(Territory attacker, Territory defender, int attackingDice, int defendingDice)
     {
         List<int> attackingRolls = new List<int>();
@@ -175,7 +206,12 @@ public class Map : MonoBehaviour
         //Refresh UI
         UIManagement.RefreshRollOutput();
     }
-    public static bool IsSimulated()
+
+    /// <summary>
+    /// Checks to see if this is a real game, or a simulated game as part of a menu
+    /// </summary>
+    /// <returns>True if its a simulated game, else false</returns>
+    public static bool IsSimulated()  
     {
         return SceneManager.GetActiveScene().buildIndex == 1; //Menu Scene
     }
@@ -200,6 +236,11 @@ public class Map : MonoBehaviour
         return ownedTerritories;
     }
 
+    /// <summary>
+    /// Returns a list of territories owned by a particular player
+    /// </summary>
+    /// <param name="player">The player whos owned territories we want</param>
+    /// <returns>The list of territories owned by the passed player </returns>
     public static List<Territory> GetTerritoriesOwnedByPlayer(int player)
     {
         List<Territory> ownedTerritories = new List<Territory>();
@@ -209,6 +250,11 @@ public class Map : MonoBehaviour
             }
         return ownedTerritories;
     }
+    /// <summary>
+    /// A helper method for AI setup, returns the continent that is closest to being fully claimed that the passed player owns a territory in
+    /// </summary>
+    /// <param name="player">The player that must own a territory in the returned continent</param>
+    /// <returns>The continent closest to capture by the passed player</returns>
     public static Continent GetContinentClosestToCaptured(int player)
     {
         bool playerHasGround = false;
@@ -238,7 +284,11 @@ public class Map : MonoBehaviour
         }
         return bestContinent;
     }
-
+    /// <summary>
+    /// Checks to see if the given contient is owned by a player
+    /// </summary>
+    /// <param name="continent">The continent to be check for ownership</param>
+    /// <returns>The player ID of the owner if the continent is owned by a player, else -1</returns>
     public static int GetContinentOwner(Continent continent)
     {
         int owner = Map.continents[continent][0].GetOwner();
@@ -251,6 +301,12 @@ public class Map : MonoBehaviour
         }
         return owner;
     }
+    /// <summary>
+    /// Returns a list of territories with no owner
+    /// </summary>
+    /// <param name="player">The player whos territories we are looking for</param>
+    /// <param name="playerTerritories">An out parameter that holds a list of territories owned by the input player</param>
+    /// <returns></returns>
     public static List<Territory> GetUnclaimedTerritories(int player, out List<Territory> playerTerritories )
     {
         List<Territory> unownedTerritories = new List<Territory>();
@@ -268,6 +324,8 @@ public class Map : MonoBehaviour
         }
         return unownedTerritories;
     }
+
+
     [ContextMenu("Update Neighbours")]
     public void UpdatesNeighbours()
     //Provides a rough estimation for neighbours that is around 80% accurate,
@@ -292,12 +350,17 @@ public class Map : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Resets the map to its starting state
+    /// </summary>
     public static void ResetInstanceMap()
     {
         instance.SetupMap();
     }
 
+    /// <summary>
+    /// Adds all territories to the map as well as creating the continents dictionary and clearing capitals
+    /// </summary>
     public void SetupMap()
     {
         if (PlayOptionsManagement.IsConquestMode())

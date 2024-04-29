@@ -4,7 +4,7 @@ using UnityEngine;
 using Pathfinding;
 
 /// <summary>
-/// INode implementation used to pass data to the Pathfinding namespace. Used to navigate territory map.
+/// INode implementation used to pass data to the Pathfinding namespace. Used to navigate through enemy territories on the map.
 /// </summary>
 public class EnemyNode : INode
 {
@@ -12,6 +12,9 @@ public class EnemyNode : INode
     /// The target territory of this node
     /// </summary>
     public Territory territory;
+    /// <summary>
+    /// The allied player whos territories we do not want to consider
+    /// </summary>
     public int ally;
 
     /// <summary>

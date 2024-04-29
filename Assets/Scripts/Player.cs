@@ -11,11 +11,17 @@ using UnityEngine.SceneManagement;
 using static Territory;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
+/// <summary>
+/// The base implementation of a player. This contains all the methods needed for an AI player, in case a human player is ever unable to make a move on their turn
+/// </summary>
 public class Player : MonoBehaviour
 {
     [SerializeField]
     PlayerColour colour;
-
+    /// <summary>
+    /// Returns the players colour as an integer value. As this is a unique in each game, it can be used as an identifer
+    /// </summary>
+    /// <returns></returns>
     public int GetIndex()
     {
         return (int)colour;
@@ -59,7 +65,9 @@ public class Player : MonoBehaviour
     Territory toExpand;
     bool doAttack;
     bool doAttackExpansion;
-
+    /// <summary>
+    /// Resets a player to the state it will be in at the start of a game
+    /// </summary>
     public virtual void ResetPlayer()
     {
         placingFirstTerritory = true;
@@ -70,7 +78,10 @@ public class Player : MonoBehaviour
         territories = new List<Territory>();
         turnReset = false;
     }
-
+    /// <summary>
+    /// Starts the setup phase of this players turn
+    /// </summary>
+    /// <param name="territories">The territories that the player can place their troop onto</param>
     public virtual void Setup(List<Territory> territories)
     {
         turnReset = false;
@@ -78,6 +89,10 @@ public class Player : MonoBehaviour
         StartCoroutine(nameof(SetupWait), troopCount);
     }
 
+    /// <summary>
+    /// Evaluates where to place the players capital, or first troop
+    /// </summary>
+    /// <returns>The territory the player should place its capital on</returns>
     public Territory EvaluateCapitalPlacement()
     {
         ShuffleTerritoryList();
@@ -95,6 +110,9 @@ public class Player : MonoBehaviour
         return deployTerritory;
     }
 
+    /// <summary>
+    /// Randomises the order that territories appear in the territory list. This means that in cases where there are multiple equally good moves, the AI will not always pick the best one
+    /// </summary>
     public void ShuffleTerritoryList()
     {
         List<Territory> shuffledTerritories = new List<Territory>();
@@ -106,6 +124,10 @@ public class Player : MonoBehaviour
         }
         territories = shuffledTerritories;
     }
+    /// <summary>
+    /// Evaluates the next territory for the AI player to place its troop on in the setup phase, when there are still unclaimed territories
+    /// </summary>
+    /// <returns></returns>
     public Territory EvaluateNextTerritory()
     {
         List<Territory> ownedTerritories = Map.GetTerritoriesOwnedByPlayer(GetIndex());
@@ -145,7 +167,10 @@ public class Player : MonoBehaviour
         }
         return nextTerritory;
     }
-
+    /// <summary>
+    /// This function evaluates where the player should play their setup troop, once all territories have already been claimed
+    /// </summary>
+    /// <returns></returns>
     public Territory EvaluateNextTroopPlacement()
     {
         Territory minTroopTerritory = territories[0];
@@ -162,6 +187,10 @@ public class Player : MonoBehaviour
         }
         return minTroopTerritory;
     }
+    /// <summary>
+    /// The coroutine that plays the setup phase of the turn for an AI player
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator SetupWait()
     {
         yield return new WaitForSecondsRealtime(turnDelay);
@@ -184,6 +213,10 @@ public class Player : MonoBehaviour
         MatchManager.SwitchPlayerSetup();
     }
 
+    /// <summary>
+    /// Checks to see if every territory has already been claimed
+    /// </summary>
+    /// <returns>True if all territories have an owner, else false</returns>
     private bool AllTerritoriesClaimed()
     {
         bool allTerritoriesClaimed= true;
@@ -197,12 +230,21 @@ public class Player : MonoBehaviour
         }
         return allTerritoriesClaimed;
     }
+
+    /// <summary>
+    /// Starts the setup phase of the turn for the first troop to be deployed (the capital)
+    /// </summary>
+    /// <param name="territories"></param>
     public virtual void ClaimCapital(List<Territory> territories)
     {
         this.territories = territories;
         StartCoroutine(nameof(ClaimWait), troopCount);
     }
 
+    /// <summary>
+    /// The coroutine that executes the setup phase of an AI players turn for the capital deployment
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator ClaimWait()
     {
         yield return new WaitForSecondsRealtime(turnDelay);
@@ -215,6 +257,10 @@ public class Player : MonoBehaviour
         MatchManager.SwitchPlayerSetup();
     }
 
+    /// <summary>
+    /// Evaluates the best territory for the AI player to deploy onto
+    /// </summary>
+    /// <returns>The best territory to deploy onto</returns>
     private Territory EvaluateDeploy()
     {
         toExpand = EvaluateExpansion(out doAttackExpansion);
@@ -232,6 +278,12 @@ public class Player : MonoBehaviour
             return null;
         }
     }
+    /// <summary>
+    /// Starts the deploy phase for an AI player. This includes turning in cards, if it can
+    /// </summary>
+    /// <param name="territories"></param>
+    /// <param name="troopCount"></param>
+    /// <returns></returns>
     public virtual bool Deploy(List<Territory> territories, int troopCount)
     {
         KilledAPlayerThisTurn = false;
@@ -250,6 +302,11 @@ public class Player : MonoBehaviour
         StartCoroutine(nameof(DeployWait), troopCount);
         return true;
     }
+    /// <summary>
+    /// The coroutine that simulates the deploy phase of the AI players turn
+    /// </summary>
+    /// <param name="troopCount"></param>
+    /// <returns></returns>
     private IEnumerator DeployWait(int troopCount)
     {
             yield return new WaitForSecondsRealtime(turnDelay);
@@ -264,17 +321,22 @@ public class Player : MonoBehaviour
                 MatchManager.WinCheck(this);
             }
     }
-    public virtual bool Attack()
+    /// <summary>
+    /// Starts the attack phase of the AI players turn
+    /// </summary>
+    public virtual void Attack()
     {
         //This means the coroutine is only reset when has been reset is set to true in the middle of it running
         hasBeenReset = false;
         attackCoroutine = StartCoroutine(nameof(AttackWait));
-        return true;
     }
 
+    /// <summary>
+    /// Simulates the attack phase on an AI players turn
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator AttackWait()
     {
-            Debug.Log("hi");
             if (doAttack)
             {
                 bool routeFailed = false;
@@ -323,14 +385,14 @@ public class Player : MonoBehaviour
                 foreach (Territory neighbour in enemyNeighbours)
                 {
                     //Fix this
-                    if (toExpand == null || neighbour == null || this == null || toExpand.GetCurrentTroops() < neighbour.GetCurrentTroops())
+                    if (toExpand.GetCurrentTroops() < neighbour.GetCurrentTroops())
                     {
                         break;
                     }
                     while (toExpand.GetCurrentTroops() > 1 && neighbour.GetOwner() != GetIndex())
                     {
                         onePlayerAlive = MatchManager.OnePlayerAlive(this);
-                        if (onePlayerAlive || toExpand == null || neighbour == null || this == null)
+                        if (onePlayerAlive)
                         {
                             break;
                         }
@@ -355,6 +417,11 @@ public class Player : MonoBehaviour
                 MatchManager.Fortify();
             }
         }
+    /// <summary>
+    /// Evaluates the territory that the player can most easily expand its borders from 
+    /// </summary>
+    /// <param name="attempt">Whether or not the player has enough troops to expand from this territory</param>
+    /// <returns>The territory that the player can most easily exapand its borders from</returns>
     private Territory EvaluateExpansion(out bool attempt)
     {
         int currentMinNeighbours = 10000;
@@ -386,6 +453,11 @@ public class Player : MonoBehaviour
 
         return currentTerritoryToExpand;
     }
+    /// <summary>
+    /// Evalutes if a player is control of a continent, and the best route to break control of that continent
+    /// </summary>
+    /// <param name="attempt">Whether or not the player has the troops required to attempt this route</param>
+    /// <returns>The list of territories to take to break a players control over a contienent</returns>
     private List<Territory> EvaluateInterruptAttack(out bool attempt)
     {
         List<Continent> continentsOwnedByEnemies = new List<Continent>();
@@ -435,17 +507,30 @@ public class Player : MonoBehaviour
         return bestRoute;   
     }
 
-   
+   /// <summary>
+   /// Returns the max amount of dice a territory is able to attack with, based off their troop count
+   /// </summary>
+   /// <param name="target">The territory we want to get the max attacking dice for</param>
+   /// <returns>The maximum number of dice the passed territory can attack with </returns>
     public int GetMaxAttackingDice(Territory target)
     {
         return Mathf.Clamp(target.GetCurrentTroops()-1, 1, 3);
     }
-
+    /// <summary>
+    /// Returns the amount of dice the AI player will attack with
+    /// </summary>
+    /// <param name="target">The territory we want to get the attacking dice for</param>
+    /// <returns>The number of dice the passed territory will attack with </returns>
     public virtual int GetAttackingDice(Territory attacker)
     {
-        return GetMaxAttackingDice(attacker);
+        return GetMaxAttackingDice(attacker); //As it is optimal, the AI will always attack with the maximum number of dice
     }
 
+    /// <summary>
+    /// Returns the max amount of dice a territory is able to defend with, based off their troop count
+    /// </summary>
+    /// <param name="target">The territory we want to get the max defending dice for</param>
+    /// <returns>The maximum number of dice the passed territory can defend with </returns>
     public int GetMaxDefendingDice(Territory target)
     {
         return Mathf.Clamp(target.GetCurrentTroops(),1, 2);
@@ -461,7 +546,13 @@ public class Player : MonoBehaviour
 
         return 1;
     }
-
+    /// <summary>
+    ///  Runs when an attack finishes to move troops if the territory was taken, and gain the defenders cards if you eliminated them
+    /// </summary>
+    /// <param name="attackResult">The result of the attack (whether or not the defender was taken)</param>
+    /// <param name="attacker">The territory attacking the defender</param>
+    /// <param name="defender">The territory defending itself from the attacker</param>
+    /// <param name="attackerDiceCount">The number of dice the attacker was attacking with</param>
     public virtual void OnAttackEnd(Map.AttackResult attackResult, Territory attacker, Territory defender, int attackerDiceCount)
     {
         if (attackResult == Map.AttackResult.Won)
@@ -494,7 +585,10 @@ public class Player : MonoBehaviour
         //Eithier on this turn or the next
         inTheMiddleOfAttack = false;
     }
-
+    /// <summary>
+    /// Evaluates the territory that is the most beneficial to take troops away from in the fortify phase
+    /// </summary>
+    /// <returns></returns>
     private Territory EvaluateFortify()
     {
         Territory maxLockedTerritory = null;
@@ -516,6 +610,9 @@ public class Player : MonoBehaviour
         }
         return maxLockedTerritory;
     }
+    /// <summary>
+    /// Starts the fortifying phase of the AI players turn
+    /// </summary>
     public virtual void Fortify()
     {
         MatchManager.WinCheck(this);
@@ -524,6 +621,10 @@ public class Player : MonoBehaviour
             StartCoroutine(nameof(FortifyWait));
         }
     }
+    /// <summary>
+    /// The coroutine that simulates the fortify phase of the AI players turn
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator FortifyWait()
     {
         yield return new WaitForSecondsRealtime(turnDelay);
@@ -564,6 +665,12 @@ public class Player : MonoBehaviour
     {
         return hand;
     }
+    /// <summary>
+    /// Determines if two territories are connected via a route of allied territories
+    /// </summary>
+    /// <param name="startTerritory">The territory we are looking for a path from</param>
+    /// <param name="endTerritory">The territory we are looking for a path to</param>
+    /// <returns>True if the two territories are connected by a path of allied territories, else false</returns>
     public bool AreTerritoriesConnected(Territory startTerritory, Territory endTerritory)
     {
         FriendlyNode startNode = new FriendlyNode().SetTerritory(startTerritory);

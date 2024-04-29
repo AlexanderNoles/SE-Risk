@@ -106,9 +106,9 @@ public class Hand
         {
             return true;
         }
-        else if ((cardArray[0].GetDesign() == Card.cardDesign.WildCard && cardArray[1].GetDesign()== cardArray[2].GetDesign())||
-                (cardArray[1].GetDesign() == Card.cardDesign.WildCard && cardArray[0].GetDesign() == cardArray[2].GetDesign())||
-                (cardArray[2].GetDesign() == Card.cardDesign.WildCard && cardArray[0].GetDesign() == cardArray[1].GetDesign()))
+        else if ((cardArray[0].GetDesign() == Card.cardDesign.WildCard)||
+                (cardArray[1].GetDesign() == Card.cardDesign.WildCard)||
+                (cardArray[2].GetDesign() == Card.cardDesign.WildCard))
         {
             return true;
         }

@@ -47,6 +47,11 @@ public class MatchManager : MonoBehaviour
     [SerializeField]
     List<Player> playerList;
 
+    /// <summary>
+    /// Takes player ID and returns the player object from that
+    /// </summary>
+    /// <param name="target">The ID of the player we want</param>
+    /// <returns>The player object corresponding to that ID</returns>
     public static Player GetPlayerFromIndex(int target)
     {
         foreach (Player player in instance.playerList)
@@ -87,7 +92,10 @@ public class MatchManager : MonoBehaviour
     {
         instance = this;
     }
-
+    /// <summary>
+    /// Resets the game entirely, so resets all parts of the game like territories and the map and then brings us but to the start of the deploy phase
+    /// </summary>
+    /// <param name="initialReset"></param>
     public void ResetGame(bool initialReset)
     {
         gameOver = false;
@@ -187,6 +195,9 @@ public class MatchManager : MonoBehaviour
 
         ResetGame(true);
     }
+    /// <summary>
+    /// Runs the setup phase of a players turn, allowing them to place one troop on an owned or unoccupied territory
+    /// </summary>
     public static void Setup()
     {
         if (PlayOptionsManagement.IsConquestMode()&& capitalsPlaced < instance.playerList.Count)
@@ -223,9 +234,11 @@ public class MatchManager : MonoBehaviour
             return;
         }
     }
+    /// <summary>
+    /// Runs the deploy phase of a players turn, allowing them to place some number of troops on territories they own
+    /// </summary>
     public static void Deploy()
     {
-        Debug.Log("deploy");
         state = TurnState.Deploying;
         instance.currentPlayerTerritories = Map.TerritoriesOwnedByPlayerWorth(instance.playerList[instance.currentTurnIndex].GetIndex(),out int troopCount);
         if(instance.currentPlayerTerritories.Count == 0)
@@ -240,23 +253,29 @@ public class MatchManager : MonoBehaviour
         instance.troopCount = troopCount;
         instance.playerList[instance.currentTurnIndex].Deploy(instance.currentPlayerTerritories,troopCount);
     }
+    /// <summary>
+    /// Runs the attack phase of a players turn, allowing them to request attacks from territories they own to territories they dont
+    /// </summary>
     public static void Attack()
     {
-        Debug.Log("attack");
         state = TurnState.Attacking;
         UpdateInfoTextDefault("Attack");
         instance.playerList[instance.currentTurnIndex].Attack();
     }
+    /// <summary>
+    /// Runs the fortify phase of a players turn, allowing them to move troops from one territory they own to one other territory they also own
+    /// </summary>
     public static void Fortify()
     {
-        Debug.Log("fortify");
         state = TurnState.Fortifying;
         UpdateInfoTextDefault("Fortify");
         instance.playerList[instance.currentTurnIndex].Fortify();
     }
+    /// <summary>
+    /// Switches the current turn index to be the player whos turn it is next
+    /// </summary>
     public void SwitchPlayer() 
     {
-        Debug.Log("switched player");
         if (playerList.Count <= 1)
         {
             return;
@@ -272,6 +291,10 @@ public class MatchManager : MonoBehaviour
         } 
     }
     public List<Territory> GetCurrentPlayerTerritories() {  return currentPlayerTerritories; }
+    /// <summary>
+    /// Ends a players turn by drawing a card and then switching to the next player
+    /// </summary>
+    /// <param name="playerRemoved"></param>
     public static void EndTurn(bool playerRemoved = false)
     {
         if (!playerRemoved)
@@ -283,6 +306,10 @@ public class MatchManager : MonoBehaviour
         instance.SwitchPlayer();
         Deploy();
     }
+
+    /// <summary>
+    /// Switches the player in the setup phase, to ensure the counter tracks accordingly
+    /// </summary>
     public static void SwitchPlayerSetup()
     {
         if (instance.currentTurnIndex == instance.playerList.Count - 1)
@@ -302,7 +329,10 @@ public class MatchManager : MonoBehaviour
             WinCheck(playerList[0]);
         }
     }
-
+    /// <summary>
+    /// Checks to see if the passed player has won the game, if they have, the game is ended and we transition to the win screen
+    /// </summary>
+    /// <param name="current">The player we are checking to see if they have won</param>
     public static void WinCheck(Player current)
     {
         //We get the current player as an argument in case of a break in some other part of the code
@@ -358,18 +388,27 @@ public class MatchManager : MonoBehaviour
                 TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn);
         }
     }
-
+    /// <summary>
+    /// Stops the transition effect and switches to the menu scene
+    /// </summary>
     public static void OnOutTransitionOver()
     {
         TransitionControl.onTransitionOver.RemoveListener(OnOutTransitionOver);
         MenuManagement.SetDefaultMenu(MenuManagement.Menu.WinScreen);
         SceneManager.LoadScene(1);
     }
-
+    /// <summary>
+    /// Updates the turn info text to match the current player and turn phase
+    /// </summary>
+    /// <param name="turnPhase"></param>
     public static void UpdateInfoTextDefault(string turnPhase)
     {
         UIManagement.SetText($"{instance.playerList[instance.currentTurnIndex].GetColorName()} Turn {instance.turnNumber} : {turnPhase}");
     }
+    /// <summary>
+    /// Updates the turn info text to display the number of troops left to set up
+    /// </summary>
+    /// <param name="count"></param>
     public static void UpdateInfoTextSetup(int count)
     {
         UIManagement.SetText($"Current Troops: {count}");
@@ -380,6 +419,11 @@ public class MatchManager : MonoBehaviour
         return instance.playerList;
     }
 
+    /// <summary>
+    /// Checks to see if the passed player is the only living player
+    /// </summary>
+    /// <param name="current"></param>
+    /// <returns></returns>
     public static bool OnePlayerAlive(Player current)
     {
         if (current.GetTerritories().Count == Map.GetTerritories().Count)
