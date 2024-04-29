@@ -95,12 +95,16 @@ $(function(){initNavTree('class_player.html',''); initResizable(); });
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_player-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Player Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>The base implementation of a player. This contains all the methods needed for an AI player, in case a human player is ever unable to make a move on their turn.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Player:</div>
 <div class="dyncontent">
@@ -108,7 +112,8 @@ Inheritance diagram for Player:</div>
   <img src="class_player.png" usemap="#Player_map" alt=""/>
   <map id="Player_map" name="Player_map">
 <area href="class_a_i_player.html" title="AIPlayer is an empty wrapper for Player, all default implementations are used" alt="AIPlayer" shape="rect" coords="0,112,102,136"/>
-<area href="class_local_player.html" alt="LocalPlayer" shape="rect" coords="112,112,214,136"/>
+<area href="class_local_player.html" title="This class represents the player local to this machine." alt="LocalPlayer" shape="rect" coords="112,112,214,136"/>
+<area href="class_network_player.html" alt="NetworkPlayer" shape="rect" coords="224,112,326,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -128,27 +133,47 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:aec470236f44ee4a26da0719497478137" id="r_aec470236f44ee4a26da0719497478137"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec470236f44ee4a26da0719497478137">GetIndex</a> ()</td></tr>
+<tr class="memdesc:aec470236f44ee4a26da0719497478137"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the players colour as an integer value. As this is a unique in each game, it can be used as an identifer.  <br /></td></tr>
+<tr class="separator:aec470236f44ee4a26da0719497478137"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd6a3350a7f5282bf28743098cbe0e88" id="r_abd6a3350a7f5282bf28743098cbe0e88"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd6a3350a7f5282bf28743098cbe0e88">ResetPlayer</a> ()</td></tr>
+<tr class="memdesc:abd6a3350a7f5282bf28743098cbe0e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets a player to the state it will be in at the start of a game.  <br /></td></tr>
 <tr class="separator:abd6a3350a7f5282bf28743098cbe0e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7abc1f64df2e493ecdc55d6ae30be69e" id="r_a7abc1f64df2e493ecdc55d6ae30be69e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7abc1f64df2e493ecdc55d6ae30be69e">Setup</a> (List&lt; <a class="el" href="class_territory.html">Territory</a> &gt; <a class="el" href="#a7bf8ee4de0e9174e0e03b803e6bfbaaa">territories</a>)</td></tr>
+<tr class="memitem:a7abc1f64df2e493ecdc55d6ae30be69e" id="r_a7abc1f64df2e493ecdc55d6ae30be69e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7abc1f64df2e493ecdc55d6ae30be69e">Setup</a> (List&lt; <a class="el" href="class_territory.html">Territory</a> &gt; territories)</td></tr>
+<tr class="memdesc:a7abc1f64df2e493ecdc55d6ae30be69e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the setup phase of this players turn.  <br /></td></tr>
 <tr class="separator:a7abc1f64df2e493ecdc55d6ae30be69e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fc032bd27068103bb32801624f5b4d6" id="r_a4fc032bd27068103bb32801624f5b4d6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fc032bd27068103bb32801624f5b4d6">ClaimCapital</a> (List&lt; <a class="el" href="class_territory.html">Territory</a> &gt; <a class="el" href="#a7bf8ee4de0e9174e0e03b803e6bfbaaa">territories</a>)</td></tr>
+<tr class="memitem:ab495c4991057dac6cbb8850069073b22" id="r_ab495c4991057dac6cbb8850069073b22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_territory.html">Territory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab495c4991057dac6cbb8850069073b22">EvaluateCapitalPlacement</a> ()</td></tr>
+<tr class="memdesc:ab495c4991057dac6cbb8850069073b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates where to place the players capital, or first troop.  <br /></td></tr>
+<tr class="separator:ab495c4991057dac6cbb8850069073b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf86806e3ad95a1afee3f68a3ac4f56b" id="r_adf86806e3ad95a1afee3f68a3ac4f56b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf86806e3ad95a1afee3f68a3ac4f56b">ShuffleTerritoryList</a> ()</td></tr>
+<tr class="memdesc:adf86806e3ad95a1afee3f68a3ac4f56b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomises the order that territories appear in the territory list. This means that in cases where there are multiple equally good moves, the AI will not always pick the best one.  <br /></td></tr>
+<tr class="separator:adf86806e3ad95a1afee3f68a3ac4f56b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bd2f2d77ffbe7a6056c8a179cb049fc" id="r_a1bd2f2d77ffbe7a6056c8a179cb049fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_territory.html">Territory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bd2f2d77ffbe7a6056c8a179cb049fc">EvaluateNextTerritory</a> ()</td></tr>
+<tr class="memdesc:a1bd2f2d77ffbe7a6056c8a179cb049fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates the next territory for the AI player to place its troop on in the setup phase, when there are still unclaimed territories.  <br /></td></tr>
+<tr class="separator:a1bd2f2d77ffbe7a6056c8a179cb049fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a588136761fdcd57ab729abeca64129fc" id="r_a588136761fdcd57ab729abeca64129fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_territory.html">Territory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a588136761fdcd57ab729abeca64129fc">EvaluateNextTroopPlacement</a> ()</td></tr>
+<tr class="memdesc:a588136761fdcd57ab729abeca64129fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function evaluates where the player should play their setup troop, once all territories have already been claimed.  <br /></td></tr>
+<tr class="separator:a588136761fdcd57ab729abeca64129fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fc032bd27068103bb32801624f5b4d6" id="r_a4fc032bd27068103bb32801624f5b4d6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fc032bd27068103bb32801624f5b4d6">ClaimCapital</a> (List&lt; <a class="el" href="class_territory.html">Territory</a> &gt; territories)</td></tr>
+<tr class="memdesc:a4fc032bd27068103bb32801624f5b4d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the setup phase of the turn for the first troop to be deployed (the capital)  <br /></td></tr>
 <tr class="separator:a4fc032bd27068103bb32801624f5b4d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12b8c9dfe28d7596f03ff0fe2b7943fc" id="r_a12b8c9dfe28d7596f03ff0fe2b7943fc"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12b8c9dfe28d7596f03ff0fe2b7943fc">Deploy</a> (List&lt; <a class="el" href="class_territory.html">Territory</a> &gt; <a class="el" href="#a7bf8ee4de0e9174e0e03b803e6bfbaaa">territories</a>, int <a class="el" href="#a13e775bb2ba319e0f298f021075e9d8c">troopCount</a>)</td></tr>
+<tr class="memitem:a12b8c9dfe28d7596f03ff0fe2b7943fc" id="r_a12b8c9dfe28d7596f03ff0fe2b7943fc"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12b8c9dfe28d7596f03ff0fe2b7943fc">Deploy</a> (List&lt; <a class="el" href="class_territory.html">Territory</a> &gt; territories, int troopCount)</td></tr>
+<tr class="memdesc:a12b8c9dfe28d7596f03ff0fe2b7943fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the deploy phase for an AI player. This includes turning in cards, if it can.  <br /></td></tr>
 <tr class="separator:a12b8c9dfe28d7596f03ff0fe2b7943fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc083c10861cf0fbdf7a91feff18e73b" id="r_acc083c10861cf0fbdf7a91feff18e73b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc083c10861cf0fbdf7a91feff18e73b">Attack</a> ()</td></tr>
-<tr class="separator:acc083c10861cf0fbdf7a91feff18e73b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a959f1da396c4ce66170a3f3a2bd05e4d" id="r_a959f1da396c4ce66170a3f3a2bd05e4d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a959f1da396c4ce66170a3f3a2bd05e4d">Attack</a> ()</td></tr>
+<tr class="memdesc:a959f1da396c4ce66170a3f3a2bd05e4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the attack phase of the AI players turn.  <br /></td></tr>
+<tr class="separator:a959f1da396c4ce66170a3f3a2bd05e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8331675ad62140c18d10be98772b199a" id="r_a8331675ad62140c18d10be98772b199a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8331675ad62140c18d10be98772b199a">GetMaxAttackingDice</a> (<a class="el" href="class_territory.html">Territory</a> target)</td></tr>
+<tr class="memdesc:a8331675ad62140c18d10be98772b199a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the max amount of dice a territory is able to attack with, based off their troop count.  <br /></td></tr>
 <tr class="separator:a8331675ad62140c18d10be98772b199a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22e7e3e33b001d7f4fcff50760ace581" id="r_a22e7e3e33b001d7f4fcff50760ace581"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22e7e3e33b001d7f4fcff50760ace581">GetAttackingDice</a> (<a class="el" href="class_territory.html">Territory</a> attacker)</td></tr>
+<tr class="memdesc:a22e7e3e33b001d7f4fcff50760ace581"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the amount of dice the AI player will attack with.  <br /></td></tr>
 <tr class="separator:a22e7e3e33b001d7f4fcff50760ace581"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30b1bd195d4541d9d571c88bda0005ca" id="r_a30b1bd195d4541d9d571c88bda0005ca"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30b1bd195d4541d9d571c88bda0005ca">GetMaxDefendingDice</a> (<a class="el" href="class_territory.html">Territory</a> target)</td></tr>
-<tr class="separator:a30b1bd195d4541d9d571c88bda0005ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a549f397a4f6782d98bd46fe2073474c5" id="r_a549f397a4f6782d98bd46fe2073474c5"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a549f397a4f6782d98bd46fe2073474c5">GetDefendingDice</a> (<a class="el" href="class_territory.html">Territory</a> defender)</td></tr>
-<tr class="separator:a549f397a4f6782d98bd46fe2073474c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a881d99c47d6a30b1675068428ca5c233" id="r_a881d99c47d6a30b1675068428ca5c233"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a881d99c47d6a30b1675068428ca5c233">OnAttackEnd</a> (<a class="el" href="class_map.html#a7b6f0b00dee1cc2c47af5ba7972c90ad">Map.AttackResult</a> attackResult, <a class="el" href="class_territory.html">Territory</a> attacker, <a class="el" href="class_territory.html">Territory</a> defender)</td></tr>
-<tr class="separator:a881d99c47d6a30b1675068428ca5c233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae63269de9218fb9477fa7f93d6b78c52" id="r_ae63269de9218fb9477fa7f93d6b78c52"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae63269de9218fb9477fa7f93d6b78c52">OnAttackEnd</a> (<a class="el" href="class_map.html#a7b6f0b00dee1cc2c47af5ba7972c90ad">Map.AttackResult</a> attackResult, <a class="el" href="class_territory.html">Territory</a> attacker, <a class="el" href="class_territory.html">Territory</a> defender, int attackerDiceCount)</td></tr>
+<tr class="memdesc:ae63269de9218fb9477fa7f93d6b78c52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when an attack finishes to move troops if the territory was taken, and gain the defenders cards if you eliminated them.  <br /></td></tr>
+<tr class="separator:ae63269de9218fb9477fa7f93d6b78c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a56cf641e9284d6a85f3bb6a6f9e19f85" id="r_a56cf641e9284d6a85f3bb6a6f9e19f85"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56cf641e9284d6a85f3bb6a6f9e19f85">Fortify</a> ()</td></tr>
+<tr class="memdesc:a56cf641e9284d6a85f3bb6a6f9e19f85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the fortifying phase of the AI players turn.  <br /></td></tr>
 <tr class="separator:a56cf641e9284d6a85f3bb6a6f9e19f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad2346b1799ced4ead0e20283ac75a9c" id="r_aad2346b1799ced4ead0e20283ac75a9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad2346b1799ced4ead0e20283ac75a9c">SetColor</a> (<a class="el" href="#a6d924501887fe14864d1ff66063a63a6">PlayerColour</a> colour)</td></tr>
 <tr class="separator:aad2346b1799ced4ead0e20283ac75a9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,17 +192,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6e1ea350c482df59a23a990dbefaf3fc" id="r_a6e1ea350c482df59a23a990dbefaf3fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_hand.html">Hand</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6e1ea350c482df59a23a990dbefaf3fc">GetHand</a> ()</td></tr>
 <tr class="separator:a6e1ea350c482df59a23a990dbefaf3fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa45b2458d41addc50e54eeb601488467" id="r_aa45b2458d41addc50e54eeb601488467"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa45b2458d41addc50e54eeb601488467">AreTerritoriesConnected</a> (<a class="el" href="class_territory.html">Territory</a> startTerritory, <a class="el" href="class_territory.html">Territory</a> endTerritory)</td></tr>
+<tr class="memdesc:aa45b2458d41addc50e54eeb601488467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if two territories are connected via a route of allied territories.  <br /></td></tr>
 <tr class="separator:aa45b2458d41addc50e54eeb601488467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af277ecb947611610b2681d087e08615f" id="r_af277ecb947611610b2681d087e08615f"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="interface_pathfinding_1_1_i_node.html">Pathfinding.INode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af277ecb947611610b2681d087e08615f">RouteBetweenTerritories</a> (<a class="el" href="class_territory.html">Territory</a> startTerritory, <a class="el" href="class_territory.html">Territory</a> endTerritory)</td></tr>
+<tr class="memdesc:af277ecb947611610b2681d087e08615f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a route between a two territories, only through enemy territories.  <br /></td></tr>
+<tr class="separator:af277ecb947611610b2681d087e08615f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3b8cae04b73d6a550d8e606d8186581" id="r_af3b8cae04b73d6a550d8e606d8186581"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3b8cae04b73d6a550d8e606d8186581">OnTurnEnd</a> ()</td></tr>
+<tr class="memdesc:af3b8cae04b73d6a550d8e606d8186581"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws a card if the player has taken a territory this turn.  <br /></td></tr>
 <tr class="separator:af3b8cae04b73d6a550d8e606d8186581"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ed8459b03b4fa8dbe1d5314af208517" id="r_a7ed8459b03b4fa8dbe1d5314af208517"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ed8459b03b4fa8dbe1d5314af208517">IsDead</a> ()</td></tr>
+<tr class="memdesc:a7ed8459b03b4fa8dbe1d5314af208517"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the player is eliminated from the game.  <br /></td></tr>
 <tr class="separator:a7ed8459b03b4fa8dbe1d5314af208517"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3bb87e1c8be2faff1e804900f1f65613" id="r_a3bb87e1c8be2faff1e804900f1f65613"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3bb87e1c8be2faff1e804900f1f65613">Killed</a> (<a class="el" href="class_player.html">Player</a> killed)</td></tr>
+<tr class="memdesc:a3bb87e1c8be2faff1e804900f1f65613"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a players hand.  <br /></td></tr>
 <tr class="separator:a3bb87e1c8be2faff1e804900f1f65613"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4be0c9432591243530f4cd1d1d316751" id="r_a4be0c9432591243530f4cd1d1d316751"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4be0c9432591243530f4cd1d1d316751">ContinueTurn</a> ()</td></tr>
+<tr class="memdesc:a4be0c9432591243530f4cd1d1d316751"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when the player turns in cards during the attack phase. Allows that player to deploy those troops.  <br /></td></tr>
 <tr class="separator:a4be0c9432591243530f4cd1d1d316751"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab80e9cc6500728b6911bbac237d52440" id="r_ab80e9cc6500728b6911bbac237d52440"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab80e9cc6500728b6911bbac237d52440">GetTurnReset</a> ()</td></tr>
 <tr class="separator:ab80e9cc6500728b6911bbac237d52440"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a62c5d516b908b291ff36daaf4a00a2dd" id="r_a62c5d516b908b291ff36daaf4a00a2dd"><td class="memItemLeft" align="right" valign="top">static Color&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62c5d516b908b291ff36daaf4a00a2dd">GetColourBasedOnIndex</a> (int index)</td></tr>
+<tr class="separator:a62c5d516b908b291ff36daaf4a00a2dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a420c6959f0499e1416e1a6fdb5d65870" id="r_a420c6959f0499e1416e1a6fdb5d65870"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a420c6959f0499e1416e1a6fdb5d65870">GetMaxDefendingDice</a> (<a class="el" href="class_territory.html">Territory</a> target)</td></tr>
+<tr class="memdesc:a420c6959f0499e1416e1a6fdb5d65870"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the max amount of dice a territory is able to defend with, based off their troop count.  <br /></td></tr>
+<tr class="separator:a420c6959f0499e1416e1a6fdb5d65870"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -198,8 +239,9 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a8fcbb4eacbdf036ecc4365415a076f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00008">8</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<div class="textblock"><p>The base implementation of a player. This contains all the methods needed for an AI player, in case a human player is ever unable to make a move on their turn. </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00017">17</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a6d924501887fe14864d1ff66063a63a6" name="a6d924501887fe14864d1ff66063a63a6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6d924501887fe14864d1ff66063a63a6">&#9670;&#160;</a></span>PlayerColour</h2>
@@ -208,7 +250,7 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="#a6d924501887fe14864d1ff66063a63a6">Player.PlayerColour</a></td>
+          <td class="memname">enum Player.PlayerColour</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -221,7 +263,7 @@ Protected Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="a6d924501887fe14864d1ff66063a63a6ab9ba865fec061c9706d2fd7ce49c0cc7" name="a6d924501887fe14864d1ff66063a63a6ab9ba865fec061c9706d2fd7ce49c0cc7"></a>Purple&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00028">28</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00046">46</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -241,7 +283,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00256">256</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00644">644</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -264,12 +306,22 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00270">270</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Determines if two territories are connected via a route of allied territories. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startTerritory</td><td>The territory we are looking for a path from</td></tr>
+    <tr><td class="paramname">endTerritory</td><td>The territory we are looking for a path to</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the two territories are connected by a path of allied territories, else false</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00664">664</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
-<a id="acc083c10861cf0fbdf7a91feff18e73b" name="acc083c10861cf0fbdf7a91feff18e73b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc083c10861cf0fbdf7a91feff18e73b">&#9670;&#160;</a></span>Attack()</h2>
+<a id="a959f1da396c4ce66170a3f3a2bd05e4d" name="a959f1da396c4ce66170a3f3a2bd05e4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a959f1da396c4ce66170a3f3a2bd05e4d">&#9670;&#160;</a></span>Attack()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -278,7 +330,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool Player.Attack </td>
+          <td class="memname">virtual void Player.Attack </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -291,9 +343,11 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="class_local_player.html#abd1a06a8efe107fd6fce3fa0aa4159e0">LocalPlayer</a>.</p>
+<p>Starts the attack phase of the AI players turn. </p>
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00114">114</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Reimplemented in <a class="el" href="class_local_player.html#ae2b28ab08693a0fdf3f35b2375107e5b">LocalPlayer</a>, and <a class="el" href="class_network_player.html#a2d18a48ffe5057a5194dd8bd4c152c42">NetworkPlayer</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00327">327</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -320,9 +374,17 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="class_local_player.html#ac7049befbd00d3159af7e13411a7bcf0">LocalPlayer</a>.</p>
+<p>Starts the setup phase of the turn for the first troop to be deployed (the capital) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">territories</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00062">62</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Reimplemented in <a class="el" href="class_local_player.html#ac7049befbd00d3159af7e13411a7bcf0">LocalPlayer</a>, and <a class="el" href="class_network_player.html#aba3cbf5d074e818486db340386269ca1">NetworkPlayer</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00238">238</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -341,7 +403,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00301">301</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Runs when the player turns in cards during the attack phase. Allows that player to deploy those troops. </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00725">725</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -372,9 +436,85 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="class_local_player.html#a13e75720e259c1676f08f78d4061d0ef">LocalPlayer</a>.</p>
+<p>Starts the deploy phase for an AI player. This includes turning in cards, if it can. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">territories</td><td></td></tr>
+    <tr><td class="paramname">troopCount</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00080">80</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Reimplemented in <a class="el" href="class_local_player.html#a13e75720e259c1676f08f78d4061d0ef">LocalPlayer</a>, and <a class="el" href="class_network_player.html#ab25899efcfec5db367ec905a11715bda">NetworkPlayer</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00287">287</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab495c4991057dac6cbb8850069073b22" name="ab495c4991057dac6cbb8850069073b22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab495c4991057dac6cbb8850069073b22">&#9670;&#160;</a></span>EvaluateCapitalPlacement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_territory.html">Territory</a> Player.EvaluateCapitalPlacement </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Evaluates where to place the players capital, or first troop. </p>
+<dl class="section return"><dt>Returns</dt><dd>The territory the player should place its capital on</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00096">96</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1bd2f2d77ffbe7a6056c8a179cb049fc" name="a1bd2f2d77ffbe7a6056c8a179cb049fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bd2f2d77ffbe7a6056c8a179cb049fc">&#9670;&#160;</a></span>EvaluateNextTerritory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_territory.html">Territory</a> Player.EvaluateNextTerritory </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Evaluates the next territory for the AI player to place its troop on in the setup phase, when there are still unclaimed territories. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00131">131</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+
+</div>
+</div>
+<a id="a588136761fdcd57ab729abeca64129fc" name="a588136761fdcd57ab729abeca64129fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a588136761fdcd57ab729abeca64129fc">&#9670;&#160;</a></span>EvaluateNextTroopPlacement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_territory.html">Territory</a> Player.EvaluateNextTroopPlacement </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This function evaluates where the player should play their setup troop, once all territories have already been claimed. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00174">174</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -401,9 +541,11 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="class_local_player.html#a443f7c99233b28b730db57776b6d757b">LocalPlayer</a>.</p>
+<p>Starts the fortifying phase of the AI players turn. </p>
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00214">214</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Reimplemented in <a class="el" href="class_local_player.html#a443f7c99233b28b730db57776b6d757b">LocalPlayer</a>, and <a class="el" href="class_network_player.html#a6485eb25d50735f8466bad19621b428c">NetworkPlayer</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00606">606</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -430,7 +572,16 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00171">171</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Returns the amount of dice the AI player will attack with. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The territory we want to get the attacking dice for</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of dice the passed territory will attack with </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00524">524</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -449,7 +600,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00246">246</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00634">634</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -468,12 +619,12 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00250">250</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00638">638</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
-<a id="a549f397a4f6782d98bd46fe2073474c5" name="a549f397a4f6782d98bd46fe2073474c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a549f397a4f6782d98bd46fe2073474c5">&#9670;&#160;</a></span>GetDefendingDice()</h2>
+<a id="a62c5d516b908b291ff36daaf4a00a2dd" name="a62c5d516b908b291ff36daaf4a00a2dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62c5d516b908b291ff36daaf4a00a2dd">&#9670;&#160;</a></span>GetColourBasedOnIndex()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -482,20 +633,20 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual int Player.GetDefendingDice </td>
+          <td class="memname">static Color Player.GetColourBasedOnIndex </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_territory.html">Territory</a></td>          <td class="paramname"><span class="paramname"><em>defender</em></span></td><td>)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00183">183</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00048">48</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -514,7 +665,29 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00266">266</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00654">654</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+
+</div>
+</div>
+<a id="aec470236f44ee4a26da0719497478137" name="aec470236f44ee4a26da0719497478137"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec470236f44ee4a26da0719497478137">&#9670;&#160;</a></span>GetIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Player.GetIndex </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the players colour as an integer value. As this is a unique in each game, it can be used as an identifer. </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00025">25</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -533,26 +706,52 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00165">165</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Returns the max amount of dice a territory is able to attack with, based off their troop count. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The territory we want to get the max attacking dice for</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The maximum number of dice the passed territory can attack with </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00515">515</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
-<a id="a30b1bd195d4541d9d571c88bda0005ca" name="a30b1bd195d4541d9d571c88bda0005ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30b1bd195d4541d9d571c88bda0005ca">&#9670;&#160;</a></span>GetMaxDefendingDice()</h2>
+<a id="a420c6959f0499e1416e1a6fdb5d65870" name="a420c6959f0499e1416e1a6fdb5d65870"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a420c6959f0499e1416e1a6fdb5d65870">&#9670;&#160;</a></span>GetMaxDefendingDice()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Player.GetMaxDefendingDice </td>
+          <td class="memname">static int Player.GetMaxDefendingDice </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_territory.html">Territory</a></td>          <td class="paramname"><span class="paramname"><em>target</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00176">176</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Returns the max amount of dice a territory is able to defend with, based off their troop count. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The territory we want to get the max defending dice for</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The maximum number of dice the passed territory can defend with </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00534">534</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -571,7 +770,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00254">254</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00642">642</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -590,7 +789,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00255">255</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00643">643</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -609,7 +808,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00307">307</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00732">732</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -628,7 +827,10 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00285">285</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Checks to see if the player is eliminated from the game. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if the player has no territories, else returns false</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00700">700</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -647,12 +849,20 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00291">291</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Takes a players hand. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">killed</td><td>The player whos hand you are taking</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00709">709</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
-<a id="a881d99c47d6a30b1675068428ca5c233" name="a881d99c47d6a30b1675068428ca5c233"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a881d99c47d6a30b1675068428ca5c233">&#9670;&#160;</a></span>OnAttackEnd()</h2>
+<a id="ae63269de9218fb9477fa7f93d6b78c52" name="ae63269de9218fb9477fa7f93d6b78c52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae63269de9218fb9477fa7f93d6b78c52">&#9670;&#160;</a></span>OnAttackEnd()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -673,7 +883,12 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_territory.html">Territory</a></td>          <td class="paramname"><span class="paramname"><em>defender</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="class_territory.html">Territory</a></td>          <td class="paramname"><span class="paramname"><em>defender</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>attackerDiceCount</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -683,9 +898,20 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="class_local_player.html#af93be8db9fc571abf599539c4486346b">LocalPlayer</a>.</p>
+<p>Runs when an attack finishes to move troops if the territory was taken, and gain the defenders cards if you eliminated them. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">attackResult</td><td>The result of the attack (whether or not the defender was taken)</td></tr>
+    <tr><td class="paramname">attacker</td><td>The territory attacking the defender</td></tr>
+    <tr><td class="paramname">defender</td><td>The territory defending itself from the attacker</td></tr>
+    <tr><td class="paramname">attackerDiceCount</td><td>The number of dice the attacker was attacking with</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00194">194</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Reimplemented in <a class="el" href="class_local_player.html#ad1e5c9e750d7dcfb27c69eefe79c23cb">LocalPlayer</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00546">546</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -712,9 +938,11 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="class_local_player.html#a7874851dd3c8b608e4aa4236c1586efd">LocalPlayer</a>.</p>
+<p>Draws a card if the player has taken a territory this turn. </p>
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00277">277</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Reimplemented in <a class="el" href="class_local_player.html#a7874851dd3c8b608e4aa4236c1586efd">LocalPlayer</a>, and <a class="el" href="class_network_player.html#a3e21df7e44b68f9513ebd7528a7272a9">NetworkPlayer</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00686">686</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -733,7 +961,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00261">261</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00649">649</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -760,7 +988,44 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00037">37</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Resets a player to the state it will be in at the start of a game. </p>
+
+<p>Reimplemented in <a class="el" href="class_network_player.html#a7bf2fe73efc3f888a615075292748baf">NetworkPlayer</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00071">71</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+
+</div>
+</div>
+<a id="af277ecb947611610b2681d087e08615f" name="af277ecb947611610b2681d087e08615f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af277ecb947611610b2681d087e08615f">&#9670;&#160;</a></span>RouteBetweenTerritories()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="interface_pathfinding_1_1_i_node.html">Pathfinding.INode</a> &gt; Player.RouteBetweenTerritories </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_territory.html">Territory</a></td>          <td class="paramname"><span class="paramname"><em>startTerritory</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_territory.html">Territory</a></td>          <td class="paramname"><span class="paramname"><em>endTerritory</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Finds a route between a two territories, only through enemy territories. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startTerritory</td><td>The friendly territory we are routing from</td></tr>
+    <tr><td class="paramname">endTerritory</td><td>The enemy territory we are routing to</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of nodes representing the route between these two territories. The list will be empty if no route exists</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00676">676</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -779,7 +1044,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00242">242</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00630">630</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -806,9 +1071,38 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented in <a class="el" href="class_local_player.html#acb81bda394025d4dcfad5374bb75cadb">LocalPlayer</a>.</p>
+<p>Starts the setup phase of this players turn. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">territories</td><td>The territories that the player can place their troop onto</td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00047">47</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p>Reimplemented in <a class="el" href="class_local_player.html#acb81bda394025d4dcfad5374bb75cadb">LocalPlayer</a>, and <a class="el" href="class_network_player.html#a209017f46adebd02dc07094cb8de8230">NetworkPlayer</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00085">85</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+
+</div>
+</div>
+<a id="adf86806e3ad95a1afee3f68a3ac4f56b" name="adf86806e3ad95a1afee3f68a3ac4f56b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf86806e3ad95a1afee3f68a3ac4f56b">&#9670;&#160;</a></span>ShuffleTerritoryList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player.ShuffleTerritoryList </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Randomises the order that territories appear in the territory list. This means that in cases where there are multiple equally good moves, the AI will not always pick the best one. </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00116">116</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -833,7 +1127,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00032">32</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00056">56</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -849,7 +1143,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00036">36</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00060">60</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -873,7 +1167,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00031">31</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00055">55</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -897,7 +1191,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00033">33</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00057">57</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -921,7 +1215,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00030">30</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00054">54</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>
@@ -945,7 +1239,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00035">35</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cs_source.html#l00059">59</a> of file <a class="el" href="_player_8cs_source.html">Player.cs</a>.</p>
 
 </div>
 </div>

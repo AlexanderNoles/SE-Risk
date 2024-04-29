@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['flasher_0',['Flasher',['../class_flasher.html',1,'']]]
+  ['enemynode_0',['EnemyNode',['../class_enemy_node.html',1,'']]]
 ];

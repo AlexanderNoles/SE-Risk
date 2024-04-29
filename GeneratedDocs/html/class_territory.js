@@ -18,15 +18,16 @@ var class_territory =
     [ "GetCentrePoint", "class_territory.html#a48800de1325964567d52354562b74796", null ],
     [ "GetContinent", "class_territory.html#a3e1eec074d23f73e6c30dcfe232111cd", null ],
     [ "GetCurrentTroops", "class_territory.html#a7cafd823a3cb9edf66b5c5a5bb278818", null ],
+    [ "GetIndexInMap", "class_territory.html#a5e09841b0485253623e0e4a3bd6f5f42", null ],
     [ "GetNeighbours", "class_territory.html#aeabe7f089d0fba08eed433e2de462e74", null ],
-    [ "GetOwner", "class_territory.html#a59ae567aafa02f01be2dad23fe177e5b", null ],
+    [ "GetOwner", "class_territory.html#a2fe06fdff2c0bddfbe8bc0e3da5e2607", null ],
     [ "GetUIOffset", "class_territory.html#a08695d350a4b48d2262fd17bcef01226", null ],
     [ "Inflate", "class_territory.html#a3cf6448ac38d4a92d1f1547c42a9062b", null ],
     [ "ResetOwner", "class_territory.html#afde3828b3ef9e6417707398e64db6f6b", null ],
-    [ "ResetTerritory", "class_territory.html#acfdcd42d037f8027800f2765e675d7bc", null ],
+    [ "ResetTerritory", "class_territory.html#a7c1dad80fc304af61896354552bbd270", null ],
     [ "SetBorderPoints", "class_territory.html#a9c241250c6f165cf249b930b99221214", null ],
     [ "SetCentrePoint", "class_territory.html#a8210ed876c18ed129514973e6b4e9803", null ],
-    [ "SetCurrentTroops", "class_territory.html#a084c9dde837d04e91d77bd6277dd2985", null ],
+    [ "SetCurrentTroops", "class_territory.html#a5ca97b4c63b5f1f653bfc83d7639efdf", null ],
     [ "SetNeighbours", "class_territory.html#ab50ccd63d5005cc2a2be7e3ace5ba877", null ],
-    [ "SetOwner", "class_territory.html#a2c067631bad254b78f5889eb904002d7", null ]
+    [ "SetOwner", "class_territory.html#a443d18bf424c1996d0e0c27622bc3cce", null ]
 ];

@@ -1,6 +1,5 @@
 var class_card_displayer =
 [
-    [ "CalculateEndPositions", "class_card_displayer.html#a49b6af53372cd23582c36c9df099a2d2", null ],
     [ "GetCardsOnScreen", "class_card_displayer.html#aaddfc56aa3c7c6a202207e8b2d0ab6d2", null ],
     [ "GetCardState", "class_card_displayer.html#a35ed0d297026992d64758bd63ef33875", null ],
     [ "HideCards", "class_card_displayer.html#a49bd81d8938afdab8d2b619b1baeb286", null ],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['numberoftroopsforset_0',['NumberOfTroopsForSet',['../class_hand.html#aef2c90936230877ea3e43b44eb702ae4',1,'Hand']]]
+  ['makeplayerobjectsnondestroy_0',['MakePlayerObjectsNonDestroy',['../class_network_management.html#ae4197aa35759cbf54d63743591fa3f51',1,'NetworkManagement']]]
 ];

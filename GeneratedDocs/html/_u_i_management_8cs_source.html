@@ -125,100 +125,84 @@ $(function(){initNavTree('_u_i_management_8cs_source.html',''); initResizable();
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> Awake()</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        Debug.Log(<span class="stringliteral">&quot;hi&quot;</span>);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        instance = <span class="keyword">this</span>;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        rollOutputLines = <span class="keyword">new</span> List&lt;string&gt;();</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <a class="code hl_function" href="class_u_i_management.html#ae29e522a7286a258b2eab9fae71718fc">RefreshRollOutput</a>();</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        pools = GetComponent&lt;MultiObjectPool&gt;();</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="class_u_i_management.html#a8db68ebe36abd1a53aeb9538b7b3a471">   57</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <a class="code hl_class" href="class_multi_object_pool.html">MultiObjectPool</a>.<a class="code hl_struct" href="struct_multi_object_pool_1_1_object_from_pool.html">ObjectFromPool</a>&lt;T&gt; <a class="code hl_function" href="class_u_i_management.html#a8db68ebe36abd1a53aeb9538b7b3a471">Spawn&lt;T&gt;</a>(Vector3 pos, <span class="keywordtype">int</span> poolIndex)</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    {</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">return</span> pools.<a class="code hl_function" href="class_multi_object_pool.html#ae7c84587b002b0423f82cfd26ed3e31c">SpawnObject</a>&lt;T&gt;(poolIndex, pos);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        instance = <span class="keyword">this</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        rollOutputLines = <span class="keyword">new</span> List&lt;string&gt;();</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <a class="code hl_function" href="class_u_i_management.html#ae29e522a7286a258b2eab9fae71718fc">RefreshRollOutput</a>();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        pools = GetComponent&lt;MultiObjectPool&gt;();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="foldopen" id="foldopen00056" data-start="{" data-end="}">
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="class_u_i_management.html#a8db68ebe36abd1a53aeb9538b7b3a471">   56</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <a class="code hl_class" href="class_multi_object_pool.html">MultiObjectPool</a>.<a class="code hl_struct" href="struct_multi_object_pool_1_1_object_from_pool.html">ObjectFromPool</a>&lt;T&gt; <a class="code hl_function" href="class_u_i_management.html#a8db68ebe36abd1a53aeb9538b7b3a471">Spawn&lt;T&gt;</a>(Vector3 pos, <span class="keywordtype">int</span> poolIndex)</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">return</span> pools.<a class="code hl_function" href="class_multi_object_pool.html#ae7c84587b002b0423f82cfd26ed3e31c">SpawnObject</a>&lt;T&gt;(poolIndex, pos);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
 </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="foldopen" id="foldopen00066" data-start="{" data-end="}">
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="class_u_i_management.html#abb3e6ec3389df25b3d99cfe85989e202">   66</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_u_i_management.html#abb3e6ec3389df25b3d99cfe85989e202">SetText</a>(<span class="keywordtype">string</span> text)</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    {</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">if</span> (!<a class="code hl_class" href="class_map.html">Map</a>.<a class="code hl_function" href="class_map.html#aed2c8a1c288ab3bf923c6e81b18f5ff9">IsSimulated</a>())</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        {</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            instance.turnInfoText.text = text;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        }</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="class_u_i_management.html#abb3e6ec3389df25b3d99cfe85989e202">   65</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_u_i_management.html#abb3e6ec3389df25b3d99cfe85989e202">SetText</a>(<span class="keywordtype">string</span> text)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            instance.turnInfoText.text = text;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    }</div>
 </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="class_u_i_management.html#aeacc74a9180a4272eea05f7c6b103269">   78</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_u_i_management.html#aeacc74a9180a4272eea05f7c6b103269">SetActiveGreyPlane</a>(<span class="keywordtype">bool</span> active)</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        instance.<a class="code hl_variable" href="class_u_i_management.html#ae2c41670835cb24df0ba6e4185034779">greyPlane</a>.SetActive(active);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="}">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="class_u_i_management.html#aeacc74a9180a4272eea05f7c6b103269">   74</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_u_i_management.html#aeacc74a9180a4272eea05f7c6b103269">SetActiveGreyPlane</a>(<span class="keywordtype">bool</span> active)</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        instance.<a class="code hl_variable" href="class_u_i_management.html#ae2c41670835cb24df0ba6e4185034779">greyPlane</a>.SetActive(active);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
 </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="foldopen" id="foldopen00087" data-start="{" data-end="}">
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="class_u_i_management.html#a8a231ada624757f93cad3e66e1c58268">   87</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_u_i_management.html#a8a231ada624757f93cad3e66e1c58268">AddLineToRollOutput</a>(<span class="keywordtype">string</span> line)</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    {</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keywordflow">if</span> (<a class="code hl_class" href="class_map.html">Map</a>.<a class="code hl_function" href="class_map.html#aed2c8a1c288ab3bf923c6e81b18f5ff9">IsSimulated</a>()) </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        {</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="}">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="class_u_i_management.html#a8a231ada624757f93cad3e66e1c58268">   83</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_u_i_management.html#a8a231ada624757f93cad3e66e1c58268">AddLineToRollOutput</a>(<span class="keywordtype">string</span> line)</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        rollOutputLines.Insert(0, line);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        newLinesAdded++;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordflow">if</span> (rollOutputLines.Count &gt; maxLengthOfOutput)</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            rollOutputLines.RemoveAt(maxLengthOfOutput);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        }</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    }</div>
+</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        rollOutputLines.Insert(0, line);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        newLinesAdded++;</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keywordflow">if</span> (rollOutputLines.Count &gt; maxLengthOfOutput)</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            rollOutputLines.RemoveAt(maxLengthOfOutput);</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        }</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }</div>
+<div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="class_u_i_management.html#ae29e522a7286a258b2eab9fae71718fc">   97</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_u_i_management.html#ae29e522a7286a258b2eab9fae71718fc">RefreshRollOutput</a>()</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="comment">//Construct output string</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keywordtype">string</span> finalOutputString = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keywordflow">foreach</span> (<span class="keywordtype">string</span> line <span class="keywordflow">in</span> rollOutputLines)</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            finalOutputString += line + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        }</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="comment">//Set to output</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        instance.rollOutput.text = finalOutputString;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        instance.buildUp += 1.0f;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        instance.fadeOutT = 1.0f;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        instance.textFadeOut.rectTransform.sizeDelta = <span class="keyword">new</span> Vector2(265, newLinesAdded * 29);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        instance.textFadeOut.rectTransform.anchoredPosition = <span class="keyword">new</span> Vector2(0.0f, newLinesAdded * -14.5f);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        newLinesAdded = 0;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
 </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="class_u_i_management.html#ae29e522a7286a258b2eab9fae71718fc">  106</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_u_i_management.html#ae29e522a7286a258b2eab9fae71718fc">RefreshRollOutput</a>()</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    {</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">if</span> (<a class="code hl_class" href="class_map.html">Map</a>.<a class="code hl_function" href="class_map.html#aed2c8a1c288ab3bf923c6e81b18f5ff9">IsSimulated</a>())</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        {</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        }</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="comment">//Construct output string</span></div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordtype">string</span> finalOutputString = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="keywordflow">foreach</span> (<span class="keywordtype">string</span> line <span class="keywordflow">in</span> rollOutputLines)</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        {</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>            finalOutputString += line + <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        }</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <span class="comment">//Set to output</span></div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        instance.rollOutput.text = finalOutputString;</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        instance.buildUp += 1.0f;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        instance.fadeOutT = 1.0f;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> Update()</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        <span class="keywordflow">if</span> (fadeOutT &gt; 0.0f)</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>            fadeOutT -= Time.deltaTime * Mathf.Clamp(buildUp, 1.0f, 100.0f);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>            textFadeOut.color = Color.Lerp(Color.clear, Color.black, <a class="code hl_variable" href="class_u_i_management.html#a2f6dfba71692cef0f5679926b7dcd0c2">fadeOutCurve</a>.Evaluate(fadeOutT));</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        }</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        instance.textFadeOut.rectTransform.sizeDelta = <span class="keyword">new</span> Vector2(265, newLinesAdded * 29);</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        instance.textFadeOut.rectTransform.anchoredPosition = <span class="keyword">new</span> Vector2(0.0f, newLinesAdded * -14.5f);</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        newLinesAdded = 0;</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordflow">if</span> (buildUp &gt; 0.0f)</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>            buildUp = Mathf.Lerp(buildUp, 0.0f, Time.deltaTime);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        }</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>}</div>
 </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keyword">private</span> <span class="keywordtype">void</span> Update()</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    {</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keywordflow">if</span> (fadeOutT &gt; 0.0f)</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        {</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            fadeOutT -= Time.deltaTime * Mathf.Clamp(buildUp, 1.0f, 100.0f);</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            textFadeOut.color = Color.Lerp(Color.clear, Color.black, <a class="code hl_variable" href="class_u_i_management.html#a2f6dfba71692cef0f5679926b7dcd0c2">fadeOutCurve</a>.Evaluate(fadeOutT));</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        }</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <span class="keywordflow">if</span> (buildUp &gt; 0.0f)</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        {</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            buildUp = Mathf.Lerp(buildUp, 0.0f, Time.deltaTime);</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        }</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    }</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>}</div>
-</div>
-<div class="ttc" id="aclass_map_html"><div class="ttname"><a href="class_map.html">Map</a></div><div class="ttdef"><b>Definition</b> <a href="_map_8cs_source.html#l00008">Map.cs:9</a></div></div>
-<div class="ttc" id="aclass_map_html_aed2c8a1c288ab3bf923c6e81b18f5ff9"><div class="ttname"><a href="class_map.html#aed2c8a1c288ab3bf923c6e81b18f5ff9">Map.IsSimulated</a></div><div class="ttdeci">static bool IsSimulated()</div><div class="ttdef"><b>Definition</b> <a href="_map_8cs_source.html#l00058">Map.cs:58</a></div></div>
 <div class="ttc" id="aclass_multi_object_pool_html"><div class="ttname"><a href="class_multi_object_pool.html">MultiObjectPool</a></div><div class="ttdoc">MultiObjectPool a generic object pooling solution meant to reduce garbage collector spikes in unity....</div><div class="ttdef"><b>Definition</b> <a href="_multi_object_pool_8cs_source.html#l00009">MultiObjectPool.cs:10</a></div></div>
 <div class="ttc" id="aclass_multi_object_pool_html_ae7c84587b002b0423f82cfd26ed3e31c"><div class="ttname"><a href="class_multi_object_pool.html#ae7c84587b002b0423f82cfd26ed3e31c">MultiObjectPool.SpawnObject</a></div><div class="ttdeci">ObjectFromPool&lt; MonoBehaviour &gt; SpawnObject(int poolIndex, Vector3 position)</div><div class="ttdoc">Wrapper for SpawnObject. Non-Generic.</div><div class="ttdef"><b>Definition</b> <a href="_multi_object_pool_8cs_source.html#l00383">MultiObjectPool.cs:383</a></div></div>
 <div class="ttc" id="aclass_u_i_management_html"><div class="ttname"><a href="class_u_i_management.html">UIManagement</a></div><div class="ttdoc">Manages code side communication with non bespoke UI. This includes managing storage of generic UI ele...</div><div class="ttdef"><b>Definition</b> <a href="#l00009">UIManagement.cs:10</a></div></div>
@@ -226,12 +210,12 @@ $(function(){initNavTree('_u_i_management_8cs_source.html',''); initResizable();
 <div class="ttc" id="aclass_u_i_management_html_a2d651ae505eba6ad696b5f4094286802"><div class="ttname"><a href="class_u_i_management.html#a2d651ae505eba6ad696b5f4094286802">UIManagement.rollOutput</a></div><div class="ttdeci">TextMeshProUGUI rollOutput</div><div class="ttdoc">UI reference. Setup in inspector. Displays the output of dice rolls.</div><div class="ttdef"><b>Definition</b> <a href="#l00023">UIManagement.cs:23</a></div></div>
 <div class="ttc" id="aclass_u_i_management_html_a2f6dfba71692cef0f5679926b7dcd0c2"><div class="ttname"><a href="class_u_i_management.html#a2f6dfba71692cef0f5679926b7dcd0c2">UIManagement.fadeOutCurve</a></div><div class="ttdeci">AnimationCurve fadeOutCurve</div><div class="ttdoc">UI reference. Setup in inspector. Easing curve for the roll output text effect.</div><div class="ttdef"><b>Definition</b> <a href="#l00034">UIManagement.cs:34</a></div></div>
 <div class="ttc" id="aclass_u_i_management_html_a3cae8364be228c8f141c492b93d6080d"><div class="ttname"><a href="class_u_i_management.html#a3cae8364be228c8f141c492b93d6080d">UIManagement.textFadeOut</a></div><div class="ttdeci">Image textFadeOut</div><div class="ttdoc">UI reference. Setup in inspector. Roll output text effect.</div><div class="ttdef"><b>Definition</b> <a href="#l00027">UIManagement.cs:27</a></div></div>
-<div class="ttc" id="aclass_u_i_management_html_a8a231ada624757f93cad3e66e1c58268"><div class="ttname"><a href="class_u_i_management.html#a8a231ada624757f93cad3e66e1c58268">UIManagement.AddLineToRollOutput</a></div><div class="ttdeci">static void AddLineToRollOutput(string line)</div><div class="ttdoc">Add a line to the roll output text.</div><div class="ttdef"><b>Definition</b> <a href="#l00087">UIManagement.cs:87</a></div></div>
-<div class="ttc" id="aclass_u_i_management_html_a8db68ebe36abd1a53aeb9538b7b3a471"><div class="ttname"><a href="class_u_i_management.html#a8db68ebe36abd1a53aeb9538b7b3a471">UIManagement.Spawn&lt; T &gt;</a></div><div class="ttdeci">static MultiObjectPool.ObjectFromPool&lt; T &gt; Spawn&lt; T &gt;(Vector3 pos, int poolIndex)</div><div class="ttdoc">Spawns a generic UI object at a given position from a specific Object Pool.</div><div class="ttdef"><b>Definition</b> <a href="#l00057">UIManagement.cs:57</a></div></div>
-<div class="ttc" id="aclass_u_i_management_html_abb3e6ec3389df25b3d99cfe85989e202"><div class="ttname"><a href="class_u_i_management.html#abb3e6ec3389df25b3d99cfe85989e202">UIManagement.SetText</a></div><div class="ttdeci">static void SetText(string text)</div><div class="ttdoc">Set the text of the turn info text object.</div><div class="ttdef"><b>Definition</b> <a href="#l00066">UIManagement.cs:66</a></div></div>
-<div class="ttc" id="aclass_u_i_management_html_ae29e522a7286a258b2eab9fae71718fc"><div class="ttname"><a href="class_u_i_management.html#ae29e522a7286a258b2eab9fae71718fc">UIManagement.RefreshRollOutput</a></div><div class="ttdeci">static void RefreshRollOutput()</div><div class="ttdoc">Apply the new output text to the actual roll output UI object.</div><div class="ttdef"><b>Definition</b> <a href="#l00106">UIManagement.cs:106</a></div></div>
+<div class="ttc" id="aclass_u_i_management_html_a8a231ada624757f93cad3e66e1c58268"><div class="ttname"><a href="class_u_i_management.html#a8a231ada624757f93cad3e66e1c58268">UIManagement.AddLineToRollOutput</a></div><div class="ttdeci">static void AddLineToRollOutput(string line)</div><div class="ttdoc">Add a line to the roll output text.</div><div class="ttdef"><b>Definition</b> <a href="#l00083">UIManagement.cs:83</a></div></div>
+<div class="ttc" id="aclass_u_i_management_html_a8db68ebe36abd1a53aeb9538b7b3a471"><div class="ttname"><a href="class_u_i_management.html#a8db68ebe36abd1a53aeb9538b7b3a471">UIManagement.Spawn&lt; T &gt;</a></div><div class="ttdeci">static MultiObjectPool.ObjectFromPool&lt; T &gt; Spawn&lt; T &gt;(Vector3 pos, int poolIndex)</div><div class="ttdoc">Spawns a generic UI object at a given position from a specific Object Pool.</div><div class="ttdef"><b>Definition</b> <a href="#l00056">UIManagement.cs:56</a></div></div>
+<div class="ttc" id="aclass_u_i_management_html_abb3e6ec3389df25b3d99cfe85989e202"><div class="ttname"><a href="class_u_i_management.html#abb3e6ec3389df25b3d99cfe85989e202">UIManagement.SetText</a></div><div class="ttdeci">static void SetText(string text)</div><div class="ttdoc">Set the text of the turn info text object.</div><div class="ttdef"><b>Definition</b> <a href="#l00065">UIManagement.cs:65</a></div></div>
+<div class="ttc" id="aclass_u_i_management_html_ae29e522a7286a258b2eab9fae71718fc"><div class="ttname"><a href="class_u_i_management.html#ae29e522a7286a258b2eab9fae71718fc">UIManagement.RefreshRollOutput</a></div><div class="ttdeci">static void RefreshRollOutput()</div><div class="ttdoc">Apply the new output text to the actual roll output UI object.</div><div class="ttdef"><b>Definition</b> <a href="#l00097">UIManagement.cs:97</a></div></div>
 <div class="ttc" id="aclass_u_i_management_html_ae2c41670835cb24df0ba6e4185034779"><div class="ttname"><a href="class_u_i_management.html#ae2c41670835cb24df0ba6e4185034779">UIManagement.greyPlane</a></div><div class="ttdeci">GameObject greyPlane</div><div class="ttdoc">UI reference. Setup in inspector. Gray plane that sits behind other UI elements.</div><div class="ttdef"><b>Definition</b> <a href="#l00019">UIManagement.cs:19</a></div></div>
-<div class="ttc" id="aclass_u_i_management_html_aeacc74a9180a4272eea05f7c6b103269"><div class="ttname"><a href="class_u_i_management.html#aeacc74a9180a4272eea05f7c6b103269">UIManagement.SetActiveGreyPlane</a></div><div class="ttdeci">static void SetActiveGreyPlane(bool active)</div><div class="ttdoc">Set the gray backing plane active or inactive.</div><div class="ttdef"><b>Definition</b> <a href="#l00078">UIManagement.cs:78</a></div></div>
+<div class="ttc" id="aclass_u_i_management_html_aeacc74a9180a4272eea05f7c6b103269"><div class="ttname"><a href="class_u_i_management.html#aeacc74a9180a4272eea05f7c6b103269">UIManagement.SetActiveGreyPlane</a></div><div class="ttdeci">static void SetActiveGreyPlane(bool active)</div><div class="ttdoc">Set the gray backing plane active or inactive.</div><div class="ttdef"><b>Definition</b> <a href="#l00074">UIManagement.cs:74</a></div></div>
 <div class="ttc" id="astruct_multi_object_pool_1_1_object_from_pool_html"><div class="ttname"><a href="struct_multi_object_pool_1_1_object_from_pool.html">MultiObjectPool.ObjectFromPool</a></div><div class="ttdoc">The majority return type of the MultiObjectPool functions. Contains all the data about an object take...</div><div class="ttdef"><b>Definition</b> <a href="_multi_object_pool_8cs_source.html#l00274">MultiObjectPool.cs:275</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

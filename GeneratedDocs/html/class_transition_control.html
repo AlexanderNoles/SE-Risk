@@ -121,9 +121,9 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ab5d4d916751259e063060ae23083a676" id="r_ab5d4d916751259e063060ae23083a676"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5d4d916751259e063060ae23083a676">RunTransition</a> (<a class="el" href="#a2f37c327ff01f76e33d78abbbeb2b361">Transitions</a> transitions)</td></tr>
-<tr class="memdesc:ab5d4d916751259e063060ae23083a676"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs a transition when called.  <br /></td></tr>
-<tr class="separator:ab5d4d916751259e063060ae23083a676"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2e4afc57eda34f3586131617ebd799a" id="r_ae2e4afc57eda34f3586131617ebd799a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2e4afc57eda34f3586131617ebd799a">RunTransition</a> (<a class="el" href="#a2f37c327ff01f76e33d78abbbeb2b361">Transitions</a> transitions, float transitionSpeed=1.0f)</td></tr>
+<tr class="memdesc:ae2e4afc57eda34f3586131617ebd799a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs a transition when called.  <br /></td></tr>
+<tr class="separator:ae2e4afc57eda34f3586131617ebd799a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0ab46315f5100132e06a85557876948" id="r_aa0ab46315f5100132e06a85557876948"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0ab46315f5100132e06a85557876948">HideMaskedTextForNextTransition</a> ()</td></tr>
 <tr class="memdesc:aa0ab46315f5100132e06a85557876948"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hide the masked UI for the next transition. This will make the transition effect look like just a black screen.  <br /></td></tr>
 <tr class="separator:aa0ab46315f5100132e06a85557876948"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,7 +175,7 @@ Static Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="a2f37c327ff01f76e33d78abbbeb2b361aa16e5fa3a7f768862cebb17de5f2de22" name="a2f37c327ff01f76e33d78abbbeb2b361aa16e5fa3a7f768862cebb17de5f2de22"></a>SwipeOut&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="_transition_control_8cs_source.html#l00043">43</a> of file <a class="el" href="_transition_control_8cs_source.html">TransitionControl.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_transition_control_8cs_source.html#l00045">45</a> of file <a class="el" href="_transition_control_8cs_source.html">TransitionControl.cs</a>.</p>
 
 </div>
 </div>
@@ -205,12 +205,12 @@ Static Public Attributes</h2></td></tr>
 
 <p>Hide the masked UI for the next transition. This will make the transition effect look like just a black screen. </p>
 
-<p class="definition">Definition at line <a class="el" href="_transition_control_8cs_source.html#l00076">76</a> of file <a class="el" href="_transition_control_8cs_source.html">TransitionControl.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_transition_control_8cs_source.html#l00079">79</a> of file <a class="el" href="_transition_control_8cs_source.html">TransitionControl.cs</a>.</p>
 
 </div>
 </div>
-<a id="ab5d4d916751259e063060ae23083a676" name="ab5d4d916751259e063060ae23083a676"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5d4d916751259e063060ae23083a676">&#9670;&#160;</a></span>RunTransition()</h2>
+<a id="ae2e4afc57eda34f3586131617ebd799a" name="ae2e4afc57eda34f3586131617ebd799a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2e4afc57eda34f3586131617ebd799a">&#9670;&#160;</a></span>RunTransition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,8 +221,12 @@ Static Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">static void TransitionControl.RunTransition </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="#a2f37c327ff01f76e33d78abbbeb2b361">Transitions</a></td>          <td class="paramname"><span class="paramname"><em>transitions</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="#a2f37c327ff01f76e33d78abbbeb2b361">Transitions</a></td>          <td class="paramname"><span class="paramname"><em>transitions</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>transitionSpeed</em><span class="paramdefsep"> = </span><span class="paramdefval">1::0f</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -240,7 +244,7 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_transition_control_8cs_source.html#l00058">58</a> of file <a class="el" href="_transition_control_8cs_source.html">TransitionControl.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_transition_control_8cs_source.html#l00060">60</a> of file <a class="el" href="_transition_control_8cs_source.html">TransitionControl.cs</a>.</p>
 
 </div>
 </div>
@@ -269,7 +273,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Show the masked UI, if it is hidden. Run automatically on transition end if masked UI was hidden for this transition. </p>
 
-<p class="definition">Definition at line <a class="el" href="_transition_control_8cs_source.html#l00085">85</a> of file <a class="el" href="_transition_control_8cs_source.html">TransitionControl.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_transition_control_8cs_source.html#l00088">88</a> of file <a class="el" href="_transition_control_8cs_source.html">TransitionControl.cs</a>.</p>
 
 </div>
 </div>
@@ -334,7 +338,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>UI Reference. Setup in insepector. Used to block button inputs when transition is playing. </p>
 
-<p class="definition">Definition at line <a class="el" href="_transition_control_8cs_source.html#l00038">38</a> of file <a class="el" href="_transition_control_8cs_source.html">TransitionControl.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_transition_control_8cs_source.html#l00040">40</a> of file <a class="el" href="_transition_control_8cs_source.html">TransitionControl.cs</a>.</p>
 
 </div>
 </div>

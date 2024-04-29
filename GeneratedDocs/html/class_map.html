@@ -96,10 +96,14 @@ $(function(){initNavTree('class_map.html',''); initResizable(); });
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="class_map-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Map Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code><a class="el" href="class_map.html" title="Map represents the logical game map">Map</a></code> represents the logical game map  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Map:</div>
 <div class="dyncontent">
@@ -122,34 +126,67 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab5470b8409ef3419e22a5270c78e44a5" id="r_ab5470b8409ef3419e22a5270c78e44a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5470b8409ef3419e22a5270c78e44a5">UpdatesNeighbours</a> ()</td></tr>
 <tr class="separator:ab5470b8409ef3419e22a5270c78e44a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6de1e2fbc2f0c7f4c6599e37c73427b6" id="r_a6de1e2fbc2f0c7f4c6599e37c73427b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6de1e2fbc2f0c7f4c6599e37c73427b6">SetupMap</a> ()</td></tr>
+<tr class="memdesc:a6de1e2fbc2f0c7f4c6599e37c73427b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds all territories to the map as well as creating the continents dictionary and clearing capitals.  <br /></td></tr>
 <tr class="separator:a6de1e2fbc2f0c7f4c6599e37c73427b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ad0250f4443eb24d41ec01b07d839a2f1" id="r_ad0250f4443eb24d41ec01b07d839a2f1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0250f4443eb24d41ec01b07d839a2f1">AddCapital</a> (<a class="el" href="class_territory.html">Territory</a> territory, <a class="el" href="class_player.html">Player</a> owner)</td></tr>
-<tr class="separator:ad0250f4443eb24d41ec01b07d839a2f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae03054a1dd84dabb4dff83c9087cd454" id="r_ae03054a1dd84dabb4dff83c9087cd454"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae03054a1dd84dabb4dff83c9087cd454">DoesPlayerHoldAllCapitals</a> (<a class="el" href="class_player.html">Player</a> target)</td></tr>
-<tr class="separator:ae03054a1dd84dabb4dff83c9087cd454"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed2c8a1c288ab3bf923c6e81b18f5ff9" id="r_aed2c8a1c288ab3bf923c6e81b18f5ff9"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed2c8a1c288ab3bf923c6e81b18f5ff9">IsSimulated</a> ()</td></tr>
-<tr class="separator:aed2c8a1c288ab3bf923c6e81b18f5ff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0c63e62bd33ffa3181d28b61a2c5514" id="r_aa0c63e62bd33ffa3181d28b61a2c5514"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0c63e62bd33ffa3181d28b61a2c5514">SetTerritoryTroopCount</a> (int index, int newCount, bool makeRequest)</td></tr>
+<tr class="memdesc:aa0c63e62bd33ffa3181d28b61a2c5514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a particular territories troop count.  <br /></td></tr>
+<tr class="separator:aa0c63e62bd33ffa3181d28b61a2c5514"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58ee18cfa409e080330e5df75caf68af" id="r_a58ee18cfa409e080330e5df75caf68af"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_territory.html">Territory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58ee18cfa409e080330e5df75caf68af">GetTerritory</a> (int index)</td></tr>
+<tr class="memdesc:a58ee18cfa409e080330e5df75caf68af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a territory from the map based on the index.  <br /></td></tr>
+<tr class="separator:a58ee18cfa409e080330e5df75caf68af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff6eaf9cb92810c6c31ced21caf401bd" id="r_aff6eaf9cb92810c6c31ced21caf401bd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff6eaf9cb92810c6c31ced21caf401bd">SetTerritoryOwner</a> (int index, int newOwnerIndex, bool makeRequest)</td></tr>
+<tr class="memdesc:aff6eaf9cb92810c6c31ced21caf401bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a particular territories owner.  <br /></td></tr>
+<tr class="separator:aff6eaf9cb92810c6c31ced21caf401bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5156357302701604c55ecc16b4625c9" id="r_ac5156357302701604c55ecc16b4625c9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5156357302701604c55ecc16b4625c9">AddCapital</a> (int territory, int owner, bool makeARequest=true)</td></tr>
+<tr class="memdesc:ac5156357302701604c55ecc16b4625c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new capital to a specified territory on the map.  <br /></td></tr>
+<tr class="separator:ac5156357302701604c55ecc16b4625c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5b6417af107d9f7b291d185c772bcba" id="r_af5b6417af107d9f7b291d185c772bcba"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5b6417af107d9f7b291d185c772bcba">DoesPlayerHoldAllCapitals</a> (int target)</td></tr>
+<tr class="memdesc:af5b6417af107d9f7b291d185c772bcba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a particular player holds every capital on the board.  <br /></td></tr>
+<tr class="separator:af5b6417af107d9f7b291d185c772bcba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab54807776b60861b20224f2456e419b9" id="r_ab54807776b60861b20224f2456e419b9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_territory.html">Territory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab54807776b60861b20224f2456e419b9">GetTerritoryUnderPosition</a> (Vector3 pos)</td></tr>
+<tr class="memdesc:ab54807776b60861b20224f2456e419b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the territory that encapsulates the position on the board.  <br /></td></tr>
 <tr class="separator:ab54807776b60861b20224f2456e419b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a439d9ee8e047ce77fcd728089f002864" id="r_a439d9ee8e047ce77fcd728089f002864"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a439d9ee8e047ce77fcd728089f002864">RequestAttack</a> (<a class="el" href="class_territory.html">Territory</a> attacker, <a class="el" href="class_territory.html">Territory</a> defender)</td></tr>
+<tr class="memdesc:a439d9ee8e047ce77fcd728089f002864"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the necessary steps before commencing an attack, such as ensuring it is a valid attack and getting the attacking dice count.  <br /></td></tr>
 <tr class="separator:a439d9ee8e047ce77fcd728089f002864"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5dfcc6c34fc76df5f56e5a4ed5ee3c95" id="r_a5dfcc6c34fc76df5f56e5a4ed5ee3c95"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5dfcc6c34fc76df5f56e5a4ed5ee3c95">Attack</a> (<a class="el" href="class_territory.html">Territory</a> attacker, <a class="el" href="class_territory.html">Territory</a> defender, int attackingDice, int defendingDice)</td></tr>
-<tr class="separator:a5dfcc6c34fc76df5f56e5a4ed5ee3c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3877b513c05e32c0768d28d8fd81f3d" id="r_ac3877b513c05e32c0768d28d8fd81f3d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3877b513c05e32c0768d28d8fd81f3d">Attack</a> (<a class="el" href="class_territory.html">Territory</a> attacker, <a class="el" href="class_territory.html">Territory</a> defender, int attackingDice)</td></tr>
+<tr class="memdesc:ac3877b513c05e32c0768d28d8fd81f3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the result of an attack and sets troops and territories the match that result.  <br /></td></tr>
+<tr class="separator:ac3877b513c05e32c0768d28d8fd81f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed2c8a1c288ab3bf923c6e81b18f5ff9" id="r_aed2c8a1c288ab3bf923c6e81b18f5ff9"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed2c8a1c288ab3bf923c6e81b18f5ff9">IsSimulated</a> ()</td></tr>
+<tr class="memdesc:aed2c8a1c288ab3bf923c6e81b18f5ff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if this is a real game, or a simulated game as part of a menu.  <br /></td></tr>
+<tr class="separator:aed2c8a1c288ab3bf923c6e81b18f5ff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac6250a0475340123e04670154fd583f" id="r_aac6250a0475340123e04670154fd583f"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_territory.html">Territory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac6250a0475340123e04670154fd583f">GetTerritories</a> ()</td></tr>
 <tr class="separator:aac6250a0475340123e04670154fd583f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa543295b0e93a7d696a6b1ad943cd57c" id="r_aa543295b0e93a7d696a6b1ad943cd57c"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_territory.html">Territory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa543295b0e93a7d696a6b1ad943cd57c">TerritoriesOwnedByPlayer</a> (<a class="el" href="class_player.html">Player</a> player, out int troopCount)</td></tr>
-<tr class="separator:aa543295b0e93a7d696a6b1ad943cd57c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51d0a133895bc3492ecaf342310fa980" id="r_a51d0a133895bc3492ecaf342310fa980"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_territory.html">Territory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51d0a133895bc3492ecaf342310fa980">GetUnclaimedTerritories</a> (<a class="el" href="class_player.html">Player</a> player, out List&lt; <a class="el" href="class_territory.html">Territory</a> &gt; playerTerritories)</td></tr>
-<tr class="separator:a51d0a133895bc3492ecaf342310fa980"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8ac68f36f7407d40356535cd44cf8ac" id="r_ac8ac68f36f7407d40356535cd44cf8ac"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_territory.html">Territory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8ac68f36f7407d40356535cd44cf8ac">TerritoriesOwnedByPlayerWorth</a> (int player, out int troopCount)</td></tr>
+<tr class="separator:ac8ac68f36f7407d40356535cd44cf8ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7da57bacb6fbddd47679907f6c25425" id="r_ab7da57bacb6fbddd47679907f6c25425"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_territory.html">Territory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7da57bacb6fbddd47679907f6c25425">GetTerritoriesOwnedByPlayer</a> (int player)</td></tr>
+<tr class="memdesc:ab7da57bacb6fbddd47679907f6c25425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of territories owned by a particular player.  <br /></td></tr>
+<tr class="separator:ab7da57bacb6fbddd47679907f6c25425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac106241131171892e54dfac4ba7f433b" id="r_ac106241131171892e54dfac4ba7f433b"><td class="memItemLeft" align="right" valign="top">static Continent&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac106241131171892e54dfac4ba7f433b">GetContinentClosestToCaptured</a> (int player)</td></tr>
+<tr class="memdesc:ac106241131171892e54dfac4ba7f433b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A helper method for AI setup, returns the continent that is closest to being fully claimed that the passed player owns a territory in.  <br /></td></tr>
+<tr class="separator:ac106241131171892e54dfac4ba7f433b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfe9cb8dd1c8f5521270cdf608fc18b6" id="r_acfe9cb8dd1c8f5521270cdf608fc18b6"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfe9cb8dd1c8f5521270cdf608fc18b6">GetContinentOwner</a> (Continent continent)</td></tr>
+<tr class="memdesc:acfe9cb8dd1c8f5521270cdf608fc18b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the given contient is owned by a player.  <br /></td></tr>
+<tr class="separator:acfe9cb8dd1c8f5521270cdf608fc18b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f7a99ad0e08829a994559e44aaa22a5" id="r_a5f7a99ad0e08829a994559e44aaa22a5"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_territory.html">Territory</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f7a99ad0e08829a994559e44aaa22a5">GetUnclaimedTerritories</a> (int player, out List&lt; <a class="el" href="class_territory.html">Territory</a> &gt; playerTerritories)</td></tr>
+<tr class="memdesc:a5f7a99ad0e08829a994559e44aaa22a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list of territories with no owner.  <br /></td></tr>
+<tr class="separator:a5f7a99ad0e08829a994559e44aaa22a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a57cd5774200a41c63f24accf61ee54" id="r_a2a57cd5774200a41c63f24accf61ee54"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a57cd5774200a41c63f24accf61ee54">ResetInstanceMap</a> ()</td></tr>
+<tr class="memdesc:a2a57cd5774200a41c63f24accf61ee54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the map to its starting state.  <br /></td></tr>
 <tr class="separator:a2a57cd5774200a41c63f24accf61ee54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ac06b1de0b4cca81dda2702dbe8fea1e9" id="r_ac06b1de0b4cca81dda2702dbe8fea1e9"><td class="memItemLeft" align="right" valign="top">static Dictionary&lt; Territory.Continent, List&lt; <a class="el" href="class_territory.html">Territory</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac06b1de0b4cca81dda2702dbe8fea1e9">continents</a> = new Dictionary&lt;Territory.Continent, List&lt;<a class="el" href="class_territory.html">Territory</a>&gt;&gt;()</td></tr>
+<tr class="separator:ac06b1de0b4cca81dda2702dbe8fea1e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00008">8</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<div class="textblock"><p><code><a class="el" href="class_map.html" title="Map represents the logical game map">Map</a></code> represents the logical game map </p>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00013">13</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a7b6f0b00dee1cc2c47af5ba7972c90ad" name="a7b6f0b00dee1cc2c47af5ba7972c90ad"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7b6f0b00dee1cc2c47af5ba7972c90ad">&#9670;&#160;</a></span>AttackResult</h2>
@@ -168,13 +205,13 @@ Static Public Member Functions</h2></td></tr>
 <tr><td class="fieldname"><a id="a7b6f0b00dee1cc2c47af5ba7972c90adaa149e85a44aeec9140e92733d9ed694e" name="a7b6f0b00dee1cc2c47af5ba7972c90adaa149e85a44aeec9140e92733d9ed694e"></a>Cancelled&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00051">51</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00099">99</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad0250f4443eb24d41ec01b07d839a2f1" name="ad0250f4443eb24d41ec01b07d839a2f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0250f4443eb24d41ec01b07d839a2f1">&#9670;&#160;</a></span>AddCapital()</h2>
+<a id="ac5156357302701604c55ecc16b4625c9" name="ac5156357302701604c55ecc16b4625c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5156357302701604c55ecc16b4625c9">&#9670;&#160;</a></span>AddCapital()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -185,12 +222,17 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">static void Map.AddCapital </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_territory.html">Territory</a></td>          <td class="paramname"><span class="paramname"><em>territory</em>, </span></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>territory</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>owner</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>owner</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>makeARequest</em><span class="paramdefsep"> = </span><span class="paramdefval">true</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -200,12 +242,21 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00015">15</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p>Adds a new capital to a specified territory on the map. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">territory</td><td>The territory to add the capital onto</td></tr>
+    <tr><td class="paramname">owner</td><td>The player who owns this capital</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00059">59</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>
-<a id="a5dfcc6c34fc76df5f56e5a4ed5ee3c95" name="a5dfcc6c34fc76df5f56e5a4ed5ee3c95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5dfcc6c34fc76df5f56e5a4ed5ee3c95">&#9670;&#160;</a></span>Attack()</h2>
+<a id="ac3877b513c05e32c0768d28d8fd81f3d" name="ac3877b513c05e32c0768d28d8fd81f3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3877b513c05e32c0768d28d8fd81f3d">&#9670;&#160;</a></span>Attack()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -226,12 +277,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>attackingDice</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>defendingDice</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>attackingDice</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -241,12 +287,23 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00119">119</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p>Calculates the result of an attack and sets troops and territories the match that result. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">attacker</td><td>The territory the attack is coming from</td></tr>
+    <tr><td class="paramname">defender</td><td>The territory being attacked</td></tr>
+    <tr><td class="paramname">attackingDice</td><td>The number of dice the attacker is using</td></tr>
+    <tr><td class="paramname">defendingDice</td><td>The number of dice the defender is using</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00174">174</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>
-<a id="ae03054a1dd84dabb4dff83c9087cd454" name="ae03054a1dd84dabb4dff83c9087cd454"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae03054a1dd84dabb4dff83c9087cd454">&#9670;&#160;</a></span>DoesPlayerHoldAllCapitals()</h2>
+<a id="af5b6417af107d9f7b291d185c772bcba" name="af5b6417af107d9f7b291d185c772bcba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5b6417af107d9f7b291d185c772bcba">&#9670;&#160;</a></span>DoesPlayerHoldAllCapitals()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -257,7 +314,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">static bool Map.DoesPlayerHoldAllCapitals </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>target</em></span></td><td>)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>target</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -268,7 +325,88 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00033">33</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p>Checks to see if a particular player holds every capital on the board. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>The ID of the player we want to check</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the specified player has every capital, else false</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00081">81</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac106241131171892e54dfac4ba7f433b" name="ac106241131171892e54dfac4ba7f433b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac106241131171892e54dfac4ba7f433b">&#9670;&#160;</a></span>GetContinentClosestToCaptured()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Continent Map.GetContinentClosestToCaptured </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>player</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A helper method for AI setup, returns the continent that is closest to being fully claimed that the passed player owns a territory in. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td>The player that must own a territory in the returned continent</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The continent closest to capture by the passed player</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00301">301</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+
+</div>
+</div>
+<a id="acfe9cb8dd1c8f5521270cdf608fc18b6" name="acfe9cb8dd1c8f5521270cdf608fc18b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfe9cb8dd1c8f5521270cdf608fc18b6">&#9670;&#160;</a></span>GetContinentOwner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int Map.GetContinentOwner </td>
+          <td>(</td>
+          <td class="paramtype">Continent</td>          <td class="paramname"><span class="paramname"><em>continent</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks to see if the given contient is owned by a player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">continent</td><td>The continent to be check for ownership</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The player ID of the owner if the continent is owned by a player, else -1</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00335">335</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>
@@ -295,7 +433,79 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00186">186</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00261">261</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab7da57bacb6fbddd47679907f6c25425" name="ab7da57bacb6fbddd47679907f6c25425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7da57bacb6fbddd47679907f6c25425">&#9670;&#160;</a></span>GetTerritoriesOwnedByPlayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static List&lt; <a class="el" href="class_territory.html">Territory</a> &gt; Map.GetTerritoriesOwnedByPlayer </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>player</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns a list of territories owned by a particular player. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td>The player whos owned territories we want</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The list of territories owned by the passed player </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00287">287</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+
+</div>
+</div>
+<a id="a58ee18cfa409e080330e5df75caf68af" name="a58ee18cfa409e080330e5df75caf68af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58ee18cfa409e080330e5df75caf68af">&#9670;&#160;</a></span>GetTerritory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_territory.html">Territory</a> Map.GetTerritory </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get a territory from the map based on the index. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The territories index</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The target territory, if it doesn't exist return null</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00032">32</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>
@@ -322,12 +532,21 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00067">67</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p>Gets the territory that encapsulates the position on the board. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>The position to check</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns the territory that the passed position is in if it exists, else it returns false</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00115">115</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>
-<a id="a51d0a133895bc3492ecaf342310fa980" name="a51d0a133895bc3492ecaf342310fa980"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51d0a133895bc3492ecaf342310fa980">&#9670;&#160;</a></span>GetUnclaimedTerritories()</h2>
+<a id="a5f7a99ad0e08829a994559e44aaa22a5" name="a5f7a99ad0e08829a994559e44aaa22a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f7a99ad0e08829a994559e44aaa22a5">&#9670;&#160;</a></span>GetUnclaimedTerritories()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -338,7 +557,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">static List&lt; <a class="el" href="class_territory.html">Territory</a> &gt; Map.GetUnclaimedTerritories </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em>, </span></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>player</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -353,7 +572,17 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00206">206</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p>Returns a list of territories with no owner. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td>The player whos territories we are looking for</td></tr>
+    <tr><td class="paramname">playerTerritories</td><td>An out parameter that holds a list of territories owned by the input player</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00353">353</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>
@@ -380,7 +609,10 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00058">58</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p>Checks to see if this is a real game, or a simulated game as part of a menu. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if its a simulated game, else false</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00257">257</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>
@@ -410,9 +642,18 @@ Static Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Runs the necessary steps before commencing an attack, such as ensuring it is a valid attack and getting the attacking dice count. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">attacker</td><td>The territory the attack is coming from</td></tr>
+    <tr><td class="paramname">defender</td><td>The territory being attacked</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>We don't currently account for the attacker and defender both being players but on different machines</p>
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00079">79</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00131">131</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>
@@ -439,7 +680,101 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00248">248</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p>Resets the map to its starting state. </p>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00399">399</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+
+</div>
+</div>
+<a id="aff6eaf9cb92810c6c31ced21caf401bd" name="aff6eaf9cb92810c6c31ced21caf401bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff6eaf9cb92810c6c31ced21caf401bd">&#9670;&#160;</a></span>SetTerritoryOwner()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Map.SetTerritoryOwner </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>newOwnerIndex</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>makeRequest</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a particular territories owner. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the territory to set</td></tr>
+    <tr><td class="paramname">newOwnerIndex</td><td>The new owner</td></tr>
+    <tr><td class="paramname">makeRequest</td><td>Make a request to the server to update this value across lobby?</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00048">48</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa0c63e62bd33ffa3181d28b61a2c5514" name="aa0c63e62bd33ffa3181d28b61a2c5514"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0c63e62bd33ffa3181d28b61a2c5514">&#9670;&#160;</a></span>SetTerritoryTroopCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Map.SetTerritoryTroopCount </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>index</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>newCount</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>makeRequest</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets a particular territories troop count. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the territory to set</td></tr>
+    <tr><td class="paramname">newCount</td><td>The new troop count</td></tr>
+    <tr><td class="paramname">makeRequest</td><td>Make a request to the server to update this value across lobby?</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00023">23</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>
@@ -458,7 +793,9 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00253">253</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p>Adds all territories to the map as well as creating the continents dictionary and clearing capitals. </p>
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00407">407</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>
@@ -477,12 +814,12 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00063">63</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00106">106</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>
-<a id="aa543295b0e93a7d696a6b1ad943cd57c" name="aa543295b0e93a7d696a6b1ad943cd57c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa543295b0e93a7d696a6b1ad943cd57c">&#9670;&#160;</a></span>TerritoriesOwnedByPlayer()</h2>
+<a id="ac8ac68f36f7407d40356535cd44cf8ac" name="ac8ac68f36f7407d40356535cd44cf8ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8ac68f36f7407d40356535cd44cf8ac">&#9670;&#160;</a></span>TerritoriesOwnedByPlayerWorth()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -491,9 +828,9 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static List&lt; <a class="el" href="class_territory.html">Territory</a> &gt; Map.TerritoriesOwnedByPlayer </td>
+          <td class="memname">static List&lt; <a class="el" href="class_territory.html">Territory</a> &gt; Map.TerritoriesOwnedByPlayerWorth </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>player</em>, </span></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>player</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -508,7 +845,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00187">187</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00262">262</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>
@@ -527,7 +864,32 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00224">224</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00373">373</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac06b1de0b4cca81dda2702dbe8fea1e9" name="ac06b1de0b4cca81dda2702dbe8fea1e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac06b1de0b4cca81dda2702dbe8fea1e9">&#9670;&#160;</a></span>continents</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dictionary&lt;Territory.Continent, List&lt;<a class="el" href="class_territory.html">Territory</a>&gt; &gt; Map.continents = new Dictionary&lt;Territory.Continent, List&lt;<a class="el" href="class_territory.html">Territory</a>&gt;&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_map_8cs_source.html#l00097">97</a> of file <a class="el" href="_map_8cs_source.html">Map.cs</a>.</p>
 
 </div>
 </div>

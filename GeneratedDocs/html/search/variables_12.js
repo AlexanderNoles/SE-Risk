@@ -1,7 +1,7 @@
 var searchData=
 [
   ['territories_0',['territories',['../class_player.html#a7bf8ee4de0e9174e0e03b803e6bfbaaa',1,'Player']]],
-  ['territory_1',['territory',['../class_territory_node.html#ab7fbf490d88becfefa5dd71766c28f02',1,'TerritoryNode']]],
+  ['territory_1',['territory',['../class_enemy_node.html#aca555629e2d209b12fdcf8968b3e9659',1,'EnemyNode.territory'],['../class_friendly_node.html#a123472587fc1ba2aab5ff66c7da4e628',1,'FriendlyNode.territory']]],
   ['territorytakenthisturn_2',['territoryTakenThisTurn',['../class_player.html#af44d93a7a812ebab60bf7f8da540f2a5',1,'Player']]],
   ['textfadeout_3',['textFadeOut',['../class_u_i_management.html#a3cae8364be228c8f141c492b93d6080d',1,'UIManagement']]],
   ['thingstosetactiveafter_4',['thingsToSetActiveAfter',['../class_dice_roll_menu.html#a480157206b10b9770b33b046a296fd7a',1,'DiceRollMenu']]],

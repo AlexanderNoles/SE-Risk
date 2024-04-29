@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['south_5famerica_0',['South_America',['../class_territory.html#adc85c881c1433490545059e8b3ebff23a96638bd6c09c263d537a2af300ab47e0',1,'Territory']]],
-  ['swipein_1',['SwipeIn',['../class_transition_control.html#a2f37c327ff01f76e33d78abbbeb2b361a9654f8baa704339c151983dee180b261',1,'TransitionControl']]],
-  ['swipeout_2',['SwipeOut',['../class_transition_control.html#a2f37c327ff01f76e33d78abbbeb2b361aa16e5fa3a7f768862cebb17de5f2de22',1,'TransitionControl']]]
+  ['red_0',['Red',['../class_player.html#a6d924501887fe14864d1ff66063a63a6aee38e4d5dd68c4e440825018d549cb47',1,'Player']]]
 ];

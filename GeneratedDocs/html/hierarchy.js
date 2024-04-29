@@ -5,7 +5,8 @@ var hierarchy =
     [ "MatchManager.GameWonInfo", "struct_match_manager_1_1_game_won_info.html", null ],
     [ "Hand", "class_hand.html", null ],
     [ "Pathfinding.INode", "interface_pathfinding_1_1_i_node.html", [
-      [ "TerritoryNode", "class_territory_node.html", null ],
+      [ "EnemyNode", "class_enemy_node.html", null ],
+      [ "FriendlyNode", "class_friendly_node.html", null ],
       [ "TextureNode", "class_texture_node.html", null ]
     ] ],
     [ "MonoBehaviour", null, [
@@ -21,8 +22,10 @@ var hierarchy =
       [ "PlayOptionsManagement", "class_play_options_management.html", null ],
       [ "Player", "class_player.html", [
         [ "AIPlayer", "class_a_i_player.html", null ],
-        [ "LocalPlayer", "class_local_player.html", null ]
+        [ "LocalPlayer", "class_local_player.html", null ],
+        [ "NetworkPlayer", "class_network_player.html", null ]
       ] ],
+      [ "PlayerInfoHandler", "class_player_info_handler.html", null ],
       [ "PlayerInputHandler", "class_player_input_handler.html", null ],
       [ "RawImageMoveOverTime", "class_raw_image_move_over_time.html", null ],
       [ "Territory", "class_territory.html", null ],
@@ -33,6 +36,13 @@ var hierarchy =
       [ "WinScreenControl", "class_win_screen_control.html", null ]
     ] ],
     [ "AudioManagement.Music", "class_audio_management_1_1_music.html", null ],
+    [ "NetworkBehaviour", null, [
+      [ "NetworkConnection", "class_network_connection.html", null ],
+      [ "PlayScreenNetworkDataCommunicator", "class_play_screen_network_data_communicator.html", null ]
+    ] ],
+    [ "NetworkManager", null, [
+      [ "NetworkManagement", "class_network_management.html", null ]
+    ] ],
     [ "MultiObjectPool.ObjectFromPool< T >", "struct_multi_object_pool_1_1_object_from_pool.html", null ],
     [ "MultiObjectPool.ObjectPool", "class_multi_object_pool_1_1_object_pool.html", null ],
     [ "PlayOptionsManagement.PlayOptions", "struct_play_options_management_1_1_play_options.html", null ],

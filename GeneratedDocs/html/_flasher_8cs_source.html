@@ -102,58 +102,64 @@ $(function(){initNavTree('_flasher_8cs_source.html',''); initResizable(); });
 <div class="contents">
 <a href="_flasher_8cs.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="keyword">using </span>System.Collections;</div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span>System.Collections.Generic;</div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>UnityEngine;</div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>UnityEngine.UI;</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="class_flasher.html">    6</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_flasher.html">Flasher</a> : MonoBehaviour</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    Image flashBox;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    Color flashColor;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keywordtype">float</span> flashDuration;</div>
-<div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="class_flasher.html#a5a4c64946cb7cf42bad06682a9b80339">   11</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_flasher.html#a5a4c64946cb7cf42bad06682a9b80339">Flash</a>(Color color, <span class="keywordtype">float</span> flashDuration)</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        flashColor = color;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        this.flashDuration = flashDuration;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        StartCoroutine(nameof(<a class="code hl_function" href="class_flasher.html#ad19effc910bf7f180a981d94a1caea57">FlashFade</a>));</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    }</div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>Unity.VisualScripting;</div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>UnityEngine;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using </span>UnityEngine.UI;</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="class_flasher.html">   10</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_flasher.html">Flasher</a> : MonoBehaviour</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>{</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    Image flashBox;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    Color flashColor;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordtype">float</span> flashDuration;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    GameObject passedGameObject;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keyword">static</span> <a class="code hl_class" href="class_flasher.html">Flasher</a> instance;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="}">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_flasher.html#a95c6e49d2e5e689dc7ba6eae8d132a91">   18</a></span>    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_flasher.html#a95c6e49d2e5e689dc7ba6eae8d132a91">Start</a>()</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        instance = <span class="keyword">this</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    }</div>
 </div>
-<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_flasher.html#ad19effc910bf7f180a981d94a1caea57">   17</a></span>    <span class="keyword">public</span> IEnumerator <a class="code hl_function" href="class_flasher.html#ad19effc910bf7f180a981d94a1caea57">FlashFade</a>()</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        GameObject go = <span class="keyword">new</span> GameObject();</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        go.transform.parent = this.transform.parent;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        go.transform.position = this.transform.position;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        go.transform.rotation = this.transform.rotation;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        RectTransform transform = (RectTransform)gameObject.transform;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        go.transform.localScale = <span class="keyword">new</span> Vector3(transform.rect.width*transform.localScale.x / 100, transform.rect.height * transform.localScale.y / 100, 1);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        go.transform.position += Vector3.forward*5;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        go.layer = 5;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        flashBox = go.AddComponent&lt;Image&gt;();</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        flashBox.color = flashColor;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        flashBox.canvasRenderer.SetAlpha(0f);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        flashBox.CrossFadeAlpha(1,flashDuration/2,<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        yield <span class="keywordflow">return</span> <span class="keyword">new</span> WaitForSeconds(flashDuration/4);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <a class="code hl_class" href="class_audio_management.html">AudioManagement</a>.<a class="code hl_function" href="class_audio_management.html#a401d6051d17bc4d90c6b1de22bcdc729">PlaySound</a>(<span class="stringliteral">&quot;Refuse&quot;</span>);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        yield <span class="keywordflow">return</span> <span class="keyword">new</span> WaitForSeconds(flashDuration / 4);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        flashBox.CrossFadeAlpha(0f, flashDuration / 2, <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        yield <span class="keywordflow">return</span> <span class="keyword">new</span> WaitForSeconds(flashDuration / 2);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        Destroy(go);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="class_flasher.html#a883af33ae7eb1d38dd68d232ae64121a">   28</a></span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_flasher.html#a883af33ae7eb1d38dd68d232ae64121a">Flash</a>(Color color, <span class="keywordtype">float</span> flashDuration,GameObject go)</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        instance.flashColor = color;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        instance.flashDuration = flashDuration;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        instance.passedGameObject = go;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        instance.StartCoroutine(nameof(FlashFade));</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    }</div>
 </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">private</span> IEnumerator FlashFade()</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        GameObject go = <span class="keyword">new</span> GameObject();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        go.transform.parent = passedGameObject.transform.parent;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        go.transform.position = passedGameObject.transform.position;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        go.transform.rotation = passedGameObject.transform.rotation;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        RectTransform transform = (RectTransform)passedGameObject.transform;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        go.transform.localScale = <span class="keyword">new</span> Vector3(transform.rect.width*transform.localScale.x / 100, transform.rect.height * transform.localScale.y / 100, 1);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        go.transform.position += Vector3.forward*5;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        go.layer = 5;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        flashBox = go.AddComponent&lt;Image&gt;();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        flashBox.color = flashColor;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        flashBox.canvasRenderer.SetAlpha(1f);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        flashBox.CrossFadeAlpha(0,flashDuration,<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <a class="code hl_class" href="class_audio_management.html">AudioManagement</a>.<a class="code hl_function" href="class_audio_management.html#a401d6051d17bc4d90c6b1de22bcdc729">PlaySound</a>(<span class="stringliteral">&quot;Refuse&quot;</span>);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        yield <span class="keywordflow">return</span> <span class="keyword">new</span> WaitForSeconds(flashDuration);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        Destroy(go);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
 </div>
 <div class="ttc" id="aclass_audio_management_html"><div class="ttname"><a href="class_audio_management.html">AudioManagement</a></div><div class="ttdoc">AudioManagement handles the playing of both sound and music. It uses IntializeAtRuntime to load and i...</div><div class="ttdef"><b>Definition</b> <a href="_audio_management_8cs_source.html#l00010">AudioManagement.cs:11</a></div></div>
 <div class="ttc" id="aclass_audio_management_html_a401d6051d17bc4d90c6b1de22bcdc729"><div class="ttname"><a href="class_audio_management.html#a401d6051d17bc4d90c6b1de22bcdc729">AudioManagement.PlaySound</a></div><div class="ttdeci">static AudioSource PlaySound(string soundName)</div><div class="ttdoc">PlaySound plays a sound recognized by AudioManagement.</div><div class="ttdef"><b>Definition</b> <a href="_audio_management_8cs_source.html#l00104">AudioManagement.cs:104</a></div></div>
-<div class="ttc" id="aclass_flasher_html"><div class="ttname"><a href="class_flasher.html">Flasher</a></div><div class="ttdef"><b>Definition</b> <a href="#l00006">Flasher.cs:7</a></div></div>
-<div class="ttc" id="aclass_flasher_html_a5a4c64946cb7cf42bad06682a9b80339"><div class="ttname"><a href="class_flasher.html#a5a4c64946cb7cf42bad06682a9b80339">Flasher.Flash</a></div><div class="ttdeci">void Flash(Color color, float flashDuration)</div><div class="ttdef"><b>Definition</b> <a href="#l00011">Flasher.cs:11</a></div></div>
-<div class="ttc" id="aclass_flasher_html_ad19effc910bf7f180a981d94a1caea57"><div class="ttname"><a href="class_flasher.html#ad19effc910bf7f180a981d94a1caea57">Flasher.FlashFade</a></div><div class="ttdeci">IEnumerator FlashFade()</div><div class="ttdef"><b>Definition</b> <a href="#l00017">Flasher.cs:17</a></div></div>
+<div class="ttc" id="aclass_flasher_html"><div class="ttname"><a href="class_flasher.html">Flasher</a></div><div class="ttdoc">Handles flashing UI Elements particular colours.</div><div class="ttdef"><b>Definition</b> <a href="#l00010">Flasher.cs:11</a></div></div>
+<div class="ttc" id="aclass_flasher_html_a883af33ae7eb1d38dd68d232ae64121a"><div class="ttname"><a href="class_flasher.html#a883af33ae7eb1d38dd68d232ae64121a">Flasher.Flash</a></div><div class="ttdeci">static void Flash(Color color, float flashDuration, GameObject go)</div><div class="ttdoc">Starts the passed game object flashing a specified colour for the given duration.</div><div class="ttdef"><b>Definition</b> <a href="#l00028">Flasher.cs:28</a></div></div>
+<div class="ttc" id="aclass_flasher_html_a95c6e49d2e5e689dc7ba6eae8d132a91"><div class="ttname"><a href="class_flasher.html#a95c6e49d2e5e689dc7ba6eae8d132a91">Flasher.Start</a></div><div class="ttdeci">void Start()</div><div class="ttdef"><b>Definition</b> <a href="#l00018">Flasher.cs:18</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

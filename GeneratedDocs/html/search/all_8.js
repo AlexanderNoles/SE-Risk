@@ -4,11 +4,15 @@ var searchData=
   ['incrementturnincount_1',['IncrementTurnInCount',['../class_hand.html#a65b598b720e092aff8210d16d481fb34',1,'Hand']]],
   ['inflate_2',['Inflate',['../class_territory.html#a3cf6448ac38d4a92d1f1547c42a9062b',1,'Territory']]],
   ['info_3',['info',['../class_object_pool_info_storage.html#ab1b7067d22fec1e23d25d895ac7b5536',1,'ObjectPoolInfoStorage']]],
-  ['inode_4',['INode',['../interface_pathfinding_1_1_i_node.html',1,'Pathfinding']]],
-  ['isactive_5',['IsActive',['../class_dice_roll_menu.html#a048e949aaf64450a2a60de44285402f3',1,'DiceRollMenu']]],
-  ['isarrayavalidset_6',['IsArrayAValidSet',['../class_hand.html#ad4af5137358fc02202b757e8f3f98485',1,'Hand']]],
-  ['isconquestmode_7',['IsConquestMode',['../class_play_options_management.html#af169c19e38f501e4873f671355337409',1,'PlayOptionsManagement']]],
-  ['isdead_8',['IsDead',['../class_player.html#a7ed8459b03b4fa8dbe1d5314af208517',1,'Player']]],
-  ['isnormalmode_9',['IsNormalMode',['../class_play_options_management.html#a527aef1d6e26b0879a381c33c3042cc7',1,'PlayOptionsManagement']]],
-  ['issimulated_10',['IsSimulated',['../class_map.html#aed2c8a1c288ab3bf923c6e81b18f5ff9',1,'Map']]]
+  ['infohandler_4',['infoHandler',['../class_match_manager.html#a119d8fd1febb6f393da00482d9313bc2',1,'MatchManager']]],
+  ['inode_5',['INode',['../interface_pathfinding_1_1_i_node.html',1,'Pathfinding']]],
+  ['insetup_6',['InSetup',['../class_match_manager.html#aa53f6215eaf9b60e83fb8758072f587a',1,'MatchManager']]],
+  ['isactive_7',['IsActive',['../class_dice_roll_menu.html#a048e949aaf64450a2a60de44285402f3',1,'DiceRollMenu']]],
+  ['isarrayavalidset_8',['IsArrayAValidSet',['../class_hand.html#ad4af5137358fc02202b757e8f3f98485',1,'Hand']]],
+  ['isconquestmode_9',['IsConquestMode',['../class_play_options_management.html#af169c19e38f501e4873f671355337409',1,'PlayOptionsManagement']]],
+  ['isdead_10',['IsDead',['../class_player.html#a7ed8459b03b4fa8dbe1d5314af208517',1,'Player']]],
+  ['isgameover_11',['IsGameOver',['../class_match_manager.html#a59685feed18da999fd1a5fe37036ff39',1,'MatchManager']]],
+  ['isnormalmode_12',['IsNormalMode',['../class_play_options_management.html#a527aef1d6e26b0879a381c33c3042cc7',1,'PlayOptionsManagement']]],
+  ['isonhost_13',['isOnHost',['../class_network_connection.html#a08e74e8fb5514c84a6a0bd375d912436',1,'NetworkConnection']]],
+  ['issimulated_14',['IsSimulated',['../class_map.html#aed2c8a1c288ab3bf923c6e81b18f5ff9',1,'Map']]]
 ];

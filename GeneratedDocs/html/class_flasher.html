@@ -94,10 +94,14 @@ $(function(){initNavTree('class_flasher.html',''); initResizable(); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_flasher-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Flasher Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Handles flashing UI Elements particular colours.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Flasher:</div>
 <div class="dyncontent">
@@ -107,46 +111,74 @@ Inheritance diagram for Flasher:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5a4c64946cb7cf42bad06682a9b80339" id="r_a5a4c64946cb7cf42bad06682a9b80339"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a4c64946cb7cf42bad06682a9b80339">Flash</a> (Color color, float flashDuration)</td></tr>
-<tr class="separator:a5a4c64946cb7cf42bad06682a9b80339"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad19effc910bf7f180a981d94a1caea57" id="r_ad19effc910bf7f180a981d94a1caea57"><td class="memItemLeft" align="right" valign="top">IEnumerator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad19effc910bf7f180a981d94a1caea57">FlashFade</a> ()</td></tr>
-<tr class="separator:ad19effc910bf7f180a981d94a1caea57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95c6e49d2e5e689dc7ba6eae8d132a91" id="r_a95c6e49d2e5e689dc7ba6eae8d132a91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95c6e49d2e5e689dc7ba6eae8d132a91">Start</a> ()</td></tr>
+<tr class="separator:a95c6e49d2e5e689dc7ba6eae8d132a91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a883af33ae7eb1d38dd68d232ae64121a" id="r_a883af33ae7eb1d38dd68d232ae64121a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a883af33ae7eb1d38dd68d232ae64121a">Flash</a> (Color color, float flashDuration, GameObject go)</td></tr>
+<tr class="memdesc:a883af33ae7eb1d38dd68d232ae64121a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the passed game object flashing a specified colour for the given duration.  <br /></td></tr>
+<tr class="separator:a883af33ae7eb1d38dd68d232ae64121a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_flasher_8cs_source.html#l00006">6</a> of file <a class="el" href="_flasher_8cs_source.html">Flasher.cs</a>.</p>
+<div class="textblock"><p>Handles flashing UI Elements particular colours. </p>
+
+<p class="definition">Definition at line <a class="el" href="_flasher_8cs_source.html#l00010">10</a> of file <a class="el" href="_flasher_8cs_source.html">Flasher.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a5a4c64946cb7cf42bad06682a9b80339" name="a5a4c64946cb7cf42bad06682a9b80339"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a4c64946cb7cf42bad06682a9b80339">&#9670;&#160;</a></span>Flash()</h2>
+<a id="a883af33ae7eb1d38dd68d232ae64121a" name="a883af33ae7eb1d38dd68d232ae64121a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a883af33ae7eb1d38dd68d232ae64121a">&#9670;&#160;</a></span>Flash()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Flasher.Flash </td>
+          <td class="memname">static void Flasher.Flash </td>
           <td>(</td>
           <td class="paramtype">Color</td>          <td class="paramname"><span class="paramname"><em>color</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>flashDuration</em></span>&#160;)</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>flashDuration</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GameObject</td>          <td class="paramname"><span class="paramname"><em>go</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_flasher_8cs_source.html#l00011">11</a> of file <a class="el" href="_flasher_8cs_source.html">Flasher.cs</a>.</p>
+<p>Starts the passed game object flashing a specified colour for the given duration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>The colour to flash</td></tr>
+    <tr><td class="paramname">flashDuration</td><td>The total duration of the flash</td></tr>
+    <tr><td class="paramname">go</td><td>The UI element to flash</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_flasher_8cs_source.html#l00028">28</a> of file <a class="el" href="_flasher_8cs_source.html">Flasher.cs</a>.</p>
 
 </div>
 </div>
-<a id="ad19effc910bf7f180a981d94a1caea57" name="ad19effc910bf7f180a981d94a1caea57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad19effc910bf7f180a981d94a1caea57">&#9670;&#160;</a></span>FlashFade()</h2>
+<a id="a95c6e49d2e5e689dc7ba6eae8d132a91" name="a95c6e49d2e5e689dc7ba6eae8d132a91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95c6e49d2e5e689dc7ba6eae8d132a91">&#9670;&#160;</a></span>Start()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">IEnumerator Flasher.FlashFade </td>
+          <td class="memname">void Flasher.Start </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>
@@ -154,7 +186,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_flasher_8cs_source.html#l00017">17</a> of file <a class="el" href="_flasher_8cs_source.html">Flasher.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_flasher_8cs_source.html#l00018">18</a> of file <a class="el" href="_flasher_8cs_source.html">Flasher.cs</a>.</p>
 
 </div>
 </div>
