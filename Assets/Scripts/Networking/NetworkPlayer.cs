@@ -26,7 +26,47 @@ public class NetworkPlayer : Player
         }
     }
 
+    public override void ResetPlayer()
+    {
+        //Temp: reset local hand aswell
+        hand = new Hand();
+
+        personelConnectionObject.RpcResetPlayer(connectionToClient);
+    }
+
     public override void ClaimCapital(List<Territory> territories)
+    {
+        personelConnectionObject.RpcClaimCapital(connectionToClient, GetInbetween(territories));
+    }
+
+    public override void Setup(List<Territory> territories)
+    {
+        personelConnectionObject.RpcSetup(connectionToClient, GetInbetween(territories));
+    }
+
+    public override bool Deploy(List<Territory> territories, int troopCount)
+    {
+        personelConnectionObject.RpcDeploy(connectionToClient, GetInbetween(territories), troopCount);
+
+        return true;
+    }
+
+    public override void Attack()
+    {
+        personelConnectionObject.RpcAttack(connectionToClient);
+    }
+
+    public override void Fortify()
+    {
+        personelConnectionObject.RpcFortify(connectionToClient);
+    }
+
+    public override void OnTurnEnd()
+    {
+        personelConnectionObject.RpcOnTurnEnd(connectionToClient);
+    }
+
+    private List<int> GetInbetween(List<Territory> territories)
     {
         List<int> inBetween = new List<int>();
         foreach (Territory territory in territories)
@@ -34,6 +74,6 @@ public class NetworkPlayer : Player
             inBetween.Add(territory.GetIndexInMap());
         }
 
-        personelConnectionObject.RpcClaimCapital(connectionToClient, inBetween);
+        return inBetween;
     }
 }

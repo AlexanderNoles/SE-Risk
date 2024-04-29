@@ -16,7 +16,6 @@ public class DiceRollMenu : MonoBehaviour
     //Indicates if the player needs to select a number of troops to defend/attack withs
     private static bool active;
     private static bool currentSetupDone;
-    private static bool playerIsAttacker;
 
     private static Territory attackingTerritory;
     private static Territory defendingTerritory;
@@ -55,24 +54,16 @@ public class DiceRollMenu : MonoBehaviour
     /// <param name="attacker">The Attacking Territory</param>
     /// <param name="defender">The Defending Territory</param>
     /// <param name="isAttacker">Does the attacking Territory belong to the player?</param>
-    public static void Activate(Territory attacker, Territory defender, bool isAttacker) 
+    public static void Activate(Territory attacker, Territory defender) 
     {
         active = true;
-        playerIsAttacker = isAttacker;
 
         attackingTerritory = attacker;
         defendingTerritory = defender;
 
         //Minus one from max dice as it is originally intended to be used for a max exclusive random number generator
         //(the one currently used by the ai)
-        if (playerIsAttacker)
-        {
-            maxDice = MatchManager.GetPlayerFromIndex(attacker.GetOwner()).GetMaxAttackingDice(attacker);
-        }
-        else
-        {
-            maxDice = MatchManager.GetPlayerFromIndex(defender.GetOwner()).GetMaxDefendingDice(defender);
-        }
+        maxDice = MatchManager.GetPlayerFromIndex(attacker.GetOwner()).GetMaxAttackingDice(attacker);
 
         currentNumberOfDice = maxDice;
         currentSetupDone = false;
@@ -82,7 +73,7 @@ public class DiceRollMenu : MonoBehaviour
     {
         if (active)
         {
-            if (playerIsAttacker && Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 //Cancel attack
                 //Just need to notify the player
@@ -97,22 +88,13 @@ public class DiceRollMenu : MonoBehaviour
             {
                 int attackingDice, defendingDice;
                 AudioManagement.PlaySound("Attack");
-                //Get dice for both the player and whoever they are attacking
-                if (playerIsAttacker)
-                {
-                    attackingDice = currentNumberOfDice;
-                    defendingDice = MatchManager.GetPlayerFromIndex(defendingTerritory.GetOwner()).GetDefendingDice(defendingTerritory);
-                }
-                else
-                {
-                    attackingDice = MatchManager.GetPlayerFromIndex(attackingTerritory.GetOwner()).GetAttackingDice(attackingTerritory);
-                    defendingDice = currentNumberOfDice;
-                }
+                //Get dice from player
+                attackingDice = currentNumberOfDice;
 
                 UIManagement.SetActiveGreyPlane(false);
 
                 //Actually call attack
-                Map.Attack(attackingTerritory, defendingTerritory, attackingDice, defendingDice);
+                Map.Attack(attackingTerritory, defendingTerritory, attackingDice);
 
                 active = false;
                 return;
@@ -124,8 +106,7 @@ public class DiceRollMenu : MonoBehaviour
                 currentSetupDone = true;
 
                 string descripterText = 
-                    "Number of dice to " + 
-                    (playerIsAttacker ? "attack " : "defend ") +
+                    "Number of dice to attck " + 
                     defendingTerritory.name
                     + " with:";
 

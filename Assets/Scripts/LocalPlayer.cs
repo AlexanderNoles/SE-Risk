@@ -104,7 +104,8 @@ public class LocalPlayer : Player
     {
         turnReset = false;
         base.OnTurnEnd();
-        DisplayNewCard();
+        //TEMP BECAUSE THE DECK DOESN'T WORK
+        //DisplayNewCard();
     }
     /// <summary>
     /// Shows the last card in the local players hand

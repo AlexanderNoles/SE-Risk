@@ -137,10 +137,8 @@ public class Map : MonoBehaviour
         //After attack has finished we need to notify the attacker that they have won or lost
         //No need to notify defender (at least the actual game object) with current game structure
         int attackingPlayer = attacker.GetOwner();
-        //Need to pass this to ask them how many troops they want to defend with
-        int defenderPlayer = defender.GetOwner();
 
-        if (defenderPlayer == -1 || attackingPlayer == -1) 
+        if (attackingPlayer == -1) 
         {
             return;
         }
@@ -148,23 +146,22 @@ public class Map : MonoBehaviour
         //If the attacker and defender are both ai skip over ui step
         //If not we need to wait (open dice roll menu) and come back to it later
         //Dice roll menu will then run attack when it is needed
-        bool attackerIsLocalPlayer = attackingPlayer is 0;
-        bool defenderIsLocalPlayer = defenderPlayer is 0;
+        bool attackerIsLocalPlayer = attackingPlayer == 0;
 
-        if (attackerIsLocalPlayer && defenderIsLocalPlayer) 
+        if (attackingPlayer == defender.GetOwner()) 
         {
             Debug.LogError("LocalPlayer is attacking itself!");
-            Application.Quit();
+            Debug.Break();
         }
-        else if (attackerIsLocalPlayer || defenderIsLocalPlayer)
+        else if (attackerIsLocalPlayer)
         {
             //Activate dice roll menu
-            DiceRollMenu.Activate(attacker, defender, attackerIsLocalPlayer);
+            DiceRollMenu.Activate(attacker, defender);
         }
         else
         {
             //Just straight run attack
-            Attack(attacker, defender, MatchManager.GetPlayerFromIndex(attackingPlayer).GetAttackingDice(attacker), MatchManager.GetPlayerFromIndex(defenderPlayer).GetDefendingDice(defender));
+            Attack(attacker, defender, MatchManager.GetPlayerFromIndex(attackingPlayer).GetAttackingDice(attacker));
         }
     }
     /// <summary>
@@ -174,8 +171,12 @@ public class Map : MonoBehaviour
     /// <param name="defender">The territory being attacked</param>
     /// <param name="attackingDice">The number of dice the attacker is using</param>
     /// <param name="defendingDice">The number of dice the defender is using</param>
-    public static void Attack(Territory attacker, Territory defender, int attackingDice, int defendingDice)
+    public static void Attack(Territory attacker, Territory defender, int attackingDice)
     {
+        //Get max possible defending dice based on territory
+        int defendingDice = Player.GetMaxDefendingDice(defender);
+
+
         List<int> attackingRolls = new List<int>();
         List<int> defendingRolls = new List<int>();
         for (int i = 0; i < attackingDice; i++)
@@ -211,15 +212,26 @@ public class Map : MonoBehaviour
 
         if (defender.GetCurrentTroops() <= 0)
         {
-            Player oldOwner = MatchManager.GetPlayerFromIndex(defender.GetOwner());
+            //We don't have the old owner on the client side
+            //So we need to send a request to the server
+            //if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Client)
+            //{
+
+            //}
+            //else
+            //{
+            //    Player oldOwner = MatchManager.GetPlayerFromIndex(defender.GetOwner());
+            //    oldOwner.RemoveTerritory(defender);
+            //}
+
             defender.SetOwner(attacker.GetOwner());
             attackerPlayer.AddTerritory(defender);
-            oldOwner.RemoveTerritory(defender);
             UIManagement.AddLineToRollOutput("Territory Taken!");
-            if (oldOwner.IsDead())
-            {
-                attackerPlayer.Killed(oldOwner);
-            }
+            //REMOVED TEMP BECAUSE DECK ISN'T NETWORKING YET
+            //if (oldOwner.IsDead())
+            //{
+            //    attackerPlayer.Killed(oldOwner);
+            //}
         }
         else
         {

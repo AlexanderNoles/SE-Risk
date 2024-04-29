@@ -531,21 +531,11 @@ public class Player : MonoBehaviour
     /// </summary>
     /// <param name="target">The territory we want to get the max defending dice for</param>
     /// <returns>The maximum number of dice the passed territory can defend with </returns>
-    public int GetMaxDefendingDice(Territory target)
+    public static int GetMaxDefendingDice(Territory target)
     {
         return Mathf.Clamp(target.GetCurrentTroops(),1, 2);
     }
 
-    public virtual int GetDefendingDice(Territory defender)
-    {
-        //Return any value between 1 and 2 inclusive, if we have more than 1 troop
-        if (defender.GetCurrentTroops() > 1)
-        {
-            return Random.Range(1, GetMaxDefendingDice(defender)+1);
-        }
-
-        return 1;
-    }
     /// <summary>
     ///  Runs when an attack finishes to move troops if the territory was taken, and gain the defenders cards if you eliminated them
     /// </summary>
@@ -695,6 +685,9 @@ public class Player : MonoBehaviour
     /// </summary>
     public virtual void OnTurnEnd()
     {
+        //TEMP BECAUSE NETWORKING ISN'T WORKING FOR THE DECK YET
+        return;
+
         if (territoryTakenThisTurn && hand.Count() < 6)
         {
             hand.AddCard(Deck.Draw());

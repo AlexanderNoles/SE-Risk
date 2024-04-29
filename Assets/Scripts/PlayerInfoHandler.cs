@@ -79,6 +79,11 @@ public class PlayerInfoHandler : MonoBehaviour
 
     public static void UpdateInfo()
     {
+        //TEMP CAUSE THIS WAS BREAKING
+        //SHOULD JUST NEED TO UPDATE TERRITORIES LOCALLY ON NETWORK PLAYER
+        return;
+
+
         int j = 0;
         for (int i = 0; i < players.Count; i++)
         {

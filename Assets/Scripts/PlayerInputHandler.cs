@@ -51,6 +51,8 @@ public class PlayerInputHandler : MonoBehaviour
     }
     public void Update()
     {
+        Debug.Log(localPlayer);
+        Debug.Log(localPlayer.GetHand());
         if (currentPhase != turnPhase.Waiting && !cardDisplayer.GetCardsOnScreen())
         {
             if (currentState == state.MapView)

@@ -271,6 +271,7 @@ public class MatchManager : MonoBehaviour
         UpdateInfoTextDefault("Fortify");
         instance.playerList[instance.currentTurnIndex].Fortify();
     }
+
     /// <summary>
     /// Switches the current turn index to be the player whos turn it is next
     /// </summary>
@@ -297,14 +298,23 @@ public class MatchManager : MonoBehaviour
     /// <param name="playerRemoved"></param>
     public static void EndTurn(bool playerRemoved = false)
     {
-        if (!playerRemoved)
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Client)
         {
-            instance.playerList[instance.currentTurnIndex].OnTurnEnd();
-            PlayerInfoHandler.UpdateInfo();
+            //Make a request to the server
+            //To end our turn there
+            NetworkConnection.EndTurn();
         }
+        else
+        {
+            if (!playerRemoved)
+            {
+                instance.playerList[instance.currentTurnIndex].OnTurnEnd();
+                PlayerInfoHandler.UpdateInfo();
+            }
 
-        instance.SwitchPlayer();
-        Deploy();
+            instance.SwitchPlayer();
+            Deploy();
+        }
     }
 
     /// <summary>

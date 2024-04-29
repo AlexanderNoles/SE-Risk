@@ -185,6 +185,25 @@ public class NetworkConnection : NetworkBehaviour
     }
 
     [TargetRpc]
+    public void RpcResetPlayer(NetworkConnectionToClient target)
+    {
+        StartCoroutine(nameof(WaitBeforeResetPlayer));
+    }
+
+    private IEnumerator WaitBeforeResetPlayer()
+    {
+        //We do this because the host will load and run start before the client loads their scene
+        //We should just be waiting for one frame but we wait for the amount needed just in case of ping and whatnot (we are on lan but still)
+        while (ShouldWait())
+        {
+            yield return Wait();
+        }
+
+        //Actually setup local player
+        clientLocalPlayer.ResetPlayer();
+    }
+
+    [TargetRpc]
     public void RpcClaimCapital(NetworkConnectionToClient target, List<int> territoryIndexes)
     {
         inbetween = territoryIndexes;
@@ -204,6 +223,100 @@ public class NetworkConnection : NetworkBehaviour
         clientLocalPlayer.ClaimCapital(targetTerritories);
     }
 
+    [TargetRpc]
+    public void RpcSetup(NetworkConnectionToClient target, List<int> territoryIndexes)
+    {
+        inbetween = territoryIndexes;
+        StartCoroutine(nameof(WaitBeforeSetup));
+    }
+
+    private IEnumerator WaitBeforeSetup()
+    {
+        //We do this because the host will load and run start before the client loads their scene
+        //We should just be waiting for one frame but we wait for the amount needed just in case of ping and whatnot (we are on lan but still)
+        while (ShouldWait())
+        {
+            yield return Wait();
+        }
+
+        SetTargetTerritories();
+        clientLocalPlayer.Setup(targetTerritories);
+    }
+
+    [TargetRpc]
+    public void RpcDeploy(NetworkConnectionToClient target, List<int> territoryIndexes, int troopCount)
+    {
+        inbetween = territoryIndexes;
+        StartCoroutine(nameof(WaitBeforeDeploy), troopCount);
+    }
+
+    private IEnumerator WaitBeforeDeploy(int troopCount)
+    {
+        //We do this because the host will load and run start before the client loads their scene
+        //We should just be waiting for one frame but we wait for the amount needed just in case of ping and whatnot (we are on lan but still)
+        while (ShouldWait())
+        {
+            yield return Wait();
+        }
+
+        SetTargetTerritories();
+        clientLocalPlayer.Deploy(targetTerritories, troopCount);
+    }
+
+    [TargetRpc]
+    public void RpcAttack(NetworkConnectionToClient target)
+    {
+        StartCoroutine(nameof(WaitBeforeAttack));
+    }
+
+    private IEnumerator WaitBeforeAttack()
+    {
+        //We do this because the host will load and run start before the client loads their scene
+        //We should just be waiting for one frame but we wait for the amount needed just in case of ping and whatnot (we are on lan but still)
+        while (ShouldWait())
+        {
+            yield return Wait();
+        }
+
+        clientLocalPlayer.Attack();
+    }
+
+    [TargetRpc]
+    public void RpcFortify(NetworkConnectionToClient target)
+    {
+        StartCoroutine(nameof(WaitBeforeFortify));
+    }
+
+    private IEnumerator WaitBeforeFortify()
+    {
+        //We do this because the host will load and run start before the client loads their scene
+        //We should just be waiting for one frame but we wait for the amount needed just in case of ping and whatnot (we are on lan but still)
+        while (ShouldWait())
+        {
+            yield return Wait();
+        }
+
+        clientLocalPlayer.Fortify();
+    }
+
+    [TargetRpc]
+    public void RpcOnTurnEnd(NetworkConnectionToClient target)
+    {
+        StartCoroutine(nameof(WaitBeforeOnTurnEnd));
+    }
+
+    private IEnumerator WaitBeforeOnTurnEnd()
+    {
+        //We do this because the host will load and run start before the client loads their scene
+        //We should just be waiting for one frame but we wait for the amount needed just in case of ping and whatnot (we are on lan but still)
+        while (ShouldWait())
+        {
+            yield return Wait();
+        }
+
+        clientLocalPlayer.OnTurnEnd();
+    }
+
     public static void SwitchPlayerSetup()
     {
         instance.SwitchPlayerSetupOnServer();
@@ -213,6 +326,17 @@ public class NetworkConnection : NetworkBehaviour
     public void SwitchPlayerSetupOnServer()
     {
         MatchManager.SwitchPlayerSetup();
+    }
+
+    public static void EndTurn()
+    {
+        instance.EndTurnOnServer();
+    }
+
+    [Command]
+    public void EndTurnOnServer()
+    {
+        MatchManager.EndTurn();
     }
 
     //TROOP COUNT
