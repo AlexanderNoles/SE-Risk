@@ -27,9 +27,7 @@ public class PlayerInfoHandler : MonoBehaviour
 
         UpdateInfo();
     }
-    /// <summary>
-    /// Initialises all the arrays in the function by fetching all the relevant UI elements from the scene
-    /// </summary>
+
     private void GetUIElements()
     {
         infoFronts = new List<Image>();
@@ -55,9 +53,6 @@ public class PlayerInfoHandler : MonoBehaviour
     static List<TextMeshProUGUI> infoTexts;
     static List<GameObject> crosses;
     static List<GameObject> backers;
-    /// <summary>
-    /// Updates the colours of the backers to match the players colours
-    /// </summary>
     public void UpdateColours()
     {
         for (int i = 0; i<6; i++)
@@ -73,9 +68,7 @@ public class PlayerInfoHandler : MonoBehaviour
             }
         }
     }
-    /// <summary>
-    /// Resets the UI Elements for each player
-    /// </summary>
+
     private void ResetInfos()
     {
         foreach (GameObject cross in crosses)
@@ -83,9 +76,7 @@ public class PlayerInfoHandler : MonoBehaviour
             cross.SetActive(false);
         }
     }
-    /// <summary>
-    /// Updates the territory info to match the current state of each player and their hands
-    /// </summary>
+
     public static void UpdateInfo()
     {
         int j = 0;
