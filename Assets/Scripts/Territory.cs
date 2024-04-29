@@ -80,11 +80,20 @@ public class Territory : MonoBehaviour
     {
         return centrePoint + textOffset;
     }
-    public int GetOwner () { return owner; }
-    public void SetOwner (int newOwner) 
+    public int GetOwner () 
     { 
+        return owner; 
+    }
+    public void SetOwner (int newOwner, bool makeServerRequest = true) 
+    { 
+        //Update locally
         owner = newOwner; 
-        spriteRenderer.color = Player.GetColourBasedOnIndex(owner); 
+        spriteRenderer.color = Player.GetColourBasedOnIndex(owner);
+
+        if (makeServerRequest && NetworkManagement.GetClientState() != NetworkManagement.ClientState.Offline)
+        {
+            NetworkConnection.UpdateTerritoryOwnerAcrossLobby(indexInMap, newOwner);
+        }
     }
     public void ResetOwner(bool resetColour)
     {
@@ -98,8 +107,6 @@ public class Territory : MonoBehaviour
     public int GetCurrentTroops() { return currentTroops; }
     public void SetCurrentTroops(int currentTroops, bool makeServerRequest = true) 
     {
-        NetworkManagement.ClientState clientState = NetworkManagement.GetClientState();
-
         //Update locally
         this.currentTroops = currentTroops;
         if (!Map.IsSimulated())
@@ -111,7 +118,7 @@ public class Territory : MonoBehaviour
             troopLabel.text = currentTroops.ToString();
         }
 
-        if (makeServerRequest && clientState != NetworkManagement.ClientState.Offline)
+        if (makeServerRequest && NetworkManagement.GetClientState() != NetworkManagement.ClientState.Offline)
         {
             NetworkConnection.UpdateTerritoryTroopCountAcrossLobby(indexInMap, currentTroops);
         }

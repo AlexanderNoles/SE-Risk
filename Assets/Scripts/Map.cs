@@ -19,10 +19,21 @@ public class Map : MonoBehaviour
     /// </summary>
     /// <param name="index">The index of the territory to set</param>
     /// <param name="newCount">The new troop count</param>
-    /// <param name="makeRequest">Spooky fill this in idk what is does</param>
+    /// <param name="makeRequest">Make a request to the server to update this value across lobby?</param>
     public static void SetTerritoryTroopCount(int index, int newCount, bool makeRequest)
     {
         instance.territories[index].SetCurrentTroops(newCount, makeRequest);
+    }
+
+    /// <summary>
+    /// Sets a particular territories owner
+    /// </summary>
+    /// <param name="index">The index of the territory to set</param>
+    /// <param name="newOwnerIndex">The new owner</param>
+    /// <param name="makeRequest">Make a request to the server to update this value across lobby?</param>
+    public static void SetTerritoryOwner(int index, int newOwnerIndex, bool makeRequest)
+    {
+        instance.territories[index].SetOwner(newOwnerIndex, makeRequest);
     }
 
     private static HashSet<(Territory, Player)> capitals = new HashSet<(Territory, Player)>();

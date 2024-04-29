@@ -166,6 +166,7 @@ public class NetworkConnection : NetworkBehaviour
         Debug.Log(clientLocalPlayer);
     }
 
+    //TROOP COUNT
     public static void UpdateTerritoryTroopCountAcrossLobby(int territoryIndex, int newTroopCount)
     {
         if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
@@ -198,5 +199,40 @@ public class NetworkConnection : NetworkBehaviour
     {
         //Set on client
         Map.SetTerritoryTroopCount(index, newTroopCount, false);
+    }
+
+    //OWNER
+    public static void UpdateTerritoryOwnerAcrossLobby(int territoryIndex, int newOwner)
+    {
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+            //Just run on all clients as we are the host
+            UpdateAllClientsOwnerOnTerritory(territoryIndex, newOwner);
+        }
+        else
+        {
+            //Send to server
+            instance.CmdUpdateChangedTerritoryOwner(territoryIndex, newOwner);
+        }
+    }
+
+    [Command]
+    public void CmdUpdateChangedTerritoryOwner(int index, int newOwner)
+    {
+        //Set on server
+        Map.SetTerritoryOwner(index, newOwner, false);
+        UpdateAllClientsOwnerOnTerritory(index, newOwner);
+    }
+
+    public static void UpdateAllClientsOwnerOnTerritory(int index, int newOwner)
+    {
+        instance.RpcUpdateOwnerOnClient(index, newOwner);
+    }
+
+    [ClientRpc]
+    public void RpcUpdateOwnerOnClient(int index, int newOwner)
+    {
+        //Set on client
+        Map.SetTerritoryOwner(index, newOwner, false);
     }
 }
