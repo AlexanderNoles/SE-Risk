@@ -24,6 +24,20 @@ public class Map : MonoBehaviour
     {
         instance.territories[index].SetCurrentTroops(newCount, makeRequest);
     }
+    /// <summary>
+    /// Get a territory from the map based on the index
+    /// </summary>
+    /// <param name="index">The territories index</param>
+    /// <returns>The target territory, if it doesn't exist return null</returns>
+    public static Territory GetTerritory(int index)
+    {
+        if (instance != null && instance.territories.Count > index)
+        {
+            return instance.territories[index];
+        }
+
+        return null;
+    }
 
     /// <summary>
     /// Sets a particular territories owner
@@ -36,22 +50,28 @@ public class Map : MonoBehaviour
         instance.territories[index].SetOwner(newOwnerIndex, makeRequest);
     }
 
-    private static HashSet<(Territory, Player)> capitals = new HashSet<(Territory, Player)>();
+    private static HashSet<(int, int)> capitals = new HashSet<(int, int)>();
     /// <summary>
     /// Adds a new capital to a specified territory on the map
     /// </summary>
     /// <param name="territory">The territory to add the capital onto</param>
     /// <param name="owner">The player who owns this capital</param>
-    public static void AddCapital(Territory territory, Player owner)
+    public static void AddCapital(int territory, int owner, bool makeARequest = true)
     {
+        //Update locally
         capitals.Add((territory, owner));
 
         //Spawn ui element signify this territory is a capital
-        Color capitalColor = owner.GetColor();
+        Color capitalColor = Player.GetColourBasedOnIndex(owner);
         capitalColor *= 1.25f;
         capitalColor.a = 1f;
 
-        UIManagement.Spawn<Image>(territory.GetUIOffset(), 1).component.color = capitalColor;
+        UIManagement.Spawn<Image>(Map.GetTerritory(territory).GetUIOffset(), 1).component.color = capitalColor;
+
+        if (makeARequest && NetworkManagement.GetClientState() != NetworkManagement.ClientState.Offline)
+        {
+            NetworkConnection.UpdateCapitalAcrossLobby(territory, owner);
+        }
     }
     /// <summary>
     /// Checks to see if a particular player holds every capital on the board
@@ -60,10 +80,10 @@ public class Map : MonoBehaviour
     /// <returns>True if the specified player has every capital, else false</returns>
     public static bool DoesPlayerHoldAllCapitals(int target)
     {
-        foreach ((Territory, Player) capital in capitals)
+        foreach ((int, int) capital in capitals)
         {
             //If they don't own this capital
-            if (capital.Item1.GetOwner() != target)
+            if (Map.GetTerritory(capital.Item1).GetOwner() != target)
             {
                 //Quit early
                 return false;

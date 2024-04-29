@@ -1,4 +1,5 @@
 using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -127,6 +128,22 @@ public class NetworkConnection : NetworkBehaviour
 
     //COMMUNICATION
     //Has scene loaded yet?
+
+    private PlayerColour colourToSet;
+    private List<int> inbetween;
+    private List<Territory> targetTerritories;
+
+    private void SetTargetTerritories()
+    {
+        targetTerritories = new List<Territory>();
+
+        foreach (int index in inbetween)
+        {
+            targetTerritories.Add(Map.GetTerritory(index));
+        }
+    }
+
+
     private bool ShouldWait()
     {
         return clientLocalPlayer == null;
@@ -150,6 +167,7 @@ public class NetworkConnection : NetworkBehaviour
     [TargetRpc]
     public void RpcNotifyTarget(NetworkConnectionToClient target, PlayerColour colour)
     {
+        colourToSet = colour;
         StartCoroutine(nameof(WaitBeforeLocalPlayerSetup));
     }
 
@@ -163,7 +181,38 @@ public class NetworkConnection : NetworkBehaviour
         }
 
         //Actually setup local player
-        Debug.Log(clientLocalPlayer);
+        clientLocalPlayer.SetColor(colourToSet);
+    }
+
+    [TargetRpc]
+    public void RpcClaimCapital(NetworkConnectionToClient target, List<int> territoryIndexes)
+    {
+        inbetween = territoryIndexes;
+        StartCoroutine(nameof(WaitBeforeClaimCapital));
+    }
+
+    private IEnumerator WaitBeforeClaimCapital()
+    {
+        //We do this because the host will load and run start before the client loads their scene
+        //We should just be waiting for one frame but we wait for the amount needed just in case of ping and whatnot (we are on lan but still)
+        while (ShouldWait())
+        {
+            yield return Wait();
+        }
+
+        SetTargetTerritories();
+        clientLocalPlayer.ClaimCapital(targetTerritories);
+    }
+
+    public static void SwitchPlayerSetup()
+    {
+        instance.SwitchPlayerSetupOnServer();
+    }
+
+    [Command]
+    public void SwitchPlayerSetupOnServer()
+    {
+        MatchManager.SwitchPlayerSetup();
     }
 
     //TROOP COUNT
@@ -234,5 +283,38 @@ public class NetworkConnection : NetworkBehaviour
     {
         //Set on client
         Map.SetTerritoryOwner(index, newOwner, false);
+    }
+
+    //CAPITAL
+    public static void UpdateCapitalAcrossLobby(int territoryIndex, int newOwner)
+    {
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+            UpdateCapitalAllClients(territoryIndex, newOwner);
+        }
+        else
+        {
+            instance.CmdUpdateChangedCapital(territoryIndex, newOwner);
+        }
+    }
+
+    [Command]
+    public void CmdUpdateChangedCapital(int index, int newOwner)
+    {
+        //Set on server
+        Map.AddCapital(index, newOwner, false);
+        UpdateCapitalAllClients(index, newOwner);
+    }
+
+    public static void UpdateCapitalAllClients(int terrIndex, int newOwner)
+    {
+        instance.RpcUpdateCapitalOnClient(terrIndex, newOwner);
+    }
+
+    [ClientRpc]
+    public void RpcUpdateCapitalOnClient(int index, int newOwner)
+    {
+        //Set on client
+        Map.AddCapital(index, newOwner, false);
     }
 }

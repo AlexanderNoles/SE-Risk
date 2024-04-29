@@ -98,7 +98,7 @@ public class PlayerInputHandler : MonoBehaviour
                             if (claimingCapital)
                             {
                                 //Mark chosen territory as capital
-                                Map.AddCapital(currentTerritoryUnderMouse, localPlayer);
+                                Map.AddCapital(currentTerritoryUnderMouse.GetIndexInMap(), localPlayer.GetIndex());
                                 claimingCapital = false;
                             }
 

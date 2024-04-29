@@ -252,7 +252,7 @@ public class Player : MonoBehaviour
         capital.SetCurrentTroops(1);
         capital.SetOwner(GetIndex());
 
-        Map.AddCapital(capital, this);
+        Map.AddCapital(capital.GetIndexInMap(), GetIndex());
 
         MatchManager.SwitchPlayerSetup();
     }

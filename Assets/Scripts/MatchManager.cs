@@ -312,12 +312,20 @@ public class MatchManager : MonoBehaviour
     /// </summary>
     public static void SwitchPlayerSetup()
     {
-        if (instance.currentTurnIndex == instance.playerList.Count - 1)
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Client)
         {
-            instance.troopDeployCount--;
+            //Make a request to the server instead
+            NetworkConnection.SwitchPlayerSetup();
         }
-        instance.SwitchPlayer();
-        Setup();
+        else
+        {
+            if (instance.currentTurnIndex == instance.playerList.Count - 1)
+            {
+                instance.troopDeployCount--;
+            }
+            instance.SwitchPlayer();
+            Setup();
+        }
     }
 
     private void Update()

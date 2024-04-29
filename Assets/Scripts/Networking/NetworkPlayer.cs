@@ -25,4 +25,15 @@ public class NetworkPlayer : Player
             throw new System.Exception("Player with that netID does not exists!");
         }
     }
+
+    public override void ClaimCapital(List<Territory> territories)
+    {
+        List<int> inBetween = new List<int>();
+        foreach (Territory territory in territories)
+        {
+            inBetween.Add(territory.GetIndexInMap());
+        }
+
+        personelConnectionObject.RpcClaimCapital(connectionToClient, inBetween);
+    }
 }
