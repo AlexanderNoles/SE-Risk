@@ -30,6 +30,11 @@ public class Territory : MonoBehaviour
     private TextMeshProUGUI troopLabel;
     private int indexInMap;
 
+    public int GetIndexInMap()
+    {
+        return indexInMap;
+    }
+
     public bool CheckIfPosIsInside (Vector3 pos)
     {
         if (bounds.Contains(pos))
