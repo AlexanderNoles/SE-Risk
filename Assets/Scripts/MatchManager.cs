@@ -205,7 +205,7 @@ public class MatchManager : MonoBehaviour
     /// </summary>
     public static void Setup(int currentPlayer, bool requireValidation = true)
     {
-        if (requireValidation && currentPlayer != instance.currentTurnIndex)
+        if (requireValidation && currentPlayer != instance.playerList[instance.currentTurnIndex].GetIndex())
         {
             return;
         }
@@ -250,7 +250,7 @@ public class MatchManager : MonoBehaviour
     /// </summary>
     public static void Deploy(int playerMakingRequest, bool requireValidation = false)
     {
-        if (requireValidation && instance.currentTurnIndex != playerMakingRequest)
+        if (requireValidation && instance.playerList[instance.currentTurnIndex].GetIndex() != playerMakingRequest)
         {
             return;
         }
@@ -274,7 +274,7 @@ public class MatchManager : MonoBehaviour
     /// </summary>
     public static void Attack(int playerMakingRequest, bool requireValidation = false)
     {
-        if (requireValidation && instance.currentTurnIndex != playerMakingRequest)
+        if (requireValidation && instance.playerList[instance.currentTurnIndex].GetIndex() != playerMakingRequest)
         {
             return;
         }
@@ -288,7 +288,7 @@ public class MatchManager : MonoBehaviour
     /// </summary>
     public static void Fortify(int playerMakingRequest, bool requireValidation = false)
     {
-        if (requireValidation && instance.currentTurnIndex != playerMakingRequest)
+        if (requireValidation && instance.playerList[instance.currentTurnIndex].GetIndex() != playerMakingRequest)
         {
             return;
         }
@@ -332,7 +332,7 @@ public class MatchManager : MonoBehaviour
         }
         else
         {
-            if (requireValidation && playerMakingRequest != instance.currentTurnIndex)
+            if (requireValidation && playerMakingRequest != instance.playerList[instance.currentTurnIndex].GetIndex())
             {
                 throw new Exception("Turn end not valid!");
             }
