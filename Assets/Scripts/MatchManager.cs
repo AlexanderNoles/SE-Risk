@@ -66,6 +66,11 @@ public class MatchManager : MonoBehaviour
     }
 
     int currentTurnIndex = 0;
+    public static void SetCurrentTurnIndex(int index)
+    {
+        instance.currentTurnIndex = index;
+    }
+
     int turnNumber;
     List<Territory> currentPlayerTerritories;
     int troopCount;
@@ -319,11 +324,6 @@ public class MatchManager : MonoBehaviour
     /// <param name="playerRemoved"></param>
     public static void EndTurn(int playerMakingRequest, bool requireValidation = true, bool playerRemoved = false)
     {
-        if (requireValidation && playerMakingRequest != instance.currentTurnIndex)
-        {
-            return;
-        }
-
         if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Client)
         {
             //Make a request to the server
@@ -332,6 +332,11 @@ public class MatchManager : MonoBehaviour
         }
         else
         {
+            if (requireValidation && playerMakingRequest != instance.currentTurnIndex)
+            {
+                throw new Exception("Turn end not valid!");
+            }
+
             if (!playerRemoved)
             {
                 instance.playerList[instance.currentTurnIndex].OnTurnEnd();
@@ -447,6 +452,12 @@ public class MatchManager : MonoBehaviour
     /// <param name="turnPhase"></param>
     public static void UpdateInfoTextDefault(string turnPhase)
     {
+        //TEMP, UI DON'T WORK
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Client)
+        {
+            return;
+        }
+
         UIManagement.SetText($"{instance.playerList[instance.currentTurnIndex].GetColorName()} Turn {instance.turnNumber} : {turnPhase}");
     }
     /// <summary>
