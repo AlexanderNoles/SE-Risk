@@ -135,7 +135,13 @@ public class MatchManager : MonoBehaviour
             troopDeployCount = StartingTroopCounts[playerList.Count];
             UpdateInfoTextSetup(troopDeployCount);
             turnNumber = 1;
-            Deck.CreateDeck();
+            int seed = UnityEngine.Random.Range(0, 1000);
+            Deck.CreateDeck(seed);
+
+            if (NetworkManagement.GetClientState() != NetworkManagement.ClientState.Offline)
+            {
+                NetworkConnection.InitDeckAcrossAllClients(seed);
+            }
 
             capitalsPlaced = 0;
             Setup(0, false);

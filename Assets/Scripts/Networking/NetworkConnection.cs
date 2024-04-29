@@ -441,4 +441,48 @@ public class NetworkConnection : NetworkBehaviour
         //Set on client
         Map.AddCapital(index, newOwner, false);
     }
+
+    //DECK
+    public static void InitDeckAcrossAllClients(int seed)
+    {
+        instance.RpcInitDeck(seed);
+    }
+
+    [ClientRpc]
+    public void RpcInitDeck(int seed)
+    {
+        Deck.CreateDeck(seed);
+    }
+
+    public static void UpdateCardTakenAcrossLobby(int deckIndex, int newValue)
+    {
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+            UpdateCardTakenAcrossAllClients(deckIndex, newValue);
+        }
+        else
+        {
+            instance.CmdUpdateCardTaken(deckIndex, newValue);
+        }
+    }
+
+    [Command]
+    public void CmdUpdateCardTaken(int deckIndex, int newValue)
+    {
+        //Set on server
+        Deck.SetCardTaken(deckIndex, newValue, false);
+        UpdateCardTakenAcrossAllClients(deckIndex, newValue);
+    }
+
+    public static void UpdateCardTakenAcrossAllClients(int deckIndex, int newValue)
+    {
+        instance.RpcUpdateCardTakenOnClients(deckIndex, newValue);
+    }
+
+    [ClientRpc]
+    public void RpcUpdateCardTakenOnClients(int deckIndex, int newValue)
+    {
+        //Set on client
+        Deck.SetCardTaken(deckIndex, newValue, false);
+    }
 }

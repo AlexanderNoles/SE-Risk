@@ -46,7 +46,7 @@ public class CardDisplayer : MonoBehaviour
         cards = new Card[10];
         for(int i=0; i<cards.Count(); i++) 
         {
-            Card card = new Card(null, 3);
+            Card card = new Card(-1, 3);
             cards[i] = card;
         }
         for (int i = 0; i < gameObject.transform.childCount; i++)
@@ -141,6 +141,7 @@ public class CardDisplayer : MonoBehaviour
                 Image cardBody = go.transform.GetChild(0).gameObject.GetComponent<Image>();
                 if (cards[i].GetDesign() == Card.cardDesign.WildCard)
                 {
+                    cardBody.gameObject.SetActive(true);
                     design.gameObject.SetActive(false);
                     text.gameObject.SetActive(false);
                     territoryImage.gameObject.SetActive(false);
@@ -149,8 +150,8 @@ public class CardDisplayer : MonoBehaviour
                 else
                 {
                     cardBody.sprite = null;
-                    text.SetText(cards[i].GetTerritory().name);
-                    territoryImage.sprite = cards[i].GetTerritory().getCardSprite();
+                    text.SetText(Map.GetTerritory(cards[i].GetTerritory()).name);
+                    territoryImage.sprite = Map.GetTerritory(cards[i].GetTerritory()).getCardSprite();
                     design.sprite = designSprites[(int)cards[i].GetDesign()];
                     foreach (Transform child in go.GetComponentInChildren<Transform>())
                     {
@@ -192,7 +193,7 @@ public class CardDisplayer : MonoBehaviour
             }
             else
             {
-                Card card = new Card(null, 3);
+                Card card = new Card(-1, 3);
                 this.cards[i] = card;
             }
         }

@@ -685,9 +685,6 @@ public class Player : MonoBehaviour
     /// </summary>
     public virtual void OnTurnEnd()
     {
-        //TEMP BECAUSE NETWORKING ISN'T WORKING FOR THE DECK YET
-        return;
-
         if (territoryTakenThisTurn && hand.Count() < 6)
         {
             hand.AddCard(Deck.Draw());

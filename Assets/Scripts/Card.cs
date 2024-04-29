@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class Card
 {
     public enum cardDesign {Troop, Cavalry, Artillery,WildCard,Empty}
-    Territory territory;
+    int territoryIndex;
     cardDesign design;
 
     /// <summary>
@@ -17,9 +17,9 @@ public class Card
     /// </summary>
     /// <param name="territory">The territory the card corresponds to</param>
     /// <param name="design">The design on the card</param>
-    public Card(Territory territory, int design)
+    public Card(int territoryIndex, int design)
     {
-        this.territory = territory;
+        this.territoryIndex = territoryIndex;
         switch (design)
         {
             case 0: this.design=cardDesign.Troop; break;
@@ -39,9 +39,9 @@ public class Card
     /// Returns the territory associated with this card
     /// </summary>
     /// <returns>The territory associated with this card</returns>
-    public Territory GetTerritory()
+    public int GetTerritory()
     {
-        return territory;
+        return territoryIndex;
     }
     /// <summary>
     /// Returns the design on this card
@@ -51,5 +51,4 @@ public class Card
     {
         return design;
     }
-    
 }

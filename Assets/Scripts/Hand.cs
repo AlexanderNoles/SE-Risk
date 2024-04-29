@@ -49,9 +49,9 @@ public class Hand
         PlayerInfoHandler.UpdateInfo();
         foreach(Card card in set)
         {
-            if(card.GetDesign()!=Card.cardDesign.WildCard&&card.GetTerritory().GetOwner() == player)
+            if(card.GetDesign()!=Card.cardDesign.WildCard&& Map.GetTerritory(card.GetTerritory()).GetOwner() == player)
             {
-                card.GetTerritory().SetCurrentTroops(card.GetTerritory().GetCurrentTroops()+2);
+                Map.GetTerritory(card.GetTerritory()).SetCurrentTroops(Map.GetTerritory(card.GetTerritory()).GetCurrentTroops()+2);
                 break;
             }
         }
