@@ -2,10 +2,10 @@ using Pathfinding;
 using System.Collections.Generic;
 using UnityEngine;
 
-#if UNITY_EDITOR
 //only used for pregenerating maps, which does not need to be done on the user end
 public class TerritoryHelper : MonoBehaviour
 {
+#if UNITY_EDITOR
     public Territory territory;
     private Texture2D texture = null;
     public Sprite spriteOverride = null;
@@ -175,5 +175,5 @@ public class TerritoryHelper : MonoBehaviour
             }
         }
     }
-}
 #endif
+}

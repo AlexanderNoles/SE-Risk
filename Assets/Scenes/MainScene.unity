@@ -636,7 +636,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4075082080994456671, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1290174549}
   m_SourcePrefab: {fileID: 100100000, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
 --- !u!224 &46415877 stripped
 RectTransform:
@@ -655,6 +658,7 @@ GameObject:
   - component: {fileID: 50025245}
   - component: {fileID: 50025244}
   - component: {fileID: 50025243}
+  - component: {fileID: 50025246}
   m_Layer: 0
   m_Name: West Australia
   m_TagString: Untagged
@@ -1022,6 +1026,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &50025246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50025241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: West Australia.png
+  folder: Territories/Classic Map
 --- !u!1 &58168303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,6 +1052,7 @@ GameObject:
   - component: {fileID: 58168307}
   - component: {fileID: 58168306}
   - component: {fileID: 58168305}
+  - component: {fileID: 58168308}
   m_Layer: 0
   m_Name: Quebec
   m_TagString: Untagged
@@ -1391,6 +1410,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &58168308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 58168303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Quebec.png
+  folder: Territories/Classic Map
 --- !u!1 &79817160
 GameObject:
   m_ObjectHideFlags: 0
@@ -1762,6 +1795,7 @@ GameObject:
   - component: {fileID: 160326219}
   - component: {fileID: 160326218}
   - component: {fileID: 160326217}
+  - component: {fileID: 160326220}
   m_Layer: 0
   m_Name: China
   m_TagString: Untagged
@@ -2307,6 +2341,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &160326220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160326215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: China.png
+  folder: Territories/Classic Map
 --- !u!1 &164036564
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,6 +2517,7 @@ GameObject:
   - component: {fileID: 165419107}
   - component: {fileID: 165419106}
   - component: {fileID: 165419105}
+  - component: {fileID: 165419108}
   m_Layer: 0
   m_Name: Indonesia
   m_TagString: Untagged
@@ -2873,6 +2922,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &165419108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165419103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Indonesia.png
+  folder: Territories/Classic Map
 --- !u!1 &172846064
 GameObject:
   m_ObjectHideFlags: 0
@@ -3256,6 +3319,7 @@ GameObject:
   - component: {fileID: 271865260}
   - component: {fileID: 271865259}
   - component: {fileID: 271865258}
+  - component: {fileID: 271865261}
   m_Layer: 0
   m_Name: Venezuala
   m_TagString: Untagged
@@ -3590,6 +3654,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &271865261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271865256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Venezuala.png
+  folder: Territories/Classic Map
 --- !u!1 &307277048
 GameObject:
   m_ObjectHideFlags: 0
@@ -4422,6 +4500,7 @@ GameObject:
   - component: {fileID: 412295266}
   - component: {fileID: 412295265}
   - component: {fileID: 412295264}
+  - component: {fileID: 412295267}
   m_Layer: 0
   m_Name: Irkutsk
   m_TagString: Untagged
@@ -4785,6 +4864,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &412295267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412295262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Irkutsk.png
+  folder: Territories/Classic Map
 --- !u!1 &423073457
 GameObject:
   m_ObjectHideFlags: 0
@@ -4872,6 +4965,7 @@ GameObject:
   - component: {fileID: 427254488}
   - component: {fileID: 427254487}
   - component: {fileID: 427254486}
+  - component: {fileID: 427254489}
   m_Layer: 0
   m_Name: West Europe
   m_TagString: Untagged
@@ -5251,6 +5345,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &427254489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427254484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: West Europe.png
+  folder: Territories/Classic Map
 --- !u!1 &431712893
 GameObject:
   m_ObjectHideFlags: 0
@@ -5412,6 +5520,7 @@ GameObject:
   - component: {fileID: 485798792}
   - component: {fileID: 485798794}
   - component: {fileID: 485798793}
+  - component: {fileID: 485798795}
   m_Layer: 5
   m_Name: Dice
   m_TagString: Untagged
@@ -5476,6 +5585,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 485798791}
   m_CullTransparentMesh: 1
+--- !u!114 &485798795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485798791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Dice.png
+  folder: DiceSprites
+--- !u!1 &498004796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4075082080994456671, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
+  m_PrefabInstance: {fileID: 1755907356}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &498004800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498004796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Cards.png
+  folder: UI
 --- !u!1 &500184383
 GameObject:
   m_ObjectHideFlags: 0
@@ -6000,6 +6142,7 @@ GameObject:
   - component: {fileID: 577144376}
   - component: {fileID: 577144375}
   - component: {fileID: 577144374}
+  - component: {fileID: 577144377}
   m_Layer: 0
   m_Name: Scandinavia
   m_TagString: Untagged
@@ -6392,6 +6535,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &577144377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577144372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Scandinavia.png
+  folder: Territories/Classic Map
 --- !u!1 &600443324
 GameObject:
   m_ObjectHideFlags: 0
@@ -6914,6 +7071,7 @@ GameObject:
   - component: {fileID: 676728473}
   - component: {fileID: 676728472}
   - component: {fileID: 676728471}
+  - component: {fileID: 676728474}
   m_Layer: 0
   m_Name: Alberta
   m_TagString: Untagged
@@ -7161,6 +7319,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &676728474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676728469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Alberta.png
+  folder: Territories/Classic Map
 --- !u!1 &697912208
 GameObject:
   m_ObjectHideFlags: 0
@@ -7465,13 +7637,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4075082080994456671, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1170167020}
   m_SourcePrefab: {fileID: 100100000, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
 --- !u!224 &735788868 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6033867521528606722, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
   m_PrefabInstance: {fileID: 735788867}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &743476491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4075082080994456671, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
+  m_PrefabInstance: {fileID: 1462097300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &743476495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743476491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Cards.png
+  folder: UI
 --- !u!1 &762844573
 GameObject:
   m_ObjectHideFlags: 0
@@ -7484,6 +7678,7 @@ GameObject:
   - component: {fileID: 762844577}
   - component: {fileID: 762844576}
   - component: {fileID: 762844575}
+  - component: {fileID: 762844578}
   m_Layer: 0
   m_Name: North Africa
   m_TagString: Untagged
@@ -8013,6 +8208,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &762844578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762844573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: North Africa.png
+  folder: Territories/Classic Map
 --- !u!1 &766067940
 GameObject:
   m_ObjectHideFlags: 0
@@ -8159,6 +8368,7 @@ GameObject:
   - component: {fileID: 769185064}
   - component: {fileID: 769185063}
   - component: {fileID: 769185062}
+  - component: {fileID: 769185065}
   m_Layer: 0
   m_Name: Japan
   m_TagString: Untagged
@@ -8541,6 +8751,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &769185065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769185060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Japan.png
+  folder: Territories/Classic Map
 --- !u!1 &773879354
 GameObject:
   m_ObjectHideFlags: 0
@@ -8553,6 +8777,7 @@ GameObject:
   - component: {fileID: 773879358}
   - component: {fileID: 773879357}
   - component: {fileID: 773879356}
+  - component: {fileID: 773879359}
   m_Layer: 0
   m_Name: Brazil
   m_TagString: Untagged
@@ -9097,6 +9322,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &773879359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773879354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Brazil.png
+  folder: Territories/Classic Map
 --- !u!1 &782784086
 GameObject:
   m_ObjectHideFlags: 0
@@ -9109,6 +9348,7 @@ GameObject:
   - component: {fileID: 782784090}
   - component: {fileID: 782784089}
   - component: {fileID: 782784088}
+  - component: {fileID: 782784091}
   m_Layer: 0
   m_Name: East Africa
   m_TagString: Untagged
@@ -9588,6 +9828,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &782784091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782784086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: East Africa.png
+  folder: Territories/Classic Map
 --- !u!1 &786620683
 GameObject:
   m_ObjectHideFlags: 0
@@ -9600,6 +9854,7 @@ GameObject:
   - component: {fileID: 786620687}
   - component: {fileID: 786620686}
   - component: {fileID: 786620685}
+  - component: {fileID: 786620688}
   m_Layer: 0
   m_Name: Greenland
   m_TagString: Untagged
@@ -10068,6 +10323,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &786620688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786620683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Greenland.png
+  folder: Territories/Classic Map
 --- !u!1 &793358092
 GameObject:
   m_ObjectHideFlags: 0
@@ -10214,6 +10483,7 @@ GameObject:
   - component: {fileID: 804431231}
   - component: {fileID: 804431230}
   - component: {fileID: 804431229}
+  - component: {fileID: 804431232}
   m_Layer: 0
   m_Name: Iceland
   m_TagString: Untagged
@@ -10460,6 +10730,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &804431232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 804431227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Iceland.png
+  folder: Territories/Classic Map
 --- !u!1 &810260937
 GameObject:
   m_ObjectHideFlags: 0
@@ -10472,6 +10756,7 @@ GameObject:
   - component: {fileID: 810260941}
   - component: {fileID: 810260940}
   - component: {fileID: 810260939}
+  - component: {fileID: 810260942}
   m_Layer: 0
   m_Name: Mongolia
   m_TagString: Untagged
@@ -10909,6 +11194,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &810260942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810260937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Mongolia.png
+  folder: Territories/Classic Map
 --- !u!1 &815122393
 GameObject:
   m_ObjectHideFlags: 0
@@ -10997,6 +11296,7 @@ GameObject:
   - component: {fileID: 902095657}
   - component: {fileID: 902095656}
   - component: {fileID: 902095655}
+  - component: {fileID: 902095658}
   m_Layer: 0
   m_Name: Yakutsk
   m_TagString: Untagged
@@ -11408,6 +11708,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &902095658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902095653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Yakutsk.png
+  folder: Territories/Classic Map
 --- !u!1 &904582784
 GameObject:
   m_ObjectHideFlags: 0
@@ -11420,6 +11734,7 @@ GameObject:
   - component: {fileID: 904582788}
   - component: {fileID: 904582787}
   - component: {fileID: 904582786}
+  - component: {fileID: 904582789}
   m_Layer: 0
   m_Name: Peru
   m_TagString: Untagged
@@ -11873,6 +12188,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &904582789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904582784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Peru.png
+  folder: Territories/Classic Map
 --- !u!1 &916018768
 GameObject:
   m_ObjectHideFlags: 0
@@ -12023,6 +12352,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 4
+--- !u!1 &933274295 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4075082080994456671, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
+  m_PrefabInstance: {fileID: 6420024610468093612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &933274299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933274295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Cards.png
+  folder: UI
 --- !u!1 &935294302
 GameObject:
   m_ObjectHideFlags: 0
@@ -12446,6 +12794,7 @@ GameObject:
   - component: {fileID: 1052722738}
   - component: {fileID: 1052722737}
   - component: {fileID: 1052722736}
+  - component: {fileID: 1052722739}
   m_Layer: 0
   m_Name: Eastern United States
   m_TagString: Untagged
@@ -12876,6 +13225,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1052722739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052722734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Eastern United States.png
+  folder: Territories/Classic Map
 --- !u!1 &1053172329
 GameObject:
   m_ObjectHideFlags: 0
@@ -13100,6 +13463,7 @@ GameObject:
   - component: {fileID: 1073075578}
   - component: {fileID: 1073075577}
   - component: {fileID: 1073075576}
+  - component: {fileID: 1073075579}
   m_Layer: 0
   m_Name: Madagascar
   m_TagString: Untagged
@@ -13375,6 +13739,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1073075579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073075574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Madagascar.png
+  folder: Territories/Classic Map
 --- !u!1 &1089563275
 GameObject:
   m_ObjectHideFlags: 0
@@ -13462,6 +13840,7 @@ GameObject:
   - component: {fileID: 1090601560}
   - component: {fileID: 1090601559}
   - component: {fileID: 1090601558}
+  - component: {fileID: 1090601561}
   m_Layer: 0
   m_Name: East Australia
   m_TagString: Untagged
@@ -13889,6 +14268,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1090601561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090601556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: East Australia.png
+  folder: Territories/Classic Map
 --- !u!1 &1093765402
 GameObject:
   m_ObjectHideFlags: 0
@@ -13901,6 +14294,7 @@ GameObject:
   - component: {fileID: 1093765406}
   - component: {fileID: 1093765405}
   - component: {fileID: 1093765404}
+  - component: {fileID: 1093765407}
   m_Layer: 0
   m_Name: Kamchatka
   m_TagString: Untagged
@@ -14616,6 +15010,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1093765407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093765402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Kamchatka.png
+  folder: Territories/Classic Map
 --- !u!1 &1096936536
 GameObject:
   m_ObjectHideFlags: 0
@@ -14703,6 +15111,7 @@ GameObject:
   - component: {fileID: 1110549168}
   - component: {fileID: 1110549167}
   - component: {fileID: 1110549166}
+  - component: {fileID: 1110549169}
   m_Layer: 0
   m_Name: Egypt
   m_TagString: Untagged
@@ -15016,6 +15425,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1110549169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110549164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Egypt.png
+  folder: Territories/Classic Map
 --- !u!1 &1112965824
 GameObject:
   m_ObjectHideFlags: 0
@@ -15028,6 +15451,7 @@ GameObject:
   - component: {fileID: 1112965828}
   - component: {fileID: 1112965827}
   - component: {fileID: 1112965826}
+  - component: {fileID: 1112965829}
   m_Layer: 0
   m_Name: Central America
   m_TagString: Untagged
@@ -15457,6 +15881,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1112965829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112965824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Central America.png
+  folder: Territories/Classic Map
 --- !u!1 &1147681063
 GameObject:
   m_ObjectHideFlags: 0
@@ -15469,6 +15907,7 @@ GameObject:
   - component: {fileID: 1147681067}
   - component: {fileID: 1147681066}
   - component: {fileID: 1147681065}
+  - component: {fileID: 1147681068}
   m_Layer: 0
   m_Name: India
   m_TagString: Untagged
@@ -15889,6 +16328,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1147681068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147681063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: India.png
+  folder: Territories/Classic Map
 --- !u!1 &1149244254
 GameObject:
   m_ObjectHideFlags: 0
@@ -16157,6 +16610,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160346246}
   m_CullTransparentMesh: 1
+--- !u!1 &1170167016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4075082080994456671, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
+  m_PrefabInstance: {fileID: 735788867}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1170167020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170167016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Cards.png
+  folder: UI
 --- !u!1 &1174615477
 GameObject:
   m_ObjectHideFlags: 0
@@ -16244,6 +16716,7 @@ GameObject:
   - component: {fileID: 1192561260}
   - component: {fileID: 1192561259}
   - component: {fileID: 1192561258}
+  - component: {fileID: 1192561261}
   m_Layer: 0
   m_Name: Great Britain
   m_TagString: Untagged
@@ -16644,6 +17117,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1192561261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192561256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Great Britain.png
+  folder: Territories/Classic Map
 --- !u!1 &1195469252
 GameObject:
   m_ObjectHideFlags: 0
@@ -16731,6 +17218,7 @@ GameObject:
   - component: {fileID: 1219060911}
   - component: {fileID: 1219060910}
   - component: {fileID: 1219060909}
+  - component: {fileID: 1219060912}
   m_Layer: 0
   m_Name: Siam
   m_TagString: Untagged
@@ -17114,6 +17602,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1219060912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219060907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Siam.png
+  folder: Territories/Classic Map
 --- !u!1 &1226518970
 GameObject:
   m_ObjectHideFlags: 0
@@ -17462,6 +17964,7 @@ GameObject:
   - component: {fileID: 1264778244}
   - component: {fileID: 1264778246}
   - component: {fileID: 1264778245}
+  - component: {fileID: 1264778247}
   m_Layer: 5
   m_Name: Troop
   m_TagString: Untagged
@@ -17526,6 +18029,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264778243}
   m_CullTransparentMesh: 1
+--- !u!114 &1264778247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264778243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Troop.png
+  folder: CardSprites
+--- !u!1 &1290174545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4075082080994456671, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
+  m_PrefabInstance: {fileID: 46415876}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1290174549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290174545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Cards.png
+  folder: UI
 --- !u!1 &1304269238
 GameObject:
   m_ObjectHideFlags: 0
@@ -17538,6 +18074,7 @@ GameObject:
   - component: {fileID: 1304269242}
   - component: {fileID: 1304269241}
   - component: {fileID: 1304269240}
+  - component: {fileID: 1304269243}
   m_Layer: 0
   m_Name: Ukraine
   m_TagString: Untagged
@@ -18263,6 +18800,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1304269243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304269238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Ukraine.png
+  folder: Territories/Classic Map
 --- !u!1 &1313182723
 GameObject:
   m_ObjectHideFlags: 0
@@ -18275,6 +18826,7 @@ GameObject:
   - component: {fileID: 1313182727}
   - component: {fileID: 1313182726}
   - component: {fileID: 1313182725}
+  - component: {fileID: 1313182728}
   m_Layer: 0
   m_Name: North Europe
   m_TagString: Untagged
@@ -18631,6 +19183,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1313182728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313182723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: North Europe.png
+  folder: Territories/Classic Map
 --- !u!1 &1316075870
 GameObject:
   m_ObjectHideFlags: 0
@@ -19002,6 +19568,7 @@ GameObject:
   - component: {fileID: 1377605363}
   - component: {fileID: 1377605362}
   - component: {fileID: 1377605361}
+  - component: {fileID: 1377605364}
   m_Layer: 0
   m_Name: South Europe
   m_TagString: Untagged
@@ -19380,6 +19947,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1377605364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377605359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: South Europe.png
+  folder: Territories/Classic Map
 --- !u!1 &1378927310
 GameObject:
   m_ObjectHideFlags: 0
@@ -19392,6 +19973,7 @@ GameObject:
   - component: {fileID: 1378927314}
   - component: {fileID: 1378927313}
   - component: {fileID: 1378927312}
+  - component: {fileID: 1378927315}
   m_Layer: 0
   m_Name: Argentina
   m_TagString: Untagged
@@ -19859,6 +20441,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1378927315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1378927310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Argentina.png
+  folder: Territories/Classic Map
 --- !u!1 &1389164111
 GameObject:
   m_ObjectHideFlags: 0
@@ -19871,6 +20467,7 @@ GameObject:
   - component: {fileID: 1389164115}
   - component: {fileID: 1389164114}
   - component: {fileID: 1389164113}
+  - component: {fileID: 1389164116}
   m_Layer: 0
   m_Name: Middle East
   m_TagString: Untagged
@@ -20486,6 +21083,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1389164116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389164111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Middle East.png
+  folder: Territories/Classic Map
 --- !u!1 &1433177450
 GameObject:
   m_ObjectHideFlags: 0
@@ -20573,6 +21184,7 @@ GameObject:
   - component: {fileID: 1433758183}
   - component: {fileID: 1433758182}
   - component: {fileID: 1433758181}
+  - component: {fileID: 1433758184}
   m_Layer: 0
   m_Name: New Guinea
   m_TagString: Untagged
@@ -20868,6 +21480,39 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1433758184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433758179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: New Guinea.png
+  folder: Territories/Classic Map
+--- !u!1 &1461811037 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4075082080994456671, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
+  m_PrefabInstance: {fileID: 1888962674}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1461811041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461811037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Cards.png
+  folder: UI
 --- !u!1001 &1462097300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20963,7 +21608,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4075082080994456671, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 743476495}
   m_SourcePrefab: {fileID: 100100000, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
 --- !u!224 &1462097301 stripped
 RectTransform:
@@ -21217,7 +21865,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerList:
   - {fileID: 338721590}
-  infoHandler: {fileID: 312080568}
 --- !u!4 &1514708328
 Transform:
   m_ObjectHideFlags: 0
@@ -21243,6 +21890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1557499854}
   - component: {fileID: 1557499853}
+  - component: {fileID: 1557499855}
   m_Layer: 0
   m_Name: MapBacking
   m_TagString: Untagged
@@ -21317,6 +21965,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1514096986}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1557499855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557499852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: MapBacking.png
+  folder: UI
 --- !u!1 &1572689353
 GameObject:
   m_ObjectHideFlags: 0
@@ -21463,6 +22125,7 @@ GameObject:
   - component: {fileID: 1591794145}
   - component: {fileID: 1591794144}
   - component: {fileID: 1591794143}
+  - component: {fileID: 1591794146}
   m_Layer: 0
   m_Name: Alaska
   m_TagString: Untagged
@@ -21862,6 +22525,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1591794146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591794141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Alaska.png
+  folder: Territories/Classic Map
 --- !u!1 &1609999460
 GameObject:
   m_ObjectHideFlags: 0
@@ -22024,6 +22701,7 @@ GameObject:
   - component: {fileID: 1640216049}
   - component: {fileID: 1640216048}
   - component: {fileID: 1640216047}
+  - component: {fileID: 1640216050}
   m_Layer: 0
   m_Name: Congo
   m_TagString: Untagged
@@ -22429,6 +23107,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1640216050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640216045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Congo.png
+  folder: Territories/Classic Map
 --- !u!1 &1643417657
 GameObject:
   m_ObjectHideFlags: 0
@@ -22441,6 +23133,7 @@ GameObject:
   - component: {fileID: 1643417661}
   - component: {fileID: 1643417660}
   - component: {fileID: 1643417659}
+  - component: {fileID: 1643417662}
   m_Layer: 0
   m_Name: Ural
   m_TagString: Untagged
@@ -22925,6 +23618,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1643417662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643417657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Ural.png
+  folder: Territories/Classic Map
 --- !u!1 &1653528616
 GameObject:
   m_ObjectHideFlags: 0
@@ -23253,6 +23960,7 @@ GameObject:
   - component: {fileID: 1733551329}
   - component: {fileID: 1733551328}
   - component: {fileID: 1733551327}
+  - component: {fileID: 1733551330}
   m_Layer: 0
   m_Name: Ontario
   m_TagString: Untagged
@@ -23516,6 +24224,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1733551330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733551325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Ontario.png
+  folder: Territories/Classic Map
 --- !u!1 &1733732287
 GameObject:
   m_ObjectHideFlags: 0
@@ -23528,6 +24250,7 @@ GameObject:
   - component: {fileID: 1733732291}
   - component: {fileID: 1733732290}
   - component: {fileID: 1733732289}
+  - component: {fileID: 1733732292}
   m_Layer: 0
   m_Name: South Africa
   m_TagString: Untagged
@@ -23970,6 +24693,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1733732292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733732287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: South Africa.png
+  folder: Territories/Classic Map
 --- !u!1001 &1755907356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24065,7 +24802,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4075082080994456671, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 498004800}
   m_SourcePrefab: {fileID: 100100000, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
 --- !u!224 &1755907357 stripped
 RectTransform:
@@ -24160,6 +24900,7 @@ GameObject:
   - component: {fileID: 1818129322}
   - component: {fileID: 1818129321}
   - component: {fileID: 1818129320}
+  - component: {fileID: 1818129323}
   m_Layer: 0
   m_Name: Siberia
   m_TagString: Untagged
@@ -24833,6 +25574,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1818129323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818129318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Siberia.png
+  folder: Territories/Classic Map
 --- !u!1 &1825056021
 GameObject:
   m_ObjectHideFlags: 0
@@ -25218,7 +25973,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4075082080994456671, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1461811041}
   m_SourcePrefab: {fileID: 100100000, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
 --- !u!224 &1888962675 stripped
 RectTransform:
@@ -25237,6 +25995,7 @@ GameObject:
   - component: {fileID: 1897040169}
   - component: {fileID: 1897040168}
   - component: {fileID: 1897040167}
+  - component: {fileID: 1897040170}
   m_Layer: 0
   m_Name: Northwest Territories
   m_TagString: Untagged
@@ -25652,6 +26411,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1897040170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897040165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: NW Territory.png
+  folder: Territories/Classic Map
 --- !u!1 &1914519567
 GameObject:
   m_ObjectHideFlags: 0
@@ -25662,6 +26435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1914519568}
   - component: {fileID: 1914519569}
+  - component: {fileID: 1914519570}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -25736,6 +26510,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1914519570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914519567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Background.png
+  folder: Territories/Classic Map
 --- !u!1 &1935467933
 GameObject:
   m_ObjectHideFlags: 0
@@ -25748,6 +26536,7 @@ GameObject:
   - component: {fileID: 1935467937}
   - component: {fileID: 1935467936}
   - component: {fileID: 1935467935}
+  - component: {fileID: 1935467938}
   m_Layer: 0
   m_Name: Afghanistan
   m_TagString: Untagged
@@ -26154,6 +26943,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1935467938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935467933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Afghanistan.png
+  folder: Territories/Classic Map
 --- !u!1 &1969956836
 GameObject:
   m_ObjectHideFlags: 0
@@ -26498,6 +27301,7 @@ GameObject:
   - component: {fileID: 2018647792}
   - component: {fileID: 2018647791}
   - component: {fileID: 2018647790}
+  - component: {fileID: 2018647793}
   m_Layer: 0
   m_Name: Western United States
   m_TagString: Untagged
@@ -26755,6 +27559,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2018647793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018647788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Western United States.png
+  folder: Territories/Classic Map
 --- !u!1 &2030393309
 GameObject:
   m_ObjectHideFlags: 0
@@ -27612,7 +28430,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4075082080994456671, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 933274299}
   m_SourcePrefab: {fileID: 100100000, guid: 9bb2f8d5d1f64ed4abd2d8fa9cce853b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
