@@ -363,7 +363,7 @@ public class NetworkConnection : NetworkBehaviour
         UpdateAllClientsTroopCountOnTerritory(index, newTroopCount);
     }
 
-    public static void UpdateAllClientsTroopCountOnTerritory(int index, int newTroopCount)
+    private static void UpdateAllClientsTroopCountOnTerritory(int index, int newTroopCount)
     {
         instance.RpcUpdateTroopCountOnClient(index, newTroopCount);
     }
@@ -398,7 +398,7 @@ public class NetworkConnection : NetworkBehaviour
         UpdateAllClientsOwnerOnTerritory(index, newOwner);
     }
 
-    public static void UpdateAllClientsOwnerOnTerritory(int index, int newOwner)
+    private static void UpdateAllClientsOwnerOnTerritory(int index, int newOwner)
     {
         instance.RpcUpdateOwnerOnClient(index, newOwner);
     }
@@ -431,7 +431,7 @@ public class NetworkConnection : NetworkBehaviour
         UpdateCapitalAllClients(index, newOwner);
     }
 
-    public static void UpdateCapitalAllClients(int terrIndex, int newOwner)
+    private static void UpdateCapitalAllClients(int terrIndex, int newOwner)
     {
         instance.RpcUpdateCapitalOnClient(terrIndex, newOwner);
     }
@@ -475,7 +475,7 @@ public class NetworkConnection : NetworkBehaviour
         UpdateCardTakenAcrossAllClients(deckIndex, newValue);
     }
 
-    public static void UpdateCardTakenAcrossAllClients(int deckIndex, int newValue)
+    private static void UpdateCardTakenAcrossAllClients(int deckIndex, int newValue)
     {
         instance.RpcUpdateCardTakenOnClients(deckIndex, newValue);
     }
@@ -508,7 +508,7 @@ public class NetworkConnection : NetworkBehaviour
         UpdateTurnNumberAcrossAllClients(newTurnNumber);
     }
 
-    public static void UpdateTurnNumberAcrossAllClients(int newTurnNumber)
+    private static void UpdateTurnNumberAcrossAllClients(int newTurnNumber)
     {
         instance.RpcUpdateTurnNumberOnClients(newTurnNumber);
     }
@@ -518,6 +518,39 @@ public class NetworkConnection : NetworkBehaviour
     {
         //Set on client
         MatchManager.SetTurnNumber(newTurnNumber, false);
+    }
+
+    //Sets turned in
+    public static void UpdateSetsTurnedInAcrossLobby(int newNumber)
+    {
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+            UpdateSetsTurnedInAcrossAllClients(newNumber);
+        }
+        else
+        {
+            instance.CmdUpdateSetsTurnedIn(newNumber);
+        }
+    }
+
+    [Command]
+    public void CmdUpdateSetsTurnedIn(int newNumber)
+    {
+        //Set on server
+        Hand.SetSetsTurnedIn(newNumber, false);
+        UpdateSetsTurnedInAcrossAllClients(newNumber);
+    }
+
+    private static void UpdateSetsTurnedInAcrossAllClients(int newNumber)
+    {
+        instance.RpcUpdateSetsTurnedInOnClients(newNumber);
+    }
+
+    [ClientRpc]
+    public void RpcUpdateSetsTurnedInOnClients(int newNumber)
+    {
+        //Set on client
+        Hand.SetSetsTurnedIn(newNumber, false);
     }
 
     //////  UI
@@ -542,7 +575,7 @@ public class NetworkConnection : NetworkBehaviour
         UpdateTurnInfoTextAcrossAllClients(newText);
     }
 
-    public static void UpdateTurnInfoTextAcrossAllClients(string newText)
+    private static void UpdateTurnInfoTextAcrossAllClients(string newText)
     {
         instance.RpcUpdateTurnInfoTextOnClients(newText);
     }
@@ -585,7 +618,7 @@ public class NetworkConnection : NetworkBehaviour
         AddLineToRollOutputAllClients(newText);
     }
 
-    public static void AddLineToRollOutputAllClients(string newText)
+    private static void AddLineToRollOutputAllClients(string newText)
     {
         instance.RpcAddLineToRollOutputOnClients(newText);
     }
@@ -617,7 +650,7 @@ public class NetworkConnection : NetworkBehaviour
         RefreshRollOutputAllClients();
     }
 
-    public static void RefreshRollOutputAllClients()
+    private static void RefreshRollOutputAllClients()
     {
         instance.RpcRefreshRollOutputOnClients();
     }

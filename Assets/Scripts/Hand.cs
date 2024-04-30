@@ -7,6 +7,16 @@ public class Hand
 {
     static int setsTurnedIn;
 
+    public static void SetSetsTurnedIn(int newValue, bool makeRequest = true)
+    {
+        setsTurnedIn = newValue;
+
+        if (makeRequest && NetworkManagement.GetClientState() != NetworkManagement.ClientState.Offline)
+        {
+            NetworkConnection.UpdateSetsTurnedInAcrossLobby(newValue);
+        }
+    }
+
     public Hand()
     {
         list = new List<Card>();
@@ -41,8 +51,9 @@ public class Hand
 
     public static void IncrementTurnInCount()
     {
-        setsTurnedIn++;
+        SetSetsTurnedIn(setsTurnedIn + 1);
     }
+
     List<Card> list;
     public static int NumberOfTroopsForSet(int player, List<Card> set)
     {
@@ -120,7 +131,7 @@ public class Hand
 
     public static void ResetSetNumberWorth()
     {
-        setsTurnedIn = 0;
+        SetSetsTurnedIn(0);
     }
 
     public static int CalculateSetWorth()
