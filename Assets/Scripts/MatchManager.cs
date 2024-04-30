@@ -275,6 +275,7 @@ public class MatchManager : MonoBehaviour
         if(instance.currentPlayerTerritories.Count == 0)
         {
             PlayerInfoHandler.UpdateInfo();
+            instance.playerList[instance.currentTurnIndex].OnKilled();
             instance.playerList.Remove(instance.playerList[instance.currentTurnIndex]);
             instance.currentTurnIndex--;
             EndTurn(0, false, true);
@@ -388,43 +389,56 @@ public class MatchManager : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         //Testing code
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            gameOver = true;
-            WinCheck(playerList[0]);
+            FakeWinCheck();
         }
+#endif
     }
+
+    public static void FakeWinCheck()
+    {
+        gameOver = true;
+        WinCheck(PlayerInputHandler.GetLocalPlayerIndex());
+    }
+
     /// <summary>
     /// Checks to see if the passed player has won the game, if they have, the game is ended and we transition to the win screen
     /// </summary>
     /// <param name="current">The player we are checking to see if they have won</param>
-    public static void WinCheck(Player current)
+    public static void WinCheck(int current)
     {
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Client)
+        {
+            //Make request to server for win check
+            NetworkConnection.ServerWinCheck(current);
+            return;
+        }
+
         //We get the current player as an argument in case of a break in some other part of the code
         //that would cause a player to attack not on their turn (or more likely the code doesn't think it is their turn) 
 
-        if (current != null)
+        if (current != -1)
         {
             if (PlayOptionsManagement.IsConquestMode())
             {
                 //Check if the current player has all the capitals in their possesion 
-                if (Map.DoesPlayerHoldAllCapitals(current.GetIndex()))
+                if (Map.DoesPlayerHoldAllCapitals(current))
                 {
+                    //This Player has won!
                     gameOver = true;
                 }
             }
             else
             {
                 //Check if only one player is left, this is pretty easy
-                //We can't check if only one player is left in the list
-                //as they are removed during THEIR deploy phase
-                //So we need to simply check if the amount of territories the current player holds is
-                //equal to all the territories
+                //Simply get all alive players and check if the current player is the only one alive
 
-                if (current.GetTerritories().Count == Map.GetTerritories().Count)
+                List<int> alivePlayers = Map.GetAlivePlayers();
+                if (alivePlayers.Count == 1 && alivePlayers[0] == current)
                 {
-                    Debug.Log("won");
                     //This Player has won!
                     gameOver = true;
                 }
@@ -434,12 +448,12 @@ public class MatchManager : MonoBehaviour
         if (gameOver)
         {
             //Create game won info, to be used by game won screen
-            gameWonInfo = new GameWonInfo(!instance.playerList[0].IsDead());
-            if (current != null)
+            gameWonInfo = new GameWonInfo(current == PlayerInputHandler.GetLocalPlayerIndex());
+            if (current != -1)
             {
-                gameWonInfo.winnerName = current.GetColorName();
+                gameWonInfo.winnerName = GetPlayerFromIndex(current).GetColorName();
 
-                string winnerColour = "#" + current.GetColor().ToHexString();
+                string winnerColour = "#" + GetPlayerFromIndex(current).GetColor().ToHexString();
                 
                 gameWonInfo.winnerColor = winnerColour;
             }
@@ -449,11 +463,31 @@ public class MatchManager : MonoBehaviour
                 gameWonInfo.winnerColor = "white";
             }
 
-            //Load win screen menu
-            TransitionControl.onTransitionOver.AddListener(OnOutTransitionOver);
-            TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn);
+            if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Offline)
+            {
+                StartExitTransition();
+            }
+            else
+            {
+                NetworkConnection.StartGameExitAcrossLobby(gameWonInfo.winnerName, gameWonInfo.winnerColor, current);
+            }
         }
     }
+
+    public static void CreateGameWonInfo(string colourName, string colourHex, int playerWonIndex)
+    {
+        gameWonInfo = new GameWonInfo(playerWonIndex == PlayerInputHandler.GetLocalPlayerIndex());
+        gameWonInfo.winnerName = colourName;
+        gameWonInfo.winnerColor = colourHex;
+    }
+
+    public static void StartExitTransition()
+    {
+        //Load win screen menu
+        TransitionControl.onTransitionOver.AddListener(OnOutTransitionOver);
+        TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn);
+    }
+
     /// <summary>
     /// Stops the transition effect and switches to the menu scene
     /// </summary>
@@ -461,7 +495,13 @@ public class MatchManager : MonoBehaviour
     {
         TransitionControl.onTransitionOver.RemoveListener(OnOutTransitionOver);
         MenuManagement.SetDefaultMenu(MenuManagement.Menu.WinScreen);
-        SceneManager.LoadScene(1);
+
+        if (NetworkManagement.GetClientState() != NetworkManagement.ClientState.Offline)
+        {
+            NetworkManagement.UpdateClientNetworkState(NetworkManagement.ClientState.Offline);
+        }
+
+        SceneManager.LoadScene(0);
     }
     /// <summary>
     /// Updates the turn info text to match the current player and turn phase

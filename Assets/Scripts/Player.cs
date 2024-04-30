@@ -318,7 +318,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                MatchManager.WinCheck(this);
+                MatchManager.WinCheck(GetIndex());
             }
     }
     /// <summary>
@@ -605,7 +605,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public virtual void Fortify()
     {
-        MatchManager.WinCheck(this);
+        MatchManager.WinCheck(GetIndex());
         if (!MatchManager.OnePlayerAlive(this))
         {
             StartCoroutine(nameof(FortifyWait));
@@ -703,12 +703,13 @@ public class Player : MonoBehaviour
     /// Takes a players hand
     /// </summary>
     /// <param name="killed">The player whos hand you are taking</param>
-    public void Killed(Player killed)
+    public void Killed(int numberOfCardsTaken)
     {
-        Hand killedHand = killed.GetHand();
-        for (int i = 0; i < killedHand.Count(); i++)
+        //This is not really in line with rules
+        //means we just get the same amount of cards they had (essentially drawing as many cards as they had)
+        for (int i = 0; i < numberOfCardsTaken; i++)
         {
-            hand.AddCard(killedHand.GetCard(i));
+            hand.AddCard(Deck.Draw(GetIndex()));
         }
 
         KilledAPlayerThisTurn = true;
@@ -727,5 +728,11 @@ public class Player : MonoBehaviour
     public bool GetTurnReset()
     {
         return turnReset;
+    }
+
+    public virtual void OnKilled()
+    {
+        //Return all cards in hand
+        hand.RemoveAll();
     }
 }

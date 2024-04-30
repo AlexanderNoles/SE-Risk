@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class Hand
@@ -36,6 +37,16 @@ public class Hand
         list.Remove(card);
 
         Deck.ReturnToDeck(card, playerIndex);
+    }
+
+    public void RemoveAll()
+    {
+        foreach (Card card in list)
+        {
+            Deck.ReturnToDeck(card, playerIndex);
+        }
+
+        list.Clear();
     }
 
     public Card GetCard(int index)

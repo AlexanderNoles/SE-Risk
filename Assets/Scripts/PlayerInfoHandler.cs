@@ -18,6 +18,13 @@ public class PlayerInfoHandler : MonoBehaviour
 
     static List<int> originalPlayers = new List<int>();
     static Dictionary<int, int> indexToHandCounts = new Dictionary<int, int>();
+
+    public static int CardCountForIndex(int index)
+    {
+        return indexToHandCounts[index];
+    }
+
+
     static int previousPlayerTurnIndex;
     static int currentPlayerTurnIndex = -1;
     static float effectT;

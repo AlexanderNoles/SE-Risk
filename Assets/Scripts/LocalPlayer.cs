@@ -72,7 +72,7 @@ public class LocalPlayer : Player
     {
         if (attackResult == Map.AttackResult.Won)
         {
-            MatchManager.WinCheck(this);
+            MatchManager.WinCheck(GetIndex());
             defender.SetCurrentTroops(attacker.GetCurrentTroops() - 1 >= attackerDiceCount ? attackerDiceCount : attacker.GetCurrentTroops() - 1);
             attacker.SetCurrentTroops(attacker.GetCurrentTroops() - defender.GetCurrentTroops());
             AudioManagement.PlaySound("Territory Capture");
@@ -134,5 +134,4 @@ public class LocalPlayer : Player
     {
         cardDisplayer.SetHand(hand);
     }
-
 }

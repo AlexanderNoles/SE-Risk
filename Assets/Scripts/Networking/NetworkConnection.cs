@@ -123,7 +123,7 @@ public class NetworkConnection : NetworkBehaviour
             throw new System.Exception("Shouldn't be running this. Likely a client.");
         }
 
-        instance.RpcStartGame(0);
+        instance.RpcStartGame(1);
     }
 
 
@@ -318,6 +318,55 @@ public class NetworkConnection : NetworkBehaviour
         clientLocalPlayer.OnTurnEnd();
     }
 
+
+    [TargetRpc]
+    public void RpcOnKilled(NetworkConnectionToClient target)
+    {
+        StartCoroutine(nameof(WaitBeforeKilled));
+    }
+
+    private IEnumerator WaitBeforeKilled()
+    {
+        //We do this because the host will load and run start before the client loads their scene
+        //We should just be waiting for one frame but we wait for the amount needed just in case of ping and whatnot (we are on lan but still)
+        while (ShouldWait())
+        {
+            yield return Wait();
+        }
+
+        clientLocalPlayer.OnKilled();
+    }
+
+    //Win check
+    public static void ServerWinCheck(int current)
+    {
+        instance.CmdWinCheck(current);
+    }
+
+    [Command]
+    public void CmdWinCheck(int current)
+    {
+        MatchManager.WinCheck(current);
+    }
+
+    public static void StartGameExitAcrossLobby(string colourName, string colourHex, int playerWonIndex)
+    {
+        instance.StartGameExitOnClient(colourName, colourHex, playerWonIndex);
+    }
+
+    [ClientRpc]
+    public void StartGameExitOnClient(string colourName, string colourHex, int playerWonIndex)
+    {
+        if (NetworkManagement.GetClientState() != NetworkManagement.ClientState.Host)
+        {
+            //Construct game won info
+            MatchManager.CreateGameWonInfo(colourName, colourHex, playerWonIndex);
+        }
+
+        MatchManager.StartExitTransition();
+    }
+
+    //Setup
     public static void SwitchPlayerSetup()
     {
         instance.SwitchPlayerSetupOnServer();

@@ -101,7 +101,7 @@ public class MenuManagement : MonoBehaviour
             NetworkManagement.MakePlayerObjectsNonDestroy();
         }
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
 
         TransitionControl.RunTransition(TransitionControl.Transitions.SwipeOut);
     }

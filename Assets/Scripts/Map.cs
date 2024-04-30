@@ -242,27 +242,15 @@ public class Map : MonoBehaviour
 
         if (defender.GetCurrentTroops() <= 0)
         {
-            //FIX!
-            //We don't have the old owner on the client side
-            //So we need to send a request to the server
-            //if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Client)
-            //{
-
-            //}
-            //else
-            //{
-            //    Player oldOwner = MatchManager.GetPlayerFromIndex(defender.GetOwner());
-            //    oldOwner.RemoveTerritory(defender);
-            //}
-
             defender.SetOwner(attacker.GetOwner());
             attackerPlayer.AddTerritory(defender);
             UIManagement.AddLineToRollOutput("Territory Taken!");
-            //REMOVED TEMP BECAUSE DECK ISN'T NETWORKING YET
-            //if (oldOwner.IsDead())
-            //{
-            //    attackerPlayer.Killed(oldOwner);
-            //}
+
+            List<int> alivePlayers = GetAlivePlayers();
+            if (!alivePlayers.Contains(defender.GetOwner()))
+            {
+                attackerPlayer.Killed(PlayerInfoHandler.CardCountForIndex(defender.GetOwner()));
+            }
         }
         else
         {
