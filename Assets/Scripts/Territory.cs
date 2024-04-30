@@ -99,6 +99,10 @@ public class Territory : MonoBehaviour
         {
             NetworkConnection.UpdateTerritoryOwnerAcrossLobby(indexInMap, newOwner);
         }
+        else if (!makeServerRequest)
+        {
+            
+        }
     }
     public void ResetOwner(bool resetColour)
     {

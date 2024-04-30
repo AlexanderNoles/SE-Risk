@@ -671,4 +671,50 @@ public class NetworkConnection : NetworkBehaviour
 
         UIManagement.RefreshRollOutput(false);
     }
+
+    //Player info handler
+    public static void SetupPlayerInfoHandlerOnClients(List<int> players)
+    {
+        instance.RpcSetupPlayerInfoHandler(players);
+    }
+
+    [ClientRpc]
+    public void RpcSetupPlayerInfoHandler(List<int> players)
+    {
+        StartCoroutine(nameof(WaitTillCanSetupPlayerInfoHandler), players);
+    }
+
+    private IEnumerator WaitTillCanSetupPlayerInfoHandler(List<int> players)
+    {
+        while (!PlayerInfoHandler.Initialized())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        PlayerInfoHandler.SetPlayers(players, false);
+    }
+
+    public static void UpdatePlayerInfoHandlerAcrossLobby()
+    {
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+            UpdatePlayerInfoHandlerOnAllClients();
+        }
+        else
+        {
+            instance.CmdRefreshRollOutput();
+        }
+    }
+
+    [Command]
+    public void CmdUpdatePlayerInfoHandler()
+    {
+        //Don't bother updating locally on server here
+        UpdatePlayerInfoHandlerOnAllClients();
+    }
+
+    private static void UpdatePlayerInfoHandlerOnAllClients()
+    {
+        //First create the current number of cards in each person's hand
+    }
 }

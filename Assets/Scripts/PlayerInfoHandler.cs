@@ -9,23 +9,48 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayerInfoHandler : MonoBehaviour
 {
-    static List<Player> players = new List<Player>();
+    static PlayerInfoHandler instance;
+
+    public static bool Initialized()
+    {
+        return instance != null;
+    }
+
+    static List<int> originalPlayers = new List<int>();
+    static Dictionary<int, int> indexToHandCounts = new Dictionary<int, int>();
 
     private void Awake()
     {
         GetUIElements();
+        instance = this;
     }
     /// <summary>
     /// Sets the list of players to display through the UI
     /// </summary>
-    /// <param name="newPlayers">The list of players to display</param>
-    public void SetPlayers(List<Player> newPlayers)
+    /// <param name="players">The list of players to display</param>
+    public static void SetPlayers(List<int> players, bool makeRequest = true)
     {
-        players = newPlayers;
-        UpdateColours();
-        ResetInfos();
+        if (makeRequest && NetworkManagement.GetClientState() != NetworkManagement.ClientState.Offline)
+        {
+            //Tell the clients to set up their players
+            NetworkConnection.SetupPlayerInfoHandlerOnClients(players);
+        }
+        else
+        {
+            //Actually Apply
+            originalPlayers = players;
+            instance.UpdateColours();
+            instance.ResetInfos();
 
-        UpdateInfo();
+            indexToHandCounts = new Dictionary<int, int>();
+
+            foreach (int player in originalPlayers)
+            {
+                indexToHandCounts[player] = 0;
+            }
+
+            UpdateInfo(false);
+        }
     }
 
     private void GetUIElements()
@@ -57,10 +82,10 @@ public class PlayerInfoHandler : MonoBehaviour
     {
         for (int i = 0; i<6; i++)
         {
-            if (i < players.Count)
+            if (i < originalPlayers.Count)
             {
-                infoFronts[i].color = players[i].GetColor();
-                textBackers[i].color = players[i].GetColor();
+                infoFronts[i].color = Player.GetColourBasedOnIndex(originalPlayers[i]);
+                textBackers[i].color = Player.GetColourBasedOnIndex(originalPlayers[i]);
             }
             else
             {
@@ -77,29 +102,39 @@ public class PlayerInfoHandler : MonoBehaviour
         }
     }
 
-    public static void UpdateInfo()
+    public static void UpdateHandCounts(Dictionary<int, int> playerIndexToHandCounts)
     {
-        //TEMP CAUSE THIS WAS BREAKING
-        //SHOULD JUST NEED TO UPDATE TERRITORIES LOCALLY ON NETWORK PLAYER
-        return;
+        indexToHandCounts = playerIndexToHandCounts;
+    }
 
-
-        int j = 0;
-        for (int i = 0; i < players.Count; i++)
+    public static void UpdateInfo(bool makeRequest = true)
+    {
+        if (makeRequest && NetworkManagement.GetClientState() != NetworkManagement.ClientState.Offline)
         {
-            if (players[i].IsDead())
-            {
-                crosses[j].SetActive(true);
-            }
-            else if(!crosses[j].activeSelf)
-            {
-                infoTexts[j].text = players[i].GetHand().Count().ToString();
-            }
-            else
-            {
-                i--;
-            }
-            j++;
+            //Don't want clients to do this twice
+            //Send request to server to update on all clients
         }
+        else
+        {
+            List<int> alivePlayers = Map.GetAlivePlayers();
+
+            int j = 0;
+            for (int i = 0; i < originalPlayers.Count; i++)
+            {
+                if (alivePlayers.Contains(i))
+                {
+                    crosses[j].SetActive(true);
+                }
+                else if (!crosses[j].activeSelf)
+                {
+                    infoTexts[j].text = indexToHandCounts[i].ToString();
+                }
+                else
+                {
+                    i--;
+                }
+                j++;
+            }
+        } 
     }
 }

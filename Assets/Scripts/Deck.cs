@@ -105,6 +105,10 @@ public class Deck
         {
             NetworkConnection.UpdateCardTakenAcrossLobby(index, newValue);
         }
+        else if (!makeRequest && NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+
+        }
     }
 
     /// <summary>

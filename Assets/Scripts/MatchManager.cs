@@ -97,8 +97,6 @@ public class MatchManager : MonoBehaviour
         return instance.troopDeployCount;
     }
 
-    public PlayerInfoHandler infoHandler;
-
     private static bool inSetup = false;
     public static bool InSetup()
     {
@@ -131,17 +129,17 @@ public class MatchManager : MonoBehaviour
         if (NetworkManagement.GetClientState() != NetworkManagement.ClientState.Client)
         {
             //Reset players
+            List<int> playerIndexes = new List<int>();
+
             foreach (Player player in playerList)
             {
                 player.ResetPlayer();
+                playerIndexes.Add(player.GetIndex());
             }
 
             inSetup = true;
 
-            if (infoHandler != null)
-            {
-                infoHandler.SetPlayers(playerList);
-            }
+            PlayerInfoHandler.SetPlayers(playerIndexes);
 
             //Reset match
             troopDeployCount = StartingTroopCounts[playerList.Count];
@@ -434,25 +432,25 @@ public class MatchManager : MonoBehaviour
 
         if (gameOver)
         {
-                //Create game won info, to be used by game won screen
-                gameWonInfo = new GameWonInfo(!instance.playerList[0].IsDead());
-                if (current != null)
-                {
-                    gameWonInfo.winnerName = current.GetColorName();
+            //Create game won info, to be used by game won screen
+            gameWonInfo = new GameWonInfo(!instance.playerList[0].IsDead());
+            if (current != null)
+            {
+                gameWonInfo.winnerName = current.GetColorName();
 
-                    string winnerColour = "#" + current.GetColor().ToHexString();
-                    
-                    gameWonInfo.winnerColor = winnerColour;
-                }
-                else
-                {
-                    gameWonInfo.winnerName = "None";
-                    gameWonInfo.winnerColor = "white";
-                }
+                string winnerColour = "#" + current.GetColor().ToHexString();
+                
+                gameWonInfo.winnerColor = winnerColour;
+            }
+            else
+            {
+                gameWonInfo.winnerName = "None";
+                gameWonInfo.winnerColor = "white";
+            }
 
-                //Load win screen menu
-                TransitionControl.onTransitionOver.AddListener(OnOutTransitionOver);
-                TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn);
+            //Load win screen menu
+            TransitionControl.onTransitionOver.AddListener(OnOutTransitionOver);
+            TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn);
         }
     }
     /// <summary>

@@ -713,7 +713,6 @@ public class Player : MonoBehaviour
 
         PlayerInfoHandler.UpdateInfo();
         KilledAPlayerThisTurn = true;
-
     }
 
     /// <summary>

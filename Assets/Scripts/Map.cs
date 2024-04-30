@@ -12,6 +12,36 @@ using MonitorBreak.Bebug;
 /// </summary>
 public class Map : MonoBehaviour
 {
+    public static int GetNumberOfTerritoriesForAPlayerIndex(int index)
+    {
+        int count = 0;
+        foreach (Territory territory in instance.territories)
+        {
+            if (territory.GetOwner() == index)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public static List<int> GetAlivePlayers()
+    {
+        List<int> indexList = new List<int>();
+
+        foreach (Territory territory in instance.territories)
+        {
+            if (!indexList.Contains(territory.GetOwner()))
+            {
+                indexList.Add(territory.GetOwner());
+            }
+        }
+
+        return indexList;
+    }
+
+
     [SerializeField]
     List<Territory> territories = new List<Territory>();
     /// <summary>
@@ -212,6 +242,7 @@ public class Map : MonoBehaviour
 
         if (defender.GetCurrentTroops() <= 0)
         {
+            //FIX!
             //We don't have the old owner on the client side
             //So we need to send a request to the server
             //if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Client)
