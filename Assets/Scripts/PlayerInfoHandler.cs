@@ -18,12 +18,64 @@ public class PlayerInfoHandler : MonoBehaviour
 
     static List<int> originalPlayers = new List<int>();
     static Dictionary<int, int> indexToHandCounts = new Dictionary<int, int>();
+    static int previousPlayerTurnIndex;
+    static int currentPlayerTurnIndex = -1;
+    static float effectT;
+
+    private const float atRestXPos = -25;
+    private const float activeXPos = -120;
+
+    public static void SetCurrentPlayerTurnIndex(int newIndex, bool makeRequest = true)
+    {
+        if (!makeRequest || NetworkManagement.GetClientState() == NetworkManagement.ClientState.Offline)
+        {
+            if (previousPlayerTurnIndex != -1)
+            {
+                actualInfos[previousPlayerTurnIndex].anchoredPosition = new Vector2(atRestXPos, actualInfos[previousPlayerTurnIndex].anchoredPosition.y);
+            }
+
+            previousPlayerTurnIndex = currentPlayerTurnIndex;
+            currentPlayerTurnIndex = newIndex;
+
+            if (previousPlayerTurnIndex != -1)
+            {
+                actualInfos[previousPlayerTurnIndex].anchoredPosition = new Vector2(activeXPos, actualInfos[previousPlayerTurnIndex].anchoredPosition.y);
+            }
+
+            actualInfos[currentPlayerTurnIndex].anchoredPosition = new Vector2(atRestXPos, actualInfos[currentPlayerTurnIndex].anchoredPosition.y);
+
+            effectT = 1.0f;
+        }
+        else
+        {
+            //Send request to update on all clients
+            //We do it this way so previousPlayerTurnIndex doesn't get screwed up
+            NetworkConnection.UpdateCurrentPlayerTurnIndexAcrossLobby(newIndex);
+        }
+    }
 
     private void Awake()
     {
         GetUIElements();
+        currentPlayerTurnIndex = -1;
         instance = this;
     }
+
+    private void Update()
+    {
+        if (effectT > 0.0f)
+        {
+            effectT -= Time.deltaTime * 5.0f;
+
+            if (previousPlayerTurnIndex != -1)
+            {
+                actualInfos[previousPlayerTurnIndex].anchoredPosition = new Vector2(Mathf.Lerp(atRestXPos, activeXPos, effectT), actualInfos[previousPlayerTurnIndex].anchoredPosition.y);
+            }
+
+            actualInfos[currentPlayerTurnIndex].anchoredPosition = new Vector2(Mathf.Lerp(activeXPos, atRestXPos, effectT), actualInfos[currentPlayerTurnIndex].anchoredPosition.y);
+        }
+    }
+
     /// <summary>
     /// Sets the list of players to display through the UI
     /// </summary>
@@ -55,6 +107,7 @@ public class PlayerInfoHandler : MonoBehaviour
 
     private void GetUIElements()
     {
+        actualInfos = new List<RectTransform>();
         infoFronts = new List<Image>();
         textBackers = new List<Image>();
         infoTexts = new List<TextMeshProUGUI>();
@@ -64,6 +117,11 @@ public class PlayerInfoHandler : MonoBehaviour
         for (int i = 0; i < 6; i++)
         {
             Transform info = transform.GetChild(i);
+            actualInfos.Add(info as RectTransform);
+
+            //Reset position
+            actualInfos[i].anchoredPosition = new Vector2(atRestXPos, actualInfos[i].anchoredPosition.y);
+
             backers.Add(info.gameObject);
             infoFronts.Add(info.GetChild(0).GetComponent<Image>());
             textBackers.Add(infoFronts[^1].transform.GetChild(1).GetComponent<Image>());
@@ -73,6 +131,7 @@ public class PlayerInfoHandler : MonoBehaviour
         }
     }
 
+    static List<RectTransform> actualInfos;
     static List<Image> infoFronts;
     static List<Image> textBackers;
     static List<TextMeshProUGUI> infoTexts;

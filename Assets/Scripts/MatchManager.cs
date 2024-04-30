@@ -66,10 +66,6 @@ public class MatchManager : MonoBehaviour
     }
 
     int currentTurnIndex = 0;
-    public static void SetCurrentTurnIndex(int index)
-    {
-        instance.currentTurnIndex = index;
-    }
 
     static int turnNumber;
 
@@ -152,6 +148,9 @@ public class MatchManager : MonoBehaviour
             {
                 NetworkConnection.InitDeckAcrossAllClients(seed);
             }
+
+            currentTurnIndex = 0;
+            PlayerInfoHandler.SetCurrentPlayerTurnIndex(playerList[currentTurnIndex].GetIndex());
 
             capitalsPlaced = 0;
             Setup(0, false);
@@ -331,7 +330,9 @@ public class MatchManager : MonoBehaviour
         else 
         { 
             currentTurnIndex++; 
-        } 
+        }
+
+        PlayerInfoHandler.SetCurrentPlayerTurnIndex(playerList[currentTurnIndex].GetIndex());
     }
     public List<Territory> GetCurrentPlayerTerritories() {  return currentPlayerTerritories; }
     /// <summary>

@@ -726,4 +726,44 @@ public class NetworkConnection : NetworkBehaviour
         PlayerInfoHandler.UpdateHandCounts(outputITDC);
         PlayerInfoHandler.UpdateInfo();
     }
+
+    public static void UpdateCurrentPlayerTurnIndexAcrossLobby(int newPlayerTurnIndex)
+    {
+        if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
+        {
+            UpdatePlayerTurnIndexOnAllClients(newPlayerTurnIndex);
+        }
+        else
+        {
+            instance.CmdUpdatePlayerTurnIndex(newPlayerTurnIndex);
+        }
+    }
+
+    [Command]
+    public void CmdUpdatePlayerTurnIndex(int newPlayerTurnIndex)
+    {
+        UpdatePlayerTurnIndexOnAllClients(newPlayerTurnIndex);
+    }
+
+    private static void UpdatePlayerTurnIndexOnAllClients(int newPlayerTurnIndex)
+    {
+        instance.RpcUpdateTurnIndexOnClient(newPlayerTurnIndex);
+    }
+
+    [ClientRpc]
+    public void RpcUpdateTurnIndexOnClient(int newPlayerTurnIndex)
+    {
+        StartCoroutine(nameof(WaitUntilCanUpdateTurnIndexOnClient),newPlayerTurnIndex);
+    }
+
+    private IEnumerator WaitUntilCanUpdateTurnIndexOnClient(int newPlayerTurnIndex)
+    {
+        while (!PlayerInfoHandler.Initialized())
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        //Update on clients
+        PlayerInfoHandler.SetCurrentPlayerTurnIndex(newPlayerTurnIndex, false);
+    }
 }

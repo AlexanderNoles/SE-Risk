@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().buildIndex == 0) //Main Scene
             {
-                return 0.01f;
+                return 0.1f;
             }
             else
             {
