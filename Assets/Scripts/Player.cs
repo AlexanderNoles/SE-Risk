@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     {
         get
         {
-            if (SceneManager.GetActiveScene().buildIndex == 0) //Main Scene
+            if (SceneManager.GetActiveScene().buildIndex == 1) //Main Scene
             {
                 return 0.1f;
             }
