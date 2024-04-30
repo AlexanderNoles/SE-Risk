@@ -287,7 +287,7 @@ public class Map : MonoBehaviour
     /// <returns>True if its a simulated game, else false</returns>
     public static bool IsSimulated()  
     {
-        return SceneManager.GetActiveScene().buildIndex == 1; //Menu Scene
+        return SceneManager.GetActiveScene().buildIndex == 0; //Menu Scene
     }
     public static List<Territory> GetTerritories() { return instance.territories; }
     public static List<Territory> TerritoriesOwnedByPlayerWorth(int player, out int troopCount)
