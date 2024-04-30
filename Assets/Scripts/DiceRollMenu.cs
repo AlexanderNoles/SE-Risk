@@ -106,7 +106,7 @@ public class DiceRollMenu : MonoBehaviour
                 currentSetupDone = true;
 
                 string descripterText = 
-                    "Number of dice to attck " + 
+                    "Number of dice to attack " + 
                     defendingTerritory.name
                     + " with:";
 

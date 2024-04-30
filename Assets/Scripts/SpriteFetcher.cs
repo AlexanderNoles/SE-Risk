@@ -28,7 +28,16 @@ public class SpriteFetcher : MonoBehaviour
             byte[] data = File.ReadAllBytes(fullPath);
             spriteTexture = new Texture2D(1, 1);
             spriteTexture.LoadImage(data);
-            Sprite sprite = Sprite.Create(spriteTexture,new Rect(0,0,spriteTexture.width,spriteTexture.height),new Vector2(spriteTexture.width/2,spriteTexture.height/2));
+            Vector2 pivot;
+            if (gameObject.layer == 5)
+            {
+                pivot = new Vector2(spriteTexture.width / 2, spriteTexture.height / 2);
+            }
+            else
+            {
+                pivot = new Vector2(0.5f, 0.5f);
+            }
+            Sprite sprite = Sprite.Create(spriteTexture, new Rect(0, 0, spriteTexture.width, spriteTexture.height),pivot);
             return sprite;
         }
         else
@@ -40,7 +49,6 @@ public class SpriteFetcher : MonoBehaviour
 
     public void SetGameObjectSpriteFromFile()
     {
-        Console.Log("running");
         Sprite sprite = GetSprite();
         SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
         Image ig = gameObject.GetComponent<Image>();
