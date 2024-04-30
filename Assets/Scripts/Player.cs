@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
     public virtual void ResetPlayer()
     {
         placingFirstTerritory = true;
-        hand = new Hand();
+        hand = new Hand(GetIndex());
         territoryTakenThisTurn = false;
         hasBeenReset = true;
         inTheMiddleOfAttack = false;
@@ -687,7 +687,7 @@ public class Player : MonoBehaviour
     {
         if (territoryTakenThisTurn && hand.Count() < 6)
         {
-            hand.AddCard(Deck.Draw());
+            hand.AddCard(Deck.Draw(GetIndex()));
         }
     }
     /// <summary>
@@ -711,7 +711,6 @@ public class Player : MonoBehaviour
             hand.AddCard(killedHand.GetCard(i));
         }
 
-        PlayerInfoHandler.UpdateInfo();
         KilledAPlayerThisTurn = true;
     }
 

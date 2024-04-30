@@ -17,9 +17,13 @@ public class Hand
         }
     }
 
-    public Hand()
+    List<Card> list;
+    private int playerIndex;
+
+    public Hand(int playerIndex)
     {
         list = new List<Card>();
+        this.playerIndex = playerIndex;
     }
 
     public void AddCard(Card card)
@@ -31,7 +35,7 @@ public class Hand
     {
         list.Remove(card);
 
-        Deck.ReturnToDeck(card);
+        Deck.ReturnToDeck(card, playerIndex);
     }
 
     public Card GetCard(int index)
@@ -54,10 +58,8 @@ public class Hand
         SetSetsTurnedIn(setsTurnedIn + 1);
     }
 
-    List<Card> list;
     public static int NumberOfTroopsForSet(int player, List<Card> set)
     {
-        PlayerInfoHandler.UpdateInfo();
         foreach(Card card in set)
         {
             if(card.GetDesign()!=Card.cardDesign.WildCard&& Map.GetTerritory(card.GetTerritory()).GetOwner() == player)

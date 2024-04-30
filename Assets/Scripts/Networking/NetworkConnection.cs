@@ -358,8 +358,6 @@ public class NetworkConnection : NetworkBehaviour
     [Command]
     public void CmdUpdateChangedTerritoryTroopCount(int index, int newTroopCount)
     {
-        //Set on server
-        Map.SetTerritoryTroopCount(index, newTroopCount, false);
         UpdateAllClientsTroopCountOnTerritory(index, newTroopCount);
     }
 
@@ -393,8 +391,6 @@ public class NetworkConnection : NetworkBehaviour
     [Command]
     public void CmdUpdateChangedTerritoryOwner(int index, int newOwner)
     {
-        //Set on server
-        Map.SetTerritoryOwner(index, newOwner, false);
         UpdateAllClientsOwnerOnTerritory(index, newOwner);
     }
 
@@ -426,8 +422,6 @@ public class NetworkConnection : NetworkBehaviour
     [Command]
     public void CmdUpdateChangedCapital(int index, int newOwner)
     {
-        //Set on server
-        Map.AddCapital(index, newOwner, false);
         UpdateCapitalAllClients(index, newOwner);
     }
 
@@ -455,36 +449,34 @@ public class NetworkConnection : NetworkBehaviour
         Deck.CreateDeck(seed);
     }
 
-    public static void UpdateCardTakenAcrossLobby(int deckIndex, int newValue)
+    public static void UpdateCardTakenAcrossLobby(int deckIndex, int newValue, int playerIndex)
     {
         if (NetworkManagement.GetClientState() == NetworkManagement.ClientState.Host)
         {
-            UpdateCardTakenAcrossAllClients(deckIndex, newValue);
+            UpdateCardTakenAcrossAllClients(deckIndex, newValue, playerIndex);
         }
         else
         {
-            instance.CmdUpdateCardTaken(deckIndex, newValue);
+            instance.CmdUpdateCardTaken(deckIndex, newValue, playerIndex);
         }
     }
 
     [Command]
-    public void CmdUpdateCardTaken(int deckIndex, int newValue)
+    public void CmdUpdateCardTaken(int deckIndex, int newValue, int playerIndex)
     {
-        //Set on server
-        Deck.SetCardTaken(deckIndex, newValue, false);
-        UpdateCardTakenAcrossAllClients(deckIndex, newValue);
+        UpdateCardTakenAcrossAllClients(deckIndex, newValue, playerIndex);
     }
 
-    private static void UpdateCardTakenAcrossAllClients(int deckIndex, int newValue)
+    private static void UpdateCardTakenAcrossAllClients(int deckIndex, int newValue, int playerIndex)
     {
-        instance.RpcUpdateCardTakenOnClients(deckIndex, newValue);
+        instance.RpcUpdateCardTakenOnClients(deckIndex, newValue, playerIndex);
     }
 
     [ClientRpc]
-    public void RpcUpdateCardTakenOnClients(int deckIndex, int newValue)
+    public void RpcUpdateCardTakenOnClients(int deckIndex, int newValue, int playerIndex)
     {
         //Set on client
-        Deck.SetCardTaken(deckIndex, newValue, false);
+        Deck.SetCardTaken(deckIndex, newValue, playerIndex, false);
     }
 
     //Turn number
@@ -503,8 +495,6 @@ public class NetworkConnection : NetworkBehaviour
     [Command]
     public void CmdUpdateTurnNumber(int newTurnNumber)
     {
-        //Set on server
-        MatchManager.SetTurnNumber(newTurnNumber, false); 
         UpdateTurnNumberAcrossAllClients(newTurnNumber);
     }
 
@@ -536,8 +526,6 @@ public class NetworkConnection : NetworkBehaviour
     [Command]
     public void CmdUpdateSetsTurnedIn(int newNumber)
     {
-        //Set on server
-        Hand.SetSetsTurnedIn(newNumber, false);
         UpdateSetsTurnedInAcrossAllClients(newNumber);
     }
 
@@ -570,8 +558,6 @@ public class NetworkConnection : NetworkBehaviour
     [Command]
     public void CmdSetTurnInfoText(string newText)
     {
-        //Set on server
-        UIManagement.SetText(newText, false);
         UpdateTurnInfoTextAcrossAllClients(newText);
     }
 
@@ -613,8 +599,6 @@ public class NetworkConnection : NetworkBehaviour
     [Command]
     public void CmdAddLineToRollOutput(string newText)
     {
-        //Set on server
-        UIManagement.AddLineToRollOutput(newText, false);
         AddLineToRollOutputAllClients(newText);
     }
 
@@ -645,8 +629,6 @@ public class NetworkConnection : NetworkBehaviour
     [Command]
     public void CmdRefreshRollOutput()
     {
-        //Set on server
-        UIManagement.RefreshRollOutput(false);
         RefreshRollOutputAllClients();
     }
 
@@ -709,12 +691,39 @@ public class NetworkConnection : NetworkBehaviour
     [Command]
     public void CmdUpdatePlayerInfoHandler()
     {
-        //Don't bother updating locally on server here
         UpdatePlayerInfoHandlerOnAllClients();
     }
 
     private static void UpdatePlayerInfoHandlerOnAllClients()
     {
-        //First create the current number of cards in each person's hand
+        //Get the current number of cards in each person's hand (as kept track of by the server)
+        Dictionary<int, int> indexToCardCount = Deck.GetPlayerCardCounts();
+
+        //Convert to passable format
+        List<int> playerIndexes = new List<int>();
+        List<int> playerCardCounts = new List<int>();
+
+        foreach (int key in indexToCardCount.Keys)
+        {
+            playerIndexes.Add(key);
+            playerCardCounts.Add(indexToCardCount[key]);
+        }
+
+        instance.RpcUpdatePlayerInfoHandler(playerIndexes, playerCardCounts);
+    }
+
+    [ClientRpc]
+    public void RpcUpdatePlayerInfoHandler(List<int> playerIndexes, List<int> playerCardCounts)
+    {
+        //Convert passed data back into usable data
+        Dictionary<int, int> outputITDC = new Dictionary<int, int>();
+
+        for (int i = 0; i < playerIndexes.Count; i++)
+        {
+            outputITDC[playerIndexes[i]] = playerCardCounts[i];
+        }
+
+        PlayerInfoHandler.UpdateHandCounts(outputITDC);
+        PlayerInfoHandler.UpdateInfo();
     }
 }

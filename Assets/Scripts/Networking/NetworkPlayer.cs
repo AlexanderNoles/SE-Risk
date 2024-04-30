@@ -28,9 +28,6 @@ public class NetworkPlayer : Player
 
     public override void ResetPlayer()
     {
-        //Temp: reset local hand aswell
-        hand = new Hand();
-
         personelConnectionObject.RpcResetPlayer(connectionToClient);
     }
 

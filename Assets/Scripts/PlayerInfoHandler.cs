@@ -49,7 +49,7 @@ public class PlayerInfoHandler : MonoBehaviour
                 indexToHandCounts[player] = 0;
             }
 
-            UpdateInfo(false);
+            UpdateInfo(true);
         }
     }
 
@@ -107,34 +107,28 @@ public class PlayerInfoHandler : MonoBehaviour
         indexToHandCounts = playerIndexToHandCounts;
     }
 
-    public static void UpdateInfo(bool makeRequest = true)
+    public static void UpdateInfo(bool inSetup = false)
     {
-        if (makeRequest && NetworkManagement.GetClientState() != NetworkManagement.ClientState.Offline)
-        {
-            //Don't want clients to do this twice
-            //Send request to server to update on all clients
-        }
-        else
-        {
-            List<int> alivePlayers = Map.GetAlivePlayers();
+        List<int> alivePlayers = Map.GetAlivePlayers();
 
-            int j = 0;
-            for (int i = 0; i < originalPlayers.Count; i++)
+        for (int i = 0; i < originalPlayers.Count; i++)
+        {
+            if (!alivePlayers.Contains(originalPlayers[i]) && !inSetup)
             {
-                if (alivePlayers.Contains(i))
+                crosses[i].SetActive(true);
+                infoTexts[i].text = "";
+            }
+            else if (!crosses[i].activeSelf)
+            {
+                if (indexToHandCounts.ContainsKey(originalPlayers[i]))
                 {
-                    crosses[j].SetActive(true);
-                }
-                else if (!crosses[j].activeSelf)
-                {
-                    infoTexts[j].text = indexToHandCounts[i].ToString();
+                    infoTexts[i].text = indexToHandCounts[originalPlayers[i]].ToString();
                 }
                 else
                 {
-                    i--;
+                    infoTexts[i].text = "0";
                 }
-                j++;
             }
-        } 
+        }
     }
 }
