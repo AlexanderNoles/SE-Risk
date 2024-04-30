@@ -115,6 +115,26 @@ public class MenuManagement : MonoBehaviour
     }
 
     /// <summary>
+    /// Button method, used in inspector.
+    /// </summary>
+    public void QuitGameButton()
+    {
+        AudioManagement.PlaySound("ButtonPress");
+
+        TransitionControl.onTransitionOver.AddListener(ActuallyQuitGame);
+        TransitionControl.RunTransition(TransitionControl.Transitions.SwipeIn);
+    }
+
+    private void ActuallyQuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+
+        Application.Quit();
+    }
+
+    /// <summary>
     /// <c>LoadMenu</c> loads a specific menu. Plays transitions automatically to make loading look smoother.
     /// </summary>
     /// <param name="menu">Menu to be loaded</param>
