@@ -90,6 +90,13 @@ public class NetworkConnection : NetworkBehaviour
 
             NetworkManagement.RemovePlayerObject(GetComponent<NetworkIdentity>());
         }
+
+        //Someone disconnected mid game so we return to the title screen
+        if (SceneManager.GetActiveScene().buildIndex == 1) //Play scene
+        {
+            MenuManagement.SetDefaultMenu(MenuManagement.Menu.Main);
+            SceneManager.LoadScene(0);
+        }
     }
 
     public override void OnStartServer()
