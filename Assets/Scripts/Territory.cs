@@ -7,6 +7,7 @@ using System;
 
 public class Territory : MonoBehaviour
 {
+
     int owner;
     int currentTroops;
     [SerializeField]
@@ -19,6 +20,7 @@ public class Territory : MonoBehaviour
     Vector3 textOffset = new Vector3(0, 0, 0);
     [SerializeField]
     List<Territory> neighbours = new List<Territory>();
+
     [SerializeField]
     Continent continent;
     [SerializeField]
@@ -29,10 +31,28 @@ public class Territory : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private TextMeshProUGUI troopLabel;
     private int indexInMap;
+    private string overridenName;
 
     public int GetIndexInMap()
     {
         return indexInMap;
+    }
+
+    public string GetName()
+    {
+        if (string.IsNullOrEmpty(overridenName))
+        {
+            return name;
+        }
+        else
+        {
+            return overridenName;
+        }
+    }
+
+    public void SetName(string name)
+    {
+        overridenName = name;
     }
 
     public bool CheckIfPosIsInside (Vector3 pos)
@@ -99,10 +119,6 @@ public class Territory : MonoBehaviour
         {
             NetworkConnection.UpdateTerritoryOwnerAcrossLobby(indexInMap, newOwner);
         }
-        else if (!makeServerRequest)
-        {
-            
-        }
     }
     public void ResetOwner(bool resetColour)
     {
@@ -139,8 +155,20 @@ public class Territory : MonoBehaviour
         borderPoints = newPoints;
         CalculateBounds();
     }
-    public List<Territory> GetNeighbours() { return neighbours; }
+    public List<Territory> GetNeighbours() 
+    { 
+        return neighbours;
+    }
     public void SetNeighbours(List<Territory> neighbours) { this.neighbours = neighbours; }
+
+    public void SetExtraNeighbours(List<int> extraNeighbours)
+    {
+        foreach (int neighbour in extraNeighbours)
+        {
+            neighbours.Add(Map.GetTerritory(neighbour));
+        }
+    }
+
     public Continent GetContinent() { return continent; }
     public void Awake()
     {

@@ -107,7 +107,7 @@ public class DiceRollMenu : MonoBehaviour
 
                 string descripterText = 
                     "Number of dice to attack " + 
-                    defendingTerritory.name
+                    defendingTerritory.GetName()
                     + " with:";
 
                 descripter.text = descripterText;

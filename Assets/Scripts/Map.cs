@@ -425,6 +425,11 @@ public class Map : MonoBehaviour
     /// </summary>
     public void SetupMap()
     {
+        //Load territory name overriding
+        Dictionary<int, string> nameDict = MapEditor.LoadTerritoryNamesList();
+        //Load territory extra neighbours
+        Dictionary<int, List<int>> extraNeighboursDict = MapEditor.LoadExtraNeighboursList();
+
         if (PlayOptionsManagement.IsConquestMode())
         {
             capitals.Clear();
@@ -439,11 +444,25 @@ public class Map : MonoBehaviour
                 territories.Add(territory);
                 territory.ResetTerritory(territories.Count-1);
 
+                if (nameDict.TryGetValue(territories.Count-1, out string newTerrOverName))
+                {
+                    territory.SetName(newTerrOverName);
+                }
+
                 if (!continents.ContainsKey(territory.GetContinent()))
                 {
                     continents[territory.GetContinent()] = new List<Territory>();
                 }
                 continents[territory.GetContinent()].Add(territory);
+            }
+        }
+
+        //We do this after so we can get the actual territory objects
+        for (int i = 0; i < territories.Count; i++)
+        {
+            if (extraNeighboursDict.ContainsKey(i))
+            {
+                territories[i].SetExtraNeighbours(extraNeighboursDict[i]);
             }
         }
     }

@@ -48,8 +48,8 @@ public class TroopTransporter : MonoBehaviour
         toTroopCount = toTerritory.GetCurrentTroops();
         fromTroopDisplay.text = fromTroopCount.ToString();
         toTroopDisplay.text = toTroopCount.ToString();
-        fromTerritoryName.SetText(fromTerritory.name);
-        toTerritoryName.SetText(toTerritory.name);
+        fromTerritoryName.SetText(fromTerritory.GetName());
+        toTerritoryName.SetText(toTerritory.GetName());
     }
     /// <summary>
     /// Setup the troop transporter UI. This is only run when a player owns one of the territories. Used when there is no from territory, such as during the deploy phase.
@@ -67,7 +67,7 @@ public class TroopTransporter : MonoBehaviour
         fromTroopDisplay.text = fromTroopCount.ToString();
         toTroopDisplay.text = toTroopCount.ToString();
         fromTerritoryName.SetText("Deploy");
-        toTerritoryName.SetText(toTerritory.name);
+        toTerritoryName.SetText(toTerritory.GetName());
     }
     /// <summary>
     /// Automatically runs at the end to troop transfer and in shows that the territories have the correct amount of troops.

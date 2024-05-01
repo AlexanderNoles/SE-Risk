@@ -174,7 +174,7 @@ public class CardDisplayer : MonoBehaviour
                 else
                 {
                     cardBody.sprite = null;
-                    text.SetText(Map.GetTerritory(cards[i].GetTerritory()).name);
+                    text.SetText(Map.GetTerritory(cards[i].GetTerritory()).GetName());
                     territoryImage.sprite = Map.GetTerritory(cards[i].GetTerritory()).getCardSprite();
                     Sprite fetchedSprite = sr.GetSprite(cardSpriteFolder,Map.GetTerritory(cards[i].GetTerritory()).getCardSprite().name);
                     if (fetchedSprite != null) { territoryImage.sprite = fetchedSprite; }
