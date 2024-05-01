@@ -18,7 +18,8 @@ public class MenuManagement : MonoBehaviour
         Main,
         Play,
         Options,
-        WinScreen
+        WinScreen,
+        TerritoryEditing
     }
 
     private static Menu defaultMenu = Menu.Main;
@@ -76,6 +77,16 @@ public class MenuManagement : MonoBehaviour
         AudioManagement.PlaySound("ButtonPress");
         LoadMenu(Menu.Play);
     }
+
+    /// <summary>
+    /// Button method, used in inspector.
+    /// </summary>
+    public void LoadMapEditorButton()
+    {
+        AudioManagement.PlaySound("ButtonPress");
+        LoadMenu(Menu.TerritoryEditing);
+    }
+
     /// <summary>
     /// Button method, used in inspector.
     /// </summary>
