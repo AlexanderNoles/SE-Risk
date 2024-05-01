@@ -16,10 +16,12 @@ public class SpriteFetcher : MonoBehaviour
     public void Start()
     {
 #if !UNITY_EDITOR
+        if(path == "null"){
         SetGameObjectSpriteFromFile();
+        }
 #endif
     }
-    public Sprite GetSprite()
+    public Sprite GetSprite(string folder, string path)
     {
         Texture2D spriteTexture = null;
         string fullPath = Application.dataPath+spriteDir + "/" + folder+"/"+path;
@@ -42,14 +44,12 @@ public class SpriteFetcher : MonoBehaviour
         }
         else
         {
-            Console.Log(fullPath);
             return null;
         }
     }
-
     public void SetGameObjectSpriteFromFile()
     {
-        Sprite sprite = GetSprite();
+        Sprite sprite = GetSprite(folder,path);
         SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
         Image ig = gameObject.GetComponent<Image>();
         if (sprite != null)

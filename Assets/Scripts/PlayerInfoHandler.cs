@@ -31,7 +31,11 @@ public class PlayerInfoHandler : MonoBehaviour
 
     private const float atRestXPos = -25;
     private const float activeXPos = -120;
-
+    /// <summary>
+    /// Sets the current player index to active and moves that active player slightly to the left
+    /// </summary>
+    /// <param name="newIndex"></param>
+    /// <param name="makeRequest"></param>
     public static void SetCurrentPlayerTurnIndex(int newIndex, bool makeRequest = true)
     {
         if (!makeRequest || NetworkManagement.GetClientState() == NetworkManagement.ClientState.Offline)
@@ -111,7 +115,9 @@ public class PlayerInfoHandler : MonoBehaviour
             UpdateInfo(true);
         }
     }
-
+    /// <summary>
+    /// Fetches the UI elements from each game object
+    /// </summary>
     private void GetUIElements()
     {
         actualInfos = new List<RectTransform>();
@@ -144,6 +150,9 @@ public class PlayerInfoHandler : MonoBehaviour
     static List<TextMeshProUGUI> infoTexts;
     static List<GameObject> crosses;
     static List<GameObject> backers;
+    /// <summary>
+    /// Updates the player info object colours to match the players they are each representing
+    /// </summary>
     public void UpdateColours()
     {
         for (int i = 0; i<6; i++)
@@ -172,7 +181,10 @@ public class PlayerInfoHandler : MonoBehaviour
     {
         indexToHandCounts = playerIndexToHandCounts;
     }
-
+    /// <summary>
+    /// Updates player info boxes to match current state of the game
+    /// </summary>
+    /// <param name="inSetup">Whether or not we're in the setup phase</param>
     public static void UpdateInfo(bool inSetup = false)
     {
         List<int> alivePlayers = Map.GetAlivePlayers();

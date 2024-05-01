@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using MonitorBreak.Bebug;
 
 /// <summary>
 /// <c>CardDisplayer</c> handles the visual showing of cards to the local player, as well as interaction with those cards
@@ -37,12 +36,34 @@ public class CardDisplayer : MonoBehaviour
     bool slidingTen = false;
     Vector3[] endPositions = new Vector3[10];
     bool tenCardsOnScreen = false;
+    SpriteFetcher sr;
+    [SerializeField]
+    string cardSpriteFolder;
+    [SerializeField]
+    List<string> cardSpriteNames = new List<string>();
+
+    public void Awake()
+    {
+        //Looks for sprites to replace the card designs with
+        sr = GetComponent<SpriteFetcher>();
+        for (int i = 0; i < cardSpriteNames.Count; i++)
+        {
+            MonitorBreak.Bebug.Console.Log(cardSpriteNames);
+            Sprite newSprite = sr.GetSprite(cardSpriteFolder, cardSpriteNames[i]);
+            if(newSprite != null)
+            {
+                designSprites[i] = newSprite;
+            }
+        }
+
+    }
     public void Start()
     {
         AbleToTurnInCards = false;
         player = FindObjectOfType<LocalPlayer>();
 
         m_Camera = Camera.main;
+        //instantiates the cards array with 10 blank cards
         cards = new Card[10];
         for(int i=0; i<cards.Count(); i++) 
         {
@@ -64,7 +85,7 @@ public class CardDisplayer : MonoBehaviour
             float deltaTime = Time.deltaTime;
             executionTime += deltaTime;
             float completionRate = executionTime / showTime;
-
+            //for each card, calculate the percentage through the slide they are and update the positions accordingly
             for (int i = 0; i < (slidingTen?10:6); i++)
             {
                 GameObject go = gameObjects[i];
@@ -88,12 +109,13 @@ public class CardDisplayer : MonoBehaviour
                 }
             }
         }
+        //if we are sliding cards up off the top of the screen to turn them in
         else if (slidingSelected)
         {
             float deltaTime = Time.deltaTime;
             executionTime += deltaTime;
             float completionRate = executionTime / showTime;
-
+            //for each card, calculate the percentage through the slide they are and update the positions accordingly
             for (int i = 0; i < 10; i++)
             {
                 if (selected.Contains(cards[i]))
@@ -134,11 +156,13 @@ public class CardDisplayer : MonoBehaviour
             GameObject go = gameObjects[i];
             if (cards[i].GetDesign() != Card.cardDesign.Empty)
             {
+                //get all the components of a card
                 go.GetComponent<Image>().sprite = null;
                 TextMeshProUGUI text = go.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>();
                 Image design = go.transform.GetChild(2).gameObject.GetComponent<Image>();
                 Image territoryImage = go.transform.GetChild(3).gameObject.GetComponent<Image>();
                 Image cardBody = go.transform.GetChild(0).gameObject.GetComponent<Image>();
+                //update components to match current card
                 if (cards[i].GetDesign() == Card.cardDesign.WildCard)
                 {
                     cardBody.gameObject.SetActive(true);
@@ -152,6 +176,8 @@ public class CardDisplayer : MonoBehaviour
                     cardBody.sprite = null;
                     text.SetText(Map.GetTerritory(cards[i].GetTerritory()).name);
                     territoryImage.sprite = Map.GetTerritory(cards[i].GetTerritory()).getCardSprite();
+                    Sprite fetchedSprite = sr.GetSprite(cardSpriteFolder,Map.GetTerritory(cards[i].GetTerritory()).getCardSprite().name);
+                    if (fetchedSprite != null) { territoryImage.sprite = fetchedSprite; }
                     design.sprite = designSprites[(int)cards[i].GetDesign()];
                     foreach (Transform child in go.GetComponentInChildren<Transform>())
                     {
@@ -268,6 +294,7 @@ public class CardDisplayer : MonoBehaviour
     {
         if (cardsOnScreen && AbleToTurnInCards&& cards[index].GetDesign()!=Card.cardDesign.Empty)
         {
+            //if trying to turn in cards after taking a players territory with fewer the 5 cards, dont allow
             if ((player.GetTurnReset() && !tenCardsOnScreen))
             {
                 foreach(GameObject go in gameObjects)
@@ -277,6 +304,7 @@ public class CardDisplayer : MonoBehaviour
             }
             else
             {
+                //play card select sound and select/deselect card
                 AudioManagement.PlaySound("Card Select");
                 if (selected.Contains<Card>(cards[index]))
                 {
@@ -288,6 +316,7 @@ public class CardDisplayer : MonoBehaviour
                     gameObjects[index].GetComponent<Image>().color = Color.green;
                     selected.Add(cards[index]);
                 }
+                //checks to see if the players selected a valid set, if they have turn it in, if not reject
                 if (selected.Count == 3)
                 {
                     if (Hand.IsArrayAValidSet(selected))

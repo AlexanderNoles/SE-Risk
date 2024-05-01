@@ -91,6 +91,7 @@ public class Player : MonoBehaviour
     {
         ShuffleTerritoryList();
         Territory deployTerritory = territories[Random.Range(0, territories.Count)];
+        //Finds the territory left with the fewest neighbouring territories as the easiest territory to defend
         foreach (Territory territory in territories)
         {
             if(territory.GetOwner() == -1)
@@ -127,6 +128,7 @@ public class Player : MonoBehaviour
         List<Territory> ownedTerritories = Map.GetTerritoriesOwnedByPlayer(GetIndex());
         Territory.Continent continent = Map.GetContinentClosestToCaptured(GetIndex());
         ShuffleTerritoryList();
+        //Finds territories neighbouring ones we own on the same continent, in an attempt to capture the continent
         foreach (Territory territory in ownedTerritories)
         {
                 foreach (Territory neighbor in territory.GetNeighbours())
@@ -137,13 +139,7 @@ public class Player : MonoBehaviour
                     }
                 }
         }
-        foreach (Territory territory in territories)
-        {
-            if (territory.GetContinent() == continent && territory.GetOwner() == -1)
-            {
-                return territory;
-            }
-        }
+        //If we cant take a territory on the same continent, try to find the closest territory to our border
         int minLengthBetweenTerritories = 1000;
         Territory nextTerritory = territories[0];
         foreach (Territory territory in territories)
@@ -169,6 +165,7 @@ public class Player : MonoBehaviour
     {
         Territory minTroopTerritory = territories[0];
         ShuffleTerritoryList();
+        //Looks for our "border" (territories neighbouring enemies) and places troops evenly along it
         foreach (Territory territory in territories)
         {
                 foreach (Territory neighbor in territory.GetNeighbours())
@@ -257,6 +254,7 @@ public class Player : MonoBehaviour
     /// <returns>The best territory to deploy onto</returns>
     private Territory EvaluateDeploy()
     {
+        //Precomputes what territory we will attack from, and places all our troops on that territory
         toExpand = EvaluateExpansion(out doAttackExpansion);
         interruptRoute = EvaluateInterruptAttack(out doAttack);
         if (doAttack)
@@ -331,6 +329,7 @@ public class Player : MonoBehaviour
     /// <returns></returns>
     private IEnumerator AttackWait()
     {
+        //if we have the troops to attempt the attack route
             if (doAttack)
             {
                 bool routeFailed = false;
@@ -340,6 +339,7 @@ public class Player : MonoBehaviour
                     {
                         break;
                     }
+                    //attempt to attack along the plotted route
                     while (interruptRoute[i + 1].GetOwner() != GetIndex())
                     {
                         if (interruptRoute[i].GetCurrentTroops() <= 1)
@@ -365,6 +365,7 @@ public class Player : MonoBehaviour
                 }
             }
             bool onePlayerAlive = false;
+            //if we have a territory to expand our borders from (increase the number of territories that do not border enemy territories)
             if (toExpand != null && doAttackExpansion && !onePlayerAlive)
             {
                 List<Territory> enemyNeighbours = new List<Territory>();
@@ -376,9 +377,9 @@ public class Player : MonoBehaviour
                     }
                 }
                 expanding = enemyNeighbours.Count + 1;
+            //try to take all neighbours
                 foreach (Territory neighbour in enemyNeighbours)
                 {
-                    //Fix this
                     if (toExpand.GetCurrentTroops() < neighbour.GetCurrentTroops())
                     {
                         break;
@@ -420,6 +421,7 @@ public class Player : MonoBehaviour
     {
         int currentMinNeighbours = 10000;
         Territory currentTerritoryToExpand = null;
+        //Finds the territory with the fewest troops neighbouring it, not necessarily the fewest enemy territories
         foreach (Territory territory in territories)
         {
             int enemyNeighbourCount = 0;
@@ -439,7 +441,7 @@ public class Player : MonoBehaviour
         }
 
         attempt = false;
-
+        //decides if we attempt the attack
         if (currentTerritoryToExpand != null && currentTerritoryToExpand.GetCurrentTroops() > currentMinNeighbours - Random.Range(0, difficulty)*2)
         {
             attempt = true;
@@ -454,6 +456,7 @@ public class Player : MonoBehaviour
     /// <returns>The list of territories to take to break a players control over a contienent</returns>
     private List<Territory> EvaluateInterruptAttack(out bool attempt)
     {
+        //finds the continents owned completely by an enemy
         List<Continent> continentsOwnedByEnemies = new List<Continent>();
         foreach(Continent continent in System.Enum.GetValues(typeof(Continent)))
         {
@@ -465,6 +468,7 @@ public class Player : MonoBehaviour
         }
         int minTroopRequirement=10000;
         List<Territory> bestRoute = new List<Territory>();
+        //Finds the shortest route to break enemy control of each continent
         foreach(Continent continent in continentsOwnedByEnemies)
         {
             foreach(Territory endTerritory in Map.continents[continent])
@@ -490,6 +494,7 @@ public class Player : MonoBehaviour
                 }
             }
         }
+        //determines if we attempt the attack
         if (bestRoute.Count>0 && bestRoute[0].GetCurrentTroops() > minTroopRequirement - Random.Range(0, difficulty))
         {
             attempt = true;
@@ -541,12 +546,14 @@ public class Player : MonoBehaviour
     {
         if (attackResult == Map.AttackResult.Won)
         {
+            //if we're expanding our borders, place an even amount on each territory
             if (expanding == 0)
             {
                 int troopsToMove = attacker.GetCurrentTroops() - 1;
                 defender.SetCurrentTroops(troopsToMove > attackerDiceCount ? troopsToMove : attackerDiceCount);
                 attacker.SetCurrentTroops(1);
             }
+            //else dump all troops on taken territory
             else
             {
                 int troopsToMove = attacker.GetCurrentTroops() / expanding ;
@@ -576,6 +583,7 @@ public class Player : MonoBehaviour
     private Territory EvaluateFortify()
     {
         Territory maxLockedTerritory = null;
+        //find the territory with no enemy neighbours with the most troops on it
         foreach (Territory territory in territories)
         {
             bool locked = true;

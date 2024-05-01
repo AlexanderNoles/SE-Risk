@@ -67,7 +67,12 @@ public class Hand
     {
         SetSetsTurnedIn(setsTurnedIn + 1);
     }
-
+    /// <summary>
+    /// Returns the number of troops a player gets from the set they are turning in
+    /// </summary>
+    /// <param name="player">The player turning in a set</param>
+    /// <param name="set">The set being turned in</param>
+    /// <returns>The number of troops the player can get</returns>
     public static int NumberOfTroopsForSet(int player, List<Card> set)
     {
         foreach(Card card in set)
@@ -81,6 +86,12 @@ public class Hand
         return CalculateSetWorth();
 
     }
+    /// <summary>
+    /// Checks to see if this hand has a valid set of cards in it
+    /// </summary>
+    /// <param name="validSet">Output variable of the valid set, empty if none exists</param>
+    /// <param name="autoRemoveListFromHand">Whether or not to remove the list </param>
+    /// <returns>True if this hand has a valid set, false elsewise </returns>
     public bool FindValidSet(out List<Card> validSet, bool autoRemoveListFromHand = false)
     {
         for (int i = 0; i < list.Count; i++)
@@ -117,6 +128,11 @@ public class Hand
         validSet = new List<Card>();
         return false;
     }
+    /// <summary>
+    /// Checks to see if a given set of cards is valid to turn in
+    /// </summary>
+    /// <param name="cardArray">The card array to check validity for</param>
+    /// <returns>Whether or not the array is valid</returns>
     public static bool IsArrayAValidSet(List<Card> cardArray)
     {
         if (cardArray.Count < 3) { return false; }
@@ -146,6 +162,10 @@ public class Hand
         SetSetsTurnedIn(0);
     }
 
+    /// <summary>
+    /// Calculates the number of troops you get for turning in cards
+    /// </summary>
+    /// <returns>The number of troops you get for turning in</returns>
     public static int CalculateSetWorth()
     {
         if(setsTurnedIn < 6) 

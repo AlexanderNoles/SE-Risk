@@ -25748,6 +25748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1849718062}
   - component: {fileID: 1849718063}
+  - component: {fileID: 1849718064}
   m_Layer: 5
   m_Name: Cards
   m_TagString: Untagged
@@ -25878,6 +25879,27 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   currentTurnInText: {fileID: 960870344}
+  cardSpriteFolder: CardSprites
+  cardSpriteNames:
+  - Troop.png
+  - Cavalry.png
+  - Artillery.png
+  - Empty.png
+  - Wildcard.png
+--- !u!114 &1849718064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849718061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7051ebee62f6e646968156621a73c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: null
+  folder: null
 --- !u!1001 &1888962674
 PrefabInstance:
   m_ObjectHideFlags: 0
