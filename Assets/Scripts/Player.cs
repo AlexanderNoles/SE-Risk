@@ -441,8 +441,11 @@ public class Player : MonoBehaviour
             }
             if (enemyNeighbourCount < currentMinNeighbours && enemyNeighbourCount!=0)
             {
-                currentTerritoryToExpand = territory;
-                currentMinNeighbours=enemyNeighbourCount;
+                if (currentTerritoryToExpand.GetOwner() == territory.GetOwner())
+                {
+                    currentTerritoryToExpand = territory;
+                    currentMinNeighbours = enemyNeighbourCount;
+                }
             }
         }
 
