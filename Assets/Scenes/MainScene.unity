@@ -19893,6 +19893,7 @@ MonoBehaviour:
   - {fileID: 427254487}
   - {fileID: 427254487}
   - {fileID: 762844576}
+  - {fileID: 1110549167}
   continent: 3
   cardSprite: {fileID: 21300000, guid: 74fcfb0b8b550d74e8a942157febc0f9, type: 3}
 --- !u!212 &1377605363
