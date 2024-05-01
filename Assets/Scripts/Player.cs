@@ -170,7 +170,7 @@ public class Player : MonoBehaviour
         {
                 foreach (Territory neighbor in territory.GetNeighbours())
                 {
-                    if (neighbor.GetOwner() != minTroopTerritory.GetOwner() && territory.GetCurrentTroops()<minTroopTerritory.GetCurrentTroops())
+                if (neighbor.GetOwner() != minTroopTerritory.GetOwner() && territory.GetCurrentTroops() < minTroopTerritory.GetCurrentTroops() + Random.Range(0, difficulty));
                     {
                         minTroopTerritory= territory;
                     }
@@ -595,7 +595,7 @@ public class Player : MonoBehaviour
                     break;
                 }
             }
-            if(locked && (maxLockedTerritory == null||maxLockedTerritory.GetCurrentTroops() < territory.GetCurrentTroops()) && AreTerritoriesConnected(territory,toExpand))
+            if(locked && (maxLockedTerritory == null||maxLockedTerritory.GetCurrentTroops() < territory.GetCurrentTroops() - Random.Range(0, difficulty)) && AreTerritoriesConnected(territory,toExpand))
             {
                 maxLockedTerritory = territory;
             }
