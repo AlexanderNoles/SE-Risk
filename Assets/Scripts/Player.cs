@@ -53,7 +53,13 @@ public class Player : MonoBehaviour
     protected bool turnReset;
     public bool KilledAPlayerThisTurn = false;
     private bool placingFirstTerritory = true;
-    private int difficulty = 1;
+    private static int difficulty = 10;
+
+    public static void SetDifficulty(int newDiff)
+    {
+        difficulty = Mathf.Clamp(newDiff, 0, 10);
+    }
+
     private int expanding = 0;
     List<Territory> interruptRoute;
     Territory toExpand;

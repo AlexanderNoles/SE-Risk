@@ -502,6 +502,16 @@ public class NetworkConnection : NetworkBehaviour
     [ClientRpc]
     public void RpcInitDeck(int seed)
     {
+        StartCoroutine(nameof(WaitTillInitDeck), seed);
+    }
+
+    private IEnumerator WaitTillInitDeck(int seed)
+    {
+        while (ShouldWait())
+        {
+            yield return Wait();
+        }
+
         Deck.CreateDeck(seed);
     }
 

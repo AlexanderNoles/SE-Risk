@@ -126,6 +126,7 @@ public class Map : MonoBehaviour
 
     public static Dictionary<Territory.Continent, List<Territory>> continents = new Dictionary<Territory.Continent, List<Territory>>(); 
     static Map instance;
+
     public enum AttackResult
     {
         Won,

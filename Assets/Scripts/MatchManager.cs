@@ -185,6 +185,7 @@ public class MatchManager : MonoBehaviour
                 playerList.Add(newNP);
             }
 
+            Player.SetDifficulty(PlayOptionsManagement.GetAIDifficulty());
 
             for (int i = 0; i < PlayOptionsManagement.GetNumberOfAIPlayers(); i++)
             {

@@ -26,6 +26,7 @@ public class PlayOptionsManagement : MonoBehaviour
         public Mode mode;
         public int numberOfAIPlayers;
         public int numberOfNetworkPlayers;
+        public int aiDifficulty;
 
         /// <summary>
         /// Standard PlayOptions constructor.
@@ -37,6 +38,7 @@ public class PlayOptionsManagement : MonoBehaviour
             this.mode = mode;
             numberOfAIPlayers = numAIPlayers;
             numberOfNetworkPlayers = 1; //The host pc
+            aiDifficulty = 10;
         }
 
         /// <summary>
@@ -73,6 +75,13 @@ public class PlayOptionsManagement : MonoBehaviour
 
     private float buttonT;
     private Image targetImageForAnimation;
+
+    [Header("AI Settings")]
+    public Slider difficultySlider;
+    public TextMeshProUGUI diffSliderlabel;
+
+    public Color lowDiffColour;
+    public Color highDiffColour;
 
     [Header("Start Button")]
     /// <summary>
@@ -130,6 +139,12 @@ public class PlayOptionsManagement : MonoBehaviour
         }
     }
 
+    public void SetAIDifficulty()
+    {
+        playOptions.aiDifficulty = 10 - (int)(difficultySlider.value * 10);
+        diffSliderlabel.color = Color.Lerp(lowDiffColour, highDiffColour, difficultySlider.value);
+    }
+
     /// <summary>
     /// Static function that returns true if current set mode is Conquest mode.
     /// </summary>
@@ -155,6 +170,11 @@ public class PlayOptionsManagement : MonoBehaviour
     public static int GetNumberOfAIPlayers()
     {
         return playOptions.numberOfAIPlayers;
+    }
+
+    public static int GetAIDifficulty()
+    {
+        return playOptions.aiDifficulty;
     }
 
     /// <summary>
@@ -329,11 +349,15 @@ public class PlayOptionsManagement : MonoBehaviour
 
             startButton.interactable = GetTotalNumberOfPlayers() >= 3;
             cantStartButton.SetActive(!startButton.interactable);
+
+            difficultySlider.gameObject.SetActive(true);
         }
         else
         {
             startButton.gameObject.SetActive(false);
             cantStartButton.SetActive(false);
+
+            difficultySlider.gameObject.SetActive(false);
         }
 
         bool setAddButtonActive = false;
