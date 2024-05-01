@@ -344,6 +344,24 @@ public class NetworkConnection : NetworkBehaviour
         clientLocalPlayer.OnKilled();
     }
 
+    [TargetRpc]
+    public void RpcOnKillOtherPlayer(NetworkConnectionToClient target, int cardCount)
+    {
+        StartCoroutine(nameof(WaitBeforeKilledOtherPlayer), cardCount);
+    }
+
+    private IEnumerator WaitBeforeKilledOtherPlayer(int cardCount)
+    {
+        //We do this because the host will load and run start before the client loads their scene
+        //We should just be waiting for one frame but we wait for the amount needed just in case of ping and whatnot (we are on lan but still)
+        while (ShouldWait())
+        {
+            yield return Wait();
+        }
+
+        clientLocalPlayer.Killed(cardCount);
+    }
+
     //Win check
     public static void ServerWinCheck(int current)
     {

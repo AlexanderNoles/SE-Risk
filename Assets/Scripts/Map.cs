@@ -288,7 +288,7 @@ public class Map : MonoBehaviour
             bool continentOwned = true;
             foreach(Territory territory in Map.continents[continent]) 
             {
-                if (territory.GetOwner()==player) { ownedTerritories.Add(territory); }
+                if (territory.GetOwner() == player) { ownedTerritories.Add(territory); }
                 else { continentOwned = false; }
             }
             if( continentOwned ) { troopCount += Territory.continentValues[continent]; }

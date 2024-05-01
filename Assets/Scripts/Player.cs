@@ -715,7 +715,7 @@ public class Player : MonoBehaviour
     /// Takes a players hand
     /// </summary>
     /// <param name="killed">The player whos hand you are taking</param>
-    public void Killed(int numberOfCardsTaken)
+    public virtual void Killed(int numberOfCardsTaken)
     {
         //This is not really in line with rules
         //means we just get the same amount of cards they had (essentially drawing as many cards as they had)

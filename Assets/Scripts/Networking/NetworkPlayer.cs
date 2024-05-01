@@ -68,6 +68,11 @@ public class NetworkPlayer : Player
         personelConnectionObject.RpcOnKilled(connectionToClient);
     }
 
+    public override void Killed(int numberOfCardsTaken)
+    {
+        base.Killed(numberOfCardsTaken);
+    }
+
     private List<int> GetInbetween(List<Territory> territories)
     {
         List<int> inBetween = new List<int>();
