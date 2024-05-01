@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using MonitorBreak.Bebug;
 
 /// <summary>
 /// <c>CardDisplayer</c> handles the visual showing of cards to the local player, as well as interaction with those cards
@@ -37,6 +36,27 @@ public class CardDisplayer : MonoBehaviour
     bool slidingTen = false;
     Vector3[] endPositions = new Vector3[10];
     bool tenCardsOnScreen = false;
+    SpriteFetcher sr;
+    [SerializeField]
+    string cardSpriteFolder;
+    [SerializeField]
+    List<string> cardSpriteNames = new List<string>();
+
+    public void Awake()
+    {
+        sr = GetComponent<SpriteFetcher>();
+        for (int i = 0; i < cardSpriteNames.Count; i++)
+        {
+            MonitorBreak.Bebug.Console.Log(cardSpriteNames);
+            Sprite newSprite = sr.GetSprite(cardSpriteFolder, cardSpriteNames[i]);
+            if(newSprite != null)
+            {
+                MonitorBreak.Bebug.Console.Log("in");
+                designSprites[i] = newSprite;
+            }
+        }
+
+    }
     public void Start()
     {
         AbleToTurnInCards = false;
@@ -152,6 +172,8 @@ public class CardDisplayer : MonoBehaviour
                     cardBody.sprite = null;
                     text.SetText(Map.GetTerritory(cards[i].GetTerritory()).name);
                     territoryImage.sprite = Map.GetTerritory(cards[i].GetTerritory()).getCardSprite();
+                    Sprite fetchedSprite = sr.GetSprite(cardSpriteFolder,Map.GetTerritory(cards[i].GetTerritory()).getCardSprite().name);
+                    if (fetchedSprite != null) { territoryImage.sprite = fetchedSprite; }
                     design.sprite = designSprites[(int)cards[i].GetDesign()];
                     foreach (Transform child in go.GetComponentInChildren<Transform>())
                     {
