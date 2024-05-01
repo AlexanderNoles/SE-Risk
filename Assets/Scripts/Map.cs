@@ -243,12 +243,13 @@ public class Map : MonoBehaviour
 
         if (defender.GetCurrentTroops() <= 0)
         {
+            int defenderIndex = defender.GetOwner();
             defender.SetOwner(attacker.GetOwner());
             attackerPlayer.AddTerritory(defender);
             UIManagement.AddLineToRollOutput("Territory Taken!");
 
             List<int> alivePlayers = GetAlivePlayers();
-            if (!alivePlayers.Contains(defender.GetOwner()))
+            if (!alivePlayers.Contains(defenderIndex))
             {
                 attackerPlayer.Killed(PlayerInfoHandler.CardCountForIndex(defender.GetOwner()));
             }
