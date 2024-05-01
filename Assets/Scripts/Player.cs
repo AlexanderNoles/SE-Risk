@@ -1,14 +1,9 @@
 using MonitorBreak.Bebug;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Territory;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 /// <summary>
 /// The base implementation of a player. This contains all the methods needed for an AI player, in case a human player is ever unable to make a move on their turn
