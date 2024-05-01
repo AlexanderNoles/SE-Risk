@@ -11,6 +11,12 @@ public class AudioManagement : MonoBehaviour
 {
     private static AudioManagement _instance;
     private static List<(GameObject, AudioSource)> currentSources = new List<(GameObject, AudioSource)>();
+    private static float generalVolume = 1.0f;
+
+    public static void UpdateGeneralVolume(float newValue)
+    {
+        generalVolume = newValue;
+    }
 
     /// <summary>
     /// Class <c>Sound</c> contains all neccesary data <c>AudioManagement</c> needs to play a sound.
@@ -118,7 +124,7 @@ public class AudioManagement : MonoBehaviour
                 AudioSource newSource = newObject.AddComponent(typeof(AudioSource)) as AudioSource;
                 newSource.clip = sound.actualSound;
                 newSource.playOnAwake = false;
-                newSource.volume = sound.volume;
+                newSource.volume = sound.volume * generalVolume;
                 newObject.transform.parent = _instance.transform;
 
                 newSource.Play();
