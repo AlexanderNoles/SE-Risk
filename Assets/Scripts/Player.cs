@@ -430,6 +430,7 @@ public class Player : MonoBehaviour
         //Finds the territory with the fewest troops neighbouring it, not necessarily the fewest enemy territories
         foreach (Territory territory in territories)
         {
+            Debug.Log(territory);
             int enemyNeighbourCount = 0;
             List<Territory> enemyNeighbours = new List<Territory>();
             foreach(Territory neighbour in territory.GetNeighbours())
@@ -441,7 +442,7 @@ public class Player : MonoBehaviour
             }
             if (enemyNeighbourCount < currentMinNeighbours && enemyNeighbourCount!=0)
             {
-                if (currentTerritoryToExpand.GetOwner() == territory.GetOwner())
+                if (territory.GetOwner()==GetIndex())
                 {
                     currentTerritoryToExpand = territory;
                     currentMinNeighbours = enemyNeighbourCount;
