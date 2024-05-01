@@ -170,7 +170,7 @@ public class Player : MonoBehaviour
         {
                 foreach (Territory neighbor in territory.GetNeighbours())
                 {
-                if (neighbor.GetOwner() != minTroopTerritory.GetOwner() && territory.GetCurrentTroops() < minTroopTerritory.GetCurrentTroops() + Random.Range(0, difficulty);
+                if (neighbor.GetOwner() != minTroopTerritory.GetOwner() && territory.GetCurrentTroops() < minTroopTerritory.GetCurrentTroops() + Random.Range(0, difficulty));
                     {
                         minTroopTerritory= territory;
                     }
