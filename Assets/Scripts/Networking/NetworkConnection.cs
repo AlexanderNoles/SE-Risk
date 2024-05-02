@@ -198,6 +198,7 @@ public class NetworkConnection : NetworkBehaviour
     public void RpcStartGame(int sceneIndex)
     {
         NetworkManagement.MakePlayerObjectsNonDestroy();
+        Hand.ResetSetsTurnedIn();
         SceneManager.LoadScene(sceneIndex);
     }
 

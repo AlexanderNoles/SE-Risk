@@ -10,6 +10,11 @@ public class Hand
 {
     static int setsTurnedIn;
 
+    public static void ResetSetsTurnedIn()
+    {
+        setsTurnedIn = 0;
+    }
+
     public static void SetSetsTurnedIn(int newValue, bool makeRequest = true)
     {
         setsTurnedIn = newValue;
