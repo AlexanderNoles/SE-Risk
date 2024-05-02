@@ -134,9 +134,10 @@ public class Player : MonoBehaviour
         List<Territory> ownedTerritories = Map.GetTerritoriesOwnedByPlayer(GetIndex());
         Territory.Continent continent = Map.GetContinentClosestToCaptured(GetIndex());
         ShuffleTerritoryList();
-        //Finds territories neighbouring ones we own on the same continent, in an attempt to capture the continent
-        foreach (Territory territory in ownedTerritories)
-        {
+        Territory nextTerritory;
+            //Finds territories neighbouring ones we own on the same continent, in an attempt to capture the continent
+            foreach (Territory territory in ownedTerritories)
+            {
                 foreach (Territory neighbor in territory.GetNeighbours())
                 {
                     if (neighbor.GetContinent() == continent && neighbor.GetOwner() == -1)
@@ -144,12 +145,12 @@ public class Player : MonoBehaviour
                         return neighbor;
                     }
                 }
-        }
-        //If we cant take a territory on the same continent, try to find the closest territory to our border
-        int minLengthBetweenTerritories = 1000;
-        Territory nextTerritory = territories[0];
-        foreach (Territory territory in territories)
-        {
+            }
+            //If we cant take a territory on the same continent, try to find the closest territory to our border
+            int minLengthBetweenTerritories = 1000;
+            nextTerritory = territories[0];
+            foreach (Territory territory in territories)
+            {
                 foreach (Territory owned in ownedTerritories)
                 {
                     int routeLength = RouteBetweenTerritories(owned, territory).Count;
@@ -160,7 +161,7 @@ public class Player : MonoBehaviour
                     }
                     return territory;
                 }
-        }
+            }
         return nextTerritory;
     }
     /// <summary>
@@ -176,7 +177,7 @@ public class Player : MonoBehaviour
         {
                 foreach (Territory neighbor in territory.GetNeighbours())
                 {
-                if (neighbor.GetOwner() != minTroopTerritory.GetOwner() && territory.GetCurrentTroops() < minTroopTerritory.GetCurrentTroops() + Random.Range(0, difficulty));
+                if (neighbor.GetOwner() != minTroopTerritory.GetOwner() && territory.GetCurrentTroops() < minTroopTerritory.GetCurrentTroops() + Random.Range(0, difficulty))
                     {
                         minTroopTerritory= territory;
                     }
@@ -372,7 +373,7 @@ public class Player : MonoBehaviour
             }
             bool onePlayerAlive = false;
             //if we have a territory to expand our borders from (increase the number of territories that do not border enemy territories)
-            if (toExpand != null && doAttackExpansion && !onePlayerAlive)
+            while (toExpand != null && doAttackExpansion && !onePlayerAlive)
             {
                 List<Territory> enemyNeighbours = new List<Territory>();
                 foreach (Territory neighbour in toExpand.GetNeighbours())
@@ -383,7 +384,7 @@ public class Player : MonoBehaviour
                     }
                 }
                 expanding = enemyNeighbours.Count + 1;
-            //try to take all neighbours
+                //try to take all neighbours
                 foreach (Territory neighbour in enemyNeighbours)
                 {
                     if (toExpand.GetCurrentTroops() < neighbour.GetCurrentTroops())
