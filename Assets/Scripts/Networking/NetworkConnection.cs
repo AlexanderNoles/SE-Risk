@@ -604,6 +604,7 @@ public class NetworkConnection : NetworkBehaviour
 
     private static void UpdateAllClientsOwnerOnTerritory(int index, int newOwner)
     {
+        Map.SetTerritoryOwner(index, newOwner, false);
         instance.RpcUpdateOwnerOnClient(index, newOwner);
     }
 

@@ -13,6 +13,16 @@ public class LocalPlayer : Player
     {
         PlayerInputHandler.SetLocalPlayer(this);
     }
+
+    private void Update()
+    {
+        //Testing code
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            MatchManager.FakeWinCheck();
+        }
+    }
+
     /// <summary>
     /// Lets the local player choose which territory to deploy their capital in
     /// </summary>

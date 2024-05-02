@@ -409,7 +409,7 @@ public class MatchManager : MonoBehaviour
 #endif
     }
 
-    private static void FakeWinCheck()
+    public static void FakeWinCheck()
     {
         gameOver = true;
         WinCheck(PlayerInputHandler.GetLocalPlayerIndex());
