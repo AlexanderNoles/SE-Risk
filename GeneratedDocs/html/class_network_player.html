@@ -98,6 +98,9 @@ $(function(){initNavTree('class_network_player.html',''); initResizable(); });
   <div class="headertitle"><div class="title">NetworkPlayer Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Inherits from player, essentially a set of wrapper functions for <a class="el" href="class_network_connection.html" title="Handles the connection of a client to a host and vice versa. Mirror demands certain functions are pub...">NetworkConnection</a> functions.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for NetworkPlayer:</div>
 <div class="dyncontent">
@@ -111,6 +114,7 @@ Inheritance diagram for NetworkPlayer:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a827530296f328827e5584cd7d4237781" id="r_a827530296f328827e5584cd7d4237781"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a827530296f328827e5584cd7d4237781">NotifyClient</a> (uint clientNetID)</td></tr>
+<tr class="memdesc:a827530296f328827e5584cd7d4237781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Notify the target client they have been initilized and setup this network player on host.  <br /></td></tr>
 <tr class="separator:a827530296f328827e5584cd7d4237781"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bf2fe73efc3f888a615075292748baf" id="r_a7bf2fe73efc3f888a615075292748baf"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7bf2fe73efc3f888a615075292748baf">ResetPlayer</a> ()</td></tr>
 <tr class="memdesc:a7bf2fe73efc3f888a615075292748baf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets a player to the state it will be in at the start of a game.  <br /></td></tr>
@@ -232,8 +236,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a8fcbb4eacbdf036ecc4365415a076f2d inherit pro_attribs_class_player"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00006">6</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
+<div class="textblock"><p>Inherits from player, essentially a set of wrapper functions for <a class="el" href="class_network_connection.html" title="Handles the connection of a client to a host and vice versa. Mirror demands certain functions are pub...">NetworkConnection</a> functions. </p>
+
+<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00009">9</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a2d18a48ffe5057a5194dd8bd4c152c42" name="a2d18a48ffe5057a5194dd8bd4c152c42"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2d18a48ffe5057a5194dd8bd4c152c42">&#9670;&#160;</a></span>Attack()</h2>
@@ -262,7 +267,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_player.html#a959f1da396c4ce66170a3f3a2bd05e4d">Player</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00051">51</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00059">59</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
 
 </div>
 </div>
@@ -299,7 +304,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_player.html#a4fc032bd27068103bb32801624f5b4d6">Player</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00034">34</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00042">42</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
 
 </div>
 </div>
@@ -342,7 +347,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_player.html#a12b8c9dfe28d7596f03ff0fe2b7943fc">Player</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00044">44</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00052">52</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
 
 </div>
 </div>
@@ -373,7 +378,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_player.html#a56cf641e9284d6a85f3bb6a6f9e19f85">Player</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00056">56</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00064">64</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
 
 </div>
 </div>
@@ -410,7 +415,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_player.html#af87349a6a18ce8380c28b02d68cada85">Player</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00071">71</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00079">79</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
 
 </div>
 </div>
@@ -429,7 +434,21 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00012">12</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
+<p>Notify the target client they have been initilized and setup this network player on host. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clientNetID</td><td>The target network ID.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">System.Exception</td><td>Thrown if player with that ID does not exist.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00020">20</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
 
 </div>
 </div>
@@ -458,7 +477,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_player.html#a8f029283c4ee3c8a55c9ae3193d8bc00">Player</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00066">66</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00074">74</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
 
 </div>
 </div>
@@ -489,7 +508,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_player.html#af3b8cae04b73d6a550d8e606d8186581">Player</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00061">61</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00069">69</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
 
 </div>
 </div>
@@ -520,7 +539,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_player.html#abd6a3350a7f5282bf28743098cbe0e88">Player</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00029">29</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00037">37</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
 
 </div>
 </div>
@@ -557,7 +576,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_player.html#a7abc1f64df2e493ecdc55d6ae30be69e">Player</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00039">39</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_network_player_8cs_source.html#l00047">47</a> of file <a class="el" href="_network_player_8cs_source.html">NetworkPlayer.cs</a>.</p>
 
 </div>
 </div>

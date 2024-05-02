@@ -3,12 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Inherits from player, essentially a set of wrapper functions for NetworkConnection functions.
+/// </summary>
 public class NetworkPlayer : Player
 {
     private uint netID = 0;
     private NetworkConnection personelConnectionObject;
     private NetworkConnectionToClient connectionToClient;
 
+    /// <summary>
+    /// Notify the target client they have been initilized and setup this network player on host.
+    /// </summary>
+    /// <param name="clientNetID">The target network ID.</param>
+    /// <exception cref="System.Exception">Thrown if player with that ID does not exist.</exception>
     public void NotifyClient(uint clientNetID)
     {
         netID = clientNetID;

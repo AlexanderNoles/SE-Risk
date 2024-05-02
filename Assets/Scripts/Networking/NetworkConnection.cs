@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 using static Player;
 
 /// <summary>
-/// Handles the connection of a client to a host and vice versa. Mirror demands certain functions are public (Commands, Rpcs, etc.) so many functions here are public when they arguably shouldn't be.
+/// Handles the connection of a client to a host and vice versa. Mirror demands certain functions are public (Commands, Rpcs, etc.) so many functions here are public when they arguably shouldn't be. Main access points are always the static functions and that is really all that should be being called outside of this class.
 /// </summary>
 public class NetworkConnection : NetworkBehaviour
 {

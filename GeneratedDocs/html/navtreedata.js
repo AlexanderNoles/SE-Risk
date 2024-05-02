@@ -49,7 +49,7 @@ var NAVTREEINDEX =
 [
 "_a_i_player_8cs.html",
 "class_network_connection.html#a4941ab150f7e223e032fc9f4454a374b",
-"functions_func_s.html"
+"functions_func_t.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

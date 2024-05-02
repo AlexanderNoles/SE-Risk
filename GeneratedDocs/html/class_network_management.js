@@ -6,6 +6,5 @@ var class_network_management =
       [ "Client", "class_network_management.html#a8a4671a1c5d268d098e8ad55fc5dadcaa577d7068826de925ea2aec01dbadf5e4", null ]
     ] ],
     [ "Awake", "class_network_management.html#aefdcb79e1f52d4f04404d3f6431b6637", null ],
-    [ "OnClientConnect", "class_network_management.html#a8a1be632d185fa67cf764e43accfdfa3", null ],
     [ "OnClientDisconnect", "class_network_management.html#a19db32077a7a345b4676e067844a229d", null ]
 ];

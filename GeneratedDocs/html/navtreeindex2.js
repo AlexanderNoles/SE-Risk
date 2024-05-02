@@ -1,6 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"functions_func_s.html":[1,3,1,16],
 "functions_func_t.html":[1,3,1,17],
 "functions_func_u.html":[1,3,1,18],
 "functions_func_v.html":[1,3,1,19],
@@ -29,8 +28,8 @@ var NAVTREEINDEX2 =
 "interface_pathfinding_1_1_i_node.html":[1,0,0,0],
 "interface_pathfinding_1_1_i_node.html#a3be0bc97889b733458bb41ddcef756d5":[0,0,0,0,1],
 "interface_pathfinding_1_1_i_node.html#a3be0bc97889b733458bb41ddcef756d5":[1,0,0,0,1],
-"interface_pathfinding_1_1_i_node.html#a531db0213b0bd8edfb23524bc9fa50be":[1,0,0,0,0],
 "interface_pathfinding_1_1_i_node.html#a531db0213b0bd8edfb23524bc9fa50be":[0,0,0,0,0],
+"interface_pathfinding_1_1_i_node.html#a531db0213b0bd8edfb23524bc9fa50be":[1,0,0,0,0],
 "namespace_pathfinding.html":[0,0,0],
 "namespaces.html":[0,0],
 "pages.html":[],
