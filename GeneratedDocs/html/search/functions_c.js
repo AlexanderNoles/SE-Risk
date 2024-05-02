@@ -9,9 +9,10 @@ var searchData=
   ['onclientdisconnect_6',['OnClientDisconnect',['../class_network_management.html#a19db32077a7a345b4676e067844a229d',1,'NetworkManagement']]],
   ['ondisconnect_7',['OnDisconnect',['../class_play_options_management.html#a90dca79db468b33aa05ce2ba7b5d871e',1,'PlayOptionsManagement']]],
   ['oneplayeralive_8',['OnePlayerAlive',['../class_match_manager.html#a402407bc120ada35a85e6a6b5e28ff26',1,'MatchManager']]],
-  ['onouttransitionover_9',['OnOutTransitionOver',['../class_match_manager.html#a2b34f3ad802b292797cb93460f6b1b42',1,'MatchManager']]],
-  ['onstartclient_10',['OnStartClient',['../class_network_connection.html#a5b2e81519c6f349d1c07f9b10210a7d1',1,'NetworkConnection']]],
-  ['onstartserver_11',['OnStartServer',['../class_network_connection.html#a3a1cf336fa5e8f65049fcccc56aa2daf',1,'NetworkConnection']]],
-  ['onstopclient_12',['OnStopClient',['../class_network_connection.html#a7453e5c9d6389966279e3c68cdac1c7f',1,'NetworkConnection']]],
-  ['onturnend_13',['OnTurnEnd',['../class_local_player.html#a7874851dd3c8b608e4aa4236c1586efd',1,'LocalPlayer.OnTurnEnd()'],['../class_network_player.html#a3e21df7e44b68f9513ebd7528a7272a9',1,'NetworkPlayer.OnTurnEnd()'],['../class_player.html#af3b8cae04b73d6a550d8e606d8186581',1,'Player.OnTurnEnd()']]]
+  ['onkilled_9',['OnKilled',['../class_network_player.html#a6bdfdc54060518b565b25cd92e10cc09',1,'NetworkPlayer.OnKilled()'],['../class_player.html#a8f029283c4ee3c8a55c9ae3193d8bc00',1,'Player.OnKilled()']]],
+  ['onouttransitionover_10',['OnOutTransitionOver',['../class_match_manager.html#a2b34f3ad802b292797cb93460f6b1b42',1,'MatchManager']]],
+  ['onstartclient_11',['OnStartClient',['../class_network_connection.html#a5b2e81519c6f349d1c07f9b10210a7d1',1,'NetworkConnection']]],
+  ['onstartserver_12',['OnStartServer',['../class_network_connection.html#a3a1cf336fa5e8f65049fcccc56aa2daf',1,'NetworkConnection']]],
+  ['onstopclient_13',['OnStopClient',['../class_network_connection.html#a7453e5c9d6389966279e3c68cdac1c7f',1,'NetworkConnection']]],
+  ['onturnend_14',['OnTurnEnd',['../class_local_player.html#a7874851dd3c8b608e4aa4236c1586efd',1,'LocalPlayer.OnTurnEnd()'],['../class_network_player.html#a3e21df7e44b68f9513ebd7528a7272a9',1,'NetworkPlayer.OnTurnEnd()'],['../class_player.html#af3b8cae04b73d6a550d8e606d8186581',1,'Player.OnTurnEnd()']]]
 ];

@@ -1,24 +1,6 @@
 var searchData=
 [
-  ['update_0',['Update',['../class_card_displayer.html#a04701adf0d6de0fb577b6d6abec133b3',1,'CardDisplayer.Update()'],['../class_player_input_handler.html#ade963addbc16cda24e3688f0945e81a3',1,'PlayerInputHandler.Update()']]],
-  ['updateallclientsowneronterritory_1',['UpdateAllClientsOwnerOnTerritory',['../class_network_connection.html#a224fe1ca2a33b7c05e78cd9047df3bc0',1,'NetworkConnection']]],
-  ['updateallclientstroopcountonterritory_2',['UpdateAllClientsTroopCountOnTerritory',['../class_network_connection.html#ae0f73a4da63aabe75e2897dcd0bf3a49',1,'NetworkConnection']]],
-  ['updatecapitalacrosslobby_3',['UpdateCapitalAcrossLobby',['../class_network_connection.html#a38ec1f35c5df10ee78763f905754ecea',1,'NetworkConnection']]],
-  ['updatecapitalallclients_4',['UpdateCapitalAllClients',['../class_network_connection.html#a1970251b2312e5b2a80b424d12419d60',1,'NetworkConnection']]],
-  ['updatecardvisuals_5',['UpdateCardVisuals',['../class_card_displayer.html#a68af0e057c663f4ecf8d4e6d357c3f97',1,'CardDisplayer']]],
-  ['updateclientnetworkstate_6',['UpdateClientNetworkState',['../class_network_management.html#a62467ed9517308380bfee5b19277f693',1,'NetworkManagement']]],
-  ['updatecolours_7',['UpdateColours',['../class_player_info_handler.html#ab3140b32738514b0ae2c8d714d9ff622',1,'PlayerInfoHandler']]],
-  ['updateinfo_8',['UpdateInfo',['../class_player_info_handler.html#a02fd4c9b3f13a0d9d7626dc4a49a6302',1,'PlayerInfoHandler']]],
-  ['updateinfotextdefault_9',['UpdateInfoTextDefault',['../class_match_manager.html#a1845ab71cd5a9e93dd9405a2e1da4a17',1,'MatchManager']]],
-  ['updateinfotextsetup_10',['UpdateInfoTextSetup',['../class_match_manager.html#a75c7893ae7b28b64c1a6b27248c2a59f',1,'MatchManager']]],
-  ['updatemode_11',['UpdateMode',['../class_play_screen_network_data_communicator.html#a266481edaafc2aaa358adb5a28c7cea1',1,'PlayScreenNetworkDataCommunicator']]],
-  ['updatenumberofaiplayers_12',['UpdateNumberOfAIPlayers',['../class_play_screen_network_data_communicator.html#a0557d9ec70d701c542ed34f3c1fd9b6b',1,'PlayScreenNetworkDataCommunicator']]],
-  ['updatenumberoplayers_13',['UpdateNumberOPlayers',['../class_play_screen_network_data_communicator.html#aa7e55b814e75c071aa9cfc7a2ef2bfb0',1,'PlayScreenNetworkDataCommunicator']]],
-  ['updateplayeruiexternal_14',['UpdatePlayerUIExternal',['../class_play_options_management.html#a1b4a759f07ae25518c98dfbc46725dbf',1,'PlayOptionsManagement']]],
-  ['updateplayui_15',['UpdatePlayUI',['../class_play_screen_network_data_communicator.html#aae67675823b254d1df6e8c3d33c70d22',1,'PlayScreenNetworkDataCommunicator']]],
-  ['updatesneighbours_16',['UpdatesNeighbours',['../class_map.html#ab5470b8409ef3419e22a5270c78e44a5',1,'Map']]],
-  ['updateterritoryowneracrosslobby_17',['UpdateTerritoryOwnerAcrossLobby',['../class_network_connection.html#a5ed065d5a265eeac815d1e524c87a410',1,'NetworkConnection']]],
-  ['updateterritorytroopcountacrosslobby_18',['UpdateTerritoryTroopCountAcrossLobby',['../class_network_connection.html#a24709f443c3b1eceafd82ae8ff1b0676',1,'NetworkConnection']]],
-  ['updatetroopcounts_19',['UpdateTroopCounts',['../class_troop_transporter.html#a037dc8d34deb8a89cdf114d4aeedbe92',1,'TroopTransporter']]],
-  ['updateturnintext_20',['UpdateTurnInText',['../class_card_displayer.html#aeae39c6ba65346f8d7c60c7f50e90557',1,'CardDisplayer']]]
+  ['territoriesownedbyplayerworth_0',['TerritoriesOwnedByPlayerWorth',['../class_map.html#ac8ac68f36f7407d40356535cd44cf8ac',1,'Map']]],
+  ['togglecardmenubutton_1',['ToggleCardMenuButton',['../class_card_displayer.html#a55d2cd7d42924c4e7e29910db04d3347',1,'CardDisplayer']]],
+  ['totalnumberofplayers_2',['TotalNumberOfPlayers',['../struct_play_options_management_1_1_play_options.html#a8ca85e6f99684cf7a191fc75b952d9be',1,'PlayOptionsManagement::PlayOptions']]]
 ];

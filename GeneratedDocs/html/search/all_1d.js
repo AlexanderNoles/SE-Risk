@@ -27,5 +27,7 @@ var searchData=
   ['visrange_24',['visRange',['../class_mirror_1_1_distance_interest_management.html#a3d3e43f500cd316668121774bc4a5762',1,'Mirror.DistanceInterestManagement.visRange'],['../class_mirror_1_1_distance_interest_management_custom_range.html#a43b2fe012b51307b5cc6ab08e9cfbf52',1,'Mirror.DistanceInterestManagementCustomRange.visRange'],['../class_mirror_1_1_spatial_hashing_interest_management.html#a150e9e999a2494fecbecbfbf736938a8',1,'Mirror.SpatialHashingInterestManagement.visRange']]],
   ['visualcard_25',['VisualCard',['../class_visual_card.html',1,'']]],
   ['visualcard_2ecs_26',['VisualCard.cs',['../_visual_card_8cs.html',1,'']]],
-  ['volume_27',['volume',['../class_audio_management_1_1_sound.html#a2c627d413853b922b8ecd084f0e7d2eb',1,'AudioManagement::Sound']]]
+  ['volume_27',['volume',['../class_audio_management_1_1_sound.html#a2c627d413853b922b8ecd084f0e7d2eb',1,'AudioManagement::Sound']]],
+  ['volumeslider_28',['volumeSlider',['../class_options_management.html#a5e08fc6774696de82069b830c7046985',1,'OptionsManagement']]],
+  ['volumeslidercallback_29',['VolumeSliderCallback',['../class_options_management.html#acc13ff8145bb841612f677efadc83d2c',1,'OptionsManagement']]]
 ];

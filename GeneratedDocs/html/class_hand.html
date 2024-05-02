@@ -99,15 +99,20 @@ $(function(){initNavTree('class_hand.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Hand Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents the hand of a given player. Includes a list of their cards.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5a9a7a8689fdf26ee58808b22b46f27a" id="r_a5a9a7a8689fdf26ee58808b22b46f27a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a9a7a8689fdf26ee58808b22b46f27a">Hand</a> ()</td></tr>
-<tr class="separator:a5a9a7a8689fdf26ee58808b22b46f27a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9a0598201f663212a09ce9d68701119" id="r_ad9a0598201f663212a09ce9d68701119"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9a0598201f663212a09ce9d68701119">Hand</a> (int playerIndex)</td></tr>
+<tr class="separator:ad9a0598201f663212a09ce9d68701119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcc679673bf7f07dc505f2eada5e6385" id="r_adcc679673bf7f07dc505f2eada5e6385"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adcc679673bf7f07dc505f2eada5e6385">AddCard</a> (<a class="el" href="class_card.html">Card</a> card)</td></tr>
 <tr class="separator:adcc679673bf7f07dc505f2eada5e6385"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a112119de55698028f0f45a31f4457f6d" id="r_a112119de55698028f0f45a31f4457f6d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a112119de55698028f0f45a31f4457f6d">RemoveCard</a> (<a class="el" href="class_card.html">Card</a> card)</td></tr>
 <tr class="separator:a112119de55698028f0f45a31f4457f6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e3ee118c565785c4454a29ea05540b4" id="r_a0e3ee118c565785c4454a29ea05540b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e3ee118c565785c4454a29ea05540b4">RemoveAll</a> ()</td></tr>
+<tr class="separator:a0e3ee118c565785c4454a29ea05540b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c0943a609d9b9db799ae91a16ea9ee1" id="r_a8c0943a609d9b9db799ae91a16ea9ee1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_card.html">Card</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c0943a609d9b9db799ae91a16ea9ee1">GetCard</a> (int index)</td></tr>
 <tr class="separator:a8c0943a609d9b9db799ae91a16ea9ee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6c2ef473833fa4a497a6549125e4f7d" id="r_aa6c2ef473833fa4a497a6549125e4f7d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_card.html">Card</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6c2ef473833fa4a497a6549125e4f7d">GetLastCard</a> ()</td></tr>
@@ -115,29 +120,36 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1a47b7b845dd0f274acac35bd4e01344" id="r_a1a47b7b845dd0f274acac35bd4e01344"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a47b7b845dd0f274acac35bd4e01344">Count</a> ()</td></tr>
 <tr class="separator:a1a47b7b845dd0f274acac35bd4e01344"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2787c8c3bf277226390b6273e2dd2bae" id="r_a2787c8c3bf277226390b6273e2dd2bae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2787c8c3bf277226390b6273e2dd2bae">FindValidSet</a> (out List&lt; <a class="el" href="class_card.html">Card</a> &gt; validSet, bool autoRemoveListFromHand=false)</td></tr>
+<tr class="memdesc:a2787c8c3bf277226390b6273e2dd2bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if this hand has a valid set of cards in it.  <br /></td></tr>
 <tr class="separator:a2787c8c3bf277226390b6273e2dd2bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91e9346b3a9d458009e035a9a401783d" id="r_a91e9346b3a9d458009e035a9a401783d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91e9346b3a9d458009e035a9a401783d">DebugHand</a> ()</td></tr>
 <tr class="separator:a91e9346b3a9d458009e035a9a401783d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a70d8b693db5378f30e18e03bfbac12e4" id="r_a70d8b693db5378f30e18e03bfbac12e4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70d8b693db5378f30e18e03bfbac12e4">SetSetsTurnedIn</a> (int newValue, bool makeRequest=true)</td></tr>
+<tr class="separator:a70d8b693db5378f30e18e03bfbac12e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65b598b720e092aff8210d16d481fb34" id="r_a65b598b720e092aff8210d16d481fb34"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65b598b720e092aff8210d16d481fb34">IncrementTurnInCount</a> ()</td></tr>
 <tr class="separator:a65b598b720e092aff8210d16d481fb34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3d6eeaab48add260973d194a25ab06e" id="r_aa3d6eeaab48add260973d194a25ab06e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3d6eeaab48add260973d194a25ab06e">NumberOfTroopsForSet</a> (int player, List&lt; <a class="el" href="class_card.html">Card</a> &gt; set)</td></tr>
+<tr class="memdesc:aa3d6eeaab48add260973d194a25ab06e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of troops a player gets from the set they are turning in.  <br /></td></tr>
 <tr class="separator:aa3d6eeaab48add260973d194a25ab06e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4af5137358fc02202b757e8f3f98485" id="r_ad4af5137358fc02202b757e8f3f98485"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4af5137358fc02202b757e8f3f98485">IsArrayAValidSet</a> (List&lt; <a class="el" href="class_card.html">Card</a> &gt; cardArray)</td></tr>
+<tr class="memdesc:ad4af5137358fc02202b757e8f3f98485"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if a given set of cards is valid to turn in.  <br /></td></tr>
 <tr class="separator:ad4af5137358fc02202b757e8f3f98485"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d216366cb689081d570742f992bed6a" id="r_a3d216366cb689081d570742f992bed6a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d216366cb689081d570742f992bed6a">ResetSetNumberWorth</a> ()</td></tr>
 <tr class="separator:a3d216366cb689081d570742f992bed6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b6a941a1b41af4e984ec2fcdeab0b74" id="r_a9b6a941a1b41af4e984ec2fcdeab0b74"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b6a941a1b41af4e984ec2fcdeab0b74">CalculateSetWorth</a> ()</td></tr>
+<tr class="memdesc:a9b6a941a1b41af4e984ec2fcdeab0b74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the number of troops you get for turning in cards.  <br /></td></tr>
 <tr class="separator:a9b6a941a1b41af4e984ec2fcdeab0b74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00006">6</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<div class="textblock"><p>Represents the hand of a given player. Includes a list of their cards. </p>
+
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00009">9</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a5a9a7a8689fdf26ee58808b22b46f27a" name="a5a9a7a8689fdf26ee58808b22b46f27a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a9a7a8689fdf26ee58808b22b46f27a">&#9670;&#160;</a></span>Hand()</h2>
+<a id="ad9a0598201f663212a09ce9d68701119" name="ad9a0598201f663212a09ce9d68701119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9a0598201f663212a09ce9d68701119">&#9670;&#160;</a></span>Hand()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -145,13 +157,13 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">Hand.Hand </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>playerIndex</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00010">10</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00026">26</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 
 </div>
 </div>
@@ -171,7 +183,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00015">15</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00032">32</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 
 </div>
 </div>
@@ -198,7 +210,10 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00126">126</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<p>Calculates the number of troops you get for turning in cards. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of troops you get for turning in</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00172">172</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 
 </div>
 </div>
@@ -217,7 +232,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00037">37</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00064">64</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 
 </div>
 </div>
@@ -236,7 +251,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00138">138</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00184">184</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 
 </div>
 </div>
@@ -259,7 +274,17 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00061">61</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<p>Checks to see if this hand has a valid set of cards in it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">validSet</td><td>Output variable of the valid set, empty if none exists</td></tr>
+    <tr><td class="paramname">autoRemoveListFromHand</td><td>Whether or not to remove the list </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if this hand has a valid set, false elsewise </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00098">98</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 
 </div>
 </div>
@@ -278,7 +303,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00027">27</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00054">54</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 
 </div>
 </div>
@@ -297,7 +322,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00032">32</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00059">59</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 
 </div>
 </div>
@@ -324,7 +349,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00042">42</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00069">69</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 
 </div>
 </div>
@@ -351,7 +376,16 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00097">97</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<p>Checks to see if a given set of cards is valid to turn in. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cardArray</td><td>The card array to check validity for</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether or not the array is valid</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00139">139</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 
 </div>
 </div>
@@ -382,7 +416,36 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00047">47</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<p>Returns the number of troops a player gets from the set they are turning in. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">player</td><td>The player turning in a set</td></tr>
+    <tr><td class="paramname">set</td><td>The set being turned in</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of troops the player can get</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00079">79</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+
+</div>
+</div>
+<a id="a0e3ee118c565785c4454a29ea05540b4" name="a0e3ee118c565785c4454a29ea05540b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e3ee118c565785c4454a29ea05540b4">&#9670;&#160;</a></span>RemoveAll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Hand.RemoveAll </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00044">44</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 
 </div>
 </div>
@@ -401,7 +464,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00020">20</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00037">37</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 
 </div>
 </div>
@@ -428,7 +491,38 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00121">121</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00163">163</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
+
+</div>
+</div>
+<a id="a70d8b693db5378f30e18e03bfbac12e4" name="a70d8b693db5378f30e18e03bfbac12e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70d8b693db5378f30e18e03bfbac12e4">&#9670;&#160;</a></span>SetSetsTurnedIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Hand.SetSetsTurnedIn </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>newValue</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>makeRequest</em><span class="paramdefsep"> = </span><span class="paramdefval">true</span></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_hand_8cs_source.html#l00013">13</a> of file <a class="el" href="_hand_8cs_source.html">Hand.cs</a>.</p>
 
 </div>
 </div>

@@ -104,10 +104,11 @@ $(function(){initNavTree('_territory_helper_8cs_source.html',''); initResizable(
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="keyword">using </span>System.Collections.Generic;</div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>UnityEngine;</div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#if UNITY_EDITOR</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">//only used for pregenerating maps, which does not need to be done on the user end</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">public</span> <span class="keyword">class </span>TerritoryHelper : MonoBehaviour</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">//only used for pregenerating maps, which does not need to be done on the user end</span></div>
+<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="class_territory_helper.html">    6</a></span><span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="class_territory_helper.html">TerritoryHelper</a> : MonoBehaviour</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#if UNITY_EDITOR</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <span class="keyword">public</span> <a class="code hl_class" href="class_territory.html">Territory</a> territory;</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keyword">private</span> Texture2D texture = <span class="keyword">null</span>;</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keyword">public</span> Sprite spriteOverride = <span class="keyword">null</span>;</div>
@@ -277,11 +278,13 @@ $(function(){initNavTree('_territory_helper_8cs_source.html',''); initResizable(
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>            }</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        }</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    }</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>}</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>}</div>
+</div>
+<div class="ttc" id="aclass_territory_helper_html"><div class="ttname"><a href="class_territory_helper.html">TerritoryHelper</a></div><div class="ttdef"><b>Definition</b> <a href="#l00006">TerritoryHelper.cs:7</a></div></div>
 <div class="ttc" id="aclass_territory_html"><div class="ttname"><a href="class_territory.html">Territory</a></div><div class="ttdef"><b>Definition</b> <a href="_territory_8cs_source.html#l00008">Territory.cs:9</a></div></div>
-<div class="ttc" id="aclass_territory_html_a8210ed876c18ed129514973e6b4e9803"><div class="ttname"><a href="class_territory.html#a8210ed876c18ed129514973e6b4e9803">Territory.SetCentrePoint</a></div><div class="ttdeci">void SetCentrePoint(Vector3 centrePoint)</div><div class="ttdef"><b>Definition</b> <a href="_territory_8cs_source.html#l00083">Territory.cs:83</a></div></div>
-<div class="ttc" id="aclass_territory_html_a9c241250c6f165cf249b930b99221214"><div class="ttname"><a href="class_territory.html#a9c241250c6f165cf249b930b99221214">Territory.SetBorderPoints</a></div><div class="ttdeci">void SetBorderPoints(List&lt; Vector3 &gt; newPoints)</div><div class="ttdef"><b>Definition</b> <a href="_territory_8cs_source.html#l00133">Territory.cs:133</a></div></div>
+<div class="ttc" id="aclass_territory_html_a8210ed876c18ed129514973e6b4e9803"><div class="ttname"><a href="class_territory.html#a8210ed876c18ed129514973e6b4e9803">Territory.SetCentrePoint</a></div><div class="ttdeci">void SetCentrePoint(Vector3 centrePoint)</div><div class="ttdef"><b>Definition</b> <a href="_territory_8cs_source.html#l00103">Territory.cs:103</a></div></div>
+<div class="ttc" id="aclass_territory_html_a9c241250c6f165cf249b930b99221214"><div class="ttname"><a href="class_territory.html#a9c241250c6f165cf249b930b99221214">Territory.SetBorderPoints</a></div><div class="ttdeci">void SetBorderPoints(List&lt; Vector3 &gt; newPoints)</div><div class="ttdef"><b>Definition</b> <a href="_territory_8cs_source.html#l00153">Territory.cs:153</a></div></div>
 <div class="ttc" id="aclass_texture_node_html"><div class="ttname"><a href="class_texture_node.html">TextureNode</a></div><div class="ttdoc">INode implementation used to pass data to the Pathfinding namespace. Used to navigate certain coloure...</div><div class="ttdef"><b>Definition</b> <a href="_texture_node_8cs_source.html#l00008">TextureNode.cs:9</a></div></div>
 <div class="ttc" id="aclass_texture_node_html_a28776a56e91811f0ed8ed36bed0adbfd"><div class="ttname"><a href="class_texture_node.html#a28776a56e91811f0ed8ed36bed0adbfd">TextureNode.SetPosition</a></div><div class="ttdeci">void SetPosition(Vector3 position)</div><div class="ttdoc">Set the position of the node.</div><div class="ttdef"><b>Definition</b> <a href="_texture_node_8cs_source.html#l00106">TextureNode.cs:106</a></div></div>
 <div class="ttc" id="aclass_texture_node_html_a40e43b4f0b7f039ec0c22ea23280840b"><div class="ttname"><a href="class_texture_node.html#a40e43b4f0b7f039ec0c22ea23280840b">TextureNode.SetTexture</a></div><div class="ttdeci">void SetTexture(Texture2D texture)</div><div class="ttdoc">Set the texture of the node.</div><div class="ttdef"><b>Definition</b> <a href="_texture_node_8cs_source.html#l00114">TextureNode.cs:114</a></div></div>

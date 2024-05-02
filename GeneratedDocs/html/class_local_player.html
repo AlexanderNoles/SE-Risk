@@ -197,14 +197,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7ed8459b03b4fa8dbe1d5314af208517 inherit pub_methods_class_player" id="r_a7ed8459b03b4fa8dbe1d5314af208517"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a7ed8459b03b4fa8dbe1d5314af208517">IsDead</a> ()</td></tr>
 <tr class="memdesc:a7ed8459b03b4fa8dbe1d5314af208517 inherit pub_methods_class_player"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the player is eliminated from the game.  <br /></td></tr>
 <tr class="separator:a7ed8459b03b4fa8dbe1d5314af208517 inherit pub_methods_class_player"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bb87e1c8be2faff1e804900f1f65613 inherit pub_methods_class_player" id="r_a3bb87e1c8be2faff1e804900f1f65613"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a3bb87e1c8be2faff1e804900f1f65613">Killed</a> (<a class="el" href="class_player.html">Player</a> killed)</td></tr>
-<tr class="memdesc:a3bb87e1c8be2faff1e804900f1f65613 inherit pub_methods_class_player"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a players hand.  <br /></td></tr>
-<tr class="separator:a3bb87e1c8be2faff1e804900f1f65613 inherit pub_methods_class_player"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af87349a6a18ce8380c28b02d68cada85 inherit pub_methods_class_player" id="r_af87349a6a18ce8380c28b02d68cada85"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#af87349a6a18ce8380c28b02d68cada85">Killed</a> (int numberOfCardsTaken)</td></tr>
+<tr class="memdesc:af87349a6a18ce8380c28b02d68cada85 inherit pub_methods_class_player"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a players hand.  <br /></td></tr>
+<tr class="separator:af87349a6a18ce8380c28b02d68cada85 inherit pub_methods_class_player"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4be0c9432591243530f4cd1d1d316751 inherit pub_methods_class_player" id="r_a4be0c9432591243530f4cd1d1d316751"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a4be0c9432591243530f4cd1d1d316751">ContinueTurn</a> ()</td></tr>
 <tr class="memdesc:a4be0c9432591243530f4cd1d1d316751 inherit pub_methods_class_player"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs when the player turns in cards during the attack phase. Allows that player to deploy those troops.  <br /></td></tr>
 <tr class="separator:a4be0c9432591243530f4cd1d1d316751 inherit pub_methods_class_player"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab80e9cc6500728b6911bbac237d52440 inherit pub_methods_class_player" id="r_ab80e9cc6500728b6911bbac237d52440"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#ab80e9cc6500728b6911bbac237d52440">GetTurnReset</a> ()</td></tr>
 <tr class="separator:ab80e9cc6500728b6911bbac237d52440 inherit pub_methods_class_player"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f029283c4ee3c8a55c9ae3193d8bc00 inherit pub_methods_class_player" id="r_a8f029283c4ee3c8a55c9ae3193d8bc00"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a8f029283c4ee3c8a55c9ae3193d8bc00">OnKilled</a> ()</td></tr>
+<tr class="separator:a8f029283c4ee3c8a55c9ae3193d8bc00 inherit pub_methods_class_player"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -231,6 +233,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_methods_class_player"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_methods_class_player')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="class_player.html">Player</a></td></tr>
 <tr class="memitem:a62c5d516b908b291ff36daaf4a00a2dd inherit pub_static_methods_class_player" id="r_a62c5d516b908b291ff36daaf4a00a2dd"><td class="memItemLeft" align="right" valign="top">static Color&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a62c5d516b908b291ff36daaf4a00a2dd">GetColourBasedOnIndex</a> (int index)</td></tr>
 <tr class="separator:a62c5d516b908b291ff36daaf4a00a2dd inherit pub_static_methods_class_player"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affac8787729f6bcb31c4bde13b7e9f4b inherit pub_static_methods_class_player" id="r_affac8787729f6bcb31c4bde13b7e9f4b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#affac8787729f6bcb31c4bde13b7e9f4b">SetDifficulty</a> (int newDiff)</td></tr>
+<tr class="separator:affac8787729f6bcb31c4bde13b7e9f4b inherit pub_static_methods_class_player"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a420c6959f0499e1416e1a6fdb5d65870 inherit pub_static_methods_class_player" id="r_a420c6959f0499e1416e1a6fdb5d65870"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a420c6959f0499e1416e1a6fdb5d65870">GetMaxDefendingDice</a> (<a class="el" href="class_territory.html">Territory</a> target)</td></tr>
 <tr class="memdesc:a420c6959f0499e1416e1a6fdb5d65870 inherit pub_static_methods_class_player"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the max amount of dice a territory is able to defend with, based off their troop count.  <br /></td></tr>
 <tr class="separator:a420c6959f0499e1416e1a6fdb5d65870 inherit pub_static_methods_class_player"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -380,7 +384,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Shows the last card in the local players hand. </p>
 
-<p class="definition">Definition at line <a class="el" href="_local_player_8cs_source.html#l00113">113</a> of file <a class="el" href="_local_player_8cs_source.html">LocalPlayer.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_local_player_8cs_source.html#l00112">112</a> of file <a class="el" href="_local_player_8cs_source.html">LocalPlayer.cs</a>.</p>
 
 </div>
 </div>
@@ -539,7 +543,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Sets the hand to be displayed in the card displayer. </p>
 
-<p class="definition">Definition at line <a class="el" href="_local_player_8cs_source.html#l00134">134</a> of file <a class="el" href="_local_player_8cs_source.html">LocalPlayer.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_local_player_8cs_source.html#l00133">133</a> of file <a class="el" href="_local_player_8cs_source.html">LocalPlayer.cs</a>.</p>
 
 </div>
 </div>

@@ -116,7 +116,7 @@ $(function(){initNavTree('_kcp_header_8cs_source.html',''); initResizable(); });
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <span class="comment">// we already have a KcpHeader for reliable messages.</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <span class="comment">// ping is only used to keep it alive, so latency doesn&#39;t matter.</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <a class="code hl_enumvalue" href="namespacekcp2k.html#a722e9b664ba57a583db83f76fd1ebbbdab85815d04cec053ce6deb8021f2df1b8">Ping</a>       = 2,</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        Data       = 3,</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <a class="code hl_enumvalue" href="namespacekcp2k.html#a722e9b664ba57a583db83f76fd1ebbbdaf6068daa29dbb05a7ead1e3b5a48bbee">Data</a>       = 3,</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    }</div>
 </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
@@ -124,7 +124,7 @@ $(function(){initNavTree('_kcp_header_8cs_source.html',''); initResizable(); });
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="namespacekcp2k.html#a459ddbd672ba29eea79bc7c8265d2ca5">   19</a></span>    <span class="keyword">public</span> <span class="keyword">enum</span> <a class="code hl_enumeration" href="namespacekcp2k.html#a459ddbd672ba29eea79bc7c8265d2ca5">KcpHeaderUnreliable</a> : <span class="keywordtype">byte</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    {</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="comment">// users may send unreliable messages</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        Data = 4,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <a class="code hl_enumvalue" href="namespacekcp2k.html#a722e9b664ba57a583db83f76fd1ebbbdaf6068daa29dbb05a7ead1e3b5a48bbee">Data</a> = 4,</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <span class="comment">// disconnect always goes through rapid fire unreliable (glenn fielder)</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_enumvalue" href="namespacekcp2k.html#a459ddbd672ba29eea79bc7c8265d2ca5a42ae25231906c83927831e0ef7c317ac">Disconnect</a> = 5,</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    }</div>
@@ -136,6 +136,7 @@ $(function(){initNavTree('_kcp_header_8cs_source.html',''); initResizable(); });
 <div class="ttc" id="anamespacekcp2k_html_a722e9b664ba57a583db83f76fd1ebbbd"><div class="ttname"><a href="namespacekcp2k.html#a722e9b664ba57a583db83f76fd1ebbbd">kcp2k.KcpHeaderReliable</a></div><div class="ttdeci">KcpHeaderReliable</div><div class="ttdef"><b>Definition</b> <a href="#l00007">KcpHeader.cs:8</a></div></div>
 <div class="ttc" id="anamespacekcp2k_html_a722e9b664ba57a583db83f76fd1ebbbda8b1a9953c4611296a827abf8c47804d7"><div class="ttname"><a href="namespacekcp2k.html#a722e9b664ba57a583db83f76fd1ebbbda8b1a9953c4611296a827abf8c47804d7">kcp2k.KcpHeaderReliable.Hello</a></div><div class="ttdeci">@ Hello</div></div>
 <div class="ttc" id="anamespacekcp2k_html_a722e9b664ba57a583db83f76fd1ebbbdab85815d04cec053ce6deb8021f2df1b8"><div class="ttname"><a href="namespacekcp2k.html#a722e9b664ba57a583db83f76fd1ebbbdab85815d04cec053ce6deb8021f2df1b8">kcp2k.KcpHeaderReliable.Ping</a></div><div class="ttdeci">@ Ping</div></div>
+<div class="ttc" id="anamespacekcp2k_html_a722e9b664ba57a583db83f76fd1ebbbdaf6068daa29dbb05a7ead1e3b5a48bbee"><div class="ttname"><a href="namespacekcp2k.html#a722e9b664ba57a583db83f76fd1ebbbdaf6068daa29dbb05a7ead1e3b5a48bbee">kcp2k.KcpHeaderReliable.Data</a></div><div class="ttdeci">@ Data</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

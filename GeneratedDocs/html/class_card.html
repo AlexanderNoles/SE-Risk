@@ -118,15 +118,15 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7f6e7f1148dc057414e073ccc423984c" id="r_a7f6e7f1148dc057414e073ccc423984c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f6e7f1148dc057414e073ccc423984c">Card</a> (<a class="el" href="class_territory.html">Territory</a> territory, int design)</td></tr>
-<tr class="memdesc:a7f6e7f1148dc057414e073ccc423984c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a card with a specified territory associated with it.  <br /></td></tr>
-<tr class="separator:a7f6e7f1148dc057414e073ccc423984c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7618d0f479988eb50727b31faa0e316f" id="r_a7618d0f479988eb50727b31faa0e316f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7618d0f479988eb50727b31faa0e316f">Card</a> (int territoryIndex, int design)</td></tr>
+<tr class="memdesc:a7618d0f479988eb50727b31faa0e316f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a card with a specified territory associated with it.  <br /></td></tr>
+<tr class="separator:a7618d0f479988eb50727b31faa0e316f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ebe841d86b657788590efc92a8cfb09" id="r_a8ebe841d86b657788590efc92a8cfb09"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ebe841d86b657788590efc92a8cfb09">Card</a> ()</td></tr>
 <tr class="memdesc:a8ebe841d86b657788590efc92a8cfb09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a card with no territory associated with it, aka a wild card.  <br /></td></tr>
 <tr class="separator:a8ebe841d86b657788590efc92a8cfb09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bd5b0a07cb576c574479143c0c9a225" id="r_a9bd5b0a07cb576c574479143c0c9a225"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_territory.html">Territory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9bd5b0a07cb576c574479143c0c9a225">GetTerritory</a> ()</td></tr>
-<tr class="memdesc:a9bd5b0a07cb576c574479143c0c9a225"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the territory associated with this card.  <br /></td></tr>
-<tr class="separator:a9bd5b0a07cb576c574479143c0c9a225"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38c913fe7feaf4f46415a9d633fb2bb9" id="r_a38c913fe7feaf4f46415a9d633fb2bb9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38c913fe7feaf4f46415a9d633fb2bb9">GetTerritory</a> ()</td></tr>
+<tr class="memdesc:a38c913fe7feaf4f46415a9d633fb2bb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the territory associated with this card.  <br /></td></tr>
+<tr class="separator:a38c913fe7feaf4f46415a9d633fb2bb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a919ba3d61302236a804ea22225407833" id="r_a919ba3d61302236a804ea22225407833"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a47993e630400d8b8217ad8aa4d320848">cardDesign</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a919ba3d61302236a804ea22225407833">GetDesign</a> ()</td></tr>
 <tr class="memdesc:a919ba3d61302236a804ea22225407833"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the design on this card.  <br /></td></tr>
 <tr class="separator:a919ba3d61302236a804ea22225407833"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,8 +160,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7f6e7f1148dc057414e073ccc423984c" name="a7f6e7f1148dc057414e073ccc423984c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f6e7f1148dc057414e073ccc423984c">&#9670;&#160;</a></span>Card() <span class="overload">[1/2]</span></h2>
+<a id="a7618d0f479988eb50727b31faa0e316f" name="a7618d0f479988eb50727b31faa0e316f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7618d0f479988eb50727b31faa0e316f">&#9670;&#160;</a></span>Card() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,7 +169,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">Card.Card </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_territory.html">Territory</a></td>          <td class="paramname"><span class="paramname"><em>territory</em>, </span></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>territoryIndex</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -236,14 +236,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9bd5b0a07cb576c574479143c0c9a225" name="a9bd5b0a07cb576c574479143c0c9a225"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bd5b0a07cb576c574479143c0c9a225">&#9670;&#160;</a></span>GetTerritory()</h2>
+<a id="a38c913fe7feaf4f46415a9d633fb2bb9" name="a38c913fe7feaf4f46415a9d633fb2bb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38c913fe7feaf4f46415a9d633fb2bb9">&#9670;&#160;</a></span>GetTerritory()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_territory.html">Territory</a> Card.GetTerritory </td>
+          <td class="memname">int Card.GetTerritory </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"></span></td><td>)</td>
           <td></td>

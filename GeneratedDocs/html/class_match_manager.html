@@ -97,11 +97,13 @@ $(function(){initNavTree('class_match_manager.html',''); initResizable(); });
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_match_manager-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">MatchManager Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Monobehaviour that manages a specific instance of a match. Initiates fortify, setup, delpoy and attack phases for each player.  
+ <a href="#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for MatchManager:</div>
 <div class="dyncontent">
@@ -112,6 +114,7 @@ Inheritance diagram for MatchManager:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_match_manager_1_1_game_won_info.html">GameWonInfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct containing info about the game just played. This includes the winner name and colour (as a hex string) as well as a bool indicating if the local player won or not.  <a href="struct_match_manager_1_1_game_won_info.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
@@ -142,37 +145,46 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a59685feed18da999fd1a5fe37036ff39" id="r_a59685feed18da999fd1a5fe37036ff39"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59685feed18da999fd1a5fe37036ff39">IsGameOver</a> ()</td></tr>
 <tr class="separator:a59685feed18da999fd1a5fe37036ff39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f0a85cb8a995fe4a800f893c5256728" id="r_a2f0a85cb8a995fe4a800f893c5256728"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_match_manager_1_1_game_won_info.html">GameWonInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f0a85cb8a995fe4a800f893c5256728">GetGameWonInfo</a> ()</td></tr>
+<tr class="memdesc:a2f0a85cb8a995fe4a800f893c5256728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get game won info.  <br /></td></tr>
 <tr class="separator:a2f0a85cb8a995fe4a800f893c5256728"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4106465be13d61714e6fd2b2bbd5330c" id="r_a4106465be13d61714e6fd2b2bbd5330c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="#acf29e9f3522effc10dfc54243d0a6e1b">TurnState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4106465be13d61714e6fd2b2bbd5330c">GetTurnState</a> ()</td></tr>
 <tr class="separator:a4106465be13d61714e6fd2b2bbd5330c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab874fc6624f47c1e71c8a3684206917e" id="r_ab874fc6624f47c1e71c8a3684206917e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_player.html">Player</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab874fc6624f47c1e71c8a3684206917e">GetPlayerFromIndex</a> (int target)</td></tr>
 <tr class="memdesc:ab874fc6624f47c1e71c8a3684206917e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes player ID and returns the player object from that.  <br /></td></tr>
 <tr class="separator:ab874fc6624f47c1e71c8a3684206917e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ee38dc58c74fe152b53961f7cb62480" id="r_a3ee38dc58c74fe152b53961f7cb62480"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ee38dc58c74fe152b53961f7cb62480">SetTurnNumber</a> (int newTurnNumber, bool makeRequest=true)</td></tr>
+<tr class="separator:a3ee38dc58c74fe152b53961f7cb62480"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b9f45aa648adfa315473105b28c9f91" id="r_a7b9f45aa648adfa315473105b28c9f91"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b9f45aa648adfa315473105b28c9f91">GetCurrentTroopDeployCount</a> ()</td></tr>
 <tr class="separator:a7b9f45aa648adfa315473105b28c9f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa53f6215eaf9b60e83fb8758072f587a" id="r_aa53f6215eaf9b60e83fb8758072f587a"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa53f6215eaf9b60e83fb8758072f587a">InSetup</a> ()</td></tr>
 <tr class="separator:aa53f6215eaf9b60e83fb8758072f587a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4c19946d378948ef71149ab59983968" id="r_aa4c19946d378948ef71149ab59983968"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4c19946d378948ef71149ab59983968">Setup</a> ()</td></tr>
-<tr class="memdesc:aa4c19946d378948ef71149ab59983968"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the setup phase of a players turn, allowing them to place one troop on an owned or unoccupied territory.  <br /></td></tr>
-<tr class="separator:aa4c19946d378948ef71149ab59983968"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a866c99193694d9940df4ba3ecee4ffbf" id="r_a866c99193694d9940df4ba3ecee4ffbf"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a866c99193694d9940df4ba3ecee4ffbf">Deploy</a> ()</td></tr>
-<tr class="memdesc:a866c99193694d9940df4ba3ecee4ffbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the deploy phase of a players turn, allowing them to place some number of troops on territories they own.  <br /></td></tr>
-<tr class="separator:a866c99193694d9940df4ba3ecee4ffbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbb2790927102ef274f04a208eeb0a68" id="r_acbb2790927102ef274f04a208eeb0a68"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbb2790927102ef274f04a208eeb0a68">Attack</a> ()</td></tr>
-<tr class="memdesc:acbb2790927102ef274f04a208eeb0a68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the attack phase of a players turn, allowing them to request attacks from territories they own to territories they dont.  <br /></td></tr>
-<tr class="separator:acbb2790927102ef274f04a208eeb0a68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30d6316942ca42c1c0e320a8dc44c54b" id="r_a30d6316942ca42c1c0e320a8dc44c54b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a30d6316942ca42c1c0e320a8dc44c54b">Fortify</a> ()</td></tr>
-<tr class="memdesc:a30d6316942ca42c1c0e320a8dc44c54b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the fortify phase of a players turn, allowing them to move troops from one territory they own to one other territory they also own.  <br /></td></tr>
-<tr class="separator:a30d6316942ca42c1c0e320a8dc44c54b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addb3bfdd46e796393d536c3cc7a0bb42" id="r_addb3bfdd46e796393d536c3cc7a0bb42"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addb3bfdd46e796393d536c3cc7a0bb42">EndTurn</a> (bool playerRemoved=false)</td></tr>
-<tr class="memdesc:addb3bfdd46e796393d536c3cc7a0bb42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends a players turn by drawing a card and then switching to the next player.  <br /></td></tr>
-<tr class="separator:addb3bfdd46e796393d536c3cc7a0bb42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a727db1bc89af674e3bccda8300094442" id="r_a727db1bc89af674e3bccda8300094442"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a727db1bc89af674e3bccda8300094442">Setup</a> (int currentPlayer, bool requireValidation=true)</td></tr>
+<tr class="memdesc:a727db1bc89af674e3bccda8300094442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the setup phase of a players turn, allowing them to place one troop on an owned or unoccupied territory.  <br /></td></tr>
+<tr class="separator:a727db1bc89af674e3bccda8300094442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97d216cfde6beef74dced52b1e7b7b9b" id="r_a97d216cfde6beef74dced52b1e7b7b9b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97d216cfde6beef74dced52b1e7b7b9b">Deploy</a> (int playerMakingRequest, bool requireValidation=false)</td></tr>
+<tr class="memdesc:a97d216cfde6beef74dced52b1e7b7b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the deploy phase of a players turn, allowing them to place some number of troops on territories they own.  <br /></td></tr>
+<tr class="separator:a97d216cfde6beef74dced52b1e7b7b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3514ed460e0e7d95f232e1c72743cb62" id="r_a3514ed460e0e7d95f232e1c72743cb62"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3514ed460e0e7d95f232e1c72743cb62">Attack</a> (int playerMakingRequest, bool requireValidation=false)</td></tr>
+<tr class="memdesc:a3514ed460e0e7d95f232e1c72743cb62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the attack phase of a players turn, allowing them to request attacks from territories they own to territories they dont.  <br /></td></tr>
+<tr class="separator:a3514ed460e0e7d95f232e1c72743cb62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af68d08ef4a8b0c15855cd2b07f9cfd6b" id="r_af68d08ef4a8b0c15855cd2b07f9cfd6b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af68d08ef4a8b0c15855cd2b07f9cfd6b">Fortify</a> (int playerMakingRequest, bool requireValidation=false)</td></tr>
+<tr class="memdesc:af68d08ef4a8b0c15855cd2b07f9cfd6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the fortify phase of a players turn, allowing them to move troops from one territory they own to one other territory they also own.  <br /></td></tr>
+<tr class="separator:af68d08ef4a8b0c15855cd2b07f9cfd6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a295c53643ed01b7a610a58d28129bbf0" id="r_a295c53643ed01b7a610a58d28129bbf0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a295c53643ed01b7a610a58d28129bbf0">EndTurn</a> (int playerMakingRequest, bool requireValidation=true, bool playerRemoved=false)</td></tr>
+<tr class="memdesc:a295c53643ed01b7a610a58d28129bbf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ends a players turn by drawing a card and then switching to the next player.  <br /></td></tr>
+<tr class="separator:a295c53643ed01b7a610a58d28129bbf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fd6f89e2bedaf5c20121bab64dd0be1" id="r_a0fd6f89e2bedaf5c20121bab64dd0be1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fd6f89e2bedaf5c20121bab64dd0be1">SwitchPlayerSetup</a> ()</td></tr>
 <tr class="memdesc:a0fd6f89e2bedaf5c20121bab64dd0be1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switches the player in the setup phase, to ensure the counter tracks accordingly.  <br /></td></tr>
 <tr class="separator:a0fd6f89e2bedaf5c20121bab64dd0be1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17d9f760ac3990e579646a67731e9465" id="r_a17d9f760ac3990e579646a67731e9465"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17d9f760ac3990e579646a67731e9465">WinCheck</a> (<a class="el" href="class_player.html">Player</a> current)</td></tr>
-<tr class="memdesc:a17d9f760ac3990e579646a67731e9465"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the passed player has won the game, if they have, the game is ended and we transition to the win screen.  <br /></td></tr>
-<tr class="separator:a17d9f760ac3990e579646a67731e9465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b37b108d69eebaef957de3168028734" id="r_a1b37b108d69eebaef957de3168028734"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b37b108d69eebaef957de3168028734">WinCheck</a> (int current)</td></tr>
+<tr class="memdesc:a1b37b108d69eebaef957de3168028734"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the passed player has won the game, if they have, the game is ended and we transition to the win screen.  <br /></td></tr>
+<tr class="separator:a1b37b108d69eebaef957de3168028734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27b52a9b2eea9f20317c19d893fb10d3" id="r_a27b52a9b2eea9f20317c19d893fb10d3"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27b52a9b2eea9f20317c19d893fb10d3">CreateGameWonInfo</a> (string colourName, string colourHex, int playerWonIndex)</td></tr>
+<tr class="memdesc:a27b52a9b2eea9f20317c19d893fb10d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create game won info based on entered info. Used exclusively by clients in networked LAN games.  <br /></td></tr>
+<tr class="separator:a27b52a9b2eea9f20317c19d893fb10d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdfff3c75f862095c467e0cafefd00d8" id="r_abdfff3c75f862095c467e0cafefd00d8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdfff3c75f862095c467e0cafefd00d8">StartExitTransition</a> ()</td></tr>
+<tr class="memdesc:abdfff3c75f862095c467e0cafefd00d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start the exit transition out of the play scene.  <br /></td></tr>
+<tr class="separator:abdfff3c75f862095c467e0cafefd00d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b34f3ad802b292797cb93460f6b1b42" id="r_a2b34f3ad802b292797cb93460f6b1b42"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b34f3ad802b292797cb93460f6b1b42">OnOutTransitionOver</a> ()</td></tr>
 <tr class="memdesc:a2b34f3ad802b292797cb93460f6b1b42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the transition effect and switches to the menu scene.  <br /></td></tr>
 <tr class="separator:a2b34f3ad802b292797cb93460f6b1b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -182,20 +194,14 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a75c7893ae7b28b64c1a6b27248c2a59f" id="r_a75c7893ae7b28b64c1a6b27248c2a59f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75c7893ae7b28b64c1a6b27248c2a59f">UpdateInfoTextSetup</a> (int count)</td></tr>
 <tr class="memdesc:a75c7893ae7b28b64c1a6b27248c2a59f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the turn info text to display the number of troops left to set up.  <br /></td></tr>
 <tr class="separator:a75c7893ae7b28b64c1a6b27248c2a59f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0a196fe568eec2bec905771dbfc5054" id="r_ac0a196fe568eec2bec905771dbfc5054"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_player.html">Player</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0a196fe568eec2bec905771dbfc5054">GetPlayers</a> ()</td></tr>
-<tr class="separator:ac0a196fe568eec2bec905771dbfc5054"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a402407bc120ada35a85e6a6b5e28ff26" id="r_a402407bc120ada35a85e6a6b5e28ff26"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a402407bc120ada35a85e6a6b5e28ff26">OnePlayerAlive</a> (<a class="el" href="class_player.html">Player</a> current)</td></tr>
 <tr class="memdesc:a402407bc120ada35a85e6a6b5e28ff26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if the passed player is the only living player.  <br /></td></tr>
 <tr class="separator:a402407bc120ada35a85e6a6b5e28ff26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a119d8fd1febb6f393da00482d9313bc2" id="r_a119d8fd1febb6f393da00482d9313bc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_player_info_handler.html">PlayerInfoHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a119d8fd1febb6f393da00482d9313bc2">infoHandler</a></td></tr>
-<tr class="separator:a119d8fd1febb6f393da00482d9313bc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00009">9</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<div class="textblock"><p>Monobehaviour that manages a specific instance of a match. Initiates fortify, setup, delpoy and attack phases for each player. </p>
+
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00012">12</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="acf29e9f3522effc10dfc54243d0a6e1b" name="acf29e9f3522effc10dfc54243d0a6e1b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acf29e9f3522effc10dfc54243d0a6e1b">&#9670;&#160;</a></span>TurnState</h2>
@@ -214,13 +220,13 @@ Public Attributes</h2></td></tr>
 <tr><td class="fieldname"><a id="acf29e9f3522effc10dfc54243d0a6e1ba4a9f4e43409533f11c57bbb337a03876" name="acf29e9f3522effc10dfc54243d0a6e1ba4a9f4e43409533f11c57bbb337a03876"></a>Fortifying&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00073">73</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00096">96</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="acbb2790927102ef274f04a208eeb0a68" name="acbb2790927102ef274f04a208eeb0a68"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbb2790927102ef274f04a208eeb0a68">&#9670;&#160;</a></span>Attack()</h2>
+<a id="a3514ed460e0e7d95f232e1c72743cb62" name="a3514ed460e0e7d95f232e1c72743cb62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3514ed460e0e7d95f232e1c72743cb62">&#9670;&#160;</a></span>Attack()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -231,8 +237,12 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">static void MatchManager.Attack </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>playerMakingRequest</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>requireValidation</em><span class="paramdefsep"> = </span><span class="paramdefval">false</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -244,7 +254,7 @@ Public Attributes</h2></td></tr>
 
 <p>Runs the attack phase of a players turn, allowing them to request attacks from territories they own to territories they dont. </p>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00259">259</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00302">302</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -263,12 +273,58 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00091">91</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00112">112</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
-<a id="a866c99193694d9940df4ba3ecee4ffbf" name="a866c99193694d9940df4ba3ecee4ffbf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a866c99193694d9940df4ba3ecee4ffbf">&#9670;&#160;</a></span>Deploy()</h2>
+<a id="a27b52a9b2eea9f20317c19d893fb10d3" name="a27b52a9b2eea9f20317c19d893fb10d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27b52a9b2eea9f20317c19d893fb10d3">&#9670;&#160;</a></span>CreateGameWonInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void MatchManager.CreateGameWonInfo </td>
+          <td>(</td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>colourName</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string</td>          <td class="paramname"><span class="paramname"><em>colourHex</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>playerWonIndex</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Create game won info based on entered info. Used exclusively by clients in networked LAN games. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">colourName</td><td>Winner name.</td></tr>
+    <tr><td class="paramname">colourHex</td><td>Winner colour as hex.</td></tr>
+    <tr><td class="paramname">playerWonIndex</td><td>The index of the winning player.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00494">494</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+
+</div>
+</div>
+<a id="a97d216cfde6beef74dced52b1e7b7b9b" name="a97d216cfde6beef74dced52b1e7b7b9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97d216cfde6beef74dced52b1e7b7b9b">&#9670;&#160;</a></span>Deploy()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,8 +335,12 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">static void MatchManager.Deploy </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>playerMakingRequest</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>requireValidation</em><span class="paramdefsep"> = </span><span class="paramdefval">false</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -292,12 +352,12 @@ Public Attributes</h2></td></tr>
 
 <p>Runs the deploy phase of a players turn, allowing them to place some number of troops on territories they own. </p>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00240">240</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00277">277</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
-<a id="addb3bfdd46e796393d536c3cc7a0bb42" name="addb3bfdd46e796393d536c3cc7a0bb42"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#addb3bfdd46e796393d536c3cc7a0bb42">&#9670;&#160;</a></span>EndTurn()</h2>
+<a id="a295c53643ed01b7a610a58d28129bbf0" name="a295c53643ed01b7a610a58d28129bbf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a295c53643ed01b7a610a58d28129bbf0">&#9670;&#160;</a></span>EndTurn()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -308,8 +368,17 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">static void MatchManager.EndTurn </td>
           <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>playerRemoved</em><span class="paramdefsep"> = </span><span class="paramdefval">false</span></span></td><td>)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>playerMakingRequest</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>requireValidation</em><span class="paramdefsep"> = </span><span class="paramdefval">true</span>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>playerRemoved</em><span class="paramdefsep"> = </span><span class="paramdefval">false</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -327,12 +396,12 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00299">299</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00354">354</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
-<a id="a30d6316942ca42c1c0e320a8dc44c54b" name="a30d6316942ca42c1c0e320a8dc44c54b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30d6316942ca42c1c0e320a8dc44c54b">&#9670;&#160;</a></span>Fortify()</h2>
+<a id="af68d08ef4a8b0c15855cd2b07f9cfd6b" name="af68d08ef4a8b0c15855cd2b07f9cfd6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af68d08ef4a8b0c15855cd2b07f9cfd6b">&#9670;&#160;</a></span>Fortify()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -343,8 +412,12 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">static void MatchManager.Fortify </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>playerMakingRequest</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>requireValidation</em><span class="paramdefsep"> = </span><span class="paramdefval">false</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -356,7 +429,7 @@ Public Attributes</h2></td></tr>
 
 <p>Runs the fortify phase of a players turn, allowing them to move troops from one territory they own to one other territory they also own. </p>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00268">268</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00316">316</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -375,7 +448,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00294">294</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00349">349</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -402,7 +475,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00078">78</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00101">101</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -429,7 +502,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00035">35</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p>Get game won info. </p>
+<dl class="section return"><dt>Returns</dt><dd>Current static game won info</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00045">45</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -465,34 +541,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The player object corresponding to that ID</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00055">55</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
-
-</div>
-</div>
-<a id="ac0a196fe568eec2bec905771dbfc5054" name="ac0a196fe568eec2bec905771dbfc5054"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0a196fe568eec2bec905771dbfc5054">&#9670;&#160;</a></span>GetPlayers()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static List&lt; <a class="el" href="class_player.html">Player</a> &gt; MatchManager.GetPlayers </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00435">435</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00065">65</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -519,7 +568,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00041">41</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00051">51</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -546,7 +595,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00086">86</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00107">107</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -573,7 +622,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00013">13</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00016">16</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -609,7 +658,7 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00445">445</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00548">548</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -638,7 +687,7 @@ Public Attributes</h2></td></tr>
 
 <p>Stops the transition effect and switches to the menu scene. </p>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00412">412</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00514">514</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -665,12 +714,43 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00099">99</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00120">120</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
-<a id="aa4c19946d378948ef71149ab59983968" name="aa4c19946d378948ef71149ab59983968"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4c19946d378948ef71149ab59983968">&#9670;&#160;</a></span>Setup()</h2>
+<a id="a3ee38dc58c74fe152b53961f7cb62480" name="a3ee38dc58c74fe152b53961f7cb62480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ee38dc58c74fe152b53961f7cb62480">&#9670;&#160;</a></span>SetTurnNumber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void MatchManager.SetTurnNumber </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>newTurnNumber</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>makeRequest</em><span class="paramdefsep"> = </span><span class="paramdefval">true</span></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00082">82</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+
+</div>
+</div>
+<a id="a727db1bc89af674e3bccda8300094442" name="a727db1bc89af674e3bccda8300094442"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a727db1bc89af674e3bccda8300094442">&#9670;&#160;</a></span>Setup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -681,8 +761,12 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">static void MatchManager.Setup </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>currentPlayer</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>requireValidation</em><span class="paramdefsep"> = </span><span class="paramdefval">true</span></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -694,7 +778,7 @@ Public Attributes</h2></td></tr>
 
 <p>Runs the setup phase of a players turn, allowing them to place one troop on an owned or unoccupied territory. </p>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00201">201</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00232">232</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -713,7 +797,36 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00144">144</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00174">174</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+
+</div>
+</div>
+<a id="abdfff3c75f862095c467e0cafefd00d8" name="abdfff3c75f862095c467e0cafefd00d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdfff3c75f862095c467e0cafefd00d8">&#9670;&#160;</a></span>StartExitTransition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void MatchManager.StartExitTransition </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Start the exit transition out of the play scene. </p>
+
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00504">504</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -734,7 +847,7 @@ Public Attributes</h2></td></tr>
 
 <p>Switches the current turn index to be the player whos turn it is next. </p>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00278">278</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00331">331</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -763,7 +876,7 @@ Public Attributes</h2></td></tr>
 
 <p>Switches the player in the setup phase, to ensure the counter tracks accordingly. </p>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00323">323</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00383">383</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -798,7 +911,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00422">422</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00530">530</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
@@ -833,12 +946,12 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00430">430</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00538">538</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>
-<a id="a17d9f760ac3990e579646a67731e9465" name="a17d9f760ac3990e579646a67731e9465"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a17d9f760ac3990e579646a67731e9465">&#9670;&#160;</a></span>WinCheck()</h2>
+<a id="a1b37b108d69eebaef957de3168028734" name="a1b37b108d69eebaef957de3168028734"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b37b108d69eebaef957de3168028734">&#9670;&#160;</a></span>WinCheck()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -849,7 +962,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">static void MatchManager.WinCheck </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_player.html">Player</a></td>          <td class="paramname"><span class="paramname"><em>current</em></span></td><td>)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>current</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -868,24 +981,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00354">354</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a119d8fd1febb6f393da00482d9313bc2" name="a119d8fd1febb6f393da00482d9313bc2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a119d8fd1febb6f393da00482d9313bc2">&#9670;&#160;</a></span>infoHandler</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_player_info_handler.html">PlayerInfoHandler</a> MatchManager.infoHandler</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00083">83</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_match_manager_8cs_source.html#l00422">422</a> of file <a class="el" href="_match_manager_8cs_source.html">MatchManager.cs</a>.</p>
 
 </div>
 </div>

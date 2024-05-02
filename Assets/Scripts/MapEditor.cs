@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// Map Editor management class. Handles the map editor UI and has static functions for saving and loading the edited map data. Map data is stored as a difference from the regular map so territories that haven't been edited will not have an entry in the data.
+/// </summary>
 public class MapEditor : MonoBehaviour
 {
     private Territory currentTerritoryInflated;
@@ -189,6 +192,9 @@ public class MapEditor : MonoBehaviour
         extraNeighboursList.text = extraNeighboursString;
     }
 
+    /// <summary>
+    /// Button function, used in inspector.
+    /// </summary>
     public void CloseEditingUI()
     {
         territorySelected = false;
@@ -196,6 +202,9 @@ public class MapEditor : MonoBehaviour
         editingUIOutroTime = 1.0f;
     }
 
+    /// <summary>
+    /// Button function, used in inspector.
+    /// </summary>
     public void SaveButton()
     {
         if (territorySelected)
@@ -220,13 +229,19 @@ public class MapEditor : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Button function, used in inspector.
+    /// </summary>
     public void SelectExtraNeighbour()
     {
         AudioManagement.PlaySound("ButtonPress");
         selectingExtraNeighbour = true;
         editingUIOutroTime = 1.0f;
     }
-
+    /// <sum
+    /// mary>
+    /// Button function, used in inspector.
+    /// </summary>
     public void ResetExtraNeighbours()
     {
         AudioManagement.PlaySound("ButtonPress");
@@ -248,6 +263,10 @@ public class MapEditor : MonoBehaviour
         return Application.dataPath + "/territoryNames.json";
     }
 
+    /// <summary>
+    /// Load territory names from disk.
+    /// </summary>
+    /// <returns>Fictionary with the structure: key: territory index, string: modified name</returns>
     public static Dictionary<int, string> LoadTerritoryNamesList()
     {
         Dictionary<int, string> values = new Dictionary<int, string>();
@@ -271,6 +290,9 @@ public class MapEditor : MonoBehaviour
         return values;
     }
 
+    /// <summary>
+    /// Save territory names to disk.
+    /// </summary>
     public static void SaveTerritoryNamesList()
     {
         Debug.Log(GetDataPathNames());
@@ -292,6 +314,10 @@ public class MapEditor : MonoBehaviour
         return Application.dataPath + "/territoryNeighbours.json";
     }
 
+    /// <summary>
+    /// Load extra neighbours from disk.
+    /// </summary>
+    /// <returns>Fictionary with the structure: key: territory index, string: List of extra neighbours represented by territory indexes.</returns>
     public static Dictionary<int, List<int>> LoadExtraNeighboursList()
     {
         Dictionary<int, List<int>> values = new Dictionary<int, List<int>>();
@@ -325,6 +351,9 @@ public class MapEditor : MonoBehaviour
         return values;
     }
 
+    /// <summary>
+    /// Save extra neighbours to disk.
+    /// </summary>
     public static void SaveTerritoryExtraNeighbours()
     {
         Debug.Log(GetDataPathNeighbours());

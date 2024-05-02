@@ -1,5 +1,6 @@
 var class_card_displayer =
 [
+    [ "Awake", "class_card_displayer.html#ab9d8b8148ef80c6536c7534091f5be67", null ],
     [ "GetCardsOnScreen", "class_card_displayer.html#aaddfc56aa3c7c6a202207e8b2d0ab6d2", null ],
     [ "GetCardState", "class_card_displayer.html#a35ed0d297026992d64758bd63ef33875", null ],
     [ "HideCards", "class_card_displayer.html#a49bd81d8938afdab8d2b619b1baeb286", null ],

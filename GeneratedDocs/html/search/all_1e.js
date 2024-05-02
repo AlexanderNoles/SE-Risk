@@ -24,7 +24,7 @@ var searchData=
   ['welcome_2ecs_21',['Welcome.cs',['../_welcome_8cs.html',1,'']]],
   ['width_22',['width',['../class_mirror_1_1_network_ping_display.html#a053429d2ce3765732276872d4fb17d68',1,'Mirror::NetworkPingDisplay']]],
   ['wildcard_23',['WildCard',['../class_card.html#a47993e630400d8b8217ad8aa4d320848a6cbd53d8f1cfcd6f888bd346941bf021',1,'Card']]],
-  ['wincheck_24',['WinCheck',['../class_match_manager.html#a17d9f760ac3990e579646a67731e9465',1,'MatchManager']]],
+  ['wincheck_24',['WinCheck',['../class_match_manager.html#a1b37b108d69eebaef957de3168028734',1,'MatchManager']]],
   ['winnercolor_25',['winnerColor',['../struct_match_manager_1_1_game_won_info.html#ac74dc3f0f249eea78097f715cfc955f9',1,'MatchManager::GameWonInfo']]],
   ['winnername_26',['winnerName',['../struct_match_manager_1_1_game_won_info.html#a7081ced4a55d52cdfb9c469e66026b86',1,'MatchManager::GameWonInfo']]],
   ['winnertext_27',['winnerText',['../class_win_screen_control.html#a8e149e977508f8072556ccae8a9d2483',1,'WinScreenControl']]],

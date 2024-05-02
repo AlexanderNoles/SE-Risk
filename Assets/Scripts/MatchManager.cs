@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using static MatchManager;
 
+/// <summary>
+/// Monobehaviour that manages a specific instance of a match. Initiates fortify, setup, delpoy and attack phases for each player.
+/// </summary>
 public class MatchManager : MonoBehaviour
 {
     private static bool gameOver;
@@ -15,6 +18,9 @@ public class MatchManager : MonoBehaviour
         return gameOver;
     }
 
+    /// <summary>
+    /// Struct containing info about the game just played. This includes the winner name and colour (as a hex string) as well as a bool indicating if the local player won or not.
+    /// </summary>
     public struct GameWonInfo
     {
         public string winnerName;
@@ -32,6 +38,10 @@ public class MatchManager : MonoBehaviour
 
     private static GameWonInfo gameWonInfo;
 
+    /// <summary>
+    /// Get game won info.
+    /// </summary>
+    /// <returns>Current static game won info</returns>
     public static GameWonInfo GetGameWonInfo()
     {
         return gameWonInfo;
@@ -399,7 +409,7 @@ public class MatchManager : MonoBehaviour
 #endif
     }
 
-    public static void FakeWinCheck()
+    private static void FakeWinCheck()
     {
         gameOver = true;
         WinCheck(PlayerInputHandler.GetLocalPlayerIndex());
@@ -475,6 +485,12 @@ public class MatchManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Create game won info based on entered info. Used exclusively by clients in networked LAN games.
+    /// </summary>
+    /// <param name="colourName">Winner name.</param>
+    /// <param name="colourHex">Winner colour as hex.</param>
+    /// <param name="playerWonIndex">The index of the winning player.</param>
     public static void CreateGameWonInfo(string colourName, string colourHex, int playerWonIndex)
     {
         gameWonInfo = new GameWonInfo(playerWonIndex == PlayerInputHandler.GetLocalPlayerIndex());
@@ -482,6 +498,9 @@ public class MatchManager : MonoBehaviour
         gameWonInfo.winnerColor = colourHex;
     }
 
+    /// <summary>
+    /// Start the exit transition out of the play scene.
+    /// </summary>
     public static void StartExitTransition()
     {
         //Load win screen menu
@@ -519,11 +538,6 @@ public class MatchManager : MonoBehaviour
     public static void UpdateInfoTextSetup(int count)
     {
         UIManagement.SetText($"Current Troops: {count}");
-    }
-
-    public static List<Player> GetPlayers()
-    {
-        return instance.playerList;
     }
 
     /// <summary>

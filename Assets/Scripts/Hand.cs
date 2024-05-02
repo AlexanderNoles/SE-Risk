@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Represents the hand of a given player. Includes a list of their cards.
+/// </summary>
 public class Hand
 {
     static int setsTurnedIn;

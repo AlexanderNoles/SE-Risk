@@ -7,8 +7,8 @@ var class_card =
       [ "WildCard", "class_card.html#a47993e630400d8b8217ad8aa4d320848a6cbd53d8f1cfcd6f888bd346941bf021", null ],
       [ "Empty", "class_card.html#a47993e630400d8b8217ad8aa4d320848ace2c8aed9c2fa0cfbed56cbda4d8bf07", null ]
     ] ],
-    [ "Card", "class_card.html#a7f6e7f1148dc057414e073ccc423984c", null ],
+    [ "Card", "class_card.html#a7618d0f479988eb50727b31faa0e316f", null ],
     [ "Card", "class_card.html#a8ebe841d86b657788590efc92a8cfb09", null ],
     [ "GetDesign", "class_card.html#a919ba3d61302236a804ea22225407833", null ],
-    [ "GetTerritory", "class_card.html#a9bd5b0a07cb576c574479143c0c9a225", null ]
+    [ "GetTerritory", "class_card.html#a38c913fe7feaf4f46415a9d633fb2bb9", null ]
 ];

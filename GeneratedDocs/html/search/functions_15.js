@@ -6,7 +6,7 @@ var searchData=
   ['weaverexception_3',['WeaverException',['../class_mirror_1_1_weaver_1_1_weaver_exception.html#a65d8243e44947ea3cb3a8f0e1d3204bd',1,'Mirror.Weaver.WeaverException.WeaverException(string message, MemberReference member)'],['../class_mirror_1_1_weaver_1_1_weaver_exception.html#a05af3c4b621b1471cf88519151f3b3d5',1,'Mirror.Weaver.WeaverException.WeaverException(SerializationInfo serializationInfo, StreamingContext streamingContext)']]],
   ['weavertypes_4',['WeaverTypes',['../class_mirror_1_1_weaver_1_1_weaver_types.html#ad5db37c94407c1bfefb862792e8cb26c',1,'Mirror::Weaver::WeaverTypes']]],
   ['websocketserver_5',['WebSocketServer',['../class_mirror_1_1_simple_web_1_1_web_socket_server.html#a86a97c9b6eb6a0a587e32c09b4519306',1,'Mirror::SimpleWeb::WebSocketServer']]],
-  ['wincheck_6',['WinCheck',['../class_match_manager.html#a17d9f760ac3990e579646a67731e9465',1,'MatchManager']]],
+  ['wincheck_6',['WinCheck',['../class_match_manager.html#a1b37b108d69eebaef957de3168028734',1,'MatchManager']]],
   ['workerthread_7',['WorkerThread',['../class_mirror_1_1_worker_thread.html#a4cd1d3374b72a2f3d671cdf17957e976',1,'Mirror::WorkerThread']]],
   ['write_3c_20t_20_3e_8',['Write&lt; T &gt;',['../class_mirror_1_1_network_writer.html#a7161bf7487fa97aeff7bc9e3870fe495',1,'Mirror::NetworkWriter']]],
   ['writearguments_9',['WriteArguments',['../class_mirror_1_1_weaver_1_1_network_behaviour_processor.html#aa20c8df67c62e759ce4a9e87be4b8225',1,'Mirror::Weaver::NetworkBehaviourProcessor']]],

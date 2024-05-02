@@ -10,6 +10,5 @@ var class_match_manager =
     [ "GetCurrentPlayerTerritories", "class_match_manager.html#ae1b76b038fd77220860c12c6ed6d8640", null ],
     [ "ResetGame", "class_match_manager.html#a3214bd19ccc0b14c4be600026d3e198b", null ],
     [ "Start", "class_match_manager.html#adc74f7f0c5eaa4a717bf634b7aa9444d", null ],
-    [ "SwitchPlayer", "class_match_manager.html#af05db91055253533d230d8dec666d4c4", null ],
-    [ "infoHandler", "class_match_manager.html#a119d8fd1febb6f393da00482d9313bc2", null ]
+    [ "SwitchPlayer", "class_match_manager.html#af05db91055253533d230d8dec666d4c4", null ]
 ];

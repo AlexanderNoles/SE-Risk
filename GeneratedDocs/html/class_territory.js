@@ -19,6 +19,7 @@ var class_territory =
     [ "GetContinent", "class_territory.html#a3e1eec074d23f73e6c30dcfe232111cd", null ],
     [ "GetCurrentTroops", "class_territory.html#a7cafd823a3cb9edf66b5c5a5bb278818", null ],
     [ "GetIndexInMap", "class_territory.html#a5e09841b0485253623e0e4a3bd6f5f42", null ],
+    [ "GetName", "class_territory.html#af19f6ce9d910734a4203daaae687c488", null ],
     [ "GetNeighbours", "class_territory.html#aeabe7f089d0fba08eed433e2de462e74", null ],
     [ "GetOwner", "class_territory.html#a2fe06fdff2c0bddfbe8bc0e3da5e2607", null ],
     [ "GetUIOffset", "class_territory.html#a08695d350a4b48d2262fd17bcef01226", null ],
@@ -28,6 +29,8 @@ var class_territory =
     [ "SetBorderPoints", "class_territory.html#a9c241250c6f165cf249b930b99221214", null ],
     [ "SetCentrePoint", "class_territory.html#a8210ed876c18ed129514973e6b4e9803", null ],
     [ "SetCurrentTroops", "class_territory.html#a5ca97b4c63b5f1f653bfc83d7639efdf", null ],
+    [ "SetExtraNeighbours", "class_territory.html#ab5fb7bf8db7c15567563edfe796a9392", null ],
+    [ "SetName", "class_territory.html#a9dcbb8949a1df5b78e7738fbb61eab76", null ],
     [ "SetNeighbours", "class_territory.html#ab50ccd63d5005cc2a2be7e3ace5ba877", null ],
     [ "SetOwner", "class_territory.html#a443d18bf424c1996d0e0c27622bc3cce", null ]
 ];
