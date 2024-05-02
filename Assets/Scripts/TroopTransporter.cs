@@ -108,7 +108,7 @@ public class TroopTransporter : MonoBehaviour
             else
             {
                 int allTroopCount;
-                if (MatchManager.GetTurnState() == MatchManager.TurnState.Deploying)
+                if (fromTerritory==null)
                 {
                     allTroopCount = fromTroopCount;
                 }
