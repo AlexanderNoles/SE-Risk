@@ -21,6 +21,7 @@ public class NetworkConnection : NetworkBehaviour
     public bool isOnHost = false;
     public static uint networkID;
     private static bool touchedServer = false;
+    private static bool intentionallyDisconnecting;
 
     public static bool ActuallyConnectedToServer()
     {
@@ -37,6 +38,7 @@ public class NetworkConnection : NetworkBehaviour
         if (isLocalPlayer)
         {
             networkID = GetComponent<NetworkIdentity>().netId;
+            intentionallyDisconnecting = false;
         }
 
         NetworkManagement.AddPlayerObject(GetComponent<NetworkIdentity>());
@@ -92,7 +94,7 @@ public class NetworkConnection : NetworkBehaviour
         }
 
         //Someone disconnected mid game so we return to the title screen
-        if (SceneManager.GetActiveScene().buildIndex == 1) //Play scene
+        if (SceneManager.GetActiveScene().buildIndex == 1 && !intentionallyDisconnecting) //Play scene
         {
             MenuManagement.SetDefaultMenu(MenuManagement.Menu.Main);
             SceneManager.LoadScene(0);
@@ -382,6 +384,9 @@ public class NetworkConnection : NetworkBehaviour
     [ClientRpc]
     public void StartGameExitOnClient(string colourName, string colourHex, int playerWonIndex)
     {
+        //We do this so the disconnect handler doesn't kick in
+        intentionallyDisconnecting = true;
+
         if (NetworkManagement.GetClientState() != NetworkManagement.ClientState.Host)
         {
             //Construct game won info
