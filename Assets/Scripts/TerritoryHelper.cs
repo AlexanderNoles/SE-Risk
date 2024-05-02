@@ -2,7 +2,9 @@ using Pathfinding;
 using System.Collections.Generic;
 using UnityEngine;
 
-//only used for pregenerating maps, which does not need to be done on the user end
+/// <summary>
+/// Editor only class used to pre-generate data about territories.
+/// </summary>
 public class TerritoryHelper : MonoBehaviour
 {
 #if UNITY_EDITOR

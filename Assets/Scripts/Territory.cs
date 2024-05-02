@@ -5,6 +5,9 @@ using UnityEngine;
 using TMPro;
 using System;
 
+/// <summary>
+/// Represents a territory on the map.
+/// </summary>
 public class Territory : MonoBehaviour
 {
 

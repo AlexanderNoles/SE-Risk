@@ -4,6 +4,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 
+/// <summary>
+/// Handles input for the LocalPlayer instance.
+/// </summary>
 public class PlayerInputHandler : MonoBehaviour
 {
     Camera m_Camera;
