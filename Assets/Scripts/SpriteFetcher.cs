@@ -16,7 +16,7 @@ public class SpriteFetcher : MonoBehaviour
     public void Start()
     {
 #if !UNITY_EDITOR
-        if(path == "null"){
+        if(path != "null"){
         SetGameObjectSpriteFromFile();
         }
 #endif
