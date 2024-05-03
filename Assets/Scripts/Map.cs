@@ -181,8 +181,7 @@ public class Map : MonoBehaviour
 
         if (attackingPlayer == defender.GetOwner()) 
         {
-            Debug.LogError("LocalPlayer is attacking itself!");
-            Debug.Break();
+            throw new System.Exception("LocalPlayer is attacking itself!");
         }
         else if (attackerIsLocalPlayer)
         {

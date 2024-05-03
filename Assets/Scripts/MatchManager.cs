@@ -549,7 +549,6 @@ public class MatchManager : MonoBehaviour
     {
         if (current.GetTerritories().Count == Map.GetTerritories().Count)
         {
-            Debug.Log("working");
             return true;
         }
         return false;

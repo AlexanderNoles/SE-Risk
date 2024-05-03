@@ -32,8 +32,6 @@ public class TerritoryHelper : MonoBehaviour
         {
             return false;
         }
-
-
     }
     public bool FindBlackPixel(out Vector2 pos)
     {
